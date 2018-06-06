@@ -1,0 +1,18 @@
+<div id="{{id}}" class="reveal-modal">
+    <a class="close-reveal-modal">×</a>
+    <div class="alert-box alert">{{error_msg}}</div>
+    <i style="line-height: 30px;">shipping service provider:</i>
+    <select class="provider">
+        <option value="USPS">USPS</option>
+        <option value="Fedex">Fedex</option>
+        <option value="UPS">UPS</option>
+        <option value="DHL">DHL</option>
+        <option value="Other">Other</option>
+    </select>
+    <input type="text" class="other_provider" style="display: none;margin-bottom: 0px;" placeholder="other shipping service provider">
+    <i style="line-height: 30px;">tracking number:</i>
+    <input type="text" class="track_number" stype="margin-bottom: 0px;">
+    <i style="line-height: 30px;">expected arrival date:(mm/dd/yyyy)</i>
+    <input type="text" id="datepicker" class="arrival_date"/>     
+    <a class="button save" style="float: right">Save</a>
+</div>  

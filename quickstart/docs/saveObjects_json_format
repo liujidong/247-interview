@@ -1,0 +1,17 @@
+
+
+The JSON string exactly reflects:
+
+. the data fields of an object
+. the relationship bw the "parent" & "child" objects
+1-1 parent_id in the "child" object or the child_id in the "parent" object
+1-n "parent_id" in the "child" object or the association of "parent_id" & "child_id"
+n-n the association of "parent_id" & "child_id"
+. any association related id should not be in the JSON string because the association
+should be created automatically
+
+
+
+
+
+

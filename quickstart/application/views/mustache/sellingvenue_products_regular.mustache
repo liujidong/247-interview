@@ -1,0 +1,94 @@
+<div class="row product-item">
+    <header class="header">
+        <div class="small-6 medium-6 large-6 columns">
+            <a href="javascript:;" class="left module-button save-button">Save</a>
+        </div>
+        <div class="small-6 medium-6 large-6 columns">
+            <a href="javascript:;" class="right module-button delete-button">Delete</a>
+        </div>
+    </header>
+    <div class="small-7 medium-7 large-8 columns">
+        <div class="item-row images-row">
+            <div class="small-3 medium-3 large-2 columns">Images</div>
+            <div class="small-9 medium-9 large-10 columns">
+                <ul class="images">
+                    <li class="image-item add-image">
+                        <a href="javascript:;"><i class="icon fi-plus"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="item-row name-row">
+            <div class="small-3 medium-3 large-2 columns">Name</div>
+            <div class="small-9 medium-9 large-10 columns">
+                <input type="text">
+            </div>
+        </div>
+        <div class="item-row desc-row">
+            <div class="small-3 medium-3 large-2 columns">Description</div>
+            <div class="small-9 medium-9 large-10 columns">
+                <textarea style="height:3.75rem;"></textarea>
+            </div>
+        </div>
+        <div class="item-row category-row">
+            <div class="small-3 medium-3 large-2 columns">Category</div>
+            <div class="small-9 medium-9 large-10 columns">
+                <select class="choose-category">
+                    {{#category}}
+                    <option value="{{name}}">{{name}}</option>
+                    {{/category}}
+                </select>
+            </div>
+        </div>
+        <div class="item-row tags-row">
+            <div class="small-3 medium-3 large-2 columns">Tags</div>
+            <div class="small-9 medium-9 large-10 columns">
+                <input type="text">
+            </div>
+        </div>
+        <div class="item-row price-row">
+            <div class="small-3 medium-3 large-2 columns">Price</div>
+            <div class="small-9 medium-9 large-10 columns">
+                <div class="row">
+                    <div class="small-4 medium-4 large-4 columns">
+                        <input type="text" class="input-price" placeholder="$">
+                    </div>
+                    <div class="small-4 medium-4 large-4 columns text-right">
+                        <label>Commission</label>
+                    </div>
+                    <div class="small-4 medium-4 large-4 columns">
+                        <input type="text" class="input-commission" placeholder="%">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item-row shipping-options">
+            <div class="small-3 medium-3 large-2 columns">Shipping Options</div>
+            <div class="small-9 medium-9 large-10 columns">
+                <ul class="small-block-grid-2 medium-block-grid-2 large-block-grid-4 options">
+                    {{#shipping}}
+                    <li class="option-item">
+                        <input type="checkbox" name="{{name}}" value="{{name}}">
+                        <label>{{name}}</label>
+                    </li>
+                    {{/shipping}}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="small-5 medium-5 large-4 columns">
+        <div class="module-table custom-fields">
+            <div class="table-row">
+                <div class="table-cell">Field</div>
+                <div class="table-cell">In Stock</div>
+                <div class="table-cell">&nbsp;</div>
+            </div>
+            <div class="table-row">
+                <div class="table-cell field-cell"><input type="text"></div>
+                <div class="table-cell instock-cell"><input type="text"></div>
+                <div class="table-cell delete-cell"><a href="javascript:;" class="delete-custom-field">&times;</a></div>
+            </div>
+        </div>
+        <p><a href="javascript:;" class="add-custom-field"><i class="icon fi-plus"></i><span>Add a field</span></a></p>
+    </div>
+</div>

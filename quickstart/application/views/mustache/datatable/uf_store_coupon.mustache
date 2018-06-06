@@ -1,0 +1,80 @@
+<header class="module-header create-header">
+    <h3 class="title">Update Coupon</h3>
+</header>
+
+<form class="create-main" data-abide="ajax">
+    <div class="alert-field"></div>
+    <input type="hidden" name="row_id" value="<%row_id%>">
+    <div class="data-abide-input-container">
+        <label class="required">Scope</label>
+        <select name="scope" required value="<%scope%>" disabled> 
+            <option value="1">Site</option>
+            <option value="2">Store</option>
+            <option value="3">Product</option>
+        </select>
+        <small class="error">Scope is required</small>        
+    </div>
+
+    <div class="data-abide-input-container">
+        <label class="required">Start Time</label>
+        <input type="text" name="start_time" placeholder="Start Time" id="start_time" required value="<%start_time%>">
+        <small class="error">Start time is required</small>        
+    </div>
+
+    <div class="data-abide-input-container">
+        <label class="required">End Time</label>
+        <input type="text" name="end_time" placeholder="End Time" id="end_time" required value="<%end_time%>">
+        <small class="error">End time is required</small>        
+    </div>
+
+    <div class="data-abide-input-container">
+        <label class="required">Price Offer Type</label>
+        <select name="price_offer_type" required value="<%price_offer_type%>">
+            <option value="1">Percentage Off</option>
+            <option value="2">Flat Value Off</option>
+        </select>
+        <small class="error">Price offer type is required</small>        
+    </div>
+
+    <div class="data-abide-input-container">
+        <label class="required">Price Off</label>
+        <input type="text" name="price_off" placeholder="Price Off" required value="<%price_off%>">
+        <small class="error">Price Off is required</small>        
+    </div>
+
+    <div class="data-abide-input-container">
+        <label class="required">Offer Name</label>
+        <input type="text" name="offer_name" placeholder="Offer Name" required value="<%offer_name%>">
+        <small class="error">Offer name is required</small>        
+    </div>
+
+    <div class="data-abide-input-container">
+        <label class="required">Offer Description</label>
+        <textarea rows="4" cols="50" name="offer_description" required><%offer_description%></textarea>    
+        <small class="error">Offer description is required</small>        
+    </div>
+
+    <div class="data-abide-input-container">
+        <label data-tooltip class="has-tip required" title="Times this coupon can be used.">Usage Limit</label>
+        <input type="text" name="usage_limit" placeholder="Usage Limit" required value="<%usage_limit%>">
+        <small class="error">Usage limit is required</small>        
+    </div>
+
+    <div class="data-abide-input-container">
+        <label data-tooltip class="has-tip required" title="Times one buyer can use this coupon.">Usage Restriction</label>
+        <input type="text" name="usage_restriction" placeholder="Usage Restriction" required value="<%usage_restriction%>">    
+        <small class="error">Usage restriction is required</small>        
+    </div>
+
+    <div class="data-abide-input-container">
+        <label>Free Shipping(Not available now)</label>
+        <input type="checkbox" name="free_shipping" placeholder="Free Shipping" value="<%free_shipping%>">
+    </div>
+
+    <div class="data-abide-input-container">
+        <label>Publish to the deals page</label>
+        <input type="checkbox" name="is_deal" value="<%is_deal%>">
+    </div>
+
+    <input type="submit" datatable-action="update" class="submit-button" value="Save" datatable-trigger style="margin-bottom:1.875rem;">
+</form>

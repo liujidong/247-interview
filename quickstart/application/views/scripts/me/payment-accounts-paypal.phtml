@@ -1,0 +1,45 @@
+<link rel="stylesheet" href="/v2/css/pages/dashboard.css">
+<div id="dashboard" class="row page-layout dashboard">
+
+    <section class="small-12 medium-12 large-9 columns">
+        <div class="row">
+            <div class="small-3 medium-3 large-2 columns">
+                <? require_once(APPLICATION_PATH.'/views/scripts/partial/left_sidebar.phtml');?>
+            </div>
+            <!-- side nav end -->
+
+            <div id="payment-paypal" class="small-9 medium-9 large-10 columns">
+                <? require_once(APPLICATION_PATH.'/views/scripts/partial/horizontal_subnav.phtml');?>
+                <? require_once(APPLICATION_PATH.'/views/scripts/partial/horizontal_subnav2.phtml');?>
+                <!-- dashboard nav end -->
+
+                <form action="" data-abide="ajax" id="payment-paypal-form" class="columns dashboard-form">
+                    <div class="row">
+                        <div class="small-4 medium-4 large-4 columns">&nbsp;</div>
+                        <div class="small-8 medium-8 large-8 columns alert-field"></div>
+                    </div>
+                    <div class="row field email-field data-abide-input-container">
+                        <div class="small-4 medium-4 large-4 columns">
+                            <label for="paypal-email" class="required">Paypal Email Address</label>
+                        </div>
+                        <div class="small-8 medium-8 large-8 columns">
+                            <input type="email" name="paypal_email" id="paypal-email" value="<?=$this->user['paypal_email']?>" required>
+                            <small class="error">Paypal Email is required.</small>
+                        </div>
+                    </div>
+                    <div class="row field submit-field">
+                        <div class="small-4 medium-4 large-4 columns">&nbsp;</div>
+                        <div class="small-8 medium-8 large-8 columns">
+                            <input type="submit" value="SAVE" id="submit-settings" class="submit-button">
+                            <input type="submit" value="Continue to Dashboard"
+                                   id="save-and-continue" class="submit-button" style="padding: 0 10px">
+                        </div8
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <? require_once(APPLICATION_PATH.'/views/scripts/partial/right_sidebar.phtml');?>
+
+</div>

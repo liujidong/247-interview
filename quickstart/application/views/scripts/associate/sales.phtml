@@ -1,0 +1,80 @@
+<div id="container" class="row">
+    <div class="twelve columns">
+        <? require_once(APPLICATION_PATH . '/views/scripts/partial/subnav.phtml'); ?>
+        <h1><span class="gentium">Sales</span> Reports</h1>
+
+        <div class="row">
+            <div class="panel twelve columns centered">
+                <div class="row">
+                    <div class="twelve columns">
+
+                        <div class="section hide-for-small">
+                            <div class="row">
+                                <div class="two columns"><h6>Product</h6></div>
+                                <div class="two columns"><h6>Price</h6></div>
+                                <div class="two columns"><h6>Commission Fee</h6></div>
+                                <div class="two columns"><h6>Clicks</h6></div>
+                                <div class="one columns"><h6>Sales</h6></div>
+                                <div class="one columns"><h6>Earnings</h6></div>
+                                <div class="two columns"></div>
+                            </div>
+                        </div>
+                        <? foreach ($this->sales_products as $product) {?>
+                        <div class="section product_item">
+                            <div class="row">
+                                <div class="networkitem">
+                                    <div class="twelve columns product_name_shorten">
+                                        <input type="hidden" class="product_name" value="<?=$product['product_name'].',$'.$product['product_price'];?>" />                             
+                                        <h4><?=$product['product_name_shorten'];?></h4>
+                                    </div>
+                                    <div class="prodimg two columns"><a href="<?=$product['product_url'];?>" target="_blank"><img src="<?=$product['board_img'];?>" alt="" width="45" />                                    </a></div>
+                                    <div class="detail two columns">
+                                        <p><b class="show-for-small">Price:</b> <?=$product['currency_symbol'];?><?=$product['product_price'];?></p>
+                                    </div>
+                                    <div class="two columns"><p><b class="show-for-small">Commission Fee:</b> <?=$product['product_commission'];?>%</p></div>
+                                    <div class="two columns"><p><b class="show-for-small">Clicks:</b> <?=$product['clicks'];?></p></div>
+                                    <div class="one columns"><p><b class="show-for-small">Sales:</b> <?=$product['total_sales'];?></p></div>
+                                    <div class="one columns"><p><b class="show-for-small">Earnings:</b> <?=$product['currency_symbol']?><?=$product['commission_amt'];?></p></div>
+                                    <div class="two columns"><button class="button radius secondary tiny get_code">Get Code</button></div>
+                            </div>
+                            </div>
+                            <div class="row thecode" style="display: none;">
+                                <div class="four columns">
+                                    <label>Custom URL</label>
+                                    <p>Send this link to your friends.</p>
+                                    <input type="text" name="custom_url" class="custom_url" value="<?=$product['product_aff_url'];?>" style="width : 75%; display:inline;"/>
+                                    <div class="zeroclipboard-button button radius success small" data-clipboard-text="<?=$product['product_aff_url'];?>" trigger-title="Done" title="Copy to clipboard">Copy</div> 
+                                    <label>Text Link</label>
+                                    <p>Embed this link on your blog or social network.</p>
+                                    <div class="sample" style="display: inline;"><a href="">Sample of text link.</a></div>
+                                    <input type="text" name="" value="<?=$product['product_aff_name'];?>" style="width : 75%; display:inline;"/>
+                                    <div class="zeroclipboard-button button radius success small" data-clipboard-text="<?=$product['product_aff_name'];?>" trigger-title="Done" title="Copy to clipboard">Copy</div> 
+                                </div>
+                                <div class="four columns">
+                                    <label>Widget Code</label>
+                                    <p>Embed this link on your blog or social network.</p>
+                                    <input type="text" name="" style="height: 6em;text-align: center;" value="Coming Soon..." disabled />									
+                                </div>
+                                <div class="four columns social">
+                                    <label>Share Now</label>
+                                    <p>Click select a social network icon to share with your network.</p>
+                                    <a class="fb" href=""></a>
+                                    <a class="tw" href=""></a>
+                                    <a class="pn" href=""></a>
+                                </div>
+                                <input type="hidden"  name="share_url" class="share_url" value="<?=$product['product_share_url'];?>" />
+                            </div>                            
+                        </div>
+                        <?}?>
+                    </div>
+                </div>            
+            </div>
+        </div>
+        <?php echo $this->pagination($this->total_rows, $this->rows_per_page, $this->page_num); ?>
+
+    </div><!-- end content -->
+</div>       
+</div><!-- end container -->
+
+<script src="/js/ZeroClipboard.min.js"></script>
+<script src="/js/main.js"></script>

@@ -1,0 +1,40 @@
+<?
+$count = max(count($this->products), count($this->amazon_products));
+
+for($i = 0; $i < $count; $i++){
+if(isset($this->products[$i])){
+$product = $this->products[$i];
+?>
+<li class="product-item">
+    <a href="<?=$product['product_url']?>">
+        <div class="holder">
+            <span><img src="<?=reset($product['product_pictures']['550'])?>" alt="" class="product-item-image"></span>
+        </div>
+        <div class="product-item-name"><?=$product['name']?></div>
+    </a>
+    <div class="product-item-storename"><a href="<?=$product['store_url']?>" style=" color: #333333; "><?= $product['store_name'] ?></a></div>
+    <div class="product-item-pricing"><?=currency_symbol($product['store_currency'])?><?=$product['product_price']?></div>
+</li>
+<?
+}
+if(isset($this->amazon_products[$i])){
+$a_product = $this->amazon_products[$i];
+?>
+<li class="product-item">
+    <!-- a href="<?=$a_product['purchase_url']?>" -->
+    <a href="/store/marketplace/products/item?ASIN=<?=$a_product['ASIN']?>">
+        <div class="holder">
+            <span><img src="<?=$a_product['pictures']['236'][0]?>" alt="" class="product-item-image"></span>
+        </div>
+        <div class="product-item-name"><?=$a_product['name']?></div>
+    </a>
+    <div class="product-item-storename"><a href="<?=$a_product['store_url']?>" style=" color: #333333; ">
+        <?= $a_product['store_name'] ?>
+    </a></div>
+    <div class="product-item-pricing"><?=$a_product['price']?></div>
+</li>
+
+<?
+}
+}
+?>

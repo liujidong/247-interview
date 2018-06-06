@@ -1,0 +1,2 @@
+/* DONT EDIT. THIS IS A AUTO-GENERATED FILE. PLEASE EDIT FILES under quickstart/application/views/mustache INSTEAD*/
+shopinterest.templates.pinpicker_uploader_listitem='<li class=\"selected-preview alert alert-info\" pin-id=\"{{pin_id}}\">    <div class=\"tiny-thumbnail\">        <img class=\"thumbnail-spinner\" src=\"/static/img/spinner.gif\" alt=\"Loading...\" style=\"display: none;\">        <img class=\"thumbnail-image\" src=\"{{pin_url}}\" alt=\" thumbnail\" style=\"\">    </div>    <span class=\"multi-filename ellipsize\">{{pin_description}}</span></li>';

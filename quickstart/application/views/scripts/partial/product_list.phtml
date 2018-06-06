@@ -1,0 +1,110 @@
+<style>
+    .styled-select {
+        background: url("//cdn.bavotasan.com/wp-content/uploads/2011/05/down_arrow_select.jpg") no-repeat scroll right center;
+        height: 34px;
+        overflow: hidden;
+        width: 240px;
+    }
+    .styled-select select {
+        background: none repeat scroll 0 0 transparent;
+        border: 1px solid #CCCCCC;
+        font-size: 16px;
+        height: 34px;
+        padding: 5px;
+        width: 250px;
+    }
+
+</style>
+<?php
+if (!empty($this->products)) {
+    foreach ($this->products as $i => $product) {
+        ?>
+        <!-- item -->
+        <div class="pinitem row">
+            <div class="pinimage two columns nailthumb-container">
+                <?foreach ($product['pictures'] as $picture) {?>
+                <img style='display: none;' src="<?= $picture['url']; ?>" />
+                <?}?>
+            </div>
+            <div class="pinform ten columns">
+                <div class="row">
+                    <div class="pinformcolum pinformcolum1 seven columns">
+                        <?foreach ($product['pictures'] as $picture) {?>
+                        <input type='hidden' name='product[<?= $i; ?>][pictures][]' class="product_picture" value="<?= $picture['url']; ?>" source="<?= $picture['source']; ?>"/>
+                        <?}?>
+                        <input name="product[<?= $i; ?>][name]" class="product_name" type="text" value="<?= $product['name']; ?>" alt="Name" placeholder="<?= empty($product['name'])?'Name':$product['name']; ?>"/>
+                        <textarea name="product[<?= $i; ?>][description]" class="product_description" alt="Description"  placeholder="Description"><?= $product['description']; ?></textarea>
+                        <div class="columns twelve">
+                            <div class="row">
+                                <div class="six columns">
+                                    <div class='row'>
+                                        <div class="twelve mobile-one columns">
+                                            <label class="left inline">Price: $
+                                                <input style="width: 8em;" type="text" name="product[<?= $i; ?>][price]" class="product_price text_price" alt="Price"/></label>
+                                        </div>
+                                    </div>
+                                    <div class='row'>
+                                        <div class="twelve mobile-one columns">
+                                            <label class="left inline">Quantity: <input style="width: 7em;" type="text" name= "product[<?= $i; ?>][quantity]" class="product_quantity text_quantity" alt="Quantity" /></label>
+                                            <? if ($this->optin_salesnetwork == ACTIVATED) { ?>
+                                            <label class="left inline">
+                                                <a class="tooltips" href="#">?<span class="tip">The commission is the percentage that will be multiplied with the product price to get the total commission a sales associate will receive on each sold product.</span></a>
+                                                Commission: %
+                                                <input style="width: 5em;" type="text" name= "product[<?= $i; ?>][commission]" class="product_commission text_commission" alt="Commission" />
+
+                                            </label>
+                                            <? } ?>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="six columns" style="margin-top: 7px;">
+                                    <div class="styled-select row">
+                                        <select name="product[<?= $i; ?>][category]" class="product_category">
+                                            <option class="select_a_category" value="">Select a category</option>
+                                                <? foreach ($this->categories as $category) { ?>
+                                                <option value="<?= $category['id'] ?>" <?php if ($category['category'] == $product['category']) echo 'selected'; ?> >
+                                                <?= $category['description'] ?>
+                                                </option>
+                                                <? } ?>
+                                            <option class="separator" value="">---------------------</option>
+                                            <option class="create_category" value="-1">Create a new Category</option>
+                                        </select>
+                                    </div>
+                                    <div class="row tgt_category_creator">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pinformcolum pinformcolum2 five columns">
+                        <div class='row shipping-calc'>
+                            <div class="twelve mobile-one columns">
+                                <h3>Extra Shipping Rates</h3>
+                                <div class="five columns mobile-four">
+                                    $  <input type="text" name="product[<?= $i; ?>][shipping]" class="product_shipping text_shipping" alt="One item Shipping"/>
+                                </div>
+                                <div class="one columns mobile-four">
+                                    <p>+</p>
+                                </div>
+                                <div class="six columns mobile-four">
+                                    <p class="small">(your store default shipping rate)</p>
+                                </div>
+                                <div class="twelve columns mobile-four calc">
+                                    <p><b>Total Shipping for this item <span class="accent product_total_shipping">$</span></b></p>
+                                    <p class="add">Each additional item adds <span class="product_additional_shipping">$</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row product_thumbs">
+                            <div class="save_item"><a class="button small success radius" product_id="<?= $i; ?>">Save Product</a></div>
+                            <div class="delete_item"><a class="button small alert radius" product_id="<?= $i; ?>">Delete Product</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end item -->
+    <?php }
+}
+?>

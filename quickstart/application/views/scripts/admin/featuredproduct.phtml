@@ -1,0 +1,29 @@
+<?require_once(APPLICATION_PATH . '/views/scripts/partial/subnav_admin.phtml'); ?>
+<div class="main row">
+    <table id= "admin_table">
+        <thead>
+            <tr>
+                <th>Store ID</th>
+                <th>Product ID</th>
+                <th>Store URL</th>
+                <th>Product URL</th>
+                <th>Score</th> 
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>            
+             <? foreach ($this->search_products as $product) {?>
+            <tr>
+                <td class="store_id"><?=$product['store_id'];?></td>
+                <td class="product_id"><?=$product['product_id'];?></td>
+                <td> <a target="_blank" href='<?=$product['store_url'];?>'><?=$product['store_url'];?></a></td>
+                <td> <a target="_blank" href='<?=$product['product_url'];?>'><?=$product['product_url'];?></a></td>
+
+                <td><input type="textbox" class="edit_score" value="<?=$product['score'];?>" /></td>
+                <td><a class="button alert small delete_featuredproduct">Delete</a></td> 
+            </tr>
+            <?php }?>
+        </tbody>
+    </table>
+    <div style="margin-left:-120px;">  <?php echo $this->pagination($this->total_rows, $this->rows_per_page, $this->page_num); ?> </div>   
+</div>

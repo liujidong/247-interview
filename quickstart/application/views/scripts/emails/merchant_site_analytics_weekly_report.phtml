@@ -1,0 +1,42 @@
+<a href="<?=$this->site_url?>"><img src="<?= getSiteMerchantUrl(SHOPINTEREST_LOGO);?>"></a><br>
+
+Dear Shopintoit Seller,<br>
+
+Here are the latest insights about your Shopintoit Store.<br><br>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Page</th>
+            <th>Visitors</th>
+            <th>Pageviews</th>
+            <th>AvgTimeOnPage(sec)</th>
+            <th>VisitBounceRate(%)</th>         
+        </tr>
+    </thead>
+    <tbody>
+        <?if(empty($this->rows)){?>
+        <tr><td colspan="5" style="text-align: center;">Sorry, no data to display.</td></tr>
+        <?}?>
+        <?php foreach ($this->rows as $row){?>
+        <tr>
+            <td><a href="http:/<?=$row[0]?>" target="_blank"><?=trim($row[0], '/')?></a></td>
+            <td><?=$row[1]?></td>
+            <td><?=$row[2]?></td> 
+            <td><?=sprintf("%.2f", round($row[3], 2))?></td>
+            <td><?=sprintf("%.2f", round($row[4], 2))?></td>                   
+        </tr>
+        <?php }?>
+    </tbody>
+</table>
+<br>
+
+Thanks!<br><br>
+
+The Shopintoit team<br>
+
+PS - Check our FAQs for any other questions you may have, or contact us at <a href="mailto:xxx@shopintoit.com">xxx@shopintoit.com</a> for whatever you need!<br>
+
+Find us in Facebook - <a href="https://www.facebook.com/Shopintoit">https://www.facebook.com/Shopintoit</a><br>
+Follow us in Twitter - <a href="https://twitter.com/shopintoit">https://twitter.com/shopintoit</a><br>
+Pin & Share in Pinterest - <a href="http://www.pinterest.com/shopintoit/">http://www.pinterest.com/shopintoit/</a><br>

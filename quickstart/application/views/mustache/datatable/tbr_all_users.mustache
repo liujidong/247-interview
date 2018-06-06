@@ -1,0 +1,38 @@
+<tr row-id="{{row_id}}">
+    <td>{{username}}</td>
+    <td>{{literal_status}}</td>
+    <td>{{first_name}}</td>
+    <td>{{last_name}}</td>
+    <td>{{phone}}</td>
+    <td>{{aid}}</td>
+    <td>{{last_login}}</td>
+    <td>{{last_activity}}</td>
+    <td>{{credit_card_on_file}}</td>
+    <td>{{^has_store}}--{{/has_store}}
+        {{#has_store}}
+            <a target="_blank" href="http://www.pinterest.com/{{pinterest_username}}">{{pinterest_username}}</a>
+        {{/has_store}}
+    </td>
+    <td>
+        {{^has_store}}--{{/has_store}}
+        {{#has_store}}
+            <a target="_blank" href="{{store.url}}">{{store.name}}</a>
+            |
+            <a href="/admin/store-detail?id={{store.id}}">manage</a>
+        {{/has_store}}
+    </td>
+    <td>{{^has_store}}--{{/has_store}} {{#has_store}}{{store.literal_status}}{{/has_store}}</td>
+    <td>{{^has_store}}--{{/has_store}} {{#has_store}}{{store.created}}{{/has_store}}</td>
+    <td>{{^has_store}}--{{/has_store}} {{#has_store}}{{store.country}}{{/has_store}}</td>
+    <td>{{^has_store}}--{{/has_store}} {{#has_store}}{{store.currency}}{{/has_store}}</td>
+    <td>{{^has_store}}--{{/has_store}} {{#has_store}}{{store.tax}}%{{/has_store}}</td>
+    <td>{{^has_store}}--{{/has_store}} {{#has_store}}{{store.literal_transaction_fee_waived}}{{/has_store}}</td>
+    <td>{{^has_store}}--{{/has_store}} {{#has_store}}{{store.active_product_cnt}}{{/has_store}}</td>
+    <td>{{^has_store}}--{{/has_store}} {{#has_store}}{{store.inactive_product_cnt}}{{/has_store}}</td>
+    <td>{{^has_store}}--{{/has_store}} {{#has_store}}{{store.total_sale_transactions}}{{/has_store}} </td>
+    <td>{{^has_store}}--{{/has_store}} {{#has_store}}{{store.total_sale_amount}}{{/has_store}} </td>
+    <td>{{^has_store}}--{{/has_store}} {{#has_store}}{{store.product_sales}}{{/has_store}}</td>
+    <td class="action">
+        <a class="update_link">Update</a>
+    </td>
+</tr>

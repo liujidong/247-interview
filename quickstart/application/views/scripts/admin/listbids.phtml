@@ -1,0 +1,33 @@
+<link rel="stylesheet" href="/css/cart.css"/>
+<?require_once(APPLICATION_PATH . '/views/scripts/partial/subnav_admin.phtml'); ?>
+<div class="main row">
+    <h4>All Bids for Auction <?=$this->auction_id?> :</h4>
+    <table id='admin_table'>
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>User</th>
+                <th>Regular Price</th>
+                <th>Initial Bid Price</th>
+                <th>Bid Price</th>
+                <th>Auction ID</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($this->bids as $bid){?>
+            <tr>
+                <td style="">
+                 <a href="<?=$bid['product_url'];?>" target="_blank"><?=$bid['product_name'];?></a>
+                </td>
+                <td><?=$bid['username'];?></td>
+                <td><?=$bid['product_price'];?></td>
+                <td><?=$bid['initial_bid_price'];?></td>
+                <td><?=$bid['bid_price'];?></td>
+                <td><?=$bid['auction_id'];?></td>
+                <td style="width: 250px"><?=$bid['created'];?></td>           
+            </tr>
+            <?php }?>
+        </tbody>
+    </table>
+</div>

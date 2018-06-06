@@ -1,0 +1,107 @@
+<? $this->placeholder("extra_header")->captureStart();?>
+<link rel="stylesheet" type="text/css" href="/css/cart.css"/>
+<? $this->placeholder("extra_header")->captureEnd();?>
+<div class="main row">
+    <?php require_once(APPLICATION_PATH . '/views/scripts/partial/subnav.phtml'); ?>
+    <div id="cart" class="twelve columns">
+
+        <h1>Your <span class="gentium">Store</span> Preview<br><?php echo $this->store_name; ?> </h1>
+        <h2>
+            Your unique store URL:<br><span id="selectme"><?= $this->store_url?></span>
+            <?php if ($this->store_status == ACTIVATED) { ?>
+                <a class="button secondary tiny radius" href="<?= $this->store_url?>" target="_blank">View</a>
+            <?php } ?>
+        </h2>
+
+
+        <div class="row">
+
+            <?php for ($col = 0; $col < 3; $col++) { ?>
+                <div class="three columns">
+                    <?php
+                    if (!empty($this->products) && !empty($this->products[$col])) {
+                        foreach ($this->products[$col] as $product) {
+                            ?>
+                            <ul class="cart_list01_content">
+                                <li><a href="#"><img width="196" height="196" src="<?= $product['converted_pictures'][0]['url']; ?>" class="prod_img"></a>
+                                    <a class="small button alert radius add_cart" product_id="<?= $product['product_id']; ?>" product_name="<?= $product['product_name']; ?>" product_price="<?= $product['product_price']; ?>"
+                                       product_url="<?= $product['converted_pictures'][0]['url']; ?>" href="#" style="display: none;">Add Cart</a>
+                                </li>
+                                <li class="cart_list01_price"><?=$this->my_currency_symbol?><?= $product['product_price']; ?></li>
+                                <li><?= $product['product_name']; ?></li>
+                            </ul>
+                        <?php }
+                    } ?>
+                </div>
+                <?php
+            }
+            ?>
+
+            <div class="three columns">
+                <div class="shopping_cart">
+                    <div style='height:25px;'>
+                        &nbsp;
+                    </div>
+                    <div id='order_details'>
+                        <div class="eleven columns centered">
+                            <div class="row">
+                                <?php if ($this->store_status != ACTIVATED) { ?>
+
+                                    <div class="alert-box [success alert secondary]">Complete these items to launch your store.</div>
+                                    <ul id="launch_checklist">
+                                        <li <?php if (in_array(INVALID_FIRST_LAST_NAME, $this->errnos)) { ?>class="missing" <?php } ?> >Your Name <a href="/account/settings">add</a></li>
+                                        <li <?php if (in_array(INVALID_STORE_NAME, $this->errnos)) { ?>class="missing" <?php } ?> >Store Name <a href="/profile">add</a></li>
+                                        <li <?php if (in_array(INVALID_STORE_SUBDOMAIN, $this->errnos)) { ?>class="missing" <?php } ?> >Subdomain <a href="/profile">add</a></li>
+                                        <li <?php if (in_array(INVALID_PHONE_NUMBER, $this->errnos)) { ?>class="missing" <?php } ?> >Your Phone Number <a href="/account/settings">add</a></li>
+                                        <li <?php if (in_array(INVALID_PAYPAL_ACCOUNT, $this->errnos)) { ?>class="missing" <?php } ?>>Payment Method <a href="/account/payments">add</a></li>
+                                        <li <?php if (in_array(N0_PRODUCT_ERROR, $this->errnos)) { ?>class="missing" <?php } ?> >Some Products <a href="/merchant/products?status=inactive">add</a></li>
+                                        <li <?php if (in_array(INVALID_ADDRESS, $this->errnos)) { ?>class="missing" <?php } ?>>Mailing Address <a href="/account/settings">add</a></li>
+                                        <li <?php if (in_array(INVALID_RETURN_POLICY, $this->errnos)) { ?>class="missing" <?php } ?>>Return Policy <a href="/profile">add</a></li>
+                                        <!--<li <?php //if (in_array(INVALID_RETURN_POLICY, $this->errnos)) { ?>class="missing" <?php //} ?>>Return Policy<a href="/profile">add</a></li>-->
+                                    </ul>
+                                    <a class="button alert large radius" href="<?php if (empty($this->errnos)) echo "?launch=1"; ?>">Launch Store</a>
+                                <?php } ?>
+
+                                <?php if ($this->store_status == ACTIVATED) { ?>
+                                    <h2 style="padding-bottom: 2px; margin-bottom: 4px; color: #950000;">Start making money!<br>Pin your store now.</h2>
+									<center><div class="tgt_pinstore_button"></div></center>
+                                    <hr>
+                                    <!-- AddThis Button BEGIN -->
+                                    <!--<div class="addthis_toolbox addthis_32x32_style addthis_default_style">
+                                        <a class="addthis_button_facebook"></a>
+                                        <a class="addthis_button_twitter"></a>
+                                        <a class="addthis_button_email"></a>
+                                    </div>
+                                    <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+                                    <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=thenooch"></script>
+                                    -->
+                                    <!-- AddThis Button END -->
+                                    <center>
+                                    <span style="padding:5px 0; margin-bottom:10px ; font-size: 16px;">Or share your store on</span>
+                                    <div style="padding:5px 0;">
+                                        <span class="tgt_fbfeed_button"></span>
+                                        <span class="tgt_tweet_button"></span>
+                                        <span class="tgt_fbsend_button"></span>
+                                    </div>
+                                    </center>
+                                    <hr>
+                                    <div class="unsubscribe">
+                                        <p class="small">Click to "Un-Launch Store" to hide your store from the public.</p>
+                                        <a class="button secondary small radius" href='?unlaunch=1'>Un-Launch Store</a>
+                                    </div>
+                                <?php } ?>
+                            </div>
+                        </div>
+
+                    </div><!-- End order_details -->
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+</div><!-- end container -->
+<input id="my_store_name" type="hidden" value="<?=$this->my_store_name?>">
+<input id="my_store_url" type="hidden" value="<?=$this->my_store_url?>">
+<input id="my_store_logo" type="hidden" value="<?=$this->my_store_logo?>">

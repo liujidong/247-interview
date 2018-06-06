@@ -1,0 +1,2 @@
+/* DONT EDIT. THIS IS A AUTO-GENERATED FILE. PLEASE EDIT FILES under quickstart/application/views/mustache INSTEAD*/
+shopinterest.templates.featured_products_update='<input datatable-field=\"score\" name=\"score\" type=\"text\" placeholder=\"score\">';

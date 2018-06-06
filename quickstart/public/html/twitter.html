@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+        <script src="http://platform.twitter.com/anywhere.js?id=tJxCAUaMG9IWY5xqYVrAQw&v=1" type="text/javascript"></script> 
+        <script>
+            twttr.anywhere(function(twitter) {
+                if(twitter.isConnected()){
+                    
+                    currentUser = twitter.currentUser;
+                    console.log(currentUser.data('description'));
+                    console.log(currentUser.data('profile_image_url'));
+                    console.log(currentUser.data('url'));
+                    console.log(currentUser.data('location'));
+                    console.log(currentUser.data('name'));
+                    console.log(currentUser.data('screen_name'));
+                    console.log(currentUser.data('id'));
+                    
+                     $(".comments > .add > .author").html('<img src="'+ twitter.currentUser.data('profile_image_url') +'" /> <a href="http://twitter.com/'+ twitter.currentUser.data('screen_name') +'">'+ twitter.currentUser.data('screen_name') +'</a> | <a href="javascript:twttr.anywhere.signOut();">Sign out</a>');
+                    twitter(".comments > .add").tweetBox({
+                        label: 'What do you think about this article?',
+                        defaultContent: '#nettuts '
+                    });
+                    twitter(".comments > .add").followButton("nettuts");
+                    
+                } else {
+                    twitter(".comments").connectButton({
+                
+                    authComplete: function(user) {
+                        
+                        location.reload();
+                        console.log('autocomplete');
+                        console.log(user);
+                    },
+                    signOut: function() {
+                        location.reload();
+                        console.log('signOut');
+                    }
+                });
+                }  
+            }); 
+        </script>
+    </head>
+    <body>
+        <div class="comments">
+            <h3>Comments</h3>
+            <ol>
+                    <li><span class="author">@corcholat</span> says:
+                            <p>Such a great tutorial! </p>
+                    </li>
+                    <li><span class="author">@faelazo</span> says:
+                            <p>You should also follow @smashingmag</p>
+                    </li>
+            </ol>
+            <div class="add">
+                    <h3>Add comment</h3>
+                    <div class="author"></div>
+                    <div class="box"></div>
+            </div>
+        </div>
+
+    </body>
+</html>

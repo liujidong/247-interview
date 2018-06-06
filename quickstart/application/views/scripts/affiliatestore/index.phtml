@@ -1,0 +1,86 @@
+<link rel="stylesheet" type="text/css" href="/css/page/affiliatestore_index.css">
+<link href="http://fonts.googleapis.com/css?family=Josefin+Slab:700" rel="stylesheet" type="text/css">
+
+<div id="feature">
+    <div id="container" class="row">
+
+        <div class="twelve columns ">
+            <h1>
+                <span id="span1">Special Shopinterest</span > selections for our friends 
+            </h1>
+        </div>
+    </div>
+
+</div><!-- end container -->
+<div class="page_body"  >
+        <div class="twelve columns contentbody" >
+            <!--first row start-->
+            <div class="twelve columns centered">
+                <?php foreach ($this->products_info as $id => $product) { ?>
+                    <?php if ($id % 2 == 0) { ?>
+                        <div class="row fullwidth" >
+                        <?php } ?>
+                        <div class="six columns right24"  >
+                            <div class="row">
+                                <div class="five columns proInfo_left">
+                                    <div class="row ">
+                                        <a href="<?=$product['product_aff_url']?>" target="_blank"><img class="prod_img" src="<?= $product['board_img'] ?>"/></a>
+                                    </div>
+                                    <div class="row cat">
+                                        <div class="three columns leftimg" >
+                                            <a href="<?= $product['product_aff_url'];?>" target="_blank"><img  src="<?= $product['store_logo'] ? $product['store_logo']:$this->default_store_logo; ?>"/></a>
+                                        </div>
+                                        <div class="nine columns rightdiv" >
+                                            <p> <!-- Sold by --> </p>
+                                            <a href="<?= $product['store_url'].'?aid='.$product['aid'];?>" target="_blank"><?= $product['store_name'] ?></a>
+                                        </div>
+                                    </div> <!-- 1st row 1st div left div ends-->
+                                </div>
+                                <div class="seven columns rightdescript">
+                                    <div class="prod_description" >
+                                        <div class="protitle">
+                                            <input type="hidden" class="product_name" value="<?= $product['product_name'] . ',$' . $product['product_price']; ?>"
+                                                   <h class="prod_title"><?=  shorten_link( $product['product_name'], $product['product_url'].'&aid='.$product['aid']);?></h>
+                                            <p><?= shorten_description( $product['product_description'], $product['product_url'].'&aid='.$product['aid'], $characters_limit=100); ?></p>
+                                        </div>
+                                        <div class="only_price">
+                                            <fieldset>
+                                                <span id="fieldset1" >Only:</span>
+                                                <span id="fieldset2" ><?=$product['currency_symbol'];?><?= $product['product_price']; ?></span>
+                                                <br>
+                                                <a target="_blank" href="<?= $product['product_aff_url'];?>" class="button medium alert radius cart"id="buynowbutton">Buy Now</a>
+                                            </fieldset>
+                                        </div>
+                                        <div class="copy_address">
+                                            <input id="product_url" class="eight columns fbsend" type="text"  value="<?= $product['product_url'].'&aid='.$product['aid']; ?>">
+                                            <button id="button1"class="button  zeroclipboard-button radius " data-clipboard-text="<?= $product['product_url'].'&aid='.$product['aid']; ?>" trigger-title="Done" title="Copy to clipboard">Copy URL</button>
+                                        </div>
+                                        <div class="ftpbuttons social">
+                                            <a class="fb" href=""><img src="/img/32x32-facebook.png"/></a>
+                                            <a class="tw" href=""><img src="/img/32x32-twitter.png"/></a>
+                                            <a class="pn" href=""><img src="/img/32x32-pinterest.png"/></a>
+                                            <a class="tgt_fbsend_button" href=""><img src="/img/emailus.jpg"/></a>
+                                        </div>
+                                        <input type="hidden"  name="share_url" class="share_url" value="<?= $product['product_share_url']; ?>" />
+                                    </div>
+                                </div>
+                            </div>	
+                        </div> 
+                        <!-- first row first Div ends-->      
+
+                        <?php if ($id % 2 == 1 || !isset($this->products_info[$id + 1])) { ?>
+
+                        </div>
+                        <!-- first row ends-->
+                        <?php } ?>
+                        <? } ?>
+            </div>    
+  
+    </div>
+       
+</div>
+<div id="prevnextnav" style="display: block;">
+    <?php echo $this->pagination($this->total_rows, $this->rows_per_page, $this->page_num, $this->extra_params); ?>                       
+</div>
+    <script src="/js/ZeroClipboard.min.js"></script>
+    <script src="/js/main.js"></script>

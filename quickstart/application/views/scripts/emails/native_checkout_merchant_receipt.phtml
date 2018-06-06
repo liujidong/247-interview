@@ -1,0 +1,84 @@
+<a href="<?=$this->site_url?>"><img src="<?= getSiteMerchantUrl(SHOPINTEREST_LOGO);?>"></a><br>
+
+Hi <?=$this->first_name?>: <br><br>
+
+You got a new order: <?=$this->order['order_num']?>:<br>
+
+<table style="border: 1px solid #e2e2e2; display: table;">
+    <thead>
+        <tr>
+            <th style="border: 1px solid #e2e2e2;">Products in Order</th>
+            <th style="border: 1px solid #e2e2e2;">Quantity & Price</th>
+            <th style="border: 1px solid #e2e2e2;">Shipping</th>
+            <th style="border: 1px solid #e2e2e2;">Subtotal</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td colspan="4">
+                <a href="<?=$this->items[0]['store_url']?>" target="_blank">
+                    <strong class="red"><?=$this->items[0]['store_name']?></strong>
+                </a>
+            </td>
+        </tr>
+        <? foreach ($this->items as $product){?>
+        <tr>
+            <td>
+                <a href="<?=$product['product_url']?>" target="_blank"><?=$product['product_name']?></a>
+            </td>
+            <td>
+                <span><?=$product['product_quantity']?></span>
+                x
+                </span><?=$product['currency_symbol']?><?=$product['product_price']?></span>
+            </td>
+            <td>
+                <span><?=$product['currency_symbol']?><?=$product['product_shipping']?></span>
+            </td>
+            <td>
+                <strong><?=$product['currency_symbol']?><?=$product['subtotal']?></strong>
+            </td>
+        </tr>
+        <? } ?>
+        <tr>
+            <td colspan="4">
+                SHIPPING: <?=$this->shipping_option['name']?>,
+                <?=$this->currency_symbol?><?=$this->store_summaries[$this->store_id]['shipping']?>;
+                TAX:
+                <?=$this->currency_symbol?><?=$this->store_summaries[$this->store_id]['tax_total']?>;
+                PRICE: <?=$this->currency_symbol?>
+                <?=$this->store_summaries[$this->store_id]['price_total']?>
+                TOTAL: <?=$this->currency_symbol?>
+                <?=$this->store_summaries[$this->store_id]['total']?>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<br>
+
+<div class="col-delivery">
+    <h3>Delivery Address</h3>
+    <div class="text">
+        <p id="shipping_name"><?=$this->order_grp->getShippingFirstName()?> <?=$this->order_grp->getShippingLastName()?></p>
+        <p id="shipping_addr"><?=$this->order_grp->getShippingAddr1()?> <?=$this->order_grp->getShippingAddr2()?></p>
+        <p id="shipping_city_state_zip">
+            <?=$this->order_grp->getShippingCity()?>, <?=$this->order_grp->getShippingState()?> <?=$this->order_grp->getShippingZip()?>
+        </p>
+        <p id="shipping_country"><?=$this->order_grp->getShippingCountry()?></p>
+        <p id="shipping_phone"><?=$this->order_grp->getShippingPhone()?></p>
+    </div>
+</div>
+<div class="col-payment-method">
+    <h3>Payment:</h3>
+    <div class="text">
+        <p><?=$this->order_grp->getPaymentMethod()?></p>
+    </div>
+</div>
+<br><br>
+
+The Shopintoit team<br>
+
+PS - Check our FAQs for any other questions you may have, or contact us at <a href="mailto:xxx@shopintoit.com">xxx@shopintoit.com</a> for whatever you need!<br>
+
+Find us in Facebook - <a href="https://www.facebook.com/Shopintoit">https://www.facebook.com/Shopintoit</a><br>
+Follow us in Twitter - <a href="https://twitter.com/shopintoit">https://twitter.com/shopintoit</a><br>
+Pin & Share in Pinterest - <a href="http://www.pinterest.com/shopintoit/">http://www.pinterest.com/shopintoit/</a><br>

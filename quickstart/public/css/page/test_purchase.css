@@ -1,0 +1,32 @@
+#purchasetable .orderno,
+#purchasetable .productimage,
+#purchasetable .purchasedate,
+#purchasetable .purchasestatus,
+#purchasetable .amount,
+#purchasetable .purchasedetail,
+#purchasetable .domore{
+    text-align: center;
+}
+
+#purchasetable .domore{ 
+    width:200px;position:relative;
+}
+#purchasetable .domorebuttons{
+    position: absolute; top:16%;left:25%;
+}
+
+#purchasetable  a {
+    text-decoration:underline;
+}
+
+#purchasetable img {
+    margin:0 0 10px 0;
+}
+
+#purchasetable #buyitbutton {
+    display:block;width:104px;height:32px;padding:10px 10px 10px 10px;font-size:10px;
+}
+
+#back2top {
+    float:right;
+    }

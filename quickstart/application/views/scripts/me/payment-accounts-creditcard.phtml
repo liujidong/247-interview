@@ -1,0 +1,164 @@
+<link rel="stylesheet" href="/v2/css/pages/dashboard.css">
+<div id="dashboard" class="row page-layout dashboard">
+
+    <section class="small-12 medium-12 large-9 columns">
+        <div class="row">
+            <div class="small-3 medium-3 large-2 columns">
+                <? require_once(APPLICATION_PATH.'/views/scripts/partial/left_sidebar.phtml');?>
+            </div>
+            <!-- side nav end -->
+
+            <div id="payment-creditcard" class="small-9 medium-9 large-10 columns">
+                <? require_once(APPLICATION_PATH.'/views/scripts/partial/horizontal_subnav.phtml');?>
+
+                <? require_once(APPLICATION_PATH.'/views/scripts/partial/horizontal_subnav2.phtml');?>
+                <!-- dashboard nav end -->
+
+                <form action="" data-abide="ajax" id="payment-creditcard-form" class="columns dashboard-form" method="post">
+                    <div class="row">
+                        <div class="small-4 medium-4 large-4 columns">&nbsp;</div>
+                        <div class="small-8 medium-8 large-8 columns alert-field"></div>
+                    </div>
+                    <div class="row field data-abide-input-container">
+                        <div class="small-4 medium-4 large-4 columns">
+                            <label for="first-name" class="required">First Name</label>
+                        </div>
+                        <div class="small-8 medium-8 large-8 columns">
+                            <input type="text" id="first-name" name="billing_first_name" value="<?=!empty($this->credit_card['billing_first_name'])?$this->credit_card['billing_first_name']:''?>" required>
+                            <small class="error">First Name is required.</small>
+                        </div>
+                    </div>
+                    <div class="row field data-abide-input-container">
+                        <div class="small-4 medium-4 large-4 columns">
+                            <label for="last-name" class="required">Last Name</label>
+                        </div>
+                        <div class="small-8 medium-8 large-8 columns">
+                            <input type="text" id="last-name" name="billing_last_name" value="<?=!empty($this->credit_card['billing_last_name'])?$this->credit_card['billing_last_name']:''?>" required>
+                            <small class="error">Last Name is required.</small>
+                        </div>
+                    </div>
+                    <div class="row field data-abide-input-container">
+                        <div class="small-4 medium-4 large-4 columns">
+                            <label for="card-number" class="required">Card Number</label>
+                        </div>
+                        <div class="small-8 medium-8 large-8 columns">
+                            <input type="text" id="card-number" name="card_number"
+                                   pattern="^\d{4,}$"
+                                   value="<?=!empty($this->credit_card['card_number'])?$this->credit_card['card_number']:''?>" required>
+                            <small class="error">Card number is required.</small>
+                        </div>
+                    </div>
+                    <div class="row field payment-expiration">
+                        <div class="small-4 medium-4 large-4 columns">
+                            <label class="required">Expiration date</label>
+                        </div>
+                        <div class="small-4 medium-4 large-3 columns data-abide-input-container">
+                            <select name="exp_month" id="expiration-month" required>
+                                <option value>MM</option>
+                                <?foreach($this->month_list as $month) {?>
+                                <option value="<?=$month?>" <?=!empty($this->credit_card['exp_month']) && $this->credit_card['exp_month']==$month?'selected':''?>><?=$month?></option>
+                                <?}?>
+                            </select>
+                            <small class="error">Expiry month is required</small>
+                        </div>
+                        <div class="small-4 medium-4 large-3 columns data-abide-input-container">
+                            <select name="exp_year" id="expiration-year" required>
+                                <option value>YYYY</option>
+                                <?foreach($this->year_list as $year) {?>
+                                <option value="<?=$year?>" <?=!empty($this->credit_card['exp_year']) && $this->credit_card['exp_year']==$year?'selected':''?>><?=$year?></option>
+                                <?}?>
+                            </select>
+                            <small class="error">Expiry year is required</small>
+                        </div>
+                        <div class="show-for-large-up large-2 columns">&nbsp;</div>
+                    </div>
+                    <div class="row field data-abide-input-container">
+                        <div class="small-4 medium-4 large-4 columns">
+                            <label for="address1" class="required">Address Line 1</label>
+                        </div>
+                        <div class="small-8 medium-8 large-8 columns">
+                            <input type="text" id="address1" name="billing_addr1" value="<?=!empty($this->credit_card['billing_addr1'])?$this->credit_card['billing_addr1']:''?>" required>
+                            <small class="error">Address Line 1 is required.</small>
+                        </div>
+                    </div>
+                    <div class="row field">
+                        <div class="small-4 medium-4 large-4 columns">
+                            <label for="address2">Address Line 2</label>
+                        </div>
+                        <div class="small-8 medium-8 large-8 columns">
+                            <input type="text" id="address2" name="billing_addr2" value="<?=!empty($this->credit_card['billing_addr2'])?$this->credit_card['billing_addr2']:''?>">
+                        </div>
+                    </div>
+                    <div class="row field data-abide-input-container">
+                        <div class="small-4 medium-4 large-4 columns">
+                            <label for="city" class="required">City</label>
+                        </div>
+                        <div class="small-8 medium-8 large-8 columns">
+                            <input type="text" id="city" name="billing_city" value="<?=!empty($this->credit_card['billing_city'])?$this->credit_card['billing_city']:''?>" required>
+                            <small class="error">City is required.</small>
+                        </div>
+                    </div>
+                    <div class="row field data-abide-input-container">
+                        <div class="small-4 medium-4 large-4 columns">
+                            <label for="state" class="required">State / Province / Region</label>
+                        </div>
+                        <div class="small-8 medium-8 large-8 columns">
+                            <input type="text" id="state" name="billing_state" value="<?=!empty($this->credit_card['billing_state'])?$this->credit_card['billing_state']:''?>" required>
+                            <small class="error">State, Province or Region is required.</small>
+                        </div>
+                    </div>
+                    <div class="row field data-abide-input-container">
+                        <div class="small-4 medium-4 large-4 columns">
+                            <label for="country" class="required">Country</label>
+                        </div>
+                        <div class="small-8 medium-8 large-8 columns">
+                            <select name="billing_country" id="country" required>
+                                <option value>Please select a country</option>
+                                <? foreach($this->countries as $country) {?>
+                                <option value="<?=$country['iso2']?>" <?=!empty($this->credit_card['billing_country'])&&$this->credit_card['billing_country']===$country['iso2']?'selected':''?>>
+                                    <?=$country['short_name']?>
+                                </option>
+                                <?}?>
+                            </select>
+                            <small class="error">Country is required.</small>
+                        </div>
+                    </div>
+
+                    <div class="row field data-abide-input-container">
+                        <div class="small-4 medium-4 large-4 columns">
+                            <label for="zipcode" class="required">ZIP / Postal code</label>
+                        </div>
+                        <div class="small-8 medium-8 large-8 columns">
+                            <input type="text" id="zipcode" name="billing_zip" value="<?=!empty($this->credit_card['billing_zip'])?$this->credit_card['billing_zip']:''?>" required>
+                            <small class="error">ZIP or Postal code is required.</small>
+                        </div>
+                    </div>
+                    <div class="row field data-abide-input-container">
+                        <div class="small-4 medium-4 large-4 columns"><label>Verified</label></div>
+                        <div class="small-8 medium-8 large-8 columns card-verified">
+                            <?=!empty($this->credit_card['verified'])?'YES':'--'?>
+                        </div>
+                    </div>
+                    <div class="row field data-abide-input-container">
+                        <div class="small-4 medium-4 large-4 columns"></div>
+                        <div class="small-8 medium-8 large-8 columns" style="color: red; line-height:1.6em;">
+                            Attention:<br>
+                            To verify your credit card, we will make a $1.00 charge with your card and then refund it as soon as possible.
+                        </div>
+                    </div>
+                    <div class="row field submit-field">
+                        <div class="small-4 medium-4 large-4 columns">&nbsp;</div>
+                        <div class="small-8 medium-8 large-8 columns">
+                            <input type="submit" value="SAVE" id="submit-settings" class="submit-button">
+                            <input type="submit" value="Continue to Dashboard"
+                                   id="save-and-continue" class="submit-button" style="padding: 0 10px">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <? require_once(APPLICATION_PATH.'/views/scripts/partial/right_sidebar.phtml');?>
+
+</div>

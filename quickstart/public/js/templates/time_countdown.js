@@ -1,0 +1,2 @@
+/* DONT EDIT. THIS IS A AUTO-GENERATED FILE. PLEASE EDIT FILES under quickstart/application/views/mustache INSTEAD*/
+shopinterest.templates.time_countdown='<span id=\"{{id}}\"  style=\"color: #333; font-size: 12px;\"><b  style=\"font-size: 16px;\" id=\"{{id}}_day\">3</b> Days <b  style=\"font-size: 16px;\" id=\"{{id}}_hour\">21</b> Hours <b style=\"font-size: 16px;\" id=\"{{id}}_min\">50</b> Mins <b style=\"font-size: 16px;\" id=\"{{id}}_sec\">50</b> Sec </span>';

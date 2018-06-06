@@ -1,0 +1,126 @@
+<?
+// home page
+if($this->controller==='index') {?>
+<title>Shopintoit - Create a free Pinterest ecommerce store</title>
+<meta content="Create an online ecommerce store from your Pinterest account in minutes. Sell your Pinterest pins with Shopintoit. Sell your Pinterest pins with an online store." name="description">
+<meta property="og:image" content="<?=getSiteMerchantUrl(SHOPINTEREST_LOGO);?>"/>
+<meta property="og:title" content=" Shopintoit - Create a free Pinterest ecommerce store "/>
+<meta property="og:url" content="<?=$this->page_url?>"/>
+<meta property="og:site_name" content="Shopintoit"/>
+<meta property="og:type" content="website"/>
+
+<?
+//store home page
+} else if($this->controller==='store' && $this->action1 == 'index') {
+?>
+
+<title><?=$this->store['name']?> – A Shopintoit Store</title>
+<meta content="<?=$this->store['name']?> is a store selling <?=default2String($this->store_tags)?> on Shopintoit." name="description">
+<meta property="og:image" content="<?=$this->store['converted_logo']?>"/>
+<meta property="og:title" content="<?=$this->store['name']?> – A Shopintoit Store "/>
+<meta property="og:url" content="<?=$this->page_url?>"/>
+<meta property="og:site_name" content="<?=$this->store['name']?> on Shopintoit"/>
+<meta property="og:type" content="website"/>
+
+<?
+// product item page
+} else if($this->controller==='store' && $this->action1 == 'products' && $this->action2 == 'item') {
+?>
+<title><?=$this->store['name']?> – A Shopintoit Store</title>
+<meta content="<?=$this->store['name']?> is a store selling <?=default2String($this->store_tags)?> on Shopintoit." name="description">
+<meta property="og:image" content="<?=$this->product_image?>"/>
+<meta property="og:title" content="<?=$this->product_title?> – Sold at <?=$this->store['name']?> "/>
+<meta property="og:url" content="<?=$this->page_url?>"/>
+<meta property="og:site_name" content="<?=$this->store['name']?> on Shopintoit"/>
+<meta property="og:type" content="website"/>
+
+<? } else if($this->controller==='selling' && $this->action1 == 'preview') {?>
+
+<title>Share Your Store - Shopintoit</title>
+<meta content="" name="description">
+<meta property="og:image" content="<?=$this->store['converted_logo']?>"/>
+<meta property="og:title" content="<?=$this->store['name']?>"/>
+<meta property="og:url" content="<?=$this->store['url']?>"/>
+<meta property="og:site_name" content="<?=$this->store['name']?>"/>
+<meta property="og:type" content="website"/>
+
+<?
+// faq page
+} else if($this->controller==='faqs' && $this->action1 == 'index') {
+?>
+
+<title>Frequently Asked Questions - Shopintoit</title>
+<meta content="Frequently asked questions about Shopintoit and creating a Pinterest ecommerce online store." name="description">
+<meta property="og:image" content="<?=getSiteMerchantUrl(SHOPINTEREST_LOGO);?>"/>
+<meta property="og:title" content="Frequently Asked Questions - Shopintoit"/>
+<meta property="og:url" content="<?=$this->page_url?>"/>
+<meta property="og:site_name" content="Shopintoit"/>
+<meta property="og:type" content="website"/>
+
+<? } else if($this->controller==='how' && $this->action1 == 'index') {?>
+
+<title>How Shopintoit Works - Shopintoit</title>
+<meta content="How to use Shopintoit to creating a Pinterest store. Sell all your Pinterest pins using Shopintoit." name="description">
+<meta property="og:image" content="<?=getSiteMerchantUrl(SHOPINTEREST_LOGO);?>"/>
+<meta property="og:title" content="How Shopintoit Works - Shopintoit"/>
+<meta property="og:url" content="<?=$this->page_url?>"/>
+<meta property="og:site_name" content="Shopintoit"/>
+<meta property="og:type" content="website"/>
+
+<? } else if($this->controller==='about' && $this->action1 == 'index') {?>
+
+<title>About the Shopintoit team - Shopintoit</title>
+<meta content="Meet the Shopintoit team, Francisco Guerrero, Liang Huang, Tommy Hodgins." name="description">
+<meta property="og:image" content="<?=getSiteMerchantUrl(SHOPINTEREST_LOGO);?>"/>
+<meta property="og:title" content="About the Shopintoit team - Shopintoit"/>
+<meta property="og:url" content="<?=$this->page_url?>"/>
+<meta property="og:site_name" content="Shopintoit"/>
+<meta property="og:type" content="website"/>
+
+<? } else if($this->controller==='contact') {?>
+
+<title>Contact Us - Shopintoit</title>
+<meta content="Contact Shopintoit." name="description">
+<meta property="og:image" content="<?=getSiteMerchantUrl(SHOPINTEREST_LOGO);?>"/>
+<meta property="og:title" content="Contact Us - Shopintoit"/>
+<meta property="og:url" content="<?=$this->page_url?>"/>
+<meta property="og:site_name" content="Shopintoit"/>
+<meta property="og:type" content="website"/>
+
+<? } else if($this->controller==='terms') {?>
+
+<title>Terms of Service - Shopintoit</title>
+<meta content="The Shopintoit Terms of Service." name="description">
+<meta property="og:image" content="<?=getSiteMerchantUrl(SHOPINTEREST_LOGO);?>"/>
+<meta property="og:title" content="Terms of Service - Shopintoit"/>
+<meta property="og:url" content="<?=$this->page_url?>"/>
+<meta property="og:site_name" content="Shopintoit"/>
+<meta property="og:type" content="website"/>
+
+<? } else if($this->controller==='ticket') {?>
+
+<title>Submit a Ticket - Shopintoit</title>
+<meta content="Submit a ticket to Shopintoit to help us improve the Shopintoit ecommerce platform." name="description">
+<meta property="og:image" content="<?=getSiteMerchantUrl(SHOPINTEREST_LOGO);?>"/>
+<meta property="og:title" content="Submit a Ticket - Shopintoit"/>
+<meta property="og:url" content="<?=$this->page_url?>"/>
+<meta property="og:site_name" content="Shopintoit"/>
+<meta property="og:type" content="website"/>
+
+<? } else if($this->controller==='index') {?>
+{{#feedback_index}}
+<title><?=$this->store['name']?> reviews and feedback - Shopintoit</title>
+<meta content="" name="description">
+<meta property="og:image" content="<?=getSiteMerchantUrl(SHOPINTEREST_LOGO);?>"/>
+<meta property="og:title" content="<?=$this->storp['name']?> reviews and feedback - Shopintoit"/>
+<meta property="og:url" content="<?=$this->page_url?>"/>
+<meta property="og:site_name" content="Shopintoit"/>
+<meta property="og:type" content="website"/>
+{{/feedback_index}}
+
+<? } else {?>
+
+<title>Shopintoit - Pinterest Store, Sell on Pinterest</title>
+<meta content="Create an online ecommerce store from your Pinterest account in minutes. Sell your pinterest pins with Shopintoit." name="description">
+
+<? } ?>

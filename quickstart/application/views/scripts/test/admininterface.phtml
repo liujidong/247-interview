@@ -1,0 +1,119 @@
+
+<script type="text/javascript">
+         
+
+/*var id=1;
+function f_del(x){
+for (i=0;i<tab1.rows.length;i++)
+if (x==parseInt(tab1.rows[i].cells[0].innerHTML))
+{tab1.deleteRow(i);break;}
+}
+
+function f_add(){
+n=tab1.rows.length;
+r=tab1.insertRow(n);
+r.insertCell(0).innerHTML='<a class="tiny button radius alert delete_contact" customer_id="" >Delete</a><input type="checkbox" class="select_all">';
+//r.insertCell(0).innerHTML=id;
+r.insertCell(0).innerText=document.getElementById('tname').value;
+r.insertCell(0).innerText=document.getElementById("shardsnb").value;
+r.insertCell(0).innerText=document.getElementById("fname").value;
+id++;
+}
+f_add();*/
+   
+  
+  
+ var intRowIndex = 0;
+ function insertRow(tbIndex){
+   var objRow = tab1.insertRow(tbIndex);
+   var objCel = objRow.insertCell(0);
+   objCel.innerText = document.myForm.tname.value;
+   var objCel = objRow.insertCell(1);
+   objCel.innerText = document.myForm.shardsnb.value;
+    var objCel = objRow.insertCell(2);
+   objCel.innerText = document.myForm.fname.value;
+   var objCel =objRow.insertCell(3);
+   objCel.innerHTML='<button style="margin-left:20%;" onclick="deleteRow(event.srcElement.parentElement.parentElement.rowIndex)" class="tiny button radius alert delete_contact" customer_id="" >Delete</button>';
+   //var r=tab1.insertRow(tbIndex);
+   
+   //r.insertCell(tbIndex).innerHTML='<a class="tiny button radius alert delete_contact" customer_id="" >Delete</a><input type="checkbox" class="select_all">';
+   
+}
+function deleteRow(tbIndex){
+   tab1.deleteRow(tbIndex);
+}
+
+
+
+</script>
+          
+<div id="container" class="row">
+<div class="twelve columns">
+<h1>A/B Testing View</h1>
+     <center>
+        <a class="cs_import button alert small radius" onclick="confirm()">Import New Test</a>
+       
+    <center> 
+    <div class="row" style="margin-top:3%;">
+        <div id="signup" class="panel twelve columns centered">
+            <div class="row">
+
+    
+
+        
+                <div class="twelve columns ">
+                    <div class="row">
+                        <form name="myForm">
+                            <div class="three columns">
+                            <input type="text" id='tname' name='tname' placeholder="Test Name" value=''/>
+                        </div>
+                        <div class="three columns">
+                            <input type="text" id='shardsnb' name='shardsnb' placeholder="Number of Shards" value=''/>
+                        </div>
+                        <div class="three columns">
+                            <input type="text" id='fname' name='fname' placeholder="View file name" value='' />
+                        </div>
+                        <div class="three columns">
+                            <input type='button' id='add_contact' class='button radius success small' style="margin-left:15%;float:left;" onclick="insertRow(tab1.rows.length)" value='Add'/>
+                        </div>
+                        </form>
+                      
+                           
+                      
+                    </div>
+                    <hr>
+                    <div>
+                        
+                        
+                        <table id="tab1" style="table-layout:fixed;">
+                        
+                          <tr style="font-weight:bold;">
+                            
+                                <td>Test name</td>
+                                <td>Number of shards</td>
+                                <td> View file name</td>
+                                <td></td>
+                        
+                        
+                      
+                       
+                           <!-- <tr class='contact_list_tr'>-->
+                            <!--<td class="four columns"></td>
+                            <td class="four columns"></td>
+                            <td class="four columns"></td>
+                           <!-- <td class='one columns'><a class="tiny button radius alert delete_contact" customer_id="" >Delete</a></td>-->
+                            <!--<td class="one columns"><input type="checkbox" class="select_node"></input></td>-->
+                         
+                        
+                        
+                                             
+                        </table>
+                    </div>
+                </div>
+            </div>    
+        </div>
+        
+    </div>
+	</div><!-- end content -->
+</div>       
+</div><!-- end container -->

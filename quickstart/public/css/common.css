@@ -1,0 +1,123 @@
+/* font */
+@font-face{
+	font-family:'OpenSans-LightItalic';
+	src: url('/font/OpenSans-LightItalic.eot'); /* IE9 Compat Modes */	
+	src: url('/font/OpenSans-LightItalic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+	  url('/font/OpenSans-LightItalic.ttf')  format('truetype'); /* Safari, Android, iOS */
+}
+@font-face{
+	font-family:'OpenSans-BoldItalic';
+	src: url('/font/OpenSans-BoldItalic.eot'); /* IE9 Compat Modes */	
+	src: url('/font/OpenSans-BoldItalic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+	  url('/font/OpenSans-BoldItalic.ttf')  format('truetype'); /* Safari, Android, iOS */
+}
+@font-face{
+	font-family:'OpenSans-Bold';
+	src: url('/font/OpenSans-Bold.eot'); /* IE9 Compat Modes */	
+	src: url('/font/OpenSans-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+	  url('/font/OpenSans-Bold.ttf')  format('truetype'); /* Safari, Android, iOS */
+}
+/* common */
+*{margin:0px; padding:0px; border:0px;font-family:Tahoma, Geneva, sans-serif;font-size:12px;}
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    width: 65%;
+    margin: auto;
+    background-color: #9A9999;
+}
+
+ul,li{list-style:none;}
+/*header*/
+#headerpage{height:70px;background-color:#FAF7F7;}
+#header{height:72px;background:url(/img/homepage/header_bg.gif) repeat-x;}
+.header_main{width:950px;margin:0 auto;}
+#headerLogo{width:235px;height:60px;float:left;}
+#headerLogo img{vertical-align:bottom;}
+#headerLogo a{display:block;width:235px;height:38px;margin-top:10px;text-decoration:none;}
+#headerLogo span{vertical-align:top;color:#000;}
+#headerNav{height:60px;float:right;}
+#headerNav ul .headerNav_img{float:right;}
+#headerNav li{list-style:none;list-style-type:none;float:left;padding-left:32px;text-align:right;}
+#headerNav li a{color:#000;text-decoration:none;font-family:Tahoma, Geneva, sans-serif;font-weight:bold;font-size:14px;}
+.logoTest{font-family:'OpenSans-BoldItalic';font-size:30px;}
+/*header difference*/
+#headerConnetctFacebook{width:181px;height:28px;float:left;margin-top:18px;margin-left:255px;display:inline;}
+.header_nav_ul{width:570px;height:30px;float:left;margin-top:21px;margin-left:140px;}
+
+/*main*/
+.main{
+	min-height:60.2%;
+	background-color:#bf0000;
+}
+#index_main{
+	min-height:30%;
+}
+.main_content{width:950px;margin:0 auto;}
+.main_title{height:127px;margin-bottom:25px;}
+.main_title h1{font-family:'OpenSans-Bold';font-size:48px;text-align:center;margin-top:30px;}
+.main_title h1 span{font-family:'OpenSans-BoldItalic';font-size:48px;}
+.main_title h2{font-family:'OpenSans-LightItalic';font-size:18px;color:#999;text-align:center;}
+.main_page{
+	height:auto;
+	background-color:#bf0000;
+	
+}
+
+/*footer*/
+#footer{height:260px;background-color:#524D4D;}
+#footerSlogan{height:81px;text-align:center;background:#6B6565;}
+#footerSlogan span{line-height:81px;vertical-align:middle;font-family:'OpenSans-LightItalic';font-size:25px;color:#BBB;}
+#footerSlogan img{vertical-align:middle;}
+#footerNav{height:30px;width:950px;margin:0 auto;margin-top:40px;}
+#footerNav ul{margin-top:4px;margin-left:385px;}
+#footerNav li{list-style:none;list-style-type:none;float:left;padding-right:27px;}
+#footerNav li a{color:#383535;text-decoration:underline;font-family:Tahoma, Geneva, sans-serif;font-weight:bold;font-size:12px;}
+#footerCopyright{width:950px;margin:0 auto;margin-top:36px;height:20px;text-align:center;color:#787878;font-size:12px;}
+
+
+.clearfix:after {  
+        content :  "." ;  
+        display :  block ;  
+        height :  0 ;  
+        clear :  both ;  
+        visibility :  hidden ;  
+}  
+/* Hides from IE-mac \*/   
+ * html .clearfix {height :  1% ;}  
+/* End hide from IE-mac */   
+.fullwidth_div{ 
+	width:100%;
+}
+.txt_center_div{
+	text-align:center;
+}
+
+.shopin_h3{
+    clear: left;
+    /*font-family: LeagueGothic,sans-serif;*/
+    /*font-size: 25px;*/
+    font-weight: 600;
+    line-height: 1;
+    padding-top: 15px;
+    /*color:#c5c4c4;*/
+    color: #818181;
+    font-size: 30px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.shopin_h4{
+    clear: left;
+    /*font-family: LeagueGothic,sans-serif;*/
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1;
+    padding-top: 15px;
+    color:#818181;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: normal;
+    font-style: italic;    
+}

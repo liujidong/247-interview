@@ -1,0 +1,34 @@
+<ul id="reveal_product_{{product_id}}" class="cart_list01_content" style="display: none">
+    <li>
+        <a href="{{product_url}}"><img src="{{product_image_mobile}}" alt=""></a>
+    </li>
+    <li>
+        <div class="centered thumbs">
+            {{#product_images}}
+            <div class="thumb_pic">
+                <img src="{{thumb_img}}" alt="" large_image_url="{{large_img}}">
+            </div>
+            {{/product_images}}
+        </div>
+    </li>
+    <li>
+        <h3>{{product_name}}<span>${{product_price}}</span></h3>
+        <p class="shipping_info">
+            {{#noshipping}}
+                Shipping is free
+            {{/noshipping}}
+            {{^noshipping}}
+            Shipping: ${{store_shipping}} <i>+ ${{additional_shipping}} for each addition item</i>
+            {{/noshipping}}
+        </p>
+    </li>
+    <li>
+        <p>{{{product_description}}}</p>
+    </li>
+    <li class="add">
+        <a href="" class="button medium alert radius cart add_cart">Add to Cart</a>
+        <a class="button medium alert radius pin" href="{{pin_url}}" count-layout="horizontal">
+            Pin
+        </a>
+    </li>
+</ul>

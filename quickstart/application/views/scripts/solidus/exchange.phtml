@@ -1,0 +1,59 @@
+<link rel="stylesheet" href="/v2/css/pages/dashboard.css">
+<div id="dashboard" class="row page-layout dashboard">
+
+    <section class="small-12 medium-12 large-9 columns">
+        <div class="row">
+            <div class="small-3 medium-3 large-2 columns">
+                <? require_once(APPLICATION_PATH.'/views/scripts/partial/left_sidebar.phtml');?>
+            </div>
+            <!-- side nav end -->
+
+            <div id="solidus-exchange" class="small-9 medium-9 large-10 columns solidus-exchange">
+                <div class="solidus-header">
+                    <div class="small-7 medium-8 large-8 columns">
+                        <h3 class="title">Current Exchange Rate<br><strong>0.621</strong></h3>
+                    </div>
+                     <div class="small-5 medium-4 large-4 columns">
+                        <h3 class="title">My Solidus<br><strong>56.21</strong></h3>
+                     </div>
+                </div>
+
+                <ul class="dashboard-subnav">
+                    <li><a href="/solidus/publish">Publish</a></li>
+                    <li class="active"><a href="/solidus/exchange">Exchange</a></li>
+                    <li class="go-mining">
+                        <a href="javascript:;"><i class="icon fi-dollar"></i><span>Go Mining</span></a>
+                    </li>
+                </ul>
+                <!-- dashboard sub nav end -->
+
+                <form class="dashboard-form">
+                    <div class="field conversion-field">
+                        <div class="small-5 medium-4 large-4 columns">Number of Conversion</div>
+                        <div class="small-7 medium-8 large-8 columns conversion-wrap">
+                            <label for="conversion" class="for-conversion">Solidus</label>
+                            <input type="text" id="conversion" name="conversion">
+                            = <span class="result">0</span> USD
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="small-5 medium-4 large-4 columns">Solidus After Conversion</div>
+                        <div class="small-7 medium-8 large-8 columns">
+                            <span class="after-conversion">32</span>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="small-5 medium-4 large-4 columns">&nbsp;</div>
+                        <div class="small-7 medium-8 large-8 columns">
+                            <input type="submit" class="submit-button" value="Exchange">
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+    <? require_once(APPLICATION_PATH.'/views/scripts/partial/right_sidebar.phtml');?>
+
+</div>

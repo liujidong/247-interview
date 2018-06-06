@@ -1,0 +1,122 @@
+<? $this->placeholder("extra_header")->captureStart();?>
+<link rel="stylesheet" href="/v2/css/pages/store.css">
+<? $this->placeholder("extra_header")->captureEnd();?>
+
+<input type="hidden" value="<?=$this->currency_symbol;?>" id="currency_symbol">
+<input type="hidden" value="<?=$this->currency;?>" id="currency">
+<input type="hidden" value="<?=$this->store['id'];?>" id="store_id">
+
+<div id="storepage" class="row page-layout storepage">
+    <section class="small-12 medium-12 large-9 columns page-layout-main">
+        <header class="clearfix module-header store-header">
+            <div class="large-12 columns">
+                <img src="<?=$this->store['converted_logo']?>"  data-tooltip title="Store Logo" class="store-logo">
+                <h2 class="store-name">
+                    <img src="/img/country-flags/<?=$this->country?>.png" style=""  data-tooltip title="<?=$this->country_name?>">
+                    <?=$this->store['name']?>
+                </h2>
+            </div>
+            <div class="large-12 columns">
+                <nav class="store-nav">
+                    <a href="" class="nav-item products current">Products</a>
+                    <a href="/store/<?=$this->store['subdomain']?>/info" class="nav-item infos">Infos & Return Policy</a>
+                </nav>
+            </div>
+        </header>
+
+        <div class="row store-products">
+            <aside class="small-4 medium-3 large-2 columns">
+                <!--
+                <form action="" class="search-store" data-search>
+                    <a href="javascript:;" class="search-submit"><i class="icon fi-magnifying-glass"></i></a>
+                    <input type="text" class="search-input">
+                </form>
+                -->
+                <nav class="store-subnav">
+                    <ul class="no-bullet parent">
+                        <li><a href="/store/<?=$this->store['subdomain']?>">All</a></li>
+                        <li class="category">
+                            <a href="javascript:;">Category</a>
+                            <ul class="no-bullet children">
+                                <? foreach($this->categories as $cat) {
+                                $class = '';
+                                if(!empty($_REQUEST['cat_id']) && ($_REQUEST['cat_id'] == $cat['id'])) {
+                                $class = 'class="current"';
+                                }
+                                ?>
+                                <li <?=$class?>>
+                                    <a href="/store/<?=$this->store['subdomain']?>?cat_id=<?=$cat['id']?>" data-tooltip title="<?=$cat['path']?>">
+                                        <?=$cat['path']?>
+                                    </a>
+                                </li>
+                                <? } ?>
+                            </ul>
+                        </li>
+                        <li class="tags">
+                            <a href="javascript:;">Tags</a>
+                            <ul class="no-bullet children">
+                                <? foreach ($this->tags as $tag) {
+                                    $class = '';
+                                    if(!empty($_REQUEST['tag']) && ($_REQUEST['tag'] == $tag['category'])) {
+                                        $class = 'class="current"';
+                                    }
+                                ?>
+                                <li <?=$class?>>
+                                    <a href="/store/<?=$this->store['subdomain']?>?tag=<?=$tag['category']?>" data-tooltip title="<?=$tag['description']?>">
+                                        <?=$tag['description']?>
+                                    </a>
+                                </li>
+                                <? } ?>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+            <div class="small-8 medium-9 large-10 columns">
+                <div class="clearfix products-header">
+                    <h3 class="left title"><?echo isset($_REQUEST['category']) ? $_REQUEST['category'] : "All"?></h3>
+                    <div class="right sorting">
+                        <? if($this->visit_store['subdomain'] != 'marketplace'){ ?>
+                        <span class="dropdown module-dropdown" data-dropdown="products-dropdown">Sort by</span>
+                        <ul id="products-dropdown" class="f-dropdown module-dropdown-content" data-dropdown-content>
+                            <li><a href="<?=url_append(array('sort'=>'updated', 'dir'=>'asc'))?>">Date&#8593;</a></li>
+                            <li><a href="<?=url_append(array('sort'=>'updated', 'dir'=>'desc'))?>">Date&#8595;</a></li>
+                            <li><a href="<?=url_append(array('sort'=>'price', 'dir'=>'asc'))?>">Pricing&#8593;</a></li>
+                            <li><a href="<?=url_append(array('sort'=>'price', 'dir'=>'desc'))?>">Pricing&#8595;</a></li>
+                        </ul>
+                        <? } ?>
+                    </div>
+                </div>
+                <div class="products-list">
+                    <ul class="feature-products">
+                        <? foreach($this->products as $product) {?>
+                        <li class="product-item">
+                            <? if($this->visit_store['subdomain'] == 'marketplace'){
+                            $p_url = "/store/".$this->store['subdomain']."/products/item?ASIN=".$product['ASIN'];
+                            } else {
+                            $p_url = "/store/".$this->store['subdomain']."/products/item?id=".$product['id'];
+                            }
+                            ?>
+                            <a class="has-tip gat-product-item" href="<?=$p_url?>" data-options="disable_for_touch:true">
+                                <div class="holder">
+                                    <span><img src="<?=reset($product['pictures']['236']); ?>" alt="" class="product-item-image"></span>
+                                </div>
+                            </a>
+                            <div class="divider"></div>
+                            <div class="product-item-name"><?=strip_tags($product['name'])?></div>
+                            <div class="product-item-pricing"><?=$this->currency_symbol;?><?=$product['price'];?></div>
+                        </li>
+                        <? } ?>
+                    </ul>
+                    <!-- products end -->
+
+                    <div class="text-center">
+                        <?php echo $this->pagination($this->total_rows, $this->rows_per_page, $this->page_num, $this->extra_params); ?>
+                    </div>
+                    <!-- pagenation end -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <? require_once(APPLICATION_PATH.'/views/scripts/partial/right_sidebar.phtml');?>
+</div>

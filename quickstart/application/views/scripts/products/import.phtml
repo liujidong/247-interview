@@ -1,0 +1,51 @@
+<script type="text/javascript" src="/js/fileuploader.js"></script>
+<div id="container" class="row">
+<div class="twelve columns">
+<? require_once(APPLICATION_PATH.'/views/scripts/partial/subnav.phtml');?>
+
+            <h1>Import your <span class="gentium">Etsy</span> products</h1>
+			<h2>It's easy to import all your Etsy products to Shopinterest. Click the "Import Etsy CSV" button below to select your Etsy CSV file. If you need help downloading your CSV file, simply follow the directions below.</h2>
+			<center id="upload_csv_div">
+			<?php if(!$this->pending_jobs){?>
+			<div id="file-uploader">
+			<noscript>
+			<p>Please enable JavaScript to use file uploader.</p>
+			<!-- or put a simple form for upload here -->
+			</noscript>
+			</div>
+			<?php }else{?>
+			    <span class="radius label">Please check 'View all products' after your email notification is received.</span>
+			<?php }?>
+			</center>
+			
+            <div class="row" id="pinlist_div">
+                <div class="twelve columns centered">
+                	<h1>Etsy <span class="gentium">CSV</span> Instructions</h1>
+                	<h2>It's quick and easy to download a CSV file of all your Etsy products.</h2>
+                	<hr>
+
+					<h4>Step 1</h4>
+					<p>Login to your Etsy account and click on the "Your Shop" link on the upper right hand side of the page.</p>
+					<img src="/img/etsy-import-step-01.jpg" alt="Etsy CSV download step 1" class="instructions" />
+					<hr>
+					<h4>Step 2</h4>
+					<p>Click the "Options" link in the navigation bar on the left.</p>
+					<img src="/img/etsy-import-step-02.jpg" alt="Etsy CSV download step 2" class="instructions" />
+					<hr>
+					<h4>Step 3</h4>
+					<p>Select the "Download Data" tab.</p>
+					<img src="/img/etsy-import-step-03.jpg" alt="Etsy CSV download step 3" class="instructions" />
+					<hr>
+					<h4>Step 4</h4>
+					<p>Click "Download CSV" and save the file to your hard drive.</p>
+					<img src="/img/etsy-import-step-04.jpg" alt="Etsy CSV download step 4" class="instructions" />
+					<hr>
+					<h4>Step 5</h4>
+					<p>Click on the "Import Etsy CSV" button at the top of this page and navigate to the CSV file you downloaded from Etsy. Select the file and click "open".</p>
+					<p>That's it! We will do the rest of the work for you.</p>
+					
+                </div>
+            </div>
+	</div><!-- end content -->
+</div>       
+</div><!-- end container -->

@@ -1,0 +1,104 @@
+<link rel="stylesheet" href="/css/auction.css"/>
+<input type="hidden" id="time_now" value="<?=$this->now?>"/>
+<div id="container" active="<?= ($this->auction['active']) ? 1 : 0 ?> ">
+    <div class="auction-title">
+        <div class="title-pre"><span>EXTRAVAGANZA SALE</span></div>
+        <h1><a href="/auction" style="color: #fff;">great deals for a limited time</a></h1>
+    </div>
+
+     <div class="auction-box row" id="auction_<?=$this->auction['id'];?>">
+        <div class="auction-picture six columns" <? if(!$this->auction['active']){?> style="opacity: 0.4; filter: alpha(opacity=40);" <?}?>>
+            <!--large image holder-->
+            <div class="auction-picture-holder">
+                <a href="<?=$this->auction['product_url'];?>" target="_blank" class="need_login">
+                  <img src="<?=$this->auction['pictures'][0];?>" alt="Overflow: Hidden No More" />
+                </a>
+            </div>
+            <!--thumbnail list-->
+            <ul class="auction-picture-list">
+                <?php foreach ($this->auction['pictures'] as $i => $pic ){?>
+                <li>
+                <img src="<?=$this->auction['thumb_pictures'][$i];?>" large_image_url="<?=$pic;?>" alt="" <? if($i===0) {?>class="thumb_pic_selected" <?}?>/>
+                </li>
+                <?php } ?>
+            </ul>
+        </div>
+        <div class="auction-detail six columns">
+            <div class="row"><h1 class="item-title twelve columns"><?=$this->auction['product_name'];?></h1></div>
+            <div class="row item-shop">
+               <!-- p class=" twelve columns">Sold by <a href="<?=$this->auction['store_url'];?>" target="_blank">
+               <?=$this->auction['store_name'];?></a>
+               </p -->
+               <div class="item-right six mobile-two columns">Sold by <a href="<?=$this->auction['store_url'];?>" target="_blank">
+               <?=$this->auction['store_name'];?></a></div>
+               <div class="item-right six mobile-two columns"><a href="/auction">Back to Auction List</a></div>
+            </div>
+            <div class="item-line row">
+                <div class="item-label six mobile-two columns"><span>Regular Price:</span></div>
+                <div class="item-right six mobile-two columns"><del><?=$this->auction['currency_symbol'];?><?=$this->auction['product_price'];?></del></div>
+            </div>
+            <div class="item-line row">
+                <div class="item-label six mobile-two columns"><span>Current Bid Price:</span></div>
+                <div class="item-right six mobile-two columns current_bid_info">
+                  <strong><?=$this->auction['currency_symbol'];?><?=$this->auction['current_bid_price'];?>
+                    <small>( <?=$this->auction['bid_times'];?> bid<?=($this->auction['bid_times'] > 1 ? 's':'');?> )</small>
+                  </strong>
+                </div>
+            </div>
+            <? if($this->auction['active']){?>
+            <div class="item-line row">
+                <div class="item-label six mobile-two columns"><span>Enter Your Bid:</span></div>
+                <div class="item-right three mobile-one columns">
+                      <span class="bid-dollar"><?=$this->auction['currency_symbol'];?></span>
+                      <input type="text" class="bid bid_price" placeholder="<?=$this->auction['min_bid_increment']+$this->auction['current_bid_price'];?>"/>
+                </div>
+                <div class="three mobile-one columns">
+                      <input type="hidden" class="current_bid_price" value="<?=$this->auction['current_bid_price'];?>" />
+                      <input type="hidden" class="min_bid_increment" value="<?=$this->auction['min_bid_increment'];?>" />
+                      <input type="hidden" class="auction_id" value="<?=$this->auction['id'];?>" />
+                      <input type="button" value="Bid" class="submit bid_button need_login"/>
+                </div>
+            </div>
+            <?}?>
+            <hr/>
+
+            <div class="item-line row">
+                <div class="item-label six mobile-two columns"><span>Starting Bid Price:</span></div>
+                <div class="item-right six mobile-two columns"><em class="init_price"><?=$this->auction['currency_symbol'];?><?=$this->auction['initial_bid_price'];?></em></div>
+            </div>
+            <div class="item-line row">
+                <div class="item-label six mobile-two columns"><span>Minimal Bid Increment</span></div>
+                <div class="item-right six mobile-two columns"><em><?=$this->auction['currency_symbol'];?><?=$this->auction['min_bid_increment'];?></em></div>
+            </div>
+            <hr/>
+            <? if($this->auction['active']){?>
+            <div class="item-line row">
+                <div class="item-label six mobile-two columns"><span>Time Left:</span></div>
+                <div class="item-right six mobile-two columns time_countdown"></div>
+            </div>
+            <div class="item-line row">
+                <div class="item-label six mobile-two columns"><span>Close Time</span></div>
+                <div class="item-right six mobile-two columns auction_end_time"><?=$this->auction['end_time'];?></div>
+            </div>
+            <? } else {?>
+            <div class="item-line row">
+                <div class="item-label six mobile-two columns"><span>Closed Time</span></div>
+                <div class="item-right six mobile-two columns auction_end_time"><?=$this->auction['end_time'];?></div>
+            </div>
+            <? } ?>
+            <hr/>
+
+            <div class="item-description">
+               <?=$this->auction['product_description'];?>
+            </div>
+            <div class="item-line row">
+                 <div class="item-label six mobile-two columns right">
+                       <span class="tgt_fbfeed_button_2"></span>
+                       <span class="tgt_tweet_button_2"></span>
+                       <span class="tgt_pin_button_2"></span>
+                 </div>
+            </div>
+        </div>
+    </div>
+
+</div>

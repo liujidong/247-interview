@@ -1,0 +1,29 @@
+<div id="container" class="row">
+<div class="twelve columns">
+    <? require_once(APPLICATION_PATH . '/views/scripts/partial/subnav.phtml'); ?>
+    <h1>Add <span class="gentium">payment</span> Account</h1>
+    <div class="row">
+                    <div id="signup" class="panel seven columns centered">
+                    <p>Add your Paypal email address. Without the correct email here payments will not be deposited into your account.</p>
+                        <form method="post">
+                            <? foreach ($this->errnos as $key => $value) { ?>
+                                <div class="alert-box alert row">
+                                    <?= $this->errors[$key]['msg'] ?>
+                                    <a href="" class="close">&times;</a>
+                                </div>
+                            <? } ?>
+                            <div class="row">
+                                <div class="twelve columns">  
+                                    <label>Your Paypal Email<input name="paypal_username" type="text" placeholder="Paypal Username" value="<?=$this->paypal_username;?>"/></label>
+                                </div>
+                            </div>
+                            <div class="row center">
+                            <br>
+                                <button id="getstartedbutton" name="submit" type="submit" value="submit" class="button radius alert large" >Add Account</button>
+                            </div>  
+                        </form>
+                    </div>
+                </div>
+	</div><!-- end content -->
+</div>       
+</div><!-- end container -->

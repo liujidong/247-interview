@@ -1,0 +1,25 @@
+<?require_once(APPLICATION_PATH . '/views/scripts/partial/subnav_admin.phtml'); ?>
+<div class="row">
+    <div class="panel seven columns centered">
+        <p>Create tags to be searched against the product name & description.</p>
+        <div class="alert-box error" style="display: none;">Please enter a valid category with less than 50 chars!</div>
+        <table>
+            <thead>
+                <th>Tags</th>
+                <th></th>
+            </thead>
+            <tbody>
+                <? foreach ($this->categories as $category) { ?>  
+                    <tr>
+                        <td><?= $category['description'] ?></td>
+                        <td><a class="small secondary button delete_category radius">Delete</a></td>
+                    </tr>
+                <? } ?>
+                <tr class="add_category">
+                    <td><input id="category_value" type="text" placeholder="Enter a new tag" size="50"></td>
+                    <td><a id="add_category" class="medium alert button radius">Add</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

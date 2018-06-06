@@ -1,0 +1,158 @@
+<? $this->placeholder("extra_header")->captureStart();?>
+<link rel="stylesheet" href="/v2/css/pages/store.css">
+<style type="text/css">
+ a:hover {
+   text-decoration: none;
+   cursor: default;
+ }
+</style>
+<? $this->placeholder("extra_header")->captureEnd();?>
+<input id="subdomain" type="hidden" value="<?=$this->store['subdomain']?>">
+<div class="launch-store">
+    <div class="row launch-store-header">
+        <div class="small-8 medium-8 large-8 columns">
+            <div class="title">You are previewing your store.</div>
+        </div>
+        <? if($this->launch_cond) {?>
+        <div class="small-4 medium-4 large-4 columns text-right">
+            <a class="module-button launch-button  launch-store-x">Launch Store</a>
+        </div>
+        <? } ?>
+    </div>
+    <!-- if have steps to be finished, show below -->
+    <div class="row launch-store-tips">
+        <div class="large-12 columns">
+            These following steps need to be finished before you launch store:
+            <?if(empty2($this->user['addr1'])||empty2($this->user['city'])||
+            empty2($this->user['state'])||empty2($this->user['country'])||
+            empty2($this->user['zip'])){?>
+            <a href="/me/settings" class="unfinished"><i class="fi-x"></i>Mailing Address</a>
+            <? } ?>
+            <?if(empty2($this->store['return_policy'])){?>
+            <a href="/selling/settings" class="unfinished"><i class="fi-x"></i>Return Policy</a>
+            <? } ?>
+            <?if(empty2($this->user['first_name']) || empty2($this->user['last_name'])){?>
+            <a href="/me/settings" class="unfinished"><i class="fi-x"></i>Your Name</a>
+            <? } ?>
+            <?if(empty2($this->store['name'])){?>
+            <a href="/selling/settings" class="unfinished"><i class="fi-x"></i>Store Name</a>
+            <? } ?>
+            <?if(empty2($this->store['subdomain'])){?>
+            <a href="/selling/settings" class="unfinished"><i class="fi-x"></i>Subdomain</a>
+            <? } ?>
+            <?if(empty2($this->user['phone'])){?>
+            <a href="/me/settings" class="unfinished"><i class="fi-x"></i>Phone Number</a>
+            <? } ?>
+            <?if(empty2($this->user['paypal_email'])){?>
+            <a href="/me/payment-accounts/paypal" class="unfinished"><i class="fi-x"></i>Payment Methods</a>
+            <? } ?>
+            <?if($this->active_products_cnt <= 0){?>
+            <a href="/selling/products" class="unfinished"><i class="fi-x"></i>Active Products</a>
+            <? } ?>
+            <?if(!$this->is_subscribed){?>
+            <a href="/selling/subscription" class="unfinished"><i class="fi-x"></i>Subscribed</a>
+            <? } ?>
+        </div>
+    </div>
+</div>
+
+
+<div id="storepage" class="row page-layout storepage">
+    <section class="small-12 medium-12 large-9 columns page-layout-main">
+        <header class="clearfix module-header store-header">
+            <div class="large-12 columns">
+                <img src="<?=$this->store['logo']?>" alt="Store Logo" class="store-logo">
+                <h2 class="store-name">
+                    <img src="/img/country-flags/<?=$this->country?>.png" style="" title="<?=$this->country_name?>">
+                    <?=$this->store['name']?>
+                </h2>
+            </div>
+            <div class="large-12 columns">
+                <nav class="store-nav">
+                    <a class="nav-item products current">Products</a>
+                    <a class="nav-item infos">Infos & Return Privacy</a>
+                </nav>
+            </div>
+        </header>
+
+        <div class="row store-products">
+            <aside class="small-4 medium-3 large-2 columns">
+                <form action="" class="search-store" data-search>
+                    <a href="javascript:;" class="search-submit"><i class="icon fi-magnifying-glass"></i></a>
+                    <input type="text" class="search-input">
+                </form>
+                <nav class="store-subnav">
+                    <ul class="no-bullet parent">
+                        <li><a>All</a></li>
+                        <li class="category">
+                            <a>Category</a>
+                            <ul class="no-bullet children">
+                                <? foreach($this->categories as $cat) {
+                                $class = '';
+                                if(!empty($_REQUEST['cat_id']) && ($_REQUEST['cat_id'] == $cat['id'])) {
+                                $class = 'class="current"';
+                                }
+                                ?>
+                                <li <?=$class?>>
+                                    <a><?=$cat['path']?></a>
+                                </li>
+                                <? } ?>
+                            </ul>
+                        </li>
+                        <li class="tags">
+                            <a>Tags</a>
+                            <ul class="no-bullet children">
+                                <? foreach ($this->tags as $tag) {
+                                    $class = '';
+                                    if(!empty($_REQUEST['tag']) && ($_REQUEST['tag'] == $tag['category'])) {
+                                        $class = 'class="current"';
+                                    }
+                                ?>
+                                <li <?=$class?>><a><?=$tag['description']?></a></li>
+                                <? } ?>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+            <div class="small-8 medium-9 large-10 columns">
+                <div class="clearfix products-header">
+                    <h3 class="left title"><?echo isset($_REQUEST['category']) ? $_REQUEST['category'] : "All"?></h3>
+                    <div class="right sorting">
+                        <span class="dropdown module-dropdown" data-dropdown="products-dropdown">Sort by</span>
+                        <ul id="products-dropdown" class="f-dropdown module-dropdown-content" data-dropdown-content>
+                            <li><a>Date&#8593;</a></li>
+                            <li><a>Date&#8595;</a></li>
+                            <li><a>Pricing&#8593;</a></li>
+                            <li><a>Pricing&#8595;</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="products-list">
+                    <ul class="feature-products">
+                        <? foreach($this->products as $product) {?>
+                        <li class="product-item">
+                            <a>
+                                <div class="holder">
+                                    <span><img src="<?=reset($product['pictures']['236']); ?>" alt="" class="product-item-image"></span>
+                                </div>
+                            </a>
+                            <div class="divider"></div>
+                            <div class="product-item-name"><?=$product['description']?></div>
+                            <div class="product-item-storename"><?=$this->store['name']?></div>
+                            <div class="product-item-pricing"><?=$this->currency_symbol;?><?=$product['price'];?></div>
+                        </li>
+                        <? } ?>
+                    </ul>
+                    <!-- products end -->
+
+                    <div class="text-center">
+                        <?php echo $this->pagination($this->total_rows, $this->rows_per_page, $this->page_num, $this->extra_params); ?>
+                    </div>
+                    <!-- pagenation end -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <? require_once(APPLICATION_PATH.'/views/scripts/partial/right_sidebar.phtml');?>
+</div>

@@ -1,0 +1,21 @@
+<a class="close-reveal-modal">&#215;</a>
+<ul class="cart_list01_content">
+  	<li>
+  		<img src="<?=$this->product['mobile_img'];?>" alt="" />
+  	</li>
+  	<li>
+	  	<h3><?= $this->product['name']; ?> <span><?= $this->product['price'];?></span></h3>
+	  	<p class="shipping_info">Shipping: <?=$this->product['shipping'];?> <i>+ $1.50 for each addition item</i></p>
+	</li>
+	<li>
+  		<p><?=$this->product['description']; ?></p>
+  	</li>
+  	<li class="add">
+  	     
+  		 <a href="" class="button medium alert radius cart add_cart">Add to Cart</a>
+  		 
+  		 <a class="button medium alert radius pin" href="http://pinterest.com/pin/create/button/?url=<?=urlencode($_SERVER['HTTP_HOST']);?>&media=<?=urlencode($this->product['url']);?>" count-layout="horizontal">
+  		    Pin
+  		 </a>
+  	</li>
+</ul>

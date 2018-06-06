@@ -1,0 +1,90 @@
+<script type="text/javascript" src="../js/tiny_mce/tiny_mce.js"></script>
+<script type="text/javascript">
+/*
+tinyMCE.init({
+        mode : "textareas",
+        visual : false,
+        theme : "advanced",
+        plugins : "preview",
+        height : "600",
+        theme_advanced_path : false,
+        theme_advanced_buttons2 : "cut,copy,paste,pastetext,pasteword,|,fontselect,fontsizeselect, |search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor",
+
+ });
+ */
+</script>
+
+<?require_once(APPLICATION_PATH . '/views/scripts/partial/subnav_admin.phtml'); ?>
+<div class="small-9 medium-9 large-10 columns" style="margin-top: 10px;">
+    <form method="post" action="#">
+        <p>
+            <?php if(!empty($this->errs)){?>
+            <div class="row collapse">
+                <div class="twelve alert-box alert">
+                    <?=$this->errs;?>
+                    <a href="" class="close">&times;</a>
+                </div>
+            </div>
+            <?php }?>
+            <div class="row collapse">
+                <div class="twelve mobile-three columns"  style="margin: 0 0 10px 0;">
+                    <select name='user_category' id='user_category'>
+                         <option value="">Please select a user category:</option>
+                         <?php foreach($this->user_cats as $value => $label) { ?>
+                         <option value="<?=$value;?>" <? if($value===$this->selected_category){echo "selected";}?> ><?=$label;?></option>
+                         <?php } ?>
+                         <?php foreach($this->email_tags as $value => $label) { ?>
+                         <option value="<?=$value;?>" <? if($value===$this->selected_category){echo "selected";}?> ><?=$label;?></option>
+                         <?php } ?>
+                    </select>
+                </div>
+                <div class="twelve mobile-three columns"  style="margin: 0 0 10px 0;">
+                    <select name='template_type' id='template_type'>
+                        <option value="">You can select a email template:</option>
+                        <?php foreach($this->email_tpls as $tpl) {?>
+                        <option value="<?=$tpl['type'];?>" <? if($tpl['type']==$this->selected_tpl){echo "selected";}?>><?=$tpl['type'];?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+                <div class="twelve mobile-three columns">
+                    <input type="text" name='subject' id='subject' value='<?php if(isset($this->email_subject)) echo $this->email_subject;?>' placeholder='Subject' />
+                </div>
+
+            </div>
+            <div class="row collapse">
+                <textarea id="content" name="content" cols="50" style="min-height:250px;"><?php if(isset($this->email_content)) echo $this->email_content;?></textarea>
+            </div>
+            <div class="row collapse">
+                <h2>Available Variables</h2>
+                <ul>
+                    <li>site_url</li>
+                    <li>site_logo</li>
+                    <li>user_email</li>
+                    <li>user_password(dummy)</li>
+                    <li>user_first_name</li>
+                    <li>user_last_name</li>
+                    <li>user_verification_link</li>
+                    <li>store_url</li>
+                    <li>store_logo</li>
+                    <li>store_name</li>
+                    <li>store_description</li>
+                </ul>
+            </div>
+
+            <div class="row collapse">
+                <div class="two mobile-one columns">
+                        <input type="submit" name="submit" id='search_btn' class="button expand postfix search_btn" />
+                </div>
+            </div>
+            <?php if($this->email_job_info){?>
+            <div class="row collapse">
+                <div class="twelve alert-box success">
+                    The total number of email jobs:<?=$this->email_job_info['total_emails'];?>.
+                    <a href="" class="close">&times;</a>
+                </div>
+            </div>
+            <?php }?>
+        </p>
+    </form>
+
+</div>

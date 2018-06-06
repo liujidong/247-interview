@@ -1,0 +1,117 @@
+
+<div id="container" class="row">
+    <div class="twelve columns">
+        <? require_once(APPLICATION_PATH . '/views/scripts/partial/subnav.phtml'); ?>
+        <h1>Edit <span class="gentium">your</span> Store Profile</h1>
+        <div class="row">
+            <center>
+                <a href="/account/settings" class="button radius secondary small manage_button">Edit your account Settings</a>
+            </center>
+        </div>
+        <br>
+        <div class="row">
+        <? foreach ($this->errnos as $key => $value) { ?>
+        <div class="alert-box <?echo error_type($key);?>">
+            <?= $this->errors[$key]['msg'] ?>
+            <a href="" class="close">&times;</a>
+        </div>
+        <? } ?>
+        </div>
+        <div class="row">
+            <div id="profile" class="panel twelve columns centered">
+                <form method="post">
+                    <div class="row">
+                        <div class="six columns profile_user">
+                            <div style='display: none;' id='profile_img_alert' class='alert-box row alert'>
+                            </div>
+                            <div class="upload_gravitar">
+                                <div class="preview">
+                                    <span  class="gravitar"><img id='profile_img' src="<?= $this->store_logo ?>"></span>
+
+                                </div>
+                                <a class="button radius alert upload_image" style="margin: 22px;">Upload a file</a>
+                            </div>
+                            <label><span class="require">*</span>Enter Store Name<input name="store_name" type="text" placeholder="Enter Store Name" value="<?php echo $this->store_name; ?>"/></label>
+                            <label><span class="require">*</span>Enter Personalized Store URL</label>
+                            <div class="row collapse">
+                                <div class="six columns">
+                                    <input name ="store_subdomain" type="text" placeholder="Enter Personalized Store URL" value="<?php echo $this->store_subdomain; ?>">
+                                </div>
+                                <div class="six columns">
+                                    <span class="postfix">.<?= $this->site_domain; ?></span>
+                                </div>
+                            </div>
+                        	<label><span class="require">*</span>Store Return Policy<textarea style="height: 7em;" name="store_return_policy"><?= $this->store_return_policy; ?></textarea></label>
+                            <label>Your Pinterest URL</label>
+                            <div class="row collapse">
+                        	    <div class="six columns">
+                        	        <span class="prefix">http://pinterest.com/</span>
+                        	    </div>
+                        	    <div class="six columns">
+                        	        <input name ="pinterest_username" type="text" placeholder="Username" value="<?php echo $this->pinterest_username; ?>" />
+                        	    </div>
+                        	</div>
+
+                            <label><span class="require">*</span>Select Your Country
+                            <select name='store_country'>
+                                <option value="">Please select a country</option>
+                                <?foreach($this->countries as $country) {?>
+                                <option value="<?=$country['iso2']?>" <?if($country['iso2'] === $this->store_country){echo "selected";}?>>
+                                    <?=$country['short_name']?>
+                                </option>
+                                <?}?>
+                            </select>
+                            </label>
+                            <label><span class="require">*</span>Select Your Currency
+                            <select name='store_currency' id="store_currency">
+                                <option value="">Please select a currency</option>
+                                <?foreach($this->currencies as $short_name => $currency) {?>
+                                <option value="<?=$short_name?>" <?if($short_name === $this->store_currency){echo "selected";}?>>
+                                    <?=$currency['name']?>
+                                </option>
+                                <?}?>
+                            </select>
+                            </label>
+                        </div>
+
+                        <div class="six columns profile_store">
+                            <label>Tags - add search terms for your store <span class="small">(separate all tags with commas)</span><input name="store_tags" type="text" placeholder="Enter tags separated by commas" value="<?= $this->store_tags ?>"/></label>
+
+                            <div class="">
+                                <label>Your State Tax Rate %<input class="store_tax" name="store_tax" type="text" placeholder="Enter your stores tax rate" value="<?= $this->store_tax ?>"/></label>
+                            </div>
+                            <div class="">
+                                <label>Minimum shipping price for your items <a class="tooltips" href="#">?<span class="tip">Add the minimum shipping charge that will be charged for any item in your store. You can increase the shipping cost on a per item basis later.</span></a><input class="store_shipping" name="store_shipping" type="text" placeholder="Enter your stores base shipping price" value="<?= $this->store_shipping ?>"/></label>
+                                <label>Additional Items Shipping Price <a class="tooltips" href="#">?<span class="tip">This is the shipping rate for every additional item that a shopper adds to their shopping cart. This can be edited on an item by item basis when you create or edit a specific item.</span></a><input class="store_additional_shipping" name="store_additional_shipping" type="text" placeholder="Enter your stores shipping price for another item" value="<?= $this->store_additional_shipping ?>"/></label>
+                            </div>
+
+                            <label>Other Website URL<input type="text" name="store_external_website" value="<?= $this->store_external_website; ?>" /></label>
+                            <label>Describe your store<textarea style="height: 7em;" name="store_description"><?= $this->store_description; ?></textarea></label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <center><button id="getstartedbutton" name="submit" type="submit" value="submit" class="button alert radius large" >Save Profile</button></center>
+                    </div>
+                </form>
+            </div><!-- end profile -->
+            <p class="small"><span class="require">*</span>Required Fields</p>
+        </div>
+
+    </div><!-- end content -->
+</div>
+</div><!-- end container -->
+
+
+
+
+<div id="myModal" class="reveal-modal">
+    <h3>Change Password</h3>
+    <div id="save_password_error_box" class="alert-box alert" style="display: none;">Errors on changing your password!</div>
+    <label>Current Password<input id="current_password" name="current_password" type="password" placeholder="Current Password" value=""/></label>
+    <hr>
+    <label>New Password<input id="new_password" name="new_password" type="password" placeholder="New Password" value=""/></label>
+    <label>Confirm New Password<input id="confirm_password" name="confirm_password" type="password" placeholder="Confirm New Password" value=""/></label><br>
+    <button id="save_password" name="submit" type="submit" value="submit" class="button radius alert large" >Save</button>
+    <a class="close-reveal-modal button radius secondary large">Cancel</a>
+    <a class="close-reveal-modal">&#215;</a>
+</div>

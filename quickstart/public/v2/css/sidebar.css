@@ -1,0 +1,56 @@
+/* ------------------------------
+	sidebar
+------------------------------ */
+
+.sidebar .side-item {
+	margin-bottom: 1.25rem;
+}
+
+/**
+ * auctioning
+ */
+
+.auctions .auction-item-name {
+	font-size: 0.8125rem;
+	line-height: 1.5;
+	max-height: 2.375rem;
+	overflow: hidden;
+}
+
+.auctions .auctioned {
+	margin: 0.625rem 0;
+}
+
+.auctions .auction-item-pricing {
+	border-radius: 3px;
+	color: #ffffff;
+	font-size: 0.625rem;
+	line-height: 1.125rem;
+	padding: 0 4px;
+	background-color: rgba(0,0,0,.75);
+
+	-webkit-box-shadow: 1px 1px rgba(0,0,0,.2);
+	-moz-box-shadow: 1px 1px rgba(0,0,0,.2);
+	box-shadow: 1px 1px rgba(0,0,0,.2);
+}
+
+.auctions .auction-item-auctiontime {
+	line-height: 1.125rem;
+	font-size: 0.75rem;
+	color: #aaaaaa;
+}
+
+.auctions .auction-item-counting {
+	font-size: 0.6875rem;
+	color: #333333;
+	border-radius: 3px;
+	background-color: rgba(0,0,0,0);
+	border: solid 1px #999;
+	line-height: 3rem;
+	text-align: center;
+}
+
+.auctions .auction-item-counting strong {
+	font-weight: 600;
+	font-size: 0.875rem;
+}

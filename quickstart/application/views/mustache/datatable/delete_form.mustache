@@ -1,0 +1,9 @@
+<header class="module-header create-header">
+    <h3 class="title">You sure you want to delete the record?</h3>
+</header>
+<form class="delete-main" data-abide="ajax"> 
+    <div class="alert-field"></div>
+    <input type="hidden" name="row_id" value="<%row_id%>">
+    <input type="submit" datatable-action="cancel" class="submit-button" value="Cancel" datatable-trigger style="margin-bottom:1.875rem;">
+    <input type="submit" datatable-action="delete" class="submit-button" value="Delete" datatable-trigger style="margin-bottom:1.875rem;">
+</form>

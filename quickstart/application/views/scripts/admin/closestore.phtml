@@ -1,0 +1,26 @@
+<?require_once(APPLICATION_PATH . '/views/scripts/partial/subnav_admin.phtml'); ?>
+<div class="main row">
+    <div class="row">
+        <div class="twelve columns">
+            <div class="panel">
+                <h5>Store subdomain or Merchant email</h5>
+                <? foreach ($this->errnos as $key => $value) { ?>
+                    <div class="alert-box <?echo error_type($key);?> row collapse">
+                        <?= $this->errors[$key]['msg'] ?>
+                        <a href="" class="close">&times;</a>
+                    </div>
+                <? } ?>
+                <form method="post">
+                    <div class="row collapse">
+                        <div class="ten mobile-three columns">
+                            <input type="text" name='query' id='subdomain' value='' placeholder='Store Subdomain or Merchant Email' />
+                        </div>
+                        <div class="two mobile-one columns">
+                            <input type="submit" name="submit" id='search_btn' class="button expand postfix search_btn" />
+                        </div>
+                    </div>
+                </form>               
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+<div id="container" class="row">
+<div class="twelve columns">
+    <div class="row">
+        <div class="panel ten columns centered">
+            
+            <? foreach ($this->errnos as $key => $value) { ?>
+                <div class="alert-box <?echo error_type($key);?>">
+                    <?= $this->errors[$key]['msg'] ?>
+                    <a href="" class="close">&times;</a>
+                </div>
+            <? } ?>
+
+            <!-- SHOW IF FAIL --><h5>Oops! Your registration did not go through.</h5>
+            <p>Please try again by <a href="<?= $this->retry_link; ?>">clicking here</a>.</p><!-- SHOW IF FAIL -->
+
+        </div>
+    </div>
+</div>       
+</div><!-- end container -->

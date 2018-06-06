@@ -1,0 +1,268 @@
+<? $this->placeholder("extra_header")->captureStart();?>
+<link rel="stylesheet" href="/v2/css/pages/checkout.css">
+<? $this->placeholder("extra_header")->captureEnd();?>
+
+<div id="checkout-page" class="row page-layout">
+    <form action="/checkout/" method="post" class="checkout" data-abide>
+        <section class="small-12 medium-12 large-9 columns page-layout-main">
+            <header class="module-header checkout-header">
+                <ul class="hide-for-iosapp breadcrumbs">
+                    <li class="finished"><a href="#"><span class="list-num">1</span> Shopping Cart</a></li>
+                    <li class="current"><a href="#"><span class="list-num">2</span> Payment</a></li>
+                    <li class="unavailable"><a href="#"><span class="list-num">3</span> Confirm</a></li>
+                </ul>
+                <div class="row">
+                    <div class="large-10 medium-10 small-10 columns">
+                        <h1 class="title">Shipping & Payment</h1>
+                    </div>
+                    <div class="large-2 medium-2 small-2 columns">
+                        <a href="/buyer-protection" target="_blank"><img alt="Buyer Protection" title="Buyer Protection" width="100" height="37" src="/img/shopper-approved-sm.png"></a>
+                    </div>
+                </div>
+            </header>
+            <? if(!empty($this->errnos) || $this->error){?>
+            <div id="error">
+                <ul>
+                    <? foreach($this->errnos as $e => $_){?>
+                    <li class="red">ERROR: <?= $GLOBALS['errors'][$e]['msg']?></li>
+                    <? } ?>
+                    <? if($this->error) {?>
+                    <li class="red">ERROR: <?= $this->error_msg?></li>
+                    <? } ?>
+                </ul>
+            </div>
+            <? } ?>
+            <div class="row">
+                <div class="small-12 medium-4 large-3 columns">
+                    <div class="checkout-payment payments">
+                        <div class="payment-item payment-creditcard">
+                            <div class="payment-checkbox">
+                                <input type="radio" id="choose-creditcard" name="pay_method" value="creditcard"
+                                <?if($this->old_form['pay_method'] == 'creditcard') echo 'checked'?> required>
+                                <label for="check-creditcard">Credit Card</label>
+                            </div>
+                            <div class="checkbox-extend" data-abide="ajax">
+                                <div class="data-abide-input-container">
+                                    <input type="text" placeholder="First Name" id="card-firstname" name="first_name" class="cc-input"
+                                        value="<?=default2String($this->old_form['first_name'])?>" required/>
+                                    <small class="error">First Name is required.</small>
+                                </div>
+                                <div class="data-abide-input-container">
+                                    <input type="text" placeholder="Last Name" id="card-lastname" name="last_name" class="cc-input"
+                                       value="<?=default2String($this->old_form['last_name'])?>" required/>
+                                    <small class="error">Last Name is required.</small>
+                                </div>
+                                <div class="data-abide-input-container">
+                                    <input type="text" placeholder="Card Number" id="card-number" name="card_number" class="cc-input"
+                                           value="<?=default2String($this->old_form['card_number'])?>" pattern="[0-9* ]{16,20}" required/>
+                                    <small class="error">Card Number is required.</small>
+                                </div>
+                                <div class="data-abide-input-container">
+                                    <input type="text" placeholder="CVC / CVS" id="card-code" name = "cvv2" class="cc-input"
+                                           value="<?=default2String($this->old_form['cvv2'])?>" pattern="[0-9*]{3,5}" required/>
+                                    <small class="error">CVC / CVS is required.</small>
+                                </div>
+                                <div class="data-abide-input-container">
+                                    <label>Exp Date:</label>
+                                    <select id="card-expiry-month" name="card_expire_month" class="cc-input" required>
+                                        <option value="">MM</option>
+                                        <? for($i=1; $i<13; $i++) {
+                                        $si = sprintf("%02d", $i);
+                                        ?>
+                                        <option value="<?=$si?>"
+                                            <?if(default2String($this->old_form['card_expire_month']) == $si) echo "selected";?>>
+                                            <?=$si?>
+                                        </option>
+                                        <? } ?>
+                                    </select>
+                                    <select id="card-expiry-year" name="card_expire_year" class="cc-input" required>
+                                        <option value="">YY</option>
+                                        <? for($i=14; $i<24; $i++) {
+                                        $si = sprintf("20%02d", $i);
+                                        ?>
+                                        <option value="<?=$si?>"
+                                            <? if(default2String($this->old_form['card_expire_year']) == $si) echo "selected";?>>
+                                            <?=$si?>
+                                        </option>
+                                        <? } ?>
+                                    </select>
+                                    <small class="error">Expiry Date is required</small>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- credit card end -->
+
+                        <div class="payment-item payment-paypal">
+                            <div class="payment-checkbox">
+                                <input type="radio" id="choose-paypal" name="pay_method" value="paypal"
+                                <?if($this->old_form['pay_method'] == 'paypal') echo 'checked'?> required/>
+                                <label for="check-paypal">Paypal</label>
+                            </div>
+                            <div class="checkbox-extend paypal-form">Click on Continue to complete PayPal payment.</div>
+                        </div>
+                        <!-- paypal end -->
+                    </div>
+                </div>
+                <!-- payments end -->
+                <div class="small-12 medium-8 large-9 columns">
+                    <div class="checkout-payment checkout-address">
+                        <div class="module-header header">
+                            <h3 class="title"><span id="addr_type">Billing</span> Address</h3>
+                        </div>
+                        <div class="billing-address" id="billing_addr_form">
+                            <div class="small-12 medium-6 large-6 columns data-abide-input-container">
+                                <label for="billing-firstname" class="required">First Name</label>
+                                <input type="text" id="billing-firstname" class="billing-input firstname" name="billing_first_name"
+                                       value="<?=default2String($this->old_form['billing_first_name'])?>" required>
+                                <small class="error">required</small>
+                            </div>
+                            <div class="small-12 medium-6 large-6 columns data-abide-input-container">
+                                <label for="billing-lastname" class="required">Last Name</label>
+                                <input type="text" id="billing-lastname" class="billing-input lastname" name="billing_last_name"
+                                       value="<?=default2String($this->old_form['billing_last_name'])?>" required>
+                                <small class="error">required</small>
+                            </div>
+                            <div class="small-12 medium-6 large-6 columns data-abide-input-container">
+                                <label for="billing-add1" class="required">Address Line 1</label>
+                                <input type="text" id="billing-add1" class="billing-input address1" name="billing_addr1"
+                                       placeholder="Street address, P.O. box, company name, c/o"
+                                       value="<?=default2String($this->old_form['billing_addr1'])?>" required>
+                                <small class="error">required</small>
+                            </div>
+                            <div class="small-12 medium-6 large-6 columns">
+                                <label for="billing-add2">Address Line 2</label>
+                                <input type="text" id="billing-add2" class="address2" name="billing_addr2"
+                                       placeholder="Apartment, suite, unit, building, floor, etc"
+                                       value="<?=default2String($this->old_form['billing_addr2'])?>">
+                            </div>
+                            <div class="small-12 medium-6 large-6 columns data-abide-input-container">
+                                <label for="billing-country" class="required">Country</label>
+                                <select name="billing_country" id="billing_country" class="billing-input country" required>
+                                    <option value="">Please select a country</option>
+                                    <? foreach($this->countries as $country) {?>
+                                    <option value="<?= $country['iso2'] ?>"
+                                        <?if(default2String($this->old_form['billing_country']) == $country['iso2']) echo "selected";?>>
+                                        <?=$country['short_name']?>
+                                    </option>
+                                    <? } ?>
+                                </select>
+                                <small class="error">required</small>
+                            </div>
+                            <div class="small-12 medium-6 large-6 columns data-abide-input-container" id="billing_state_container">
+                                <label for="billing-state" class="required">State / Province / Region</label>
+                                <input type="text" class="billing-input" name="billing_state" id="billing_state" value="<?=default2String($this->old_form['billing_state'])?>"/>
+                                <!-- select name="billing_state" id="billing_state">
+                                <option value="">State / Province / Region</option>
+                                </select -->
+                                <small class="error">required</small>
+                            </div>
+                            <div class="small-12 medium-6 large-6 columns data-abide-input-container">
+                                <label for="billing-city" class="required">City</label>
+                                <input type="text" id="billing-city" class="billing-input city" name="billing_city"
+                                       value="<?=default2String($this->old_form['billing_city'])?>" required>
+                                <small class="error">required</small>
+                            </div>
+                            <div class="small-12 medium-6 large-6 columns data-abide-input-container">
+                                <label for="billing-zipcode" class="required">ZIP / Postal code</label>
+                                <input type="text" id="billing-zipcode" class="billing-input zipcode" name="billing_zip"
+                                       value="<?=default2String($this->old_form['billing_zip'])?>" required>
+                                <small class="error">required</small>
+                            </div>
+                            <!-- billing address end -->
+                            <div class="large-12 columns header">
+                                <h3 class="left title">Shipping Address</h3>
+                                <div class="left check-same-address">
+                                    <a id="copy-address">Copy from my billing adress</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="billing-address" id="shipping_addr_form">
+                            <div class="shipping-address-form-extend" id="shipping_addr_form">
+                                <div class="small-12 medium-6 large-6 columns data-abide-input-container">
+                                    <label for="shipping-firstname" class="required">First Name</label>
+                                    <input type="text" id="shipping-firstname" class="shipping-input firstname" name="shipping_first_name"
+                                           value="<?=default2String($this->old_form['shipping_first_name'])?>" required>
+                                    <small class="error">required</small>
+                                </div>
+                                <div class="small-12 medium-6 large-6 columns data-abide-input-container">
+                                    <label for="shipping-lastname" class="required">Last Name</label>
+                                    <input type="text" id="shipping-lastname" class="shipping-input lastname" name="shipping_last_name"
+                                           value="<?=default2String($this->old_form['shipping_last_name'])?>" required>
+                                    <small class="error">required</small>
+                                </div>
+                                <div class="small-12 medium-6 large-6 columns data-abide-input-container">
+                                    <label for="shipping-add1" class="required">Address Line 1</label>
+                                    <input type="text" id="shipping-add1" class="shipping-input address1" name="shipping_addr1"
+                                           placeholder="Street address, P.O. box, company name, c/o"
+                                           value="<?=default2String($this->old_form['shipping_addr1'])?>" required>
+                                    <small class="error">required</small>
+                                </div>
+                                <div class="small-12 medium-6 large-6 columns data-abide-input-container">
+                                    <label for="shipping-add2">Address Line 2</label>
+                                    <input type="text" id="shipping-add2" class="address2" name="shipping_addr2"
+                                           placeholder="Apartment, suite, unit, building, floor, etc"
+                                           value="<?=default2String($this->old_form['shipping_addr2'])?>">
+                                </div>
+                                <div class="small-12 medium-6 large-6 columns data-abide-input-container">
+                                    <label for="shipping-country" class="required">Country</label>
+                                    <select name="shipping_country" id="shipping_country" class="shipping-input country" required>
+                                        <option value="">Please select a country</option>
+                                        <? foreach($this->countries as $country) {?>
+                                        <option value="<?= $country['iso2']?>" <?if($this->old_form['shipping_country'] == $country['iso2']) echo "selected";?>>
+                                            <?=$country['short_name']?>
+                                        </option>
+                                        <? } ?>
+                                    </select>
+                                    <small class="error">required</small>
+                                </div>
+                                <div class="small-12 medium-6 large-6 columns data-abide-input-container" id="shipping_state_container">
+                                    <label for="shipping-state" class="required">State / Province / Region</label>
+                                    <input type="text" name="shipping_state" id="shipping_state" class="shipping-input state" required
+                                           value="<?=default2String($this->old_form['shipping_state'])?>"/>
+                                    <!-- select name="shipping_state" id="shipping_state">
+                                    <option value="">State / Province / Region</option>
+                                    </select -->
+                                    <small class="error">required</small>
+                                </div>
+                                <div class="small-12 medium-6 large-6 columns data-abide-input-container">
+                                    <label for="shipping-city" class="required">City</label>
+                                    <input type="text" id="shipping-city" class="shipping-input city" name="shipping_city"
+                                           value="<?=default2String($this->old_form['shipping_city'])?>" required>
+                                    <small class="error">required</small>
+                                </div>
+                                <div class="small-12 medium-6 large-6 columns data-abide-input-container">
+                                    <label for="shipping-zipcode" class="required">ZIP / Postal code</label>
+                                    <input type="text" id="shipping-zipcode" class="shipping-input zipcode" name="shipping_zip"
+                                           value="<?=default2String($this->old_form['shipping_zip'])?>" required>
+                                    <small class="error">required</small>
+                                </div>
+                                <div class="small-12 medium-6 large-6 columns data-abide-input-container">
+                                    <label for="shipping-tel" class="required">Phone Number</label>
+                                    <input type="tel" required id="shipping-tel" class="shipping-input tel" name="shipping_phone"
+                                           value="<?=default2String($this->old_form['shipping_phone'])?>">
+                                    <small class="error">required</small>
+                                </div>
+                                <div class="small-12 medium-6 large-6 columns data-abide-input-container">
+                                    <label for="shipping-email">Email</label>
+                                    <input type="email" id="shipping-email" class="email"  name="shipping_email"
+                                           value="<?=default2String($this->old_form['shipping_email'])?>">
+                                </div>
+                                <!-- shipping address end -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="large-12 columns text-right">
+                            <input type="submit" class="submit-button checkout-payment-continue" value="Continue" name="continue">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </form>
+    <? require_once(APPLICATION_PATH.'/views/scripts/partial/right_sidebar.phtml');?>
+    <!-- sidebar items   -->
+
+</div>

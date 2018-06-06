@@ -1,0 +1,38 @@
+<div id="{{id}}" class="reveal-modal email_lightbox">
+    <a class="close-reveal-modal">×</a>
+    <div id="compose_email">
+        <form data-abide="ajax">
+            <input type="hidden" class="row_ids" name="row_ids">
+            <h1>Email to <span class="gentium">Your</span> Customer</h1>
+            <h2>Enter the subject and content to send an email.</h2>
+            <div class="go_view" style="margin-bottom: 2%;"><a href="">View Email</a></div>
+            <input type="hidden" class="email_lightbox_toname">
+            <input type="text" class="email_lightbox_toemail" placeholder="Email" disabled>
+
+            <div class="data-abide-input-container">
+                <input type="text" class="email_lightbox_subject" placeholder="Subject" name="subject" required>
+                <small class="error">Subject is required</small>
+            </div>
+            <div class="data-abide-input-container">
+                <textarea class="email_lightbox_content" placeholder="Message" style="height: 170px;" name="content" required></textarea>
+                <small class="error">Content is required</small>
+            </div>
+            <input type="submit" class="submit-button email_lightbox_submit " value="Send" datatable-trigger datatable-action="send_email">
+        </form>
+    </div>
+    <div id="view_email" style="display: none;">
+        <div class="go_compose" style="margin-bottom: 2%;"><a href="">Compose Email</a></div>
+        <div class="show_venue">
+            <table style="width: 100%;">
+                <tr><td>From:</td><td class="fromemail"></td><tr>
+                <tr><td>ReplyTo:</td><td class="replyto"></td></tr>
+                <tr><td>To:</td><td><input type="text" class="toemail" disabled/></td></tr>
+                <tr><td>Subject:</td><td class="subject"></td></tr>
+                <tr><td>Content:</td><td><textarea class="content" style="height: 170px;" disabled></textarea></td></tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+

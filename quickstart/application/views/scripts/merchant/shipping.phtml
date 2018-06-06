@@ -1,0 +1,134 @@
+<? $this->placeholder("extra_header")->captureStart();?>
+<link rel="stylesheet" href="/css/page/merchant_shipping.css">
+<script src="/js/countries.js"></script>
+<? $this->placeholder("extra_header")->captureEnd();?>
+
+<div id="container" class="row">
+    <? require_once(APPLICATION_PATH.'/views/scripts/partial/subnav.phtml');?>
+    <div class="shipping-options-page">
+
+        <h1 class="text-center shipping-options-header">Shipping Options</h1>
+        <h2 class="text-center msg"></h2>
+
+        <div class="shipping-options-list">
+
+            <? foreach($this->shipping_options as $so) {
+            $is_custom = $so['name'] != 'Standard' &&  $so['name'] != 'Priority' && $so['name'] != 'Express';
+            ?>
+            <div class="row shipping-options-item">
+                <div class="five columns">
+                    Service Type:
+                    <select name="service-type" class="service-type" opt_id="<?=$so['id']?>">
+                        <option value="">----</option>
+                        <option value="Standard" <?if($so['name'] == 'Standard') echo "selected";?>>Standard</option>
+                        <option value="Priority" <?if($so['name'] == 'Priority') echo "selected";?>>Priority</option>
+                        <option value="Express" <?if($so['name'] == 'Express') echo "selected";?>>Express</option>
+                        <option value="Custom" <?if($is_custom) echo "selected";?>>Custom</option>
+                    </select>
+                    <input type="text" placeholder="Shipping Type" class="extra-service-type" value="<?=$so['name']?>" style="display: none;">
+                </div>
+                <div class="seven columns dest-wrap">
+                    <!-- - -->
+                    <?
+
+                    $so_id = $so['id'];
+                    $dests = isset($this->dests_by_opt[$so_id]) ? $this->dests_by_opt[$so_id] : 0;
+                    if(empty($dests)){
+                    ?>
+                    <div class="row dest-item">
+                        <div class="two columns">
+                            <select name="dest" class="dest">
+                                <option value=""> - ALL - </option>
+                                <?foreach($this->countries as $country) {?>
+                                <option value="<?=$country['iso2']?>"><?=$country['short_name']?></option>
+                                <?}?>
+                            </select>
+                        </div>
+
+                        <div class="four columns">
+                            <input type="text" class="input-dollar base" placeholder="Base">
+                            <input type="text" class="input-dollar additional" placeholder="Additional">
+                        </div>
+
+                        <div class="four columns">
+                            <select name="from" class="from">
+                                <option value="">FROM</option>
+                                <?for($i = 1; $i <= 30; $i++) {?>
+                                <option value="<?=$i?>"><?=$i?></option>
+                                <?}?>
+                            </select>
+                            <select name="to" class="to">
+                                <option value="">TO</option>
+                                <?for($i = 1; $i <= 30; $i++) {?>
+                                <option value="<?=$i?>"><?=$i?></option>
+                                <?}?>
+                            </select>
+                        </div>
+
+                        <div class="two columns">
+                            <a href="javascript:;" class="dest-save">Save</a>
+                            <a href="javascript:;" class="dest-delete">&times;</a>
+                        </div>
+                    </div>
+                    <?
+                    } else {
+                    foreach($dests as $dest){?>
+                    <div class="row dest-item" dest_id="<?=$dest['id']?>">
+                        <div class="two columns">
+                            <select name="dest" class="dest">
+                                <option value=""> - ALL - </option>
+                                <?foreach($this->countries as $country) {?>
+                                <option value="<?=$country['iso2']?>" <?if($country['iso2'] === $dest['name']){echo "selected";}?>>
+                                    <?=$country['short_name']?>
+                                </option>
+                                <?}?>
+                            </select>
+                        </div>
+
+                        <div class="four columns">
+                            <input type="text" class="input-dollar base" placeholder="Base" value="<?=$dest['base']?>">
+                            <input type="text" class="input-dollar additional" placeholder="Additional" value="<?=$dest['additional']?>">
+                        </div>
+
+                        <div class="four columns">
+                            <select name="from" class="from">
+                                <option value="">FROM</option>
+                                <?for($i = 1; $i <= 30; $i++) {?>
+                                <option value="<?=$i?>" <?= $dest['fromdays'] == $i? 'selected' : ''?>><?=$i?></option>
+                                <?}?>
+                            </select>
+                            <select name="to" class="to">
+                                <option value="">TO</option>
+                                <option value="">FROM</option>
+                                <?for($i = 1; $i <= 30; $i++) {?>
+                                <option value="<?=$i?>" <?= $dest['todays'] == $i? 'selected' : ''?>><?=$i?></option>
+                                <?}?>
+                            </select>
+                        </div>
+
+                        <div class="two columns">
+                            <a href="javascript:;" class="dest-save">Save</a>
+                            <a href="javascript:;" class="dest-delete">&times;</a>
+                        </div>
+                    </div>
+                    <? }} ?>
+                    <!--  -->
+                    <div style="margin-top:5px;" class="add-dest-holder">
+                        <a href="javascript:;" class="edit-link add-dest">+ Add a destination</a>
+                    </div>
+                </div>
+            </div>
+            <? } ?>
+        </div>
+
+        <div style="padding: 20px 0;">
+            <a href="javascript:;" class="edit-link add-shipping">+ Add a shipping pattern</a>
+        </div>
+        <!--
+        <div class="buttons text-center">
+            <a href="javascript:;" class="button radius large">Save</a>
+        </div>
+        -->
+    </div>
+</div>
+</div>

@@ -1,0 +1,392 @@
+img {
+    height: auto;
+    border: 0;
+    -ms-interpolation-mode: bicubic;
+    vertical-align: middle;
+}
+#pinpicker {
+    position: fixed;
+    padding: 10px;
+    width: 823px;
+    height: 522px;
+    bottom: auto;
+    right: auto;
+    overflow: hidden;
+    border: 1px solid rgb(153, 153, 153);
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    margin: 0px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.reveal-modal-bg {
+    background-color: black;
+    opacity: 0.5 !important;
+}
+
+#pinpicker .close-modal {
+    color: rgb(85, 85, 85);
+    position: relative;
+    left: 805px;
+    font-size: 1.4em;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#pinpicker_container {
+    width: 100%;
+    height: 468px;
+    border: none;
+    position: relative;
+    top: 10px;
+    line-height: 18px;
+    font-size: 13px;
+}
+
+#pinpicker_content {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#servicePaneSpacer {
+    margin-left: 0;
+    min-height: inherit;
+}
+
+#servicePane {
+    top: 20px;
+    position: absolute;
+    left: 10px;
+    width: 20%;
+    min-width: 132px;
+}
+
+img#branding {
+    max-width: 150px;
+    padding-bottom: 1em;
+    font-size: 13px;
+}
+
+#services {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height: 320px;
+    overflow-y: auto;
+}
+
+.subbranding {
+    font-style: italic;
+    padding-top: 1em;
+    font-size: 13px;
+}
+
+i.sbicon-pinterest {
+    display: inline-block;
+    width: 18px;
+    height: 14px;
+    background-image: url('/img/32x32-pinterest.png');
+    background-repeat: no-repeat;
+    background-size: 14px 14px;
+}
+
+.nav-list [class^="sbicon-"] {
+    padding-right: 5px;
+}
+
+.nav-list a, .filelist a {
+    color: #333;
+    cursor: default;
+}
+
+#bread {
+    background: white;
+    top: 0;
+    padding-top: 10px;
+    margin-left: 0;
+    position: absolute;
+}
+
+#bread .breadcrumb {
+    padding: 3px 0 1px 15px;
+    margin-bottom: 0;
+    -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding;
+    background-clip: padding-box;
+}
+
+#picker {
+    padding-top: 50px;
+}
+
+.breadcrumb_element {
+    display: inline-block;
+    text-shadow: 0 1px 0 #ffffff;
+    height: 30px;
+    line-height: 30px;
+    max-width: 130px;
+}
+
+.ellipsize {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.divider {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.breadcrumb_element {
+    display: inline-block;
+    text-shadow: 0 1px 0 #ffffff;
+    height: 30px;
+    line-height: 30px;
+    max-width: 160px;
+    padding: 0 2px;
+    color: #999999;
+}
+
+.pinterest_username input {
+    width: 140px; 
+    margin-bottom: 6px;
+}
+
+.pinterest_username a {
+    cursor: pointer;
+}
+
+.picker_files_header {
+    position: absolute;
+    background: #FFF;
+    padding: 20px 10px 10px 10px;
+    padding-top: 10px;
+    padding-bottom: 0;
+    margin: -10px 0 0 12px;
+    font-size: 1.1em;
+    font-weight: 800;
+    border-bottom: 2px solid #F5F5F5;
+    width: 43%;
+    list-style: none;
+}
+
+#picker_files {
+    overflow: hidden;
+    overflow-y: auto;
+    height: 315px;
+}
+
+#picker_files li {
+    padding-bottom: 0;
+}
+
+#picker_files .board-snapshot {
+    display: inline-block !important;
+}
+
+#picker_files .extraimg li {
+    display: inline;
+}
+
+#picker_files .extraimg {
+    margin-left: 0;
+}
+
+#picker_files .other-info {
+    display: inline-block;
+    font-size: 18px;
+    position: relative;  
+    top: -20px;
+    margin-left: 10px;
+    overflow: hidden;
+    width: 200px;
+    height: 40px;
+}
+
+#picker_files .other-info span {
+    display: inline;
+    width: 260px;
+    height: 20px;
+    overflow: hidden;
+    margin-right: 5px;
+}
+
+#picker_files .other-info .arrow-right {
+    display: inline-block;
+}
+
+.filelist {
+    margin-top: 40px;
+}
+
+.nav-files {
+    margin-left: 1em;
+    font-size: 1.2em;
+    margin-bottom: 18px;
+}
+
+.floatright {
+    float: right;
+}
+
+.filelist>li:nth-child(odd)>a {
+    background-color: #edf3fe;
+}
+
+.nav-list > li > a {
+    padding: 8px 15px;
+}
+
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.icon-folder-open {
+    padding-right: 5px;
+}
+
+#picker_files a.directory:hover {
+    background-color: #999999;
+}
+
+#mainpane {
+    max-height: 480px;
+    overflow: hidden;
+}
+
+#preview {
+    position: absolute;
+    top: 70px;
+    right: 5px;
+    height: 100%;
+    max-height: 450px;
+}
+
+#preview h3 {
+    line-height: 27px;
+    font-size: 18px;
+}
+
+#preview p {
+    margin: 0 0 9px;
+    font-size: 13px;
+    line-height: 18px;
+}
+
+#action-group {
+    width: 100%;
+    position: absolute;
+    bottom: 40px;
+    margin-left: 30px;
+}
+
+.multi-file-preview {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    height: 275px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.multi-file-preview li {
+    padding: 5px 8px;
+    margin-bottom: 8px;
+}
+
+.selected-preview {
+    overflow: auto;
+    color: #000000;
+}
+
+.tiny-thumbnail {
+    width: 45px;
+    max-height: 45px;
+    float: left;
+    display: inline-block;
+    text-align: center;
+}
+
+.tiny-thumbnail > img {
+    max-height: 45px;
+    max-width: 45px;
+}
+
+.thumbnail-spinner {
+    width: 36px;
+    height: 36px;
+}
+
+.multi-filename {
+    display: inline-block;
+    float: left;
+    left: 8px;
+    overflow: hidden;
+    position: relative;
+    width: 120px;
+    margin-top: 12px;
+}
+
+.ellipsize {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.selected-preview {
+    color: #000000;
+}
+
+#pinlist {
+    margin-top: 20px;
+    width: 350px;
+}
+
+#pinlist ul {
+    overflow: hidden;
+    overflow-y: auto;
+    height: 335px;
+}
+
+#pinlist li {
+    margin-left: 30px;
+}
+
+#pinlist .pin-container {
+    height: 150px;
+    overflow: hidden;
+    position: relative;
+}
+
+
+#pinlist .pin-container:hover {
+    background-position: center;
+    opacity: 0.5;
+    color: #fff;
+    background-color: transparent;
+}
+
+.overlay-image {
+    position: absolute;
+    top: 15%;
+    left: 15%;
+}
+
+.btn-upload {
+    cursor: pointer !important;
+}

@@ -1,0 +1,103 @@
+<div id="container" class="row">
+    <div class="twelve columns">
+        <? require_once(APPLICATION_PATH . '/views/scripts/partial/subnav.phtml'); ?>
+
+        <div class="row">
+            <div class="twelve columns centered">
+                <div class="row">
+                    <div class="two columns">
+                        <span class="gravitar">
+                            <a href="/"><img src="<?=empty($this->store_logo)?"//tctechcrunch2011.files.wordpress.com/2012/06/shopinterest.png?w=271":$this->store_logo?>" id="profile_img"></a>
+                        </span>
+
+                    </div>
+                    <div class="ten columns">
+                        <h1><a href="/" style="color: #950000"><?= $this->store_name; ?></a> </h1>
+                        <?=!empty($this->store_description)?$this->store_description:""?>
+                        <?php if (!empty($this->store_external_website)) { ?>
+                            <p class="small"> Other site &nbsp; <a target="_blank" href="http://<?= $this->store_external_website; ?>"><?= $this->store_external_website; ?></a></p>
+                        <?php } ?>
+                        <h5 style="display:none;">Rating:
+                            <ul class="star_holder" style="display: inline-block">
+                            <?for($rt=1;$rt<=5;$rt++) {?>
+                            <li  class="star <?php if ($rt <= 4) { ?>active<?php } ?>"></li>
+                            <?}?>
+                            </ul>
+                        </h5>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <dl class="tabs">
+                <!-- dd class="active"><a href="#ratings">Ratings</a></dd -->
+                <dd><a href="#returnpolicy">Store Return Policy</a></dd>
+            </dl>
+            <div id="profile" class="panel twelve columns centered">
+<?php if (isset($this->error)) { ?>
+                    <div class='twelve row'>
+                        <div class='alert-box alert'>
+                            <span id='alert_msg'>
+    <?= $this->error; ?>
+                            </span>
+                        </div>
+                    </div>
+<?php } ?>
+<?php if (!isset($this->submit) && isset($this->shopper_id) && isset($this->order_id) && !isset($this->reviewed)) { ?>
+                    <div id="feedback_entry" class="row">
+                        <div class="twelve columns">
+                            <h5>Submit a Review</h5>
+                            <h6>Overall Rating</h6>
+                            <span class="star_holder">
+                                <a id='review_1' review_star=1 href="" class="review_star star">Rate 1 stars</a>
+                                <a id='review_2' review_star=2 href="" class="review_star star">Rate 2 stars</a>
+                                <a id='review_3' review_star=3 href="" class="review_star star">Rate 3 stars</a>
+                                <a id='review_4' review_star=4 href="" class="review_star star">Rate 4 stars</a>
+                                <a id='review_5' review_star=5 href="" class="review_star star">Rate 5 stars</a>
+                            </span>
+                            <form method='post' action='#'>
+                                <input type='hidden' id='review_score' name='review_score' value=0 />
+                                <textarea name='review_content'></textarea>
+                                <?php if (!empty($this->order_id)) { ?>
+                                    <input type='hidden' id='order_id' name='order_id' value=<?= $this->order_id; ?> />
+                                <?php } ?>
+                                <?php if (!empty($this->shopper_id)) { ?>
+                                    <input type='hidden' id='shopper_id' name='shopper_id' value=<?= $this->shopper_id; ?> />
+    <?php } ?>
+                                <button name='submit' class="button radius medium alert" >Submit</button>
+                            </form>
+                        </div>
+                    </div>
+<?php } ?>
+                <div class="row">
+                    <div class="twelve columns">
+                        <ul class="tabs-content">
+                            <li class="active" id="ratingsTab">
+                                <h5>Recent Ratings</h5>
+<?php foreach ($this->reviews as $review) { ?>
+                                    <div class="rating">
+                                        <h6><?= $review['created'] ?></h6>
+                                        <span class="star_holder">
+                                            <span href="" class="star <?php if ($review['score'] >= 1) echo 'active'; ?>">Rate 1 stars</span>
+                                            <span href="" class="star <?php if ($review['score'] >= 2) echo 'active'; ?>">Rate 2 stars</span>
+                                            <span href="" class="star <?php if ($review['score'] >= 3) echo 'active'; ?>">Rate 3 stars</span>
+                                            <span href="" class="star <?php if ($review['score'] >= 4) echo 'active'; ?>">Rate 4 stars</span>
+                                            <span href="" class="star <?php if ($review['score'] >= 5) echo 'active'; ?>">Rate 5 stars</span>
+                                        </span>
+                                        <p><?= $review['text']; ?></p>
+                                    </div>
+<?php } ?>
+                            </li>
+                            <li id="returnpolicyTab"><?php if (!empty($this->store_return_policy)) echo $this->store_return_policy; else { ?>This store has not submitted a return policy at this time.<?php } ?></li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div><!-- end profile -->
+        </div>
+
+    </div><!-- end content -->
+</div>
+</div><!-- end container -->

@@ -1,0 +1,23 @@
+
+** Reference
+
+https://developers.facebook.com/docs/plugins/registration/
+
+http://developers.facebook.com/docs/plugins/registration/advanced/
+
+https://developers.facebook.com/docs/user_registration/flows/
+
+https://developers.facebook.com/docs/howtos/login/getting-started/
+
+https://developers.facebook.com/docs/howtos/login/client-side-logout/
+
+** Signup/Login flow
+
+not login: show login & register button
+login but not authorized: show login
+login & authorized: show logout
+
+
+
+
+

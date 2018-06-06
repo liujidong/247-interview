@@ -1,0 +1,48 @@
+<link rel="stylesheet" href="/css/cart.css"/>
+
+<?require_once(APPLICATION_PATH . '/views/scripts/partial/subnav_admin.phtml'); ?>
+<div class="row">
+    <div class="six columns centered">
+        <form class="row"  method="get">
+                <div class="six columns">
+                    <input  name="email" type="text" placeholder="put email here to search">
+                </div>
+                <div class="six columns">
+                    <center style="display: inline-block;">
+                        <button name="submit" type="submit" value="submit" class="button radius small">Search</button>
+                    </center>
+                    <center style="display: inline-block;">
+                        <a href="/admin/closeaccount" class="button radius small">Get all user account</a>
+                    </center>
+                </div>
+        </form> 
+        <p>Can both close account, store, and associate store.</p>
+    </div>
+</div>
+<div class="main row">
+    <table id='admin_table'>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>Username</th>
+                <th>Merchent(Y/N)</th>
+                <th>Associate(Y/N)</th>
+                <th>Shopper(Y/N)</th>
+                <th>Closed</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($this->user_info as $info){?>
+            <tr>
+                <td><?=$info['id'];?></td>
+                <td><?=$info['username'];?></td>
+                <td><?=empty($info['merchant_id']) ? 'N' : 'Y';?></td>
+                <td><?=empty($info['associate_id']) ? 'N' : 'Y';?></td>
+                <td><?=empty($info['shopper_id']) ? 'N' : 'Y';?></td>
+                <td><input type="checkbox" class="close-account" <?=$info['status'] == BLOCKED ? 'checked' : '';?>/></td>                
+            </tr>
+            <?php }?>
+        </tbody>
+    </table>
+    <?php echo $this->page($this->total_rows, $this->rows_per_page, $this->page_num); ?>    
+</div>

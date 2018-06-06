@@ -1,0 +1,214 @@
+<link rel="stylesheet" href="/v2/css/pages/dashboard.css">
+<div id="dashboard" class="row page-layout dashboard">
+
+    <section class="small-12 medium-12 large-9 columns">
+        <div class="row">
+            <div class="small-3 medium-3 large-2 columns">
+                <? require_once(APPLICATION_PATH.'/views/scripts/partial/left_sidebar.phtml');?>
+            </div>
+            <!-- side nav end -->
+
+           <div id="sellingvenue-product-detail" class="small-9 medium-9 large-10 columns">
+                <? require_once(APPLICATION_PATH.'/views/scripts/partial/horizontal_subnav.phtml');?>
+                <!-- dashboard sub nav end -->
+                <? require_once(APPLICATION_PATH.'/views/scripts/partial/horizontal_subnav2.phtml');?>
+                <!-- dashboard nav end -->
+
+                <div class="module-tools">
+                    <div class="small-12 medium-12 large-12 columns">
+                        <div class="module-tools-item">
+                            <span class="dropdown module-dropdown" data-dropdown="status-dropdown"><?=ucfirst($this->status)?></span>
+                            <ul id="status-dropdown" class="f-dropdown module-dropdown-content" data-dropdown-content="">
+                                <li><a href="?status=active">Active</a></li>
+                                <li><a href="?status=inactive">Inactive</a></li>
+                            </ul>
+                        </div>
+                        <div class="module-tools-item divider"></div>
+                        <div class="module-tools-item">
+                            <a class="addnew add-new-products"><i class="icon fi-plus"></i><span>Add Products</span></a>
+                        </div>
+                        <div class="module-tools-item divider"></div>
+                        <div class="module-tools-item active-status show-for-large-up">
+                            Your store has
+                            <a href="/selling/products" style="text-decoration:underline;"><?=$this->active_products_count?> active</a> products,
+                            <a href="/selling/products?status=inactive" style="text-decoration:underline;"><?=$this->inactive_products_count?> inactive</a>  products
+                        </div>
+                    </div>
+                    <!--<div class="small-5 medium-5 large-5 columns">
+                        <form action="" class="module-search glass-right" data-search>
+                            <input type="text" class="search-input hidden">
+                            <a href="javascript:;" class="search-submit"><i class="icon fi-magnifying-glass"></i></a>
+                        </form>
+                    </div>
+                    -->
+                </div>
+                <!-- sorting header end -->
+                <div class="detail-wrap product-details products-regular">
+                    <header class="row detail-header">
+                        <div class="small-7 medium-7 large-8 columns">Details</div>
+                        <div class="small-5 medium-5 large-4 columns">Customize Fields</div>
+                    </header>
+                    <?foreach($this->products as $product) {?>
+                    <form action="" data-abide="ajax" class="create-products-form">
+                    <input type="hidden" name="id" value="<?=$product['id']?>" class="product-id">
+                    <div class="products-item-detail">
+                        <div class="row product-item">
+                            <div class="small-12 medium-12 columns alert-field"></div>
+                            <header class="header">
+                                <div class="small-7 medium-7 large-8 columns">
+                                    <input type="submit" value="save" class="left module-button save-button">
+                                    <!--<a href="#" class="left module-button save-button" type="submit-button">Save</a>-->
+                                    <a href="javascript:;" class="right module-button delete-button">Delete</a>
+                                </div>
+                                <div class="small-5 medium-5 large-4 columns">&nbsp;</div>
+                            </header>
+                            <div class="small-7 medium-7 large-8 columns">
+                                <div class="item-row images-row">
+                                    <div class="small-3 medium-3 large-2 columns">
+                                        <label class="required">Images</label>
+                                    </div>
+                                    <div class="small-9 medium-9 large-10 columns">
+                                        <ul class="images js-sortable">
+                                            <?foreach($product['pictures']['45'] as $i => $picture){?>
+                                            <li class="image-item" picture-id="<?=$i?>">
+                                                <img src="<?=$picture?>" alt="">
+                                                <a href="javascript:;" class="delete-image">&times;</a>
+                                            </li>
+                                            <?}?>
+                                            <li class="add-image">
+                                                <a href="javascript:;"><i class="icon fi-plus"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="item-row name-row data-abide-input-container">
+                                    <div class="small-3 medium-3 large-2 columns">
+                                        <label class="required">Name</label>
+                                    </div>
+                                    <div class="small-9 medium-9 large-10 columns">
+                                        <input type="text" required value="<?=$product['name']?>" name="name" class="auto-save-field">
+                                        <small class="error">First Name is required.</small>
+                                    </div>
+                                </div>
+                                <div class="item-row desc-row">
+                                    <div class="small-3 medium-3 large-2 columns">
+                                        <label>Description</label>
+                                    </div>
+                                    <div class="small-9 medium-9 large-10 columns">
+                                        <textarea style="height:3.75rem;" name="description" class="auto-save-field"><?=$product['description'];?></textarea>
+                                    </div>
+                                </div>
+                                <div class="item-row price-row">
+                                    <div class="small-3 medium-3 large-2 columns">
+                                        <label class="required">Price</label>
+                                    </div>
+                                    <div class="small-9 medium-9 large-10 columns">
+                                        <div class="row">
+                                            <div class="small-4 medium-4 large-4 columns data-abide-input-container">
+                                                <input type="text" class="input-price auto-save-field" placeholder="$" required pattern="^(?:\d+|\d{1,3}(?:,\d{3})+)?(?:\.\d+)?$" value="<?=$product['price']?>" name="price">
+                                                <small class="error">Price is required</small>
+                                            </div>
+                                            <div class="small-4 medium-4 large-4 columns text-right">
+                                                <label style="color:#4d4d4d;" data-tooltip title="Percentage for resellers." class="tip-bottom tip-right">Commission(%)</label>
+                                            </div>
+                                            <div class="small-4 medium-4 large-4 columns data-abide-input-container">
+                                                <input type="text" class="input-commission auto-save-field" placeholder="%" required pattern="^([5-9]|[1-9]\d)$" value="<?=$product['commission']?>" name="commission">
+                                                <small class="error">Commission should be above 5</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item-row qty-row data-abide-input-container">
+                                    <div class="small-3 medium-3 large-2 columns">
+                                        <label data-tooltip class="has-tip required" title="This field can changed be by Customize Fields">Quantity</label>
+                                    </div>
+                                    <div class="small-9 medium-9 large-10 columns">
+                                        <input type="text" required pattern="^\d+$" value="<?=$product['quantity']?>" name="quantity" class="auto-save-field" <?if(!empty($product['custom_fields'])) echo "disabled"?>>
+                                        <small class="error">Quantity is required</small>
+                                    </div>
+                                </div>
+                                <div class="item-row category-row data-abide-input-container">
+                                    <div class="small-3 medium-3 large-2 columns">
+                                        <label class="required">Category</label>
+                                    </div>
+                                    <div class="small-9 medium-9 large-10 columns">
+                                        <select class="choose-category auto-save-field" required name="global_category_id">
+                                            <option value='0'> -------- </option>
+                                            <?foreach($this->global_categories as $category){?>
+                                            <option value="<?=$category['id']?>" <?if($product['global_category_id'] === $category['id']) echo "selected";?>>
+                                                <?=$category['path']?>
+                                            </option>
+                                            <?}?>
+                                        </select>
+                                        <small class="error">Category is required.</small>
+                                    </div>
+                                </div>
+                                <div class="item-row tags-row">
+                                    <div class="small-3 medium-3 large-2 columns">Tags</div>
+                                    <div class="small-9 medium-9 large-10 columns">
+                                        <input type="text" value="<?=$product['tags']?>" name="categories" class="auto-save-field">
+                                    </div>
+                                </div>
+                                <div class="item-row shipping-options">
+                                    <div class="small-3 medium-3 large-2 columns">Shipping Options</div>
+                                    <div class="small-9 medium-9 large-10 columns">
+                                        <ul class="small-block-grid-2 medium-block-grid-2 large-block-grid-4 options">
+                                            <?
+                                            $shipping_names = array();
+                                            foreach($product['shipping_options'] as $shipping){
+                                            $shipping_names[] = $shipping['name'];
+                                            }?>
+                                            <?foreach($this->shipping_options as $opt){?>
+                                            <li class="option-item">
+                                                <input type="checkbox" class="shipping-option" value="<?=$opt['name']?>"
+                                                <? if(in_array($opt['name'], $shipping_names)) echo "checked";?>
+                                                <? if($opt['name'] === 'Standard'){echo "checked disabled";}?>
+                                                product_id="<?=$product['id']?>"
+                                                shipping_opt_id="<?=$opt['id']?>">
+                                                <a href="/selling/products/shipping#<?=$opt['name']?>" class="color: #333333;"><?=$opt['name']?></a>
+                                            </li>
+                                            <?}?>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="small-5 medium-5 large-4 columns">
+                                <div class="module-table custom-fields">
+                                    <div class="table-row">
+                                        <div class="table-cell">Field</div>
+                                        <div class="table-cell">In Stock</div>
+                                        <div class="table-cell">&nbsp;</div>
+                                    </div>
+                                    <?foreach($product['custom_fields'] as $f){?>
+                                    <div class="table-row custom-fields-item" cf_id="<?=$f['id']?>">
+                                        <div class="table-cell field-cell"><input type="text" value="<?=$f['name']?>" class="custom-field cf_name"></div>
+                                        <div class="table-cell instock-cell"><input type="text" value="<?=$f['quantity']?>" class="custom-field cf_quantity"></div>
+                                        <div class="table-cell delete-cell"><a href="javascript:;" class="delete-custom-field">&times;</a></div>
+                                    </div>
+                                    <?}?>
+                                </div>
+                                <p><a href="javascript:;" class="add-custom-field"><i class="icon fi-plus"></i><span>Add a field</span></a></p>
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+                    <?}?>
+                    <div class="text-center">
+                        <?php echo $this->pagination($this->total_rows, $this->rows_per_page, $this->page_num, $this->extra_params); ?>
+                    </div>
+                    <div class="row field text-center" style="margin-bottom: 10px;">
+                        <div class="small-4 medium-4 large-4 columns">&nbsp;</div>
+                        <div class="small-4 medium-4 large-4 columns">
+                            <a href="/dashboard" class="submit-button" style="padding: 0 10px">Continue to Dashboard</a>
+                        </div>
+                        <div class="small-4 medium-4 large-4 columns">&nbsp;</div>
+                    </div>
+                </div>
+                <!-- product detials end -->
+            </div>
+        </div>
+    </section>
+
+    <? require_once(APPLICATION_PATH.'/views/scripts/partial/right_sidebar.phtml');?>
+
+</div>

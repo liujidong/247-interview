@@ -1,0 +1,45 @@
+<div id="allstores" class="row page-layout allstores">
+    <section class="small-12 medium-12 large-8 columns page-layout-main">
+        <header class="clearfix module-header category-header">
+            <div class="row">
+                <div class="small-12 medium-6 large-8 columns">
+                    <a href="/allstores"><h1 class="title">All Stores</h1></a>
+                </div>
+                <div class="small-12 medium-6 large-4 columns">
+                    <form action="" class="module-search glass-right" data-search="">
+                        <input type="text" class="search-input hidden" name="store_query">
+                        <a class="search-submit"><i class="icon fi-magnifying-glass"></i></a>
+                    </form>
+                </div>
+            </div>
+        </header>
+
+        <div class="right sorting">
+            <span class="dropdown module-dropdown" data-dropdown="products-dropdown">Sort by</span>
+            <ul id="products-dropdown" class="f-dropdown module-dropdown-content" data-dropdown-content>
+                <li><a href="<?=url_append(array('sort'=>'updated', 'dir'=>'asc'))?>">Created Date&#8593;</a></li>
+                <li><a href="<?=url_append(array('sort'=>'updated', 'dir'=>'desc'))?>">Created Date&#8595;</a></li>
+                <li><a href="<?=url_append(array('sort'=>'name', 'dir'=>'asc'))?>">Alphabetically&#8593;</a></li>
+                <li><a href="<?=url_append(array('sort'=>'name', 'dir'=>'desc'))?>">Alphabetically&#8595;</a></li>
+            </ul>
+        </div>
+        <ul class="clearfix store-list">
+            <?foreach($this->stores as $store) {?>
+            <li class="store-item">
+                <a href="<?=  getStoreUrl($store['subdomain'])?>"><img class="store-logo" src="<?=$store['converted_logo']?>" width="120"></a>
+                <div class="store-name"><?=$store['name']?></div>
+                <div class="f-dropdown content">
+                    <strong class="store-name"><?=$store['name']?></strong>
+                    <div class="store-desc"><?=$store['description']?></div>
+                </div>
+            </li>
+            <?}?>
+        </ul>
+        <div id="loading" class="text-center" style="visibility:hidden;"><img src="/img/spinner.gif"></div>
+        <div class="text-center">
+            <?php echo $this->pagination($this->total_rows, $this->rows_per_page, $this->page_num, $this->extra_params); ?>
+        </div>
+    </section>
+
+    <? require_once(APPLICATION_PATH . '/views/scripts/partial/right_sidebar.phtml'); ?>
+</div>

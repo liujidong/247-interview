@@ -1,0 +1,54 @@
+<link rel="stylesheet" href="/css/cart.css"/>
+<div id="container" class="row liquid">
+    <div class="twelve columns">
+            <div class="row">
+                <div id="feature" class="twelve columns">
+                    <div class="five columns hide-for-small salepoints">
+                    	<h3>Start making money by joining the ShopInterest seller network.</h3>
+                    	<ul>
+	                    	<li>Pick the items you want to sell via your affiliate or site</li>
+	                    	<li>Pin, Blog, Tweet, Share - Tools ready to go</li>
+	                    	<li>Generate revenue by spreading our sales items</li>
+	                    	<li>Quick setup, easy payment, low hassles</li>
+                    	</ul>
+                    </div>
+                    <div class="seven columns mobile-four">
+                        <h1 class="join_ssn_h1">Join the <span class="gentium">ShopInterest</span> Seller Network.</h1>
+                        <h2 class="hide-for-small">It's totally FREE and only takes 5 minutes.</h2>
+                        <div class="ten columns mobile-four signupform_div">
+                            <div class="signupform" <?if(empty($this->errnos)) echo 'style="display: ;"';?>>
+                                <form id="register_form" method="post">
+                                    <div style="display: none;" class="alert-box row" id="ie9show">
+                                        <br>Shopinterest is unstable in Internet Explorer 9!<br>Please use a different browser. We recommend <a href="http://www.google.com/chrome" target="_blank">Chrome</a> or <a target="_blank" href="http://www.mozilla.org/en-US/firefox/">Firefox</a>.<br><br>
+                                    </div>
+                                    <? foreach ($this->errnos as $key => $value) { ?>
+                                        <div class="alert-box alert row">
+                                            <?= $this->errors[$key]['msg'] ?>
+                                            <a href="" class="close">&times;</a>
+                                        </div>
+                                    <? } ?>
+
+                                    <div class="row">
+                                        <div class="twelve columns">
+                                            <input type="text" name="email" placeholder="Email" value="<?=$this->session_username?>" <?=empty($this->session_username)?'':'disabled';?>>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="twelve columns">
+                                            <input type="password" name="password" placeholder="Create a Password" value="<?=$this->session_password;?>" <?=empty($this->session_password)?'':'disabled';?>>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <p class="small"> By signup, you agree with the <a href="/terms" target="_blank">terms</a> here</p>
+                                        <button id="getstartedbutton" name="submit" type="submit" value="submit" class="button radius success large progress">Start Making Money</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    </div>
+
+</div><!-- end container -->

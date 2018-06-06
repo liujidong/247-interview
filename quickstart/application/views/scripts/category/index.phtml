@@ -1,0 +1,36 @@
+<div id="categorypage" class="row page-layout">
+    <section class="small-12 medium-12 large-8 columns page-layout-main">
+        <header class="clearfix module-header category-header">
+            <div class="row">
+                <div class="small-12 medium-10 large-10 columns">
+                    <h1 class="title"><?= $this->category_path ?></h1>
+                </div>
+                <div class="hide-for-small-only medium-2 large-2 columns sort-category">
+                    <!--
+                    <div class="text-right dropdown-selector">
+                        <span data-dropdown="sort-options" class="dropdown">Sort by</span>
+                        <ul id="sort-options" data-dropdown-content class="f-dropdown sort-options">
+                            <li><a href="<?= url_append(array('sort' => 'updated', 'dir' => 'asc')) ?>">Date&#8593;</a></li>
+                            <li><a href="<?= url_append(array('sort' => 'updated', 'dir' => 'desc')) ?>">Date&#8595;</a></li>
+                            <li><a href="<?= url_append(array('sort' => 'price', 'dir' => 'asc')) ?>">Pricing&#8593;</a></li>
+                            <li><a href="<?= url_append(array('sort' => 'price', 'dir' => 'desc')) ?>">Pricing&#8595;</a></li>
+                        </ul>
+                    </div>
+                    -->
+                </div>
+            </div>
+        </header>
+
+
+        <ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-3 feature-products">
+            <?php echo $this->render('partial/mixed_product_list.phtml'); ?>
+        </ul>
+        <div class="text-center">
+            <?php echo $this->pagination($this->total_rows, $this->rows_per_page, $this->page_num); ?>
+        </div>
+    </section>
+    
+    
+
+    <? require_once(APPLICATION_PATH . '/views/scripts/partial/right_sidebar.phtml'); ?>
+</div>

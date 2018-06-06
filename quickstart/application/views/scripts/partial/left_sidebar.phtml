@@ -1,0 +1,20 @@
+<ul class="dashboard-nav">
+    <li class="<?=$this->controller==='dashboard'?'active':''?>"><a href="/dashboard">Dashboard</a></li>
+    <li class="<?=($this->controller==='me')?'active':''?>">
+        <a href="/me/settings">My Account</a>
+    </li>
+    <? if($this->is_merchant) { ?>
+    <li class="<?=($this->controller==='selling'?'active':'')?>">
+        <?if($this->store['allow_resell'] == 1) {?>
+        <a href="<?=$this->is_merchant?"/selling/products/resell":"/selling/terms"?>">Selling Venue</a>
+        <? } else { ?>
+        <a href="<?=$this->is_merchant?"/selling/products":"/selling/terms"?>">Selling Venue</a>
+        <? } ?>
+    </li>
+    <? } ?>
+    <!--
+    <li class="<?=$this->action1==='wallet'?'active':''?>"><a href="/me/wallet">Wallet</a></li>
+    <li class="<?=$this->action1==='payment-accounts'?'active':''?>"><a href="/me/payment-accounts/paypal">Payment</a></li>
+    <li class="<?=$this->controller==='solidus'?'active':''?>"><a href="/solidus/publish">Solidus</a></li>
+    -->
+</ul>

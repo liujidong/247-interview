@@ -1,0 +1,48 @@
+/* CSS Document */
+.shopin{
+	width:100%;
+	margin:auto;
+	background-color:#eeeeee;
+	height:auto;
+}
+#pinlist_div{
+	padding-top:15px;
+}
+.pinitem{height:165px;margin-bottom:3px;}
+.pinimage{float:left;margin:0px 10px 10px 13px;padding:8px;height:124px;width:125px;overflow:hidden;background:url(/img/selectyourpins/pinimage_bg.gif) no-repeat;}
+.pinimage img{width:120px;height:120px;}
+.pinform{float:left;}
+.pinformcolum {float:left;}
+.pinformcolum1{width:465px;}
+.pinformcolum2{width:160px;}
+.pinformcolum3{width:150px;}
+.pinformcolum1 input{margin-left:10px;margin-bottom:10px;height:40px;width:440px;background-color:#F0EEF0;border:#DFDFDF solid 1px;font-family:Tahoma, Geneva, sans-serif;color:#444;font-size:16px;padding-left:15px;}
+.pinformcolum1 textarea{margin-left:10px;margin-bottom:10px;height:88px;width:440px;background-color:#F0EEF0;border:#DFDFDF solid 1px;padding-left:15px;font-family:Tahoma, Geneva, sans-serif;color:#444;font-size:16px;}
+.pinformcolum2 select,.pinformcolum2 input, .pinformcolum3 input{margin-left:10px;margin-bottom:10px;width:140px;height:40px;background-color:#F0EEF0;border:#DFDFDF solid 1px;padding-left:15px;font-family:Tahoma, Geneva, sans-serif;color:#444;font-size:16px;}
+.pinformcolum3 div span{display:block;float:left;margin-left:42px;margin-top:5px;width:70px;height:30px;font-family:Tahoma, Geneva, sans-serif;color:#444;font-size:16px;}
+.pinformcolum3 div input{display:block;float:left;margin-left:20px;margin-top:8px;width:16px;height:16px;padding:0px;}
+#pagebottom{height:100px;overflow:hidden;}
+#pagination{margin:0 auto;margin-top:30px;width:400px;height:50px;text-align:center;}
+/*
+#pagination a{
+	text-decoration:none;color:#C8C5C6;font-family:Tahoma, Geneva, sans-serif;font-size:50px;font-weight:bold;padding-left:6px;padding-right:6px;
+}
+*/
+.pagination_div{
+	text-align:center;
+	margin:10px 0 10px 0;
+}
+.pagination_div a{
+	text-decoration:none;
+}
+.pagi_link{
+	font-family: times, Times New Roman, times-roman, georgia, serif;
+	font-size: 24px;
+	letter-spacing: -1px;
+	color:#444;
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+	font-weight: 100;
+}
+#saveandcontinue{margin:5px 20px 10px 0 ;z-index:5;cursor:pointer;width:205px;height:50px;background-image:url(/img/selectyourpins/saveandcontinue.png);}
+#paymentmethod{margin:25px auto 50px;background:url(/img/selectyourpins/select_paymentbg.gif) no-repeat;width:675px;padding-top:241px;height:50px;text-align:center;}

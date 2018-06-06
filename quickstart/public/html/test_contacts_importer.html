@@ -1,0 +1,32 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <!-- Include these scripts to import address books with CloudSponge -->
+        <script type="text/javascript" src="https://api.cloudsponge.com/address_books.js"></script>
+        <script type="text/javascript">
+            var csPageOptions = {
+                domain_key:"K5JYWXDXVQXKYYE8HU63", 
+                textarea_id:"contact_list",
+                afterSubmitContacts: function(contacts, source, owner) {
+                    console.log(contacts, source, owner);
+                }
+            };
+        </script>
+    
+        <!-- Any link with a class="cs_import" will start the import process -->
+        <a class="cs_import">Add from Address Book</a>
+    
+        <!-- This textarea will be populated with the contacts returned by CloudSponge -->
+        <textarea id="contact_list" style="width:450px;height:82px"></textarea>
+    </body>
+</html>
+
+

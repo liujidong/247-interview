@@ -1,0 +1,58 @@
+<div id="login-page" class="row page-layout login-page">
+
+    <section class="small-12 medium-12 large-9 columns page-layout-main">
+        <header class="module-header login-header">
+            <h1 class="title">Login to Your Account</h1>
+        </header>
+
+        <div class="large-12 columns">
+            <? if(!empty($this->errnos) || $this->error){?>
+            <div id="error">
+                <ul>
+                    <? foreach($this->errnos as $e => $_){?>
+                    <li class="red">ERROR: <?= $GLOBALS['errors'][$e]['msg']?></li>
+                    <? } ?>
+                </ul>
+            </div>
+            <? } ?>
+            <form action="" id="sign-in" method="post">
+                <div class="row field">
+                    <div class="small-3 medium-3 large-2 columns">
+                        <label for="signin-email">Email</label>
+                    </div>
+                    <div class="small-9 medium-9 large-10 columns">
+                        <input type="email" name="username" id="signin-email">
+                    </div>
+                </div>
+                <div class="row field">
+                    <div class="small-3 medium-3 large-2 columns">
+                        <label for="signin-password">Password</label>
+                    </div>
+                    <div class="small-9 medium-9 large-10 columns">
+                        <input type="password" name="password" id="signin-password">
+                    </div>
+                </div>
+                <div class="row field">
+                    <div class="small-3 medium-3 large-2 columns">&nbsp;</div>
+                    <div class="small-9 medium-9 large-10 columns">
+                        <p class="tips">
+                            Forget your password? <a class="popup-forget-pass">Click here</a><br>
+                            <? if($this->site_version == 3) {?>
+                            Don't have an account yet? <a class="popup-signup">Sign up here</a>
+                            <? } ?>
+                        </p>
+                    </div>
+                </div>
+                <div class="row field">
+                    <div class="small-3 medium-3 large-2 columns">&nbsp;</div>
+                    <div class="small-9 medium-9 large-10 columns">
+                        <input type="submit" name="submit" class="submit-button signin-button" value="Sign in">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <? require_once(APPLICATION_PATH.'/views/scripts/partial/right_sidebar.phtml');?>
+
+</div>

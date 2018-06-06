@@ -1,0 +1,43 @@
+
+<?require_once(APPLICATION_PATH . '/views/scripts/partial/subnav_admin.phtml'); ?>
+<div id="container" class="row">
+    <div class="twelve columns">
+        <h1>A/B Testing View</h1>
+        <div class="row" style="margin-top:3%;">
+            <div id="signup" class="panel twelve columns centered">
+                <div class="row">
+                    <div class="twelve columns ">
+                        <div class="row">
+                            <div class="four columns">
+                                <input type="text" id='tname' name='tname' placeholder="Test Name" value=''/>
+                            </div>
+                            <div class="four columns">
+                                <input type="text" id='shardsnb' name='shardsnb' placeholder="Number of Shards" value=''/>
+                            </div>
+                            <div class="four columns">
+                                <input type='button' id='add_test' class='button radius success small' style="margin-left:15%;float:left;" value='Add'/>
+                            </div>
+                        </div>
+                        <hr>
+                        <div>
+                            <table id="test_lists" style="table-layout:fixed;">
+
+                                <tr style="font-weight:bold;">
+
+                                    <td>Test name</td>
+                                    <td>Number of shards</td>
+                                    <td></td>
+                               </tr>
+                               
+                            </table>
+                        </div>
+                    </div>
+                </div>    
+            </div>
+
+        </div>
+    </div><!-- end content -->
+</div>       
+</div><!-- end container -->
+
+

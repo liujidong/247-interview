@@ -1,0 +1,23 @@
+<div id="container" class="row">
+<div class="twelve columns">
+<? require_once(APPLICATION_PATH.'/views/scripts/partial/subnav.phtml');?>
+    <?php if($this->status === 'success') {?>
+    <!-- SHOW IF SUCCESS --><h1>Thank <span class="gentium">You</span></h1><!-- SHOW IF SUCCESS -->
+    <?php }?>
+    <?php if($this->status === 'failure') {?>
+    <!-- SHOW IF FAIL --><h1>Payment <span class="gentium">Unsuccesful</span></h1><!-- SHOW IF FAIL -->
+    <? }?>
+    <div class="row">
+                    <div class="panel ten columns centered">
+                        <?php if($this->status === 'success') {?>
+                        <!-- SHOW IF SUCCESS --><h5>Your payment was successfully received.</h5>
+                        <p>Thank you for shopping with us. Your order will ship shortly.</p><!-- SHOW IF SUCCESS -->
+                        <?php }?>
+                        <?php if($this->status === 'failure') {?>
+                        <!-- SHOW IF FAIL --><h5>Oops! Your payment did not go through.</h5>
+                        <p>Please try again by <a href="<?=$this->retry_link;?>">clicking here</a>.</p><!-- SHOW IF FAIL -->
+                        <? }?>
+                    </div>
+                </div>
+</div>       
+</div><!-- end container -->

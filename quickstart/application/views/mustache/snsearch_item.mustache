@@ -1,0 +1,19 @@
+<div id="{{id}}"  class="section">
+{{#product}}
+    <div class="row">
+        <div class="outnetwork">
+            <div class="prodimg two columns"><img src="{{product_url}}" alt="" /></div>
+            <div class="detail four columns">
+                <h5>{{product_name}}</h5>
+                <p>{{product_description}}</p>
+            </div>
+            <div class="two columns"><b class="show-for-small">Price:</b> ${{product_price}}</div>
+            <div class="two columns"><b class="show-for-small">Commission Fee:</b> {{product_commission}}%</div>
+            <div class="two columns add2sn" store_id={{store_id}} product_id={{product_id}}><a class="button radius tiny alert add">Add to Network</a></div>
+        </div>
+        <div class="innetwork">
+            <div class="columns tweleve">This item has been added to your "My Products" page. <a href="/associate/products">View it now to share this item and ear commission.</a></div>
+        </div>
+    </div>
+{{/product}}
+</div>

@@ -1,0 +1,102 @@
+<link rel="stylesheet" href="/v2/css/pages/dashboard.css">
+<div id="dashboard" class="row page-layout dashboard">
+
+    <section class="small-12 medium-12 large-9 columns">
+        <div class="row">
+            <div class="hide-for-iosapp small-3 medium-3 large-2 columns">
+                <? require_once(APPLICATION_PATH.'/views/scripts/partial/left_sidebar.phtml');?>
+            </div>
+            <!-- side nav end -->
+
+            <div id="me-reseller-detail" class="ios-small-12 small-9 medium-9 large-10 columns">
+                <div class="hide-for-iosapp">
+                    <? require_once(APPLICATION_PATH.'/views/scripts/partial/horizontal_subnav.phtml');?>
+                </div>
+                <!-- dashboard sub nav end -->
+
+                <div class="detail-wrap me-reseller-detail">
+                    <header class="hide-for-iosapp clearfix detail-header">
+                        <a href="javascript:history.go(-1);" class="left back">Back</a>
+                        <a href="javascript:;" class="right remove">Remove</a>
+                    </header>
+                    <div class="detail-main">
+                        <div class="row detail-item store">
+                            <div class="small-5 medium-5 large-5 columns">Store</div>
+                            <div class="small-7 medium-7 large-7 columns">CWT777</div>
+                        </div>
+                        <div class="row detail-item product-name">
+                            <div class="small-5 medium-5 large-5 columns">Product Name</div>
+                            <div class="small-7 medium-7 large-7 columns"><span style="text-decoration:underline;">Vintage Polo Neck Sleeveless Color Block Chiffon Dress</span></div>
+                        </div>
+                        <div class="row detail-item product-image">
+                            <div class="small-5 medium-5 large-5 columns">Product Image</div>
+                            <div class="small-7 medium-7 large-7 columns">
+                                <img src="https://s3.amazonaws.com/shopinterest_stage/stores/22/51ef6f9b2ca2a_550_44.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="row detail-item price">
+                            <div class="small-5 medium-5 large-5 columns">Price</div>
+                            <div class="small-7 medium-7 large-7 columns">$20</div>
+                        </div>
+                        <div class="row detail-item commission">
+                            <div class="small-5 medium-5 large-5 columns">Commission Fee</div>
+                            <div class="small-7 medium-7 large-7 columns">3%</div>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="row detail-item custom-url">
+                            <div class="small-5 medium-5 large-5 columns">Custom URL</div>
+                            <div class="small-7 medium-7 large-7 columns">
+                                <div class="row">
+                                    <div class="small-8 medium-9 large-9 columns">
+                                       <input type="url" data-copy="copy-url">
+                                    </div>
+                                    <div class="small-4 medium-3 large-3 columns">
+                                        <a href="javascript:;" id="copy-url" class="module-button copy copy-to-clipboard" title="Copy">Copy</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row detail-item">
+                            <div class="small-5 medium-5 large-5 columns">Text Link</div>
+                            <div class="small-7 medium-7 large-7 columns">
+                                <div class="row">
+                                    <div class="small-8 medium-9 large-9 columns">
+                                       <input type="text" data-copy="copy-textlink">
+                                    </div>
+                                    <div class="small-4 medium-3 large-3 columns">
+                                        <a href="javascript:;" id="copy-textlink" class="module-button copy copy-to-clipboard" title="Copy">Copy</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row detail-item">
+                            <div class="small-5 medium-5 large-5 columns">Widget Code</div>
+                            <div class="small-7 medium-7 large-7 columns">
+                                <div class="row">
+                                    <div class="small-8 medium-9 large-9 columns">
+                                       <input type="text" data-copy="copy-widgetcode">
+                                    </div>
+                                    <div class="small-4 medium-3 large-3 columns">
+                                        <a href="javascript:;" id="copy-widgetcode" class="module-button copy copy-to-clipboard" title="Copy">Copy</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row detail-item">
+                            <div class="small-5 medium-5 large-5 columns">Share Now</div>
+                            <div class="small-7 medium-7 large-7 columns">
+                                <a href="javascript:;" class="share-item"><i class="icon fi-social-facebook"></i></a>
+                                <a href="javascript:;" class="share-item"><i class="icon fi-social-twitter"></i></a>
+                                <a href="javascript:;" class="share-item"><i class="icon fi-social-pinterest"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <? require_once(APPLICATION_PATH.'/views/scripts/partial/right_sidebar.phtml');?>
+
+</div>

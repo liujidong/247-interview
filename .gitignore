@@ -1,0 +1,17 @@
+*.orig
+*.swap
+.idea/*
+quickstart/public/js/templates/.DS_Store.js
+quickstart/sftp-config.json
+.DS_Store/*
+.DS_Store*
+quickstart/application/tables.php
+*.swap
+*.orig
+quickstart/sftp-config.json
+run_test
+.sftp-config.json
+build/composer.lock
+build/composer.phar
+quickstart/library/vendor/
+nbproject

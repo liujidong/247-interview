@@ -1,0 +1,52 @@
+<div id="help-page" class="row page-layout help-page">
+    <section class="small-12 medium-12 large-9 columns page-layout-main">
+        <header class="module-header">
+            <h1 class="title">Get Help</h1>
+        </header>
+        <div class="main">
+            <div class="large-12 columns">
+                <div class="tips">Use this form to contact our customer support team.</div>
+                <form data-abide="ajax" id="ticket-form">
+                    <div class="row alert-field"></div>
+                    <div class="row field email-field">
+                        <div class="small-4 medium-3 large-3 columns">
+                            <label for="email" class="required">Email</label>
+                        </div>
+                        <div class="small-8 medium-9 large-9 columns data-abide-input-container">
+                            <input type="text" name="email" placeholder="Email" required>
+                            <small class="error" style=" max-width: 27.5rem; ">Email is required</small>        
+                        </div>
+                    </div>
+                    <div class="row field subject-field">
+                        <div class="small-4 medium-3 large-3 columns">
+                            <label for="subject" class="required">Subject</label>
+                        </div>
+                        <div class="small-8 medium-9 large-9 columns data-abide-input-container">
+                            <input type="text" name="subject" placeholder="Subject" required>
+                            <small class="error" style=" max-width: 27.5rem; ">Subject is required</small>        
+                        </div>
+                    </div>
+                    <div class="row field desc-field">
+                        <div class="small-4 medium-3 large-3 columns">
+                            <label for="description" class="required">Description</label>
+                        </div>
+                        <div class="small-8 medium-9 large-9 columns data-abide-input-container">
+                            <textarea name="description" required></textarea>
+                            <small class="error" style=" max-width: 27.5rem; ">Description is required</small>                                    
+                        </div>
+                    </div>
+                    <div class="row field submit-field">
+                        <div class="small-4 medium-3 large-3 columns">&nbsp;</div>
+                        <div class="small-8 medium-9 large-9 columns">
+                            <input type="submit" class="submit-button" value="Submit">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <!-- pricing plan end -->
+
+    <? require_once(APPLICATION_PATH.'/views/scripts/partial/right_sidebar.phtml');?>
+
+</div>

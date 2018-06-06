@@ -1,0 +1,90 @@
+<link rel="stylesheet" type="text/css" href="/css/cart.css" />
+<script type="text/javascript" src="/js/fileuploader.js"></script>
+
+<div class="main row">
+    <?php require_once(APPLICATION_PATH . '/views/scripts/partial/subnav.phtml'); ?>
+
+    <div id="cart" class="twelve columns">
+        <form method='post' action='#'>
+            <div id="boardList" class='clearfix'>
+                <div class='fullwidth_div txt_center_div'>
+                    <h3 class='shopin_h3'>
+						Create <span class="gentium">Your</span> Pin
+                    </h3>
+                </div>
+                <div class='fullwidth_div txt_center_div'>
+                    <h4 class='shopin_h4'>Customize pricing, shipping and payment for
+						your new pin.</h4>
+                </div>
+                <div id="pinlist_div" class="row">
+                    <div id="pinlist">
+                        <?php if (isset($this->submit) && $this->submit) { ?>
+                            <div class="alert-box [success alert secondary]">
+                                <span id='alert_msg'>
+                                    <?php
+                                    if (!empty($this->errs)) {
+                                        foreach ($this->errs as $e)
+                                            echo $e ['msg'] . "</br>";
+                                    } else
+                                        echo "Upload Successfully.";
+                                    ?>
+                                </span> <a href="" class="close">&times;</a>
+                            </div>
+                        <?php } ?>
+                        <!-- item -->
+                        <div class="pinitem row">
+                            <div class="pinimage two columns">
+                                <div>
+                                    <img id='product_img' src='' /> <input type="hidden"
+                                                                           name='pic_id' id='pic_id' value='0' />
+                                </div>
+                                <div id="file-uploader">
+                                    <noscript>
+                                    <p>Please enable JavaScript to use file uploader.</p>
+                                    <!-- or put a simple form for upload here -->
+                                    </noscript>
+                                </div>
+                            </div>
+                            <div class="pinform ten columns">
+                                <div class="row">
+                                    <div class="pinformcolum pinformcolum1 eight columns">
+                                        <input id="product_name" name="product_name" type="text"
+                                               value="" alt="Name" placeholder="Product Name" />
+                                        <textarea id="product_description" name="product_description"
+                                                  alt="Description" placeholder="Product Description"></textarea>
+                                    </div>
+                                    <div class="pinformcolum pinformcolum2 four columns">
+                                        $ <input class="text_price" type="text" id="product_price" name="product_price" value="" alt="Price" placeholder="Price" />
+					$ <input class="text_shipping" type="text" id="product_shipping" name="product_shipping" value="" alt="Shipping" placeholder="Shipping" /> 
+                                        $ <input class="text_shipping" type="text" id="product_additional_shipping" name="product_additonal_shipping" value="" alt="Shipping for another item" placeholder="Shipping for another item" /> 
+                                        <input class="text_quantity" type="text" id="product_quantity" name="product_quantity" value="" alt="Quantity" placeholder="Quantity" />
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end item -->
+
+                    </div>
+                    <div class="row">
+                        <div class="twelve columns">
+                            <div id="saveAndContinue">
+                                <button type="submit" name="submit" id="product_saveandcontinue"
+                                        value="submit" alt="Save and continue"
+                                        class="button radius alert large">Save and continue</button>
+                                <button type="submit" name="cancel" id="cancel" value="submit"
+                                        alt="Cancel" class="button radius secondary large" />
+								Cancel
+                                </button>
+                            </div>
+                        </div>
+                        <div class="nine columns pull-three"></div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+    <!-- end - boardList -->
+</div>
+<!-- end - main row -->

@@ -1,0 +1,32 @@
+<script src="/v2/js/jquery.js"></script>
+<script type="text/javascript">
+(function(a){if(window.filepicker){return}var b=a.createElement("script");b.type="text/javascript";b.async=!0;b.src=("https:"===a.location.protocol?"https:":"http:")+"//api.filepicker.io/v1/filepicker.js";var c=a.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c);var d={};d._queue=[];var e="pick,pickMultiple,pickAndStore,read,write,writeUrl,export,convert,store,storeUrl,remove,stat,setKey,constructWidget,makeDropPane".split(",");var f=function(a,b){return function(){b.push([a,arguments])}};for(var g=0;g<e.length;g++){d[e[g]]=f(e[g],d._queue)}window.filepicker=d})(document); 
+filepicker.setKey('AwSLXQo0vRIGtomgenR8Qz');
+$(document).ready(function() {
+    
+    $('#upload').click(function(e) {
+        e.preventDefault();
+        filepicker.pick(function(InkBlob){
+            console.log(InkBlob);
+            $.post('/test/cloudinary-upload', {url: InkBlob.url}, function(response) {
+                response = $.parseJSON(response);
+                console.log(response);
+            });
+        });
+    });
+    
+});
+
+
+</script>
+<h2>Cloudinary API</h2>
+<div>
+    <a href="" id="upload">Upload</a>
+</div>
+<div>
+    <h3>List of images</h3>
+    <ul class="image-list"></ul>
+</div>
+
+
+

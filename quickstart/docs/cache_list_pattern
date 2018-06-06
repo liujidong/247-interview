@@ -1,0 +1,93 @@
+
+1. home page
+featured products, ad featured products, 
+CacheKey::q('products?stores.status=2&featured=_&name!=&price>0&quantity>0&pictures!=&status!=127')
+            ->_and(
+                CacheKey::c("created<=2013-11-11 00:00:00")
+                ->_or("created>2013-11-11 00:00:00&global_category_id!=0"))
+
+category featured products
+CacheKey::q('products?stores.status=2&featured=3&global_category_id=_&name!=&price>0&quantity>0&pictures!=&status!=127')
+            ->_and(
+                CacheKey::c("created<=2013-11-11 00:00:00")
+                ->_or("created>2013-11-11 00:00:00&global_category_id!=0"))
+
+
+2. cateogry page
+CacheKey::q('products?stores.status=2&global_category_id=_&name!=&price>0&quantity>0&pictures!=&status!=127')
+            ->_and(
+                CacheKey::c("created<=2013-11-11 00:00:00")
+                ->_or("created>2013-11-11 00:00:00&global_category_id!=0"))
+
+3. store home page
+CacheKey::q('store_123.products?name!=&price>0&quantity>0&pictures!=&status!=127')
+            ->_and(
+                CacheKey::c("created<=2013-11-11 00:00:00")
+                ->_or("created>2013-11-11 00:00:00&global_category_id!=0"))
+
+4. store home page -- search by category
+CacheKey::q('store.products?name!=&price>0&global_cateogry_id=_&quantity>0&pictures!=&status!=127')
+            ->_and(
+                CacheKey::c("created<=2013-11-11 00:00:00")
+                ->_or("created>2013-11-11 00:00:00&global_category_id!=0")) 
+
+5. store home page -- search by tags
+CacheKey::q('store.products?name!=&price>0&tags<-_&quantity>0&pictures!=&status!=127')
+            ->_and(
+                CacheKey::c("created<=2013-11-11 00:00:00")
+                ->_or("created>2013-11-11 00:00:00&global_category_id!=0"))
+
+6. Admin Categoried Products
+CacheKey::q('products?stores.status=2&global_category_id!=0&name!=&price>0&quantity>0&pictures!=&status!=127')
+
+use cases:
+
+1. create a product
+add a product name
+$product->setName('a nice pair of shoes');
+$product->save();
+
+$old_product = DAL::get("pk");
+DAL::delete("pk");
+$new_product = DAL::get("pk");
+
+foreach($defined_cachekey_list as $defined_ck){
+   $old_keys = $defined_ck->match($old_product);
+   $new_keys = $defined_ck->match($new_product);
+   // compare $old_keys(A) and $new_keys(B)
+   // del from old keys(A-B), add to new keys(B-A)
+}
+
+2. unlaunch a store
+$store->setStatus(1);
+$store->save();
+
+$list = DAL::get("active products in store")
+foreach($list as $p){
+   line 46-55;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,26 @@
+        <form  method="get">
+            <div class="row searchbox">
+                <div class="three columns">
+                    <input type="text" placeholder="Search description" id="description" name="description" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true" value="<?= $this->description?>">
+                </div>
+                <div class="two columns">
+                    <select name="price">
+                        <option value="0">Price Range</option>
+                        <? foreach($this->price_range as $price) {?>
+                        <option value="<?= $price?>" <?if($price == $this->price_end) echo "selected";?>><?= '$'.($price-100).'-$'.$price?></option>
+                        <? }?>
+                    </select>
+                </div>
+                <div class="four columns">
+                    <select name="commission">
+                        <option value="0">Commission Fee Range</option>
+                        <? foreach($this->commission_range as $commission) {?>
+                        <option value="<?= $commission?>" <?if($commission == $this->commission_end) echo "selected";?>><?= ($commission-10).'%-'.$commission.'%'?></option>
+                        <? }?>                    
+                    </select>
+                </div>
+                <div class="two columns">
+                    <input name="submit" type="submit" id="sn_search_button" class="button alert radius" value/>
+                </div>			
+            </div>
+        </form>

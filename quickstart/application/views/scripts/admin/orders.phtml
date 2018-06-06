@@ -1,0 +1,16 @@
+<?require_once(APPLICATION_PATH . '/views/scripts/partial/subnav_admin.phtml'); ?>
+<div class="module-tools">
+    <div class="small-7 medium-7 large-7 columns">
+        <div class="module-tools-item">
+            <span class="dropdown module-dropdown" data-dropdown="status-dropdown">All Status</span>
+            <ul id="status-dropdown" class="f-dropdown module-dropdown-content" data-dropdown-content>
+                <li><a href="<?=url_append(array('status'=>'all'))?>">all</a></li>
+                <li><a href="<?=url_append(array('status'=>'completed'))?>">completed</a></li>
+                <li><a href="<?=url_append(array('status'=>'shipped'))?>">shipped</a></li>
+                <li><a href="<?=url_append(array('status'=>'paid'))?>">paid</a></li>
+                <li><a href="<?=url_append(array('status'=>'canceled'))?>">canceled</a></li>
+            </ul>
+        </div>
+        <div id="tgt_datatable" style="margin-top: 5px;"><?=$this->datatable_view?></div>
+    </div>
+</div>

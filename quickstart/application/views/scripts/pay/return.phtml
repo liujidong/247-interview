@@ -1,0 +1,79 @@
+
+<link rel="stylesheet" type="text/css" href="/css/page/pay_return.css">
+<div id="container" class="row">
+
+    <div class="panel twelve columns">
+        <?php if ($this->status === 'success') { ?>
+            <script type="text/javascript" src="<?=$this->store_url.'/cleancookie'?>"></script>                                     
+            <!-- SHOW IF SUCCESS --><h1>Your payment was successfully received.</h1>
+            <h2>Thank you for shopping with us. Your order will ship shortly.</h2><!-- SHOW IF SUCCESS -->                              
+        <?php } ?>
+        <?php if ($this->status === 'failure') { ?>
+            <!-- SHOW IF FAIL --><h1>Oops! Your payment did not go through.</h1>
+            <h2>Please try again by <a href="<?= $this->retry_link; ?>">clicking here</a>.</h2><!-- SHOW IF FAIL -->
+            <? } ?>
+            <div class="row">
+                <div class="four columns offset-by-eight">
+                    <a class="button" href="<?= $this->store_url; ?>" id="store_url">Go back to store</a>
+                </div>
+            </div>     
+
+        </div>            
+
+        <div class="twelve columns">
+            <div class="row">
+                <!-- show the details of the transaction-->
+                <?if(!empty($this->available_products)){?>
+                <table class="mytab">
+                    <thead>
+                        <tr id="tabhead">
+                            <td class="td_img">Product Image</td>
+                            <td class="td_product_name">Product Name</td>
+                            <td class="td_quantity">Quantity</td>
+                            <td class="td_price">Price</td>
+                            <td class="td_wish">I wanna</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?foreach($this->available_products as $product){?>
+                        <tr>
+                            <td class="td_img"><a id="product_url" title="product" href="<?= $product['product_url'] ?>"><img src="<?= $product['product_image'] ?>"></a></td>
+                            <td class="td_product_name"><?= $product['product_name'] ?></td>
+                            <td class="td_quantity"><?= $product['quantity'] ?></td>
+                            <td class="td_price"><?= $product['price'] ?></td>
+                            <td class="td_wish">
+                                <div class="ftb">
+                                    <a class="fb" href=""></a>
+                                    <a class="tw" href=""></a>
+                                    <a class="pn" href=""></a><br>
+                                    <a id="buybutton" href="<?= $product['product_url'] ?>" class="button radius">buy it again!</a> 
+                                </div>
+                            </td>
+                        </tr>
+                        <?}?>
+                    </tbody>
+                </table>   
+                <?}if(!empty($this->unavailable_products)){?>
+                <h1>Unavailable Products</h1>
+                <table class="mytab">
+                    <thead>
+                        <tr id="tabhead">
+                            <td class="td_img">Product Image</td>
+                            <td class="td_detail">Detail</td>
+                            <td class="td_price">Price</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?foreach($this->unavailable_products as $product){?>
+                        <tr>
+                            <td class="td_img"><a id ="product_url" title="product" href="<?= $product['product_url'] ?>"><img src="<?= $product['product_image'] ?>"></a></td>
+                            <td class="td_detail"><span class="big">Sory, Goods already sellout!</span></td>
+                            <td class="td_price"><?= $product['product_price'] ?></td>
+                    </tr>
+                    <?}?>
+                </tbody>
+            </table>   
+            <?}?>    
+        </div>
+    </div>  
+</div>

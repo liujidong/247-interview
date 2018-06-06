@@ -1,0 +1,35 @@
+**************************basic setup manually********************************
+1. login as root
+2. add git id_rsa key to root's home folder -- test if can authenticated by github use ssh git@github.com
+3. mkdir -p /var/www/html/pincommerce
+4. cd /var/www/html/pincommerce 
+5. yum install git 
+6. git init && git pull git@github.com:liangdev/pincommerce.git
+7. install puppet
+    -- rpm -ivh http://yum.puppetlabs.com/el/6/products/i386/puppetlabs-release-6-6.noarch.rpm
+    -- yum install puppet
+8. install gcc
+    -- yum --disableexcludes=main install kernel-headers-2.6.32-279.14.1.el6.openlogic.x86_64
+    -- yum install gcc
+************************use puppet install web service*************************************
+1. puppet apply web.pp                                           *
+2. puppet apply pecl_install_http.pp                             *   
+3. puppet apply redis.pp                                         ********  run ./install_web_service.sh                            
+4. ./start_redis.sh >> /dev/null                                 ********  instead
+5. cp .htaccess php.ini and httpd.conf                           *
+6. puppet apply zend.pp                                          *
+***********************use puppet install db service****************************************
+1. puppet apply db.pp                                            *  run ./install_db_service.sh
+2. import data manualy                                           *
+***********************use puppet install deamon service************************************
+1. puppet apply deamon.pp                                        *
+2. run puppet apply sphinx in deamon01                           *  run ./install_daemon_service.sh       
+3. push crontab to each path                                     * 
+*******************************************************************************************
+
+Notice: Need modify application.ini
+
+
+
+
+

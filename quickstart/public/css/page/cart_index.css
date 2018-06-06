@@ -1,0 +1,474 @@
+/* normalize.css v2.1.1 | MIT License | git.io/normalize */
+/* ==========================================================================
+   HTML5 display definitions
+   ========================================================================== */
+/**
+ * Correct `block` display not defined in IE 8/9.
+ */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+  display: block; }
+
+/**
+ * Correct `inline-block` display not defined in IE 8/9.
+ */
+audio,
+canvas,
+video {
+  display: inline-block; }
+
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+audio:not([controls]) {
+  display: none;
+  height: 0; }
+
+/**
+ * Address styling not present in IE 8/9.
+ */
+[hidden] {
+  display: none; }
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+/**
+ * 1. Prevent system color scheme's background color being used in Firefox, IE,
+ *    and Opera.
+ * 2. Prevent system color scheme's text color being used in Firefox, IE, and
+ *    Opera.
+ * 3. Set default font family to sans-serif.
+ * 4. Prevent iOS text size adjust after orientation change, without disabling
+ *    user zoom.
+ */
+html {
+  background: #fff;
+  /* 1 */
+  color: #000;
+  /* 2 */
+  font-family: sans-serif;
+  /* 3 */
+  -ms-text-size-adjust: 100%;
+  /* 4 */
+  -webkit-text-size-adjust: 100%;
+  /* 4 */ }
+
+/**
+ * Remove default margin.
+ */
+body {
+  margin: 0; }
+
+/* ==========================================================================
+   Links
+   ========================================================================== */
+/**
+ * Address `outline` inconsistency between Chrome and other browsers.
+ */
+a:focus {
+  outline: thin dotted; }
+
+/**
+ * Improve readability when focused and also mouse hovered in all browsers.
+ */
+a:active,
+a:hover {
+  outline: 0; }
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+/**
+ * Address variable `h1` font-size and margin within `section` and `article`
+ * contexts in Firefox 4+, Safari 5, and Chrome.
+ */
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0; }
+
+/**
+ * Address styling not present in IE 8/9, Safari 5, and Chrome.
+ */
+abbr[title] {
+  border-bottom: 1px dotted; }
+
+/**
+ * Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome.
+ */
+b,
+strong {
+  font-weight: bold; }
+
+/**
+ * Address styling not present in Safari 5 and Chrome.
+ */
+dfn {
+  font-style: italic; }
+
+/**
+ * Address differences between Firefox and other browsers.
+ */
+hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0; }
+
+/**
+ * Address styling not present in IE 8/9.
+ */
+mark {
+  background: #ff0;
+  color: #000; }
+
+/**
+ * Correct font family set oddly in Safari 5 and Chrome.
+ */
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, serif;
+  font-size: 1em; }
+
+/**
+ * Improve readability of pre-formatted text in all browsers.
+ */
+pre {
+  white-space: pre-wrap; }
+
+/**
+ * Set consistent quote types.
+ */
+q {
+  quotes: "\201C" "\201D" "\2018" "\2019"; }
+
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+small {
+  font-size: 80%; }
+
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline; }
+
+sup {
+  top: -0.5em; }
+
+sub {
+  bottom: -0.25em; }
+
+/* ==========================================================================
+   Embedded content
+   ========================================================================== */
+/**
+ * Remove border when inside `a` element in IE 8/9.
+ */
+img {
+  border: 0; }
+
+/**
+ * Correct overflow displayed oddly in IE 9.
+ */
+svg:not(:root) {
+  overflow: hidden; }
+
+/* ==========================================================================
+   Figures
+   ========================================================================== */
+/**
+ * Address margin not present in IE 8/9 and Safari 5.
+ */
+figure {
+  margin: 0; }
+
+/* ==========================================================================
+   Forms
+   ========================================================================== */
+/**
+ * Define consistent border, margin, and padding.
+ */
+fieldset {
+  border: 1px solid silver;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em; }
+
+/**
+ * 1. Correct `color` not being inherited in IE 8/9.
+ * 2. Remove padding so people aren't caught out if they zero out fieldsets.
+ */
+legend {
+  border: 0;
+  /* 1 */
+  padding: 0;
+  /* 2 */ }
+
+/**
+ * 1. Correct font family not being inherited in all browsers.
+ * 2. Correct font size not being inherited in all browsers.
+ * 3. Address margins set differently in Firefox 4+, Safari 5, and Chrome.
+ */
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 2 */
+  margin: 0;
+  /* 3 */ }
+
+/**
+ * Address Firefox 4+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+button,
+input {
+  line-height: normal; }
+
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Chrome, Safari 5+, and IE 8+.
+ * Correct `select` style inheritance in Firefox 4+ and Opera.
+ */
+button,
+select {
+  text-transform: none; }
+
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ */
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  /* 2 */
+  cursor: pointer;
+  /* 3 */ }
+
+/**
+ * Re-set default cursor for disabled elements.
+ */
+button[disabled],
+html input[disabled] {
+  cursor: default; }
+
+/**
+ * 1. Address box sizing set to `content-box` in IE 8/9.
+ * 2. Remove excess padding in IE 8/9.
+ */
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */ }
+
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome
+ *    (include `-moz` to future-proof).
+ */
+input[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  /* 2 */
+  box-sizing: content-box; }
+
+/**
+ * Remove inner padding and search cancel button in Safari 5 and Chrome
+ * on OS X.
+ */
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none; }
+
+/**
+ * Remove inner padding and border in Firefox 4+.
+ */
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0; }
+
+/**
+ * 1. Remove default vertical scrollbar in IE 8/9.
+ * 2. Improve readability and alignment in all browsers.
+ */
+textarea {
+  overflow: auto;
+  /* 1 */
+  vertical-align: top;
+  /* 2 */ }
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+/**
+ * Remove most spacing between table cells.
+ */
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+.popup {border: 1px solid #d4cdc9; box-shadow: 0px 2px 4px #dcdcdc;
+    width:290px; min-height:225px; padding: 0; margin-left: -145px;}
+.popup .popup-op label {float:left; margin-left: 10px; line-height: 22px;}
+.popup .popup-op {background-color: #ededed; border-bottom: 1px solid #d4cdc9; padding: 8px 12px; overflow: hidden; *zoom:1; }
+.popup .popup-bd {padding: 8px 12px;}
+.popup .popup-bd select {width:45%;}
+.popup .popup-bd .popup-section {margin-top:10px;}
+.popup .popup-bd .popup-section h4 {font-weight: normal; color:#000;font-size: 12px;}
+
+/*destination form*/
+.popup  .popup-bd .table {display: table;}
+.popup  .popup-bd .table select {width: 100%;}
+.popup  .popup-bd .table-row {display: table-row;}
+.popup  .popup-bd .table-cell {display: table-cell;}
+.popup .popup-bd input[type=text] {display: inline-block; }
+.popup .popup-bd input.input-dollar {position:relative; padding-left:15px;}
+.popup .popup-bd input.input-dollar:after {content: "$";color: #f00;position: absolute;top: 3px;left: 5px;}
+.popup  .popup-bd .cell-1 {width:130px;padding-right:10px;}
+.popup  .popup-bd .cell-2 {width:57px;padding-right:10px;}
+.popup  .popup-bd .cell-3 {width:57px;padding-right:10px;}
+.popup  .popup-bd .cell-4 {width:57px;padding-right:10px;}
+.popup  .popup-bd .cell-5 {width:20px;}
+.popup .popup-bd .icon-close {font-weight: bold; font-size: 20px;}
+
+/* global */
+html {background: url(/img/bg-repeat.png) #fbfbfa repeat;
+    /*font-family: 'Open Sans', Helvetica, Arial, sans-serif;*/
+}
+body {background: transparent;  font-size: 12px; line-height: 1.5; color:#666666;}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, p, blockquote, th, td, label {font-size:12px;}
+
+/* site logo */
+#header {overflow: hidden; height:50px; margin-bottom: 18px;}
+
+/* public style */
+.red {color:#e51a1a;}
+.mask {background-color: rgb(0, 0, 0); opacity: 0.2; position: fixed; left: 0px; top: 0px; width: 100%; height: 2000px; }
+
+/* border radius box*/
+.mod-box {border-radius: 5px; box-shadow: 0 0 5px rgba(0,0,0,0.3); background-color: #fff; }
+.mod-box .mod-box-inner {border-radius: 5px; border: 1px solid #d4cdc9;}
+
+/* site footer */
+#site-footer {text-align: center; margin-top: 100px; margin-bottom: 30px;}
+#site-footer .links {text-align: center;}
+#site-footer .links a {color:#999; text-decoration: none; margin: 0 10px;}
+#site-footer .social-links {margin-top: 30px; height: 32px; line-height: 32px;}
+#site-footer .social-links:before,
+#site-footer .social-links:after {content:''; display: inline-block; border-top: 1px solid #ccc;height:15px; width:20px; margin: 0 15px;}
+#site-footer .social-links a {display: inline-block; height: 32px; width: 32px; margin: 0 8px;}
+#site-footer .icon-pinterest {background-image: url(/img/footer/icon-pinterest.png)}
+#site-footer .icon-facebook {background-image: url(/img/footer/icon-facebook.png)}
+#site-footer .icon-twitter {background-image: url(/img/footer/icon-twitter.png)}
+
+/*  table */
+.checkout-table {border: 1px solid #d4d4d3; border-radius: 3px; background-color: #fff; position: relative;}
+.checkout-table .optional-line {position: absolute; width: 0px; height: 100%;border-left:1px solid #d4cdc9; right:248px;top:0;}
+
+/* table header */
+.checkout-table .table-header {color:#fff; border-bottom:3px solid #db0000;
+    overflow: hidden; *zoom:1;background-color: #323232; border-top-left-radius: 3px; border-top-right-radius: 3px;
+    position: relative; z-index: 1; font-size: 14px; }
+
+/* page upload section */
+#checkout {width:1080px; margin:20px auto 50px; }
+
+/* customer header */
+#checkout .checkout-table .header-1,
+#checkout .checkout-table .header-2,
+#checkout .checkout-table .header-3,
+#checkout .checkout-table .header-4,
+#checkout .checkout-table .header-5,
+#checkout .checkout-table .header-6 {float: left; height:45px; line-height: 45px; text-align: center;}
+#checkout .checkout-table .header-1 {width: 530px; margin-right: 33px;margin-left:28px;}
+#checkout .checkout-table .header-2,
+#checkout .checkout-table .header-3,
+#checkout .checkout-table .header-4,
+#checkout .checkout-table .header-5 {width:100px; margin-right:8px;}
+#checkout .checkout-table .header-6 {width: 24px;}
+
+/* store */
+#checkout .checkout-table .table-content {padding:0 25px;}
+#checkout .checkout-table .store-name {height:20px; border-bottom: 1px dotted #e9cece; text-align: center; font-size: 16px;margin-bottom: 20px;}
+#checkout .checkout-table .store-name span {display: inline-block; background-color: #fff; padding: 5px 20px; position:relative; top:3px; }
+#checkout .checkout-table .store-name strong {font-weight: normal;}
+
+/* store item */
+#checkout .checkout-table .store-item {border-bottom: 1px dashed #c9c9c9; height:100px; margin-bottom: 6px;}
+#checkout .checkout-table .item-col-1,
+#checkout .checkout-table .item-col-2,
+#checkout .checkout-table .item-col-3,
+#checkout .checkout-table .item-col-4,
+#checkout .checkout-table .item-col-5,
+#checkout .checkout-table .item-col-6,
+#checkout .checkout-table .item-col-7 {float: left; }
+
+#checkout .checkout-table .item-col-1 {position: relative; z-index: 10; padding-right: 18px; background-color: #fff;}
+#checkout .checkout-table .item-col-1 .prod-picture {height: 100px; width: 100px;text-align: center;position: relative;display: table-cell;vertical-align: middle;}
+#checkout .checkout-table .item-col-1 img {vertical-align: middle; max-height:100px; }
+
+#checkout .checkout-table .item-col-2 {width: 420px; margin-right:28px;}
+#checkout .checkout-table .item-col-2 .item-name {font-size: 14px; height: 45px; margin: 5px 0 15px;}
+#checkout .checkout-table .item-col-2 .item-custom-field {display: inline-block; border-radius: 2px; color:#fff; background-color: #59443e; padding:2px 4px; }
+
+#checkout .checkout-table .item-col-3,
+#checkout .checkout-table .item-col-4,
+#checkout .checkout-table .item-col-5,
+#checkout .checkout-table .item-col-6 {width: 100px; margin-right: 8px;text-align: center; line-height: 100px;}
+
+#checkout .checkout-table .item-col-3 input {width: 45px; height: 24px; margin:0 10px; line-height: 16px; display: inline-block; text-align: center;}
+#checkout .checkout-table .item-col-3 .add,
+#checkout .checkout-table .item-col-3 .reduce {display: inline-block; height: 16px;vertical-align: -2px; width: 10px; font-size: 20px; }
+#checkout .checkout-table .item-col-3 .reduce {background: url(/img/arrow-left.png)}
+#checkout .checkout-table .item-col-3 .add {background: url(/img/arrow-right.png);}
+#checkout .checkout-table .item-col-3 .disabled {opacity: 0.2; cursor:default;}
+
+#checkout .checkout-table .item-col-4 {font-size: 14px;}
+#checkout .checkout-table .item-col-7:after {content:""; clear:both;}
+#checkout .checkout-table .item-col-7 {width: 10px; margin-right: 8px;text-align: center; line-height: 100px;}
+#checkout .checkout-table .remove-item {display: inline-block; height: 16px;vertical-align: -2px; width: 10px; font-size: 20px; }
+
+
+/* table footer */
+#checkout .table-footer {padding: 0 25px; text-align: right; font-size: 16px; height:60px; line-height: 60px; color:#999; }
+#checkout .table-footer .price {font-size: 24px; margin-left: 30px;}
+#checkout .table-footer strong {font-weight: normal; color:#666;}
+
+/* button checkout */
+#checkout .checkout-bar {text-align: right; margin: 20px 0 0;}
+#checkout .button-checkout {display: inline-block; background-color: #FDAA4B; border-radius:5px; width: 240px; height:64px; font-size: 28px; text-align: center; line-height: 64px; color:#fff;}
+#checkout .button-shopping {display: inline-block; background-color: #FDAA4B; border-radius:5px; width: 270px; height:64px; font-size: 28px; text-align: center; line-height: 64px; color:#fff;}
+
+input.coupon-input {display: inline; width: 20%; margin: 0 10px;}
+a.coupon-apply {display: inline-block; margin-right: 40px; font-size: 24px;}

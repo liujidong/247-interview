@@ -1,0 +1,36 @@
+
+** Order
+
+status:
+- CREATED: when an order is created (in PaypalService::setup_expresscheckout) by the buyer
+- PROCESSING: before the actual "make payment" happens by the buyer
+- PROCESSED: after the actual "make payment" happens by the buyer
+- SHIPPED: products been shipped by the seller
+
+payment status (from paypal api):
+- PaymentActionNotInitiated
+- PaymentActionFailed
+- PaymentActionInProgress
+- PaymentActionCompleted
+
+** payment item
+
+Ignore the status of order_payments & sale_payments
+
+status:
+- CREATED: after the actual "make payment" happens by the buyer
+- PROCESSING: when the mass payment excel file is generated
+- PROCESSED: when the status of payments and payments items are updated
+
+** payment
+
+status: 
+
+- PROCESSING: when the mass payment excel file is generated
+- PROCESSED: when the status of payments and payments items are updated
+
+
+
+
+
+

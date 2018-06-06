@@ -1,0 +1,37 @@
+<?require_once(APPLICATION_PATH . '/views/scripts/partial/subnav_admin.phtml'); ?>
+<div class="row submit_button">
+    <p>Status: 0 -- CREATED 4 -- PROCESSING 5 -- PROCESSED 127 -- DELETE</p>
+</div>
+<div class="main row">
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Status</th>
+                <th>Sender</th>
+                <th>Receiver</th>
+                <th>Amt</th>
+                <th>Contract</th>
+                <th>Created</th>
+                <th>Updated</th>   
+                <th>Delete</th> 
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($this->payments as $payment){?>
+            <tr>
+                <td><?=$payment['id'];?></td>
+                <td><input type="text" class="edit_status" value="<?=$payment['status'];?>"></input></td>
+                <td><?=$payment['sender'];?></td>
+                <td><?=$payment['receiver'];?></td>
+                <td><?=$payment['amt'];?></td>
+                <td><?=$payment['contract'];?></td>
+                <td><?=$payment['created'];?></td>                
+                <td><?=$payment['updated'];?></td>  
+                <td><a class="button alert small delete_payment">Delete</a></td> 
+            </tr>
+            <?php }?>
+        </tbody>
+    </table>
+    <?php echo $this->pagination($this->total_rows, $this->rows_per_page, $this->page_num); ?>    
+</div>

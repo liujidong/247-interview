@@ -1,0 +1,29 @@
+<?php foreach($this->pins as $pin ) {?>
+	<div class="pinitem">
+                <div class="pinimage"><img src="<?php echo $pin['images_board'];?>" /></div>
+                <div class="pinform">
+                        <div class="pinformcolum pinformcolum1">
+                        <input type='hidden' name='pins[<?php echo $pin['id'];?>][image][]' value='<?php echo $pin['images_board'];?>'/>
+                        <input type='hidden' name='pins[<?php echo $pin['id'];?>][image][]' value='<?php echo $pin['images_mobile'];?>'/>
+                        <input type='hidden' name='pins[<?php echo $pin['id'];?>][image][]' value='<?php echo $pin['images_closeup'];?>'/>
+                        <input type='hidden' name='pins[<?php echo $pin['id'];?>][image][]' value='<?php echo $pin['images_thumbnail'];?>'/>
+                        <input name="pins[<?php echo $pin['id'];?>][name]" value="<?php echo $pin['description'];?>" alt="Name" placeholder="Name"/>
+                        <textarea name="pins[<?php echo $pin['id'];?>][description]" alt="Description"  placeholder="Description"><?php echo $pin['description'];?></textarea>
+                    </div>
+                    <div class="pinformcolum pinformcolum2">
+                        <input type="text" name= "pins[<?php echo $pin['id'];?>][price]" value="<?php echo $pin['price'];?>" alt="Price" placeholder="Price"/>
+                        <input type="text" name="pins[<?php echo $pin['id'];?>][shipping]" value="" alt="Shipping" placeholder="Shipping"/>
+                        <select name="pins[<?php echo $pin['id'];?>][size]">
+                                <option value="Large">Large</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Small">Small</option>
+                        </select>
+                    </div>
+                    <div class="pinformcolum pinformcolum3">
+                        <input type="text" name= "pins[<?php echo $pin['id'];?>][startdate]" value="" alt="Start Date" placeholder="Start Date"/>
+                        <input type="text" name= "pins[<?php echo $pin['id'];?>][enddate]" value="" alt="End Date" placeholder="End Date"/>
+                        <div><span>In Stock </span><input type="checkbox" name="pins[<?php echo $pin['id'];?>][instock]" alt="In Stock" /></div>
+                    </div>
+                </div>
+	</div>
+<?php } ?>

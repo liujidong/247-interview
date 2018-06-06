@@ -1,0 +1,11 @@
+
+** Installation
+
+** Log in as root 
+
+install puppet repository first
+    run rpm -ivh http://yum.puppetlabs.com/el/6/products/i386/puppetlabs-release-6-6.noarch.rpm
+install puppet
+    yum install puppet puppet-server
+start puppetmaster daemon
+   service puppetmaster start 

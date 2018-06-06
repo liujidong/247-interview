@@ -1,0 +1,91 @@
+<?require_once(APPLICATION_PATH . '/views/scripts/partial/subnav_admin.phtml'); ?>
+
+<div class="row page-layout admin">
+    <div class="large-12 columns">
+        <div class="module-tools">
+            <div class="small-9 medium-9 large-9 columns">
+                <div class="module-tools-item">
+                    <span class="dropdown module-dropdown" data-dropdown="status-dropdown">All Status</span>
+                    <ul id="status-dropdown" class="f-dropdown module-dropdown-content" data-dropdown-content="">
+                        <li><a href="#">Complete</a></li>
+                        <li><a href="#">Wating</a></li>
+                    </ul>
+                </div>
+                <div class="module-tools-item divider"></div>
+                <form action="" class="module-tools-item module-from-to">
+                    <label for="">From</label>
+                    <input type="text">
+                    <label for="">to</label>
+                    <input type="text">
+                    <input type="submit" value="Go!">
+                </form>
+                <div class="module-tools-item divider"></div>
+                <div class="module-tools-item">
+                    <a href="javascript:;" class="module-button" data-reveal-id="demo-box">Create</a>
+                </div>
+            </div>
+            <div class="small-3 medium-3 large-3 columns">
+                <form action="" class="module-search glass-right" data-search>
+                    <input type="text" class="search-input hidden">
+                    <a href="javascript:;" class="search-submit"><i class="icon fi-magnifying-glass"></i></a>
+                </form>
+            </div>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Action</th>
+                    <th>Status</th>
+                    <th>Order Number</th>
+                    <th>Customer</th>
+                    <th>Time</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- if 'tbody > tr' has 'data-href', then it's clickable and act as '<a>' -->
+                <tr data-href="/selling/orders/detail">
+                    <td class="unclickable">Cancel</td>
+                    <td>Unpaied</td>
+                    <td>900-108076</td>
+                    <td>Name</td>
+                    <td>2013-12-27</td>
+                    <td class="price">$20</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="module-pagination">
+            <?php echo $this->pagination(101, 10, 2); ?>
+        </div>
+        
+    </div>
+
+    <div id="demo-box" class="small reveal-modal" data-reveal style="display:none;">
+        <header class="module-header create-header">
+            <h3 class="title">Demo create box</h3>
+        </header>
+        <div class="create-main">
+            <label for="">Email</label>
+            <input type="email" placeholder="Email">
+
+            <label for="">Select box</label>
+            <select name="Select">
+                <option value="">option 1</option>
+                <option value="">option 2</option>
+                <option value="">option 3</option>
+                <option value="">option 4</option>
+            </select>
+
+            <p>
+                <label for="">Radio and Checkbox</label>
+                <input type="radio"><label for="">Radio 1</label>
+                <input type="checkbox"><label for="">Checkbox 1</label>
+            </p>
+
+            <input type="submit" class="submit-button" value="Save" style="margin-bottom:1.875rem;">
+        </div>
+    </div>
+
+</div>

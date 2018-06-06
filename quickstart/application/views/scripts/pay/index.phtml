@@ -1,0 +1,23 @@
+<div id="container" class="row">
+<div class="twelve columns">
+<? require_once(APPLICATION_PATH.'/views/scripts/partial/subnav.phtml');?>
+    <h3>Payment details</h3>
+    <p>Hi, <?php echo $this->paypal_account->getFirstName();?>, your order details are below:</p>
+    <ul>
+        <li>Items price: <?php echo $this->order->getPrice();?></li>
+        <li>Shipping: <?php echo $this->order->getShipping();?></li>
+        <li>Tax: <?php echo $this->order->getTax();?></li>
+        <li>Total: <?php echo $this->order->getTotal();?></li>
+    </ul>
+    <p>Ship to:</p>
+    <ul>
+        <li><?php echo $this->address->getAddr1();?></li>
+        <li><?php echo $this->address->getCity();?></li>
+        <li><?php echo $this->address->getState();?></li>
+        <li><?php echo $this->address->getZip();?></li>
+    </ul>
+    <form method="post" action="/pay/confirm">
+        <input type="submit" name="submit" value="Pay Now">
+    </form>
+</div>       
+</div><!-- end container -->

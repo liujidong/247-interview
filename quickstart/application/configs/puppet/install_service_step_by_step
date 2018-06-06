@@ -1,0 +1,83 @@
+1 copy and paste pull_code.sh
+
+2 chmod +x pull_code.sh
+
+3 ./pull_code.sh
+
+4. change the application.ini to application_migrate.ini in index.php, includes.php (DONT COMMIT THIS CHANGE!!!)
+
+[production]
+database.account.host = <host ip>
+database.store.host = <host ip>
+database.job.host = <host ip>
+
+sphinx.api.search.host= <daemon host ip>
+sphinx.api.search.port= '9312'
+sphinx.database.host = 'account db host ip'
+
+[staging]
+database.account.host = <host ip>
+database.store.host = <host ip>
+database.job.host = <host ip>
+
+sphinx.api.search.host= <daemon host ip>
+sphinx.api.search.port= '9312'
+sphinx.database.host = 'account db host ip'
+
+site.domain = <site domain>
+site.merchant.url = <site merchant url>
+
+***************************
+[dev servers]
+network: dev01, dev01 open 22, 80 port, dev01 & dev02 can access each other 
+dev01 -- install web service, install db service, import account & stores db, push web01 crontab
+dev02 -- install db service, install daemon service, import the job db schema, push daemon crontab
+
+[production servers]
+network: bridge open 22 port, web01 open 80,  bridge & web01 & db03 & daemon01 can access one another
+web01/db01 -- install web service, install db service, import account & stores db, push web01 crontab
+db03       -- install db service, import the job db schema
+daemon01   -- install daemon service, push daemon crontab 
+bridge
+
+***************************
+
+5. /var/www/html/pincommerce/quickstart/application/configs/puppet/manifests/install_web_service.sh    
+
+6. /var/www/html/pincommerce/quickstart/application/configs/puppet/manifests/install_db_service.sh
+
+7 import data manualy  
+    
+// dump account db
+mysqldump -uroot accountest | gzip > accountdb-`date +%Y%m%d`.gz
+
+// dump store dbs
+echo 'show databases;' | mysql -uroot | grep -v 'mysql\|information_schema\|Database\|performance_schema' | grep 'store.*' | xargs mysqldump -uroot --databases | gzip > storedb-`date +%Y%m%d`.gz
+
+// decompress the gzipped sql files
+gzip -cd accountdb-`date +%Y%m%d`.gz > accountdb-`date +%Y%m%d`.sql
+gzip -cd storedb-`date +%Y%m%d`.gz > storedb-`date +%Y%m%d`.sql
+
+// import the account db and store dbs
+echo "create database account" | mysql -uroot
+mysql -uroot account<accountdb-`date +%Y%m%d`.sql
+mysql -uroot <storedb-`date +%Y%m%d`.sql
+
+// import the job db schema
+echo "create database job" | mysql -uroot
+mysql -uroot job</var/www/html/pincommerce/quickstart/application/configs/job.sql     
+
+8 /var/www/html/pincommerce/quickstart/application/configs/puppet/manifests/install_daemon_service.sh     
+
+9. push crontab
+
+10. cp mysql folder into /mnt and create symbolic link
+
+11. cp logs into /mnt also create a symbolic link
+
+12. need to update account.stores table store_host to new store host ip
+
+
+
+
+

@@ -1,0 +1,15 @@
+<div class='row'>
+    <div class="twelve colums" id="prevnextnav">
+        <ul class="pagination">
+            <li class="arrow unavailable"><a href="">&laquo;</a></li>
+            <li class="current"><a href="">1</a></li>
+            <? for($start = 2; $start <= $this->page_num; $start++){?>
+            <li><a href="?page=<?= $start?>"><?= $start?></a></li>
+            <? if($start == $this->page_half_num+2) {?>
+            <li class="unavailable"><a href="">&hellip;</a></li>
+            <? }?>
+            <? }?>
+            <li class="arrow"><a href="">&raquo;</a></li>
+        </ul>
+    </div>
+</div>

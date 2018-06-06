@@ -1,0 +1,118 @@
+<div id="container" class="row">
+    <div class="twelve columns">
+        <!-- ? require_once(APPLICATION_PATH . '/views/scripts/partial/subnav.phtml'); ? -->
+        <h1>Your<span class="gentium"> Payments</span> History</h1>
+        <div class="row">
+            <div class="panel tweleve columns centered">
+                <div class="row">
+                    <div class="twelve columns">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="ordernumber">Payment</th>
+                                    <th class="date">Date</th>
+                                    <th class="fulfilment">Status</th>
+                                    <th class="total">Amount</th>
+                                    <th class="details">Details</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?foreach($this->payments as $j=>$payment) {?>
+                                <tr>
+                                    <td class="ordernumber"><?=$payment['id'];?></td>
+                                    <td class="date"><?=$payment['created'];?></td>
+                                    <td class="fulfilment"><?=$payment['status']?></td>
+                                    <td class="total"><?=$payment['currency_symbol'];?><?=$payment['amt'];?></td>
+                                    <td class="total dropdowninput">
+                                        <ul style="list-style: none;padding-left: 0;">
+                                            <?foreach($payment['contract'] as $key => $val) {?>
+                                            <?if($key == 'deductible') {?>
+                                            <label for="subsubfolder<?=$j?>"><strong>View all <?=$key.':';?></strong></label> <input type="checkbox" id="subsubfolder<?=$j?>" />
+
+                                            <ul style="list-style: none">
+                                                <?foreach($val as $ded_detail=>$ded_val) {?>
+                                                <li><?=$ded_detail.': '. $payment['currency_symbol'] .$ded_val;?><li>
+                                                    <?}?>
+                                            </ul>
+
+
+
+                                            <?} else {?>
+                                            <li><strong><?=$key.': '. $payment['currency_symbol'] .$val;?></strong></li>
+                                            <?}?>
+                                            <?}?>
+                                            <li><?if($this->is_merchant && $this->subdomain_type === 'merchant'){?>
+                                                <a href="/orders/item?id=<?=$payment['order_id']?>" target="_blank" style="color: #2ba6cb"><strong>order#<?=$payment['order_id']?></strong></a>
+                                                <?}else{?>
+                                                <a href="/associate/sales" target="_blank" style="color: #2ba6cb"><strong>sale#<?=$payment['sale_id']?></strong></a>
+                                                <?}?>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <?}?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h1>Your<span class="gentium"> Future</span> Payments</h1>
+        <div class="row">
+            <div class="panel twelve columns centered">
+                <div class="row">
+                    <div class="twelve columns">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="ordernumber"><?=$this->is_merchant && $this->subdomain_type === 'merchant'?'Order':'Sale';?></th>
+                                    <th class="date">Date</th>
+                                    <th class="fulfilment">Status</th>
+                                    <th class="total">Amount</th>
+                                    <th class="details">Details</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?foreach($this->future_payments as $i=>$future_payment) {?>
+                                <tr>
+                                    <td class="ordernumber"><?=$future_payment['id'];?></td>
+                                    <td class="date"><?=$future_payment['created'];?></td>
+                                    <td class="fulfilment"><?=$future_payment['status'];?></td>
+                                    <td class="total"><?=$future_payment['currency_symbol'];?><?=$future_payment['amt'];?></td>
+                                    <td class="details">
+                                        <ul class="dropdowninput" style="list-style: none;padding-left: 0;">
+                                            <?foreach($future_payment['contract'] as $key => $val) {?>
+                                            <?if($key == 'deductible') {?>
+                                            <label for="subfolder<?=$i?>"><strong>View all <?=$key.':';?></strong></label> <input type="checkbox" id="subfolder<?=$i?>" />
+
+                                            <ul style="list-style: none">
+                                                <?foreach($val as $ded_detail=>$ded_val) {?>
+                                                <li><?=$ded_detail.': ' . $future_payment['currency_symbol'] .$ded_val;?><li>
+                                                    <?}?>
+                                            </ul>
+
+
+
+                                            <?} else {?>
+                                            <li><strong><?=$key.': '. $future_payment['currency_symbol'] .$val;?></strong></li>
+                                            <?}?>
+                                            <?}?>
+                                            <li><?if($this->is_merchant && $this->subdomain_type === 'merchant'){?>
+                                                <a href="/orders/item?id=<?=$future_payment['order_id']?>" target="_blank" style="color: #2ba6cb"><strong>order#<?=$future_payment['order_id']?></strong></a>
+                                                <?}else{?>
+                                                <a href="/associate/sales" target="_blank" style="color: #2ba6cb"><strong>sale#<?=$future_payment['sale_id']?></strong></a>
+                                                <?}?>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <?}?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- end content -->
+</div>
+<!-- </div> end container -->

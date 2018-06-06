@@ -1,0 +1,178 @@
+
+<div id="container" class="row">
+    <div class="twelve columns">
+        <h1>Edit <span class="gentium">your</span> Account Settings</h1>
+            <div class="row">
+                <center>
+                        <?if($this->is_merchant) {?>
+                        <a href="<?=getSiteMerchantUrl().'/profile'?>" class="button radius secondary small manage_button">Manage your Store</a>
+                        <?}?>
+                        <?if($this->is_associate) {?>
+                        <a href="<?= getSiteAssociateUrl().'/associate/profile'; ?>" class="button radius secondary small manage_button">Manage products in Sales Network</a>
+                        <?}?>
+                </center>
+            </div>   
+        <br>
+        <div class="row">
+        <? foreach ($this->errnos as $key => $value) { ?>
+        <div class="alert-box <?echo error_type($key);?>">
+            <?= $this->errors[$key]['msg'] ?>
+            <a href="" class="close">&times;</a>
+        </div>
+        <? } ?>
+        </div>    
+        <div class="row">
+            <div id="profile" class="panel twelve columns centered">
+                <form method="post">
+                    <div class="row">
+                        <div class="six columns profile_user">
+                            <h3>Personal Profile</h3>
+                            <div class="row"> 
+                                <div class="twelve columns">
+                                    <label>
+                                        Email <a class="tooltips" href="#">?<span class="tip">At this time you can not edit your email.</span></a>
+                                        <input name="username" type="text" placeholder="Email" value="<?=$this->username; ?>" disabled/>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row"> 
+                                <div class="six columns">
+                                    <label>
+                                        <span class="require">*</span>Your First Name
+                                        <input name="first_name" type="text" placeholder="First Name" value="<?=$this->first_name; ?>"/>
+                                    </label>
+                                </div>
+                                <div class="six columns">
+                                    <label>
+                                        <span class="require">*</span>Your Last Name
+                                        <input name="last_name" type="text" placeholder="Last Name" value="<?=$this->last_name?>"/>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="twelve columns">
+                                    <label>
+                                        <span class="require">*</span>
+                                        Phone Number ex: (+1)561-317-9024<input type="text" name="phone" id="phone" value="<?=$this->phone?>" />
+                                    </label>
+                                </div>
+                                <div class="twelve columns">
+                                    <br>
+                                    <a class="button secondary medium" id="changepswrd">Edit Your Password</a>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="six columns profile_store">
+                            <h3>Mailing Address</h3>
+                            <div class="row">
+                                <div class="twelve columns">
+                                    <label class="mailing_address_label"><?if($this->is_merchant || $this->is_associate) {?><span class="require">*</span><? }?>Address 1 <a class="tooltips" href="#">Why do we need this?<span class="tip">For added security of our marketplace, we require your address as a seller. Your address will not be shared with anyone.</span></a>
+                                        <input name="addr1" type="text" placeholder="Address 1" value="<?php echo $this->addr1; ?>"/></label>
+                                </div>
+                                <div class="twelve columns">
+                                    <label>Address 2<input name="addr2" type="text" placeholder="Address 2" value="<?php echo $this->addr2; ?>"/></label>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="seven columns">
+                                    <label><?if($this->is_merchant || $this->is_associate) {?><span class="require">*</span><? }?>Country
+                                    <select name='country'>
+                                        <option value=''>Select a country</option>
+                                        <option value="US" <?if ($this->country == 'US') echo 'selected'; ?> >United States</option>
+                                        <option value="AR" <?if ($this->country == 'AR') echo 'selected'; ?>>Argentina</option>
+                                        <option value="AU" <?if ($this->country == 'AU') echo 'selected'; ?>>Australia</option>
+                                        <option value="AT" <?if ($this->country == 'AT') echo 'selected'; ?>>Austria</option>
+                                        <option value="BE" <?if ($this->country == 'BE') echo 'selected'; ?>>Belgium</option>
+                                        <option value="BR" <?if ($this->country == 'BR') echo 'selected'; ?>>Brazil</option>
+                                        <option value="CA" <?if ($this->country == 'CA') echo 'selected'; ?>>Canada</option>
+                                        <option value="CL" <?if ($this->country == 'CL') echo 'selected'; ?>>Chile</option>
+                                        <option value="CN" <?if ($this->country == 'CN') echo 'selected'; ?>>China</option>
+                                        <option value="CO" <?if ($this->country == 'CO') echo 'selected'; ?>>Colombia</option>
+                                        <option value="CZ" <?if ($this->country == 'CZ') echo 'selected'; ?>>Czech Republic</option>
+                                        <option value="DK" <?if ($this->country == 'DK') echo 'selected'; ?>>Denmark</option>
+                                        <option value="FI" <?if ($this->country == 'FI') echo 'selected'; ?>>Finland</option>
+                                        <option value="FR" <?if ($this->country == 'FR') echo 'selected'; ?>>France</option>
+                                        <option value="DE" <?if ($this->country == 'DE') echo 'selected'; ?>>Germany</option>
+                                        <option value="GR" <?if ($this->country == 'GR') echo 'selected'; ?>>Greece</option>
+                                        <option value="HK" <?if ($this->country == 'HK') echo 'selected'; ?>>Hong Kong</option>
+                                        <option value="HU" <?if ($this->country == 'HU') echo 'selected'; ?>>Hungary</option>
+                                        <option value="IS" <?if ($this->country == 'IS') echo 'selected'; ?>>Iceland</option>
+                                        <option value="IN" <?if ($this->country == 'IN') echo 'selected'; ?>>India</option>
+                                        <option value="ID" <?if ($this->country == 'ID') echo 'selected'; ?>>Indonesia</option>
+                                        <option value="IE" <?if ($this->country == 'IE') echo 'selected'; ?>>Ireland</option>
+                                        <option value="IL" <?if ($this->country == 'IL') echo 'selected'; ?>>Israel</option>
+                                        <option value="IT" <?if ($this->country == 'IT') echo 'selected'; ?>>Italy</option>
+                                        <option value="JP" <?if ($this->country == 'JP') echo 'selected'; ?>>Japan</option>
+                                        <option value="KR" <?if ($this->country == 'KR') echo 'selected'; ?>>Korea</option>
+                                        <option value="LV" <?if ($this->country == 'LV') echo 'selected'; ?>>Latvia</option>
+                                        <option value="LT" <?if ($this->country == 'LT') echo 'selected'; ?>>Lithuania</option>
+                                        <option value="MY" <?if ($this->country == 'MY') echo 'selected'; ?>>Malaysia</option>
+                                        <option value="MX" <?if ($this->country == 'MX') echo 'selected'; ?>>Mexico</option>
+                                        <option value="NL" <?if ($this->country == 'NL') echo 'selected'; ?>>Netherlands</option>
+                                        <option value="NZ" <?if ($this->country == 'NZ') echo 'selected'; ?>>New Zealand</option>
+                                        <option value="NO" <?if ($this->country == 'NO') echo 'selected'; ?>>Norway</option>
+                                        <option value="PA" <?if ($this->country == 'PA') echo 'selected'; ?>>Panama</option>
+                                        <option value="PE" <?if ($this->country == 'PE') echo 'selected'; ?>>Peru</option>
+                                        <option value="PH" <?if ($this->country == 'PH') echo 'selected'; ?>>Philippines</option>
+                                        <option value="PL" <?if ($this->country == 'PL') echo 'selected'; ?>>Poland</option>
+                                        <option value="PT" <?if ($this->country == 'PT') echo 'selected'; ?>>Portugal</option>
+                                        <option value="RO" <?if ($this->country == 'RO') echo 'selected'; ?>>Romania</option>
+                                        <option value="RU" <?if ($this->country == 'RU') echo 'selected'; ?>>Russian Federation</option>
+                                        <option value="SG" <?if ($this->country == 'SG') echo 'selected'; ?>>Singapore</option>
+                                        <option value="ZA" <?if ($this->country == 'ZA') echo 'selected'; ?>>South Africa</option>
+                                        <option value="ES" <?if ($this->country == 'ES') echo 'selected'; ?>>Spain</option>
+                                        <option value="SZ" <?if ($this->country == 'SZ') echo 'selected'; ?>>Swaziland</option>
+                                        <option value="SE" <?if ($this->country == 'SE') echo 'selected'; ?>>Sweden</option>
+                                        <option value="CH" <?if ($this->country == 'CH') echo 'selected'; ?>>Switzerland</option>
+                                        <option value="TW" <?if ($this->country == 'TW') echo 'selected'; ?>>Taiwan</option>
+                                        <option value="TH" <?if ($this->country == 'TH') echo 'selected'; ?>>Thailand</option>
+                                        <option value="TR" <?if ($this->country == 'TR') echo 'selected'; ?>>Turkey</option>
+                                        <option value="UA" <?if ($this->country == 'UA') echo 'selected'; ?>>Ukraine</option>
+                                        <option value="GB" <?if ($this->country == 'GB') echo 'selected'; ?>>United Kingdom</option>
+                                    </select>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="four columns">
+                                    <label><?if($this->is_merchant || $this->is_associate) {?><span class="require">*</span><? }?>City<input name="city" type="text" placeholder="City" value="<?=$this->city;?>"/></label>
+                                </div>
+                                <div class="four columns">
+                                    <label><?if($this->is_merchant || $this->is_associate) {?><span class="require">*</span><? }?>State<input name="state" type="text" placeholder="State" value="<?=$this->state;?>"/></label>
+                                </div>
+                                <div class="four columns">
+                                    <label><?if($this->is_merchant || $this->is_associate) {?><span class="require">*</span><? }?>Zip<input name="zip" type="text" placeholder="Zip Code" value="<?=$this->zip;?>"/></label>
+                                </div>
+
+                            </div>
+                            </div>
+                    </div>
+                    <div class="row submit_button">
+                        <button id="getstartedbutton" name="submit" type="submit" value="submit" class="button radius alert large" >Save Profile</button>
+                    </div>
+                </form>    
+            </div><!-- end profile -->
+            <p class="small"><span class="require">*</span>Required Fields</p>
+        </div>
+
+    </div><!-- end content -->
+</div>       
+</div><!-- end container -->
+
+
+
+
+<div id="myModal" class="reveal-modal">
+    <h3>Change Password</h3>
+    <div id="save_password_error_box" class="alert-box alert" style="display: none;">Errors on changing your password!</div>
+    <label>Current Password<input id="current_password" name="current_password" type="password" placeholder="Current Password" value=""/></label>
+    <hr>
+    <label>New Password<input id="new_password" name="new_password" type="password" placeholder="New Password" value=""/></label>
+    <label>Confirm New Password<input id="confirm_password" name="confirm_password" type="password" placeholder="Confirm New Password" value=""/></label><br>
+    <button id="save_password" name="submit" type="submit" value="submit" class="button radius alert large" >Save</button>
+    <a class="close-reveal-modal button radius secondary large">Cancel</a>
+    <a class="close-reveal-modal">&#215;</a>
+</div>
+

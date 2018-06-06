@@ -1,0 +1,2 @@
+/* DONT EDIT. THIS IS A AUTO-GENERATED FILE. PLEASE EDIT FILES under quickstart/application/views/mustache INSTEAD*/
+shopinterest.templates.add_to_cart='<a id=\"{{id}}\" class=\"need_login cart submit\" style=\"width: 160px; font-size: 20px;\">    Add to Cart</a>';

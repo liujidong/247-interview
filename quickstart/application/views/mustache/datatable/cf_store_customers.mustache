@@ -1,0 +1,23 @@
+<header class="module-header create-header">
+    <h3 class="title">Create a customer username and email</h3>
+</header>
+<form class="create-main" data-abide="ajax">
+    <div class="alert-field"></div>
+    <div class="data-abide-input-container">
+        <label for="first_name">First Name</label>
+        <input type="text" id="first_name" name="first_name" placeholder="first name" required>
+        <small class="error">First name is required</small>
+    </div>
+    <div class="data-abide-input-container">
+        <label for="last_name">Last Name</label>
+        <input type="text" id="last_name" name="last_name" placeholder="last name" required>
+        <small class="error">Last name is required</small>
+    </div>
+    <div class="data-abide-input-container">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="email" required>
+        <small class="error">User email is required</small>
+    </div>
+
+    <input type="submit" datatable-action="create" class="submit-button" value="Save" datatable-trigger style="margin-bottom:1.875rem;">
+</form>

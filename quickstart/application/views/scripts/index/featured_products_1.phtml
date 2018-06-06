@@ -1,0 +1,26 @@
+<?foreach($this->featured_products as $product){?>
+
+<ul class="cart_list01_content">
+    <li>
+    	<div style="position:relative;">
+        <a href="<?=$product['product_url'];?>" >
+        	<img class="prod_img" style="postion:absolute;"prod_id="<?=$product['product_id'];?>" src="<?=$product['converted_192'];?>" >
+        </a> 
+        <div id='test' style="position: absolute;right:10px;bottom:5%;font-size: 13px;font-family: Open Sans;color: #fff; background: rgba(0,0,0,.6);border-radius: 8px;padding: 0 6px;background: rgba(0,0,0,0.6);width:40px; ">$<?=$product['product_price'];?></div>
+      </div>
+    </li>
+   
+    <li>
+    	<h2><?=$product['product_name'];?></h2>
+    	<div class="merchant hide-for-small">
+			<div class="three columns favicon">
+				<a href="<?=$product['store_url'];?>"><img src="<?=$product['store_logo'];?>"></a>
+			</div>
+			<div class="nine columns">
+				<p class="small">Sold by</p>
+				<p><a href="<?=$product['store_url'];?>"><?=$product['store_name'];?></a></p>
+			</div>
+		</div>
+    </li>
+</ul>
+<?}?>

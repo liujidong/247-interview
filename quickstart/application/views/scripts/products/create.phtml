@@ -1,0 +1,153 @@
+<link rel="stylesheet" type="text/css" href="/css/cart.css" />
+<script type="text/javascript" src="/js/fileuploader.js"></script>
+
+<div id="container" class="row">
+<div class="twelve columns">
+<? require_once(APPLICATION_PATH.'/views/scripts/partial/subnav.phtml');?>
+    <div id="cart" class="twelve columns">
+        <form method='post' action='#'>
+            <div id="boardList" class='clearfix'>
+                <h1>Create <span class="gentium">Your</span> Product</h1>
+                <h2>Customize pricing, shipping and payment for your new product.</h2>
+                <div id="pinlist_div" class="row">
+                    <div id="pinlist">
+                        <? foreach ($this->errnos as $key => $value) { ?>
+                            <div class="alert-box <?echo error_type($key);?> row">
+                                <?= $this->errors[$key]['msg'] ?>
+                                <a href="" class="close">&times;</a>
+                            </div>
+                        <? } ?>
+                        <!-- item -->
+                        <div class="pinitem row">
+                            <div class="pinimage two columns">
+                                <input type="hidden" name='pic_id' id='pic_id' value='0' />
+                                <div class='nailthumb-container'>
+                                    <img id='product_img' src='/img/common/pin_placeholder.png' />
+                                    <img id='product_loading_img' src='/img/loading.gif' style='display: none;'/>
+                                </div>
+                                
+                                <div id="file-uploader">
+                                    <noscript>
+                                    <p>Please enable JavaScript to use file uploader.</p>
+                                    <!-- or put a simple form for upload here -->
+                                    </noscript>
+                                </div>
+                            </div>
+                            <div class="pinform ten columns">
+<div class="row">
+    <div class="pinformcolum pinformcolum1 eight columns">
+        <input id="product_name" name="product_name" type="text"
+               value="" alt="Name" placeholder="Product Name" />
+        <textarea id="product_description" name="product_description"
+                  alt="Description" placeholder="Product Description"></textarea>
+        <div class="columns twelve">
+        	<div class="row">
+            <div class="six columns">
+            	<div class='row'>
+            	    <div class="twelve mobile-one columns">
+            	      <label class="left inline">Price: $
+            	       <input class="text_price" type="text" id="product_price" name="product_price" value="" alt="Price" placeholder="Price" style="width: 8em;"/></label>
+            	    </div>
+            	</div>
+            	
+            	<div class='row'>
+            	    <div class="twelve mobile-one columns">
+            	      <label class="left inline">Quantity: <input class="text_quantity" type="text" id="product_quantity" name="product_quantity" value="" alt="Quantity" placeholder="Quantity" style="width: 6em;" /></label>
+            	    </div>
+            	</div>
+                
+                <div class='row'>
+                    <div class="twelve mobile-one columns">		                                	      
+                        <? if($this->optin_salesnetwork == ACTIVATED) {?>
+                        <label class="left inline">
+                            <a class="tooltips" href="#">?<span class="tip">The commission is the percentage that will be multiplied with the product price to get the total commission a sales associate will receive on each sold product.</span></a>
+                            Commission: %  
+                            <input style="width: 7em;" class="text_commission" type="text" name= "product_commission" value="" alt="Commission" placeholder="Commission"/>
+                            
+                        </label>
+                        <? }?>
+                    </div>
+                </div>               	
+            </div>
+            <div class="six columns">
+                <div class="styled-select row">
+                    <select name="product_category">
+                        <option class="select_a_category" value="">Select a category</option>
+                        <?foreach ($this->categories as $category) {?>
+                        <option value="<?=$category['id']?>">
+                            <?=$category['description']?>
+                        </option>
+                        <?}?>
+                        <option class="separator" value="">---------------------</option>
+                        <option class="create_category" value="-1">Create a new Category</option>
+                    </select>
+                </div>
+                <div class="row tgt_category_creator">
+            </div>
+        </div>
+        </div>
+    	</div>
+    </div>
+    <div class="pinformcolum pinformcolum2 four columns">
+        <div class='row shipping-calc'>
+            <div class="twelve mobile-one columns">
+              <h3>Extra Shipping Rates</h3>
+              	<div class="five columns mobile-four">
+              		$ <input class="text_shipping" type="text" id="product_shipping" name="product_shipping" value="" alt="Shipping"/>
+              	</div>
+				<div class="one columns mobile-four">
+					<p>+</p>
+				</div>
+				<div class="six columns mobile-four">
+					<p class="small">(your store default shipping rate)</p>
+				</div>
+              	<div class="twelve columns mobile-four calc">
+              		<p><b>Total Shipping for this item <span class="accent product_total_shipping">$</span></b></p>
+              		<p class="add">Each additional item adds <span class="product_additional_shipping">$</span></p>
+              	</div>
+              	<!--<div class="twelve columns mobile-four free-ship">
+            		<label>Free Shipping on this item <input type="checkbox" name="" value="" /></label>
+            	</div>-->
+            </div>
+        </div>
+        
+        
+	        
+	</div>
+</div>    
+                            </div>
+                        </div>
+                        <!-- end item -->
+
+                    </div>
+                    <div class="row">
+                        <div class="twelve columns">
+                            <div id="saveAndContinue">
+	                            <button type="submit" name="add_another" id="another" value="Add Another"
+	                                    alt="Add Another" class="button radius secondary large" />
+	                            + Add Another Item
+	                            </button>
+                            
+                                <button type="submit" name="submit" id="product_saveandcontinue"
+                                        value="submit" alt="Save and continue"
+                                        class="button radius alert large">Save and continue</button>
+                                <!--<button type="submit" name="cancel" id="cancel" value="submit"
+                                        alt="Cancel" class="button radius secondary large" />
+								Cancel
+                                </button>-->
+                            </div>
+                        </div>
+                        <div class="nine columns pull-three"></div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+    <!-- end - boardList -->
+<input id="store_shipping" type="hidden" value="<?=$this->store_shipping?>">
+<input id="store_additional_shipping" type="hidden" value="<?=$this->store_additional_shipping?>"> 
+
+	</div><!-- end content -->
+</div>       
+</div><!-- end container -->

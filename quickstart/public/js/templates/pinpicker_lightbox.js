@@ -1,0 +1,2 @@
+/* DONT EDIT. THIS IS A AUTO-GENERATED FILE. PLEASE EDIT FILES under quickstart/application/views/mustache INSTEAD*/
+shopinterest.templates.pinpicker_lightbox='<div id=\"pinpicker-lightbox\" style=\"display: none\"><div id=\"pinpicker-shade\" style=\"position: fixed; top: 0px; bottom: 0px; right: 0px; left: 0px; background-color: rgb(0, 0, 0); opacity: 0.5; z-index: 99;\"></div><iframe id=\"pinpicker-iframe\" src=\"/iframe/pinpicker\" style=\"border:0;width: 845px;height: 544px;position: fixed;top: 10px;left: 50%;margin-left: -422px;z-index: 100;\"></iframe></div>';

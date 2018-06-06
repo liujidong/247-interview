@@ -1,0 +1,38 @@
+<a href="<?=$this->site_url?>"><img src="<?= getSiteMerchantUrl(SHOPINTEREST_LOGO);?>"></a><br>
+Dear ShopIntoit Sales Network Member:<br><br>
+
+Congratulations! One of your links has generated a sale!<br><br>
+
+<b>Here are the details:</b><br><br>
+
+You sold a product though one of your links on <?=$this->datetime?><br><br> 
+<table border="1">
+	<tr>
+		<td>Item</td>
+		<td>Price</td>
+		<td>Commission earned</td>
+	</tr>
+        <?foreach($this->products as $product) {?>
+	<tr>
+		<td><?=$product['product_name']?></td>
+		<td><?=$product['product_price']?></td>
+		<td><?=$product['commission_amt']?></td>
+	</tr>
+        <?}?>
+</table>
+<br>
+<b>Total: <?=$this->currency_symbol?><?=$this->total?></b><br><br>
+
+What happens next?<br><br>
+
+Remember we will deposit your earnings via PayPal in 30 days following the Friday after your sale, you can check your sale totals so far by logging in and going to your 'Payments' tab.<br><br>
+
+Thanks!<br><br>
+
+The Shopintoit team<br>
+
+PS - Check our FAQs for any other questions you may have, or contact us at <a href="mailto:xxx@shopintoit.com">xxx@shopintoit.com</a> for whatever you need!<br>
+
+Find us in Facebook - <a href="https://www.facebook.com/Shopintoit">https://www.facebook.com/Shopintoit</a><br>
+Follow us in Twitter - <a href="https://twitter.com/shopintoit">https://twitter.com/shopintoit</a><br>
+Pin & Share in Pinterest - <a href="http://www.pinterest.com/shopintoit/">http://www.pinterest.com/shopintoit/</a><br>

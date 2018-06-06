@@ -1,0 +1,15 @@
+<?require_once(APPLICATION_PATH . '/views/scripts/partial/subnav_admin.phtml'); ?>
+<div class="row">
+    <div class="four columns">
+        <select class="six dropdown-box admin_tools">
+            <?foreach($this->table_object_options as $option) {?>
+            <option value="<?=$option['value']?>" <?=$this->table_object==$option['value']?'selected':'';?>><?=$option['text']?></option>
+            <?}?>
+        </select>
+    </div>
+
+    <div class="four columns">
+        
+    </div>
+</div>
+<div id="tgt_datatable" style="margin-top: 10px;"><?=$this->datatable_view?></div>

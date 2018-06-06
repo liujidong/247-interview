@@ -1,0 +1,112 @@
+<h2>A sample program to test the chained payments</h2>
+
+<h3 class="row">Chained Payments</h3>
+<div class ="row">
+<p class="eight columns centered">A chained payment is a payment from a sender that is indirectly split among multiple 
+receivers. It is an extension of a typical payment from a sender to a receiver, 
+in which a receiver, known as the primary receiver, passes part of the payment to 
+other receivers, who are called secondary receivers.
+</p>
+<p>Reference: <a target="_blank" href="https://www.x.com/developers/paypal/documentation-tools/adaptive-payments/gs_AdaptivePayments">Adaptive Payments</a></p>
+</div>
+<br>
+<div class="row">
+    <p class="eight columns centered">
+        You can have at most one primary receiver and 1-5 secondary receivers. 
+        Chained payments are useful in cases when the primary receiver acts as 
+        an agent for other receivers. The sender deals only with the primary 
+        receiver and does not know about the secondary receivers, including how 
+        a payment is split among receivers. The following example shows a sender 
+        making a payment of $100:
+    </p>
+</div>
+<br>
+<div class="row">
+    <div class="eight columns centered">
+    <img src="https://www.x.com/sites/default/files/paypal/imported/KindsAdapPymnt_C.gif">
+    </div>
+</div>
+<br>
+<div class="row">
+    <p class="eight columns centered">
+        In this example, the primary receiver receives $100 from the sender’s 
+        perspective. The primary receiver actually receives only $10 and passes 
+        a total of $90 to secondary receivers, Receiver 2 and Receiver 3.
+    </p>
+</div>
+<br>
+<h3 class="row">Delayed Chained Payments</h3>
+<div class ="row">
+<p class="eight columns centered">
+    By default, payments to all receivers in a chained payment are immediate. 
+    However, you can choose to delay a payment to a secondary receiver. For 
+    example, as primary receiver, you may require secondary receivers to perform 
+    some action, such as shipping goods or waiting for expiration of a return 
+    period, before making payment. To complete the payment, you must explicitly 
+    execute a payment to secondary receivers after the sender pays you. The 
+    payment must occur within 90 days, after which you cannot complete the 
+    payment as part of the original chained payment.
+</p>
+</div>
+<br>
+<h3 class="row">Adaptive Payments Endpoint</h3>
+<div class ="row">
+<ul class="eight columns centered">
+    <li>live: https://svcs.paypal.com/AdaptivePayments/API_operation</li>
+    <li>sandbox: https://svcs.sandbox.paypal.com/AdaptivePayments/API_operation</li>
+</ul>
+</div>
+<br>
+<h3 class="row">Test Accounts</h3>
+<div class ="row">
+<ul class="eight columns centered">
+    <li>Shopinterest: shopin_1342385307_biz@gmail.com</li>
+    <li>Seller: mercha_1342385059_biz@gmail.com</li>
+    <li>Sales Associate: sell2_1337294610_biz@gmail.com</li>
+    <li>Buyer: custom_1342461735_per@gmail.com</li>
+</ul>
+</div>
+<br>
+<h3 class="row">Scenario</h3>
+<div class ="row">
+<p class="eight columns centered">
+    Buyer pays $100. The sales commission rate is 10%. Shopinterest charges $1.
+    Seller: $$89. Sales Associate: $10. Shopinterest: $1.
+</p>
+</div>
+<br>
+<h3 class="row">Payment Process</h3>
+<div class ="row">
+<ul class="eight columns centered">
+    <li>Buyer (-$100) ------> Seller (+$100)</li>
+    <li>Seller (-$10, -$1) ------> Sales Associate (+$10), Shopinterest ($1)</li>    
+</ul>
+</div>
+<br>
+<h3 class="row">Demo</h3>
+<div class ="row">
+    <script src="https://www.paypalobjects.com/js/external/dg.js" type="text/javascript"></script>
+    <form id="paypal_lightbox" action="https://www.sandbox.paypal.com/webapps/adaptivepayment/flow/pay" target="PPDGFrame" class="standard">
+        <label for="buy">Buy Now:</label>
+        <input type="image" id="submitBtn" value="Pay with PayPal" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif">
+        <input id="type" type="hidden" name="expType" value="light">
+        <input id="paykey" type="hidden" name="paykey" value="">
+    </form>
+        
+    <script type="text/javascript" charset="utf-8">
+        //var embeddedPPFlow = new PAYPAL.apps.DGFlow({trigger: 'submitBtn'});
+        //window.dgFlow = embeddedPPFlow;
+    </script>
+<!--<form class="eight columns centered" method="post">
+    <input type="hidden" name="amt" value="20">
+    <input type="submit" name="submit" value="Pay $100" style="width: 15%;font-size: 1000%">
+</form>-->
+</div>
+<br>
+<h3 class="row">Print $_REQUEST</h3>
+<div class ="row">
+<div class="eight columns centered">
+    <?ddd($_REQUEST);?>
+</div>
+</div>
+

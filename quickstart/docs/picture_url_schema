@@ -1,0 +1,4 @@
+ex : https://s3.amazonaws.com/shopinterest_stage/stores/223/521a082998291_1_45.jpg
+
+     s3/bucket name/stores/store_id/<uniqid>_<picture_id>_<picture_type>.jpg
+

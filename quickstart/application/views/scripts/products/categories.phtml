@@ -1,0 +1,26 @@
+<div id="container" class="row">
+<div class="twelve columns">
+<? require_once(APPLICATION_PATH.'/views/scripts/partial/subnav.phtml');?>
+    <h1>Manage <span class="gentium">Product</span> Categories</h1>
+    <div class="row">
+                    <div class="panel seven columns centered">
+                    <p>Create categories to put your products into. Shoppers will be able to click to view all products in each category.</p>
+                        <table>
+                            <tbody>
+                              <?foreach($this->categories as $category) {?>  
+                              <tr>
+                                <td><?=$category['description']?></td>
+                                <td><a class="small secondary button delete_category radius">Delete</a></td>
+                              </tr>
+                              <?}?>
+                              <tr class="add_category">
+                                  <td><input id="category_value" type="text" placeholder="Enter a new category(No more than 25 characters)"></td>
+                                  <td><a id="add_category" class="large alert button radius">Add</a></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                    </div>
+                </div>
+	</div><!-- end content -->
+</div>       
+</div><!-- end container -->

@@ -1,0 +1,27 @@
+<?php if(!empty($this->searchd_products)){
+    foreach($this->searchd_products as $product){
+?>
+
+<ul class="cart_list01_content">
+    <li>
+        <a class="product-link" href="<?=$product['product_url'];?>"><img src="<?=$product['converted_192'];?>" prod_id="<?=$product['product_id'];?>" class="prod_img"></a>
+        <div class="hiddenButtons" style="display: none;">
+        </div>
+    </li>
+    <li id='test' class="cart_list01_price"><?=$product['currency_symbol'];?><?=$product['product_price'];?></li>
+    <li>
+        <h2><?=$product['product_name'];?></h2>
+        <div class="merchant hide-for-small">
+            <div class="three columns favicon">
+		<a class="store-link" href="<?=$product['store_url'];?>"><img src="<?=$product['store_logo'];?>"></a>
+            </div>
+            <div class="nine columns">
+                <p class="small">Sold by</p>
+                <p><a class="store-link" href="<?=$product['store_url'];?>"><?=$product['store_name'];?></a></p>
+            </div>
+        </div>
+    </li>
+</ul>
+
+<?php }
+}?>

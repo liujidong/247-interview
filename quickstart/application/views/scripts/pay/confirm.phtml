@@ -1,0 +1,16 @@
+<div id="container" class="row">
+<div class="twelve columns">
+<? require_once(APPLICATION_PATH.'/views/scripts/partial/subnav.phtml');?>
+        <?php if($this->order_status === 'success') {?>
+        <h3>Thank you for your ordering</h3>
+        <?php } else if($this->order_status === 'failure') {?>
+        <h3>
+            We have a problem on processing your order.Please try again 
+            <form method="post" action="/pay">
+                <input type="submit" name="submit" value="Pay Now">
+            </form>
+        </h3>
+        <?php }?>
+        <p><a href="<?php echo $this->continue_shopping_url;?>">continue shopping</a></p>
+</div>       
+</div><!-- end container -->

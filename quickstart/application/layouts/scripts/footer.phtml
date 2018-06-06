@@ -1,0 +1,100 @@
+<div class="tgt_pinstore_lightbox"></div>
+
+<div id="footer" class="footer row hide-for-iosapp">
+    <div class="small-12 medium-12 large-12 columns text-center">
+        <ul class="no-bullet footer-nav">
+            <li><a href="/buyer-protection">Buyer Protection</a></li>
+            <li><a href="/how">How It Works</a></li>
+            <li><a href="/pricing">Pricing</a></li>
+            <li><a href="/faqs">FAQs</a></li>
+            <li><a href="http://blog.shopintoit.com" target="_blank">Blog</a></li>
+            <li><a href="/about">Our Team</a></li>
+            <li><a href="/contact">Contact Us</a></li>
+            <li><a href="/terms">Terms of Service</a></li>
+            <li><a href="https://www.iubenda.com/privacy-policy/147300">Privacy</a></li>
+            <li><a href="/ticket">Get Help</a></li>
+            <li><a href="http://community.shopintoit.com" title="<?=$this->is_merchant?$this->store['id']:''?>" target="_blank">Community</a></li>
+            <?if($this->is_admin) {?><li><a href="/admin">Admin</a></li><?}?>
+        </ul>
+    </div>
+</div>
+
+<div id="user-data">
+    <input type="hidden" id="user_id" value="<?= $this->user_id ?>">
+    <input type="hidden" id="merchant_id" value="<?= $this->merchant_id ?>">
+    <input type="hidden" id="associate_id" value="<?= $this->associate_id ?>">
+    <input type="hidden" id="subdomain_type" value="<?= $this->subdomain_type ?>">
+    <input type="hidden" id="store_status" value="<?= empty($this->store_status) ? 0 : $this->store_status; ?>">
+    <input id="my_store_name" type="hidden" value="<?= $this->my_store_name ?>">
+    <input id="my_store_url" type="hidden" value="<?= $this->my_store_url ?>">
+    <input id="my_store_logo" type="hidden" value="<?= $this->my_store_logo ?>">
+    <input id="my_store_id" type="hidden" value="<?= $this->my_store_id ?>">
+</div>
+<div class="tgt_signup_lightbox"></div>
+<div class="tgt_popup_signup"></div>
+
+<a href="/ticket" id="get-help" class="button success">Get Help</a>
+<a class="exit-off-canvas"></a>
+</div>
+</div>
+
+<!-- Included JS Files -->
+<script src="/js/jquery.simplePagination.js"></script>
+<script src="/v2/js/foundation/foundation.js"></script>
+<script src="/v2/js/foundation/foundation.offcanvas.js"></script>
+<script src="/v2/js/foundation/foundation.abide.js"></script>
+<script src="/v2/js/foundation/foundation.orbit.js"></script>
+<script src="/v2/js/foundation/foundation.reveal.js"></script>
+<script src="/v2/js/foundation/foundation.dropdown.js"></script>
+<script src="/v2/js/foundation/foundation.topbar.js"></script>
+<script src="/v2/js/foundation/foundation.tooltip.js"></script>
+<script src="/v2/js/foundation/foundation.interchange.js"></script>
+<script src="/js/jquery.reveal.js"></script>
+<script src="/js/jquery.placeholder.min.js"></script>
+<script src="/js/jquery.cookie.js"></script>
+<script src="/js/jquery.query.js"></script>
+<script src="/js/mustache.js"></script>
+<script src="/js/jquery.autocomplete.js"></script>
+<script src="/js/imagesloaded.min.js"></script>
+<script src="/js/libs/jquery-ui.js"></script>
+<script src="/js/app.js"></script>
+<? echo $this->placeholder("extra_footer");?>
+<? $index_js = 'index.js'; if (APPLICATION_ENV=== 'production') $index_js = 'index.combined.min.js'; if (APPLICATION_ENV === 'staging') $index_js = 'index.combined.js'; ?>
+<script src="/js/<?= $index_js ?>"></script>
+<!-- load filepicker lib -->
+
+<script type="text/javascript">
+    <? $super_key = (APPLICATION_ENV === 'production') ? "'AwSLXQo0vRIGtomgenR8Qz'" : "'AFuYI6cJShSyuXM6JCIUAz'" ?>
+    (function(a){if(window.filepicker){return}var b=a.createElement("script");b.type="text/javascript";b.async=!0;b.src=("https:"===a.location.protocol?"https:":"http:")+"//api.filepicker.io/v1/filepicker.js";var c=a.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c);var d={};d._queue=[];var e="pick,pickMultiple,pickAndStore,read,write,writeUrl,export,convert,store,storeUrl,remove,stat,setKey,constructWidget,makeDropPane".split(",");var f=function(a,b){return function(){b.push([a,arguments])}};for(var g=0;g<e.length;g++){d[e[g]]=f(e[g],d._queue)}window.filepicker=d})(document);
+    filepicker.setKey(<?= $super_key ?>);
+</script>
+<!-- end load filepicker lib -->
+
+<!-- Quantcast Tag -->
+<script type="text/javascript">
+    var _qevents = _qevents || [];
+
+    (function() {
+        var elem = document.createElement('script');
+        elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";
+        elem.async = true;
+        elem.type = "text/javascript";
+        var scpt = document.getElementsByTagName('script')[0];
+        scpt.parentNode.insertBefore(elem, scpt);
+    })();
+
+    _qevents.push({
+        qacct:"p-nyVbXKCHmbNTH"
+    });
+</script>
+
+<noscript>
+    <div style="display:none;">
+        <img src="//pixel.quantserve.com/pixel/p-nyVbXKCHmbNTH.gif" border="0" height="1" width="1" alt="Quantcast"/>
+    </div>
+</noscript>
+<!-- End Quantcast tag -->
+
+
+</body>
+</html>

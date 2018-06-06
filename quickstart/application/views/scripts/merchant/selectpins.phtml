@@ -1,0 +1,42 @@
+<link rel="stylesheet" type="text/css" href="/css/cart.css"/>
+<div id="container" class="row">
+<div class="twelve columns">
+	
+	
+<? require_once(APPLICATION_PATH.'/views/scripts/partial/subnav.phtml');?>
+
+    <div id="cart">
+        <form method="post">
+            <div id="boardList" class='clearfix'>
+                <h1>Select <span class="gentium">Your</span> Pins</h1>
+                <h2>Customize your items. <strong>All items with a price will be added to your store.</strong>
+                </div>
+                <div id="pinlist_div" class="row">
+                    <?foreach($this->errnos as $key=>$value) {?>
+                    <div class="alert-box <?echo error_type($key);?> row">
+                            <?=$this->errors[$key]['msg']?>
+                            <a href="" class="close">&times;</a>
+                        </div>
+                    <?}?>
+                    <br>
+                    <div id="pinlist">
+                        <?php echo $this->render('merchant/pin-details.phtml');?>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="five columns push-seven"> 
+                        <div id="saveAndContinue">
+                            <button type="submit" name="submit" id="saveandcontinue" value="submit" alt="Save and continue" class="button radius alert large"/>Save and continue</button></div>
+                    </div>  
+                </div>                
+            </div>
+        </form>
+    </div><!-- end - boardList -->
+
+<input id="store_shipping" type="hidden" value="<?=$this->store_shipping?>">
+<input id="store_additional_shipping" type="hidden" value="<?=$this->store_additional_shipping?>">
+
+<?php echo $this->pagination($this->total_rows, $this->rows_per_page, $this->page_num); ?>
+	</div><!-- end content -->
+</div>       
+</div><!-- end container -->

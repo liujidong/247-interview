@@ -1,0 +1,88 @@
+<?require_once(APPLICATION_PATH . '/views/scripts/partial/subnav_admin.phtml'); ?>
+<div class="row" style='padding-top: 10px;'>
+    <div class="six columns centered">
+        <form class="row" method="get">
+            <div class='row'>
+                <div class="six columns">
+                    <input name="merchant_email" type="text" placeholder="put merchant's email here to search">
+                </div>
+                <div class="six columns">
+                    <center style="display: inline-block;">
+                        <button name="submit" type="submit" value="submit" class="button radius small">Search</button>
+                    </center>
+                </div>
+            </div>
+            <div class='row'>
+                <div class="six columns">
+                    <input name="store_subdomain" type="text" placeholder="put store subdomain here to search">
+                </div>
+                <div class="six columns">
+                    <center style="display: inline-block;">
+                        <button name="submit" type="submit" value="submit" class="button radius small">Search</button>
+                    </center>
+                </div>
+            </div>
+        </form>
+        <center style="display: inline-block;">
+            <a href="/admin/stores" class="button radius small">Get all store info</a>
+        </center>
+        <form action="/api/downloadstoreinfo" style="display: inline-block;">
+            <input type="submit" class="button success small creatmasspay" value="SAVE AS CSV">
+        </form>
+    </div>
+</div>
+
+<div class="main row">
+    <table id='admin_table'>
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Store Status</th>
+                <th>Store Name</th>
+                <th>Account Created Time</th>
+                <th>Store Updated Time</th>
+                <th>Store Created Time</th>
+                <th>Store Subdomain</th>
+                <th>Pinterest URL</th>
+                <th>Currency</th>
+                <th>Paypal(Y/N)</th>
+                <th>Active Products Cnt</th>
+                <th>Transactions Cnt</th>
+                <th>Shopay</th>
+                <th>Transaction Fee Waived</th>
+                <th>Exclude in Search</th>
+                <th>Allow Resell</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($this->store_info as $info){?>
+            <tr>
+                <td><input type="text" value="<?=$info['username'];?>" email="<?=$info['username'];?>" style="width: 250px;" class="merchant_email"></td>
+                <td><?=$info['status'];?></td>
+                <td><?=$info['name'];?></td>
+                <td><?=$info['merchant_created_time'];?></td>
+                <td><?=$info['store_updated_time'];?></td>
+                <td><?=$info['created_time'];?></td>
+                <td><?php if($info['status'] == 'Active'){ ?><a target="_blank" href='<?=getStoreUrl($info['subdomain']);?>'><?php }?><?=getStoreUrl($info['subdomain']);?>
+                        <?php if($info['status'] == 'Active'){ ?></a><?php }?></td>
+                <td><?php if(!empty($info['pinterest_url'])){?><a href="<?=$info['pinterest_url'];?>" target="_blank"><?=$info['pinterest_url'];?></a><?php }?></td>
+                <td><?=$info['currency'];?></td>
+                <td><?=$info['paypal'];?></td>
+                <td><?=$info['product_cnt'];?></td>
+                <td><?=$info['transaction_cnt'];?></td>
+                <td><input type="checkbox" class="payment_solution" store_id="<?=$info['id'];?>" <?php if (!empty($info['payment_solution'])) echo "checked"; ?> /></td>
+                <td><input type="checkbox" class="transaction_fee_waived" store_id="<?=$info['id'];?>" <?php if (empty($info['payment_solution'])) echo "disabled"; ?> <?php if (!empty($info['transaction_fee_waived'])) echo "checked"; ?>/></td>
+                <td><input type="checkbox" class="exclude_in_search" store_id="<?=$info['id'];?>" <?php if (!empty($info['excluded_in_search'])) echo "checked"; ?> /></td>
+                <td>
+                    <select class="allow_resell" store_id="<?=$info['id'];?>" style="width:100px">
+                        <option value="0" <?php if ($info['allow_resell'] == SELL_ONLY) echo "selected"; ?>>Sell Only</option>
+                        <option value="1" <?php if ($info['allow_resell'] == RESELL_WITHOUT_CHECKOUT) echo "selected"; ?>>Resell without checkout</option>
+                        <option value="2" <?php if ($info['allow_resell'] == RESELL_WITH_CHECKOUT) echo "selected"; ?>>Resell with checkout</option>
+                    </select>
+                </td>
+            </tr>
+            <?php }?>
+        </tbody>
+    </table>
+    <?php echo $this->pagination($this->total_rows, $this->rows_per_page, $this->page_num, $this->extra_params); ?>
+</div>

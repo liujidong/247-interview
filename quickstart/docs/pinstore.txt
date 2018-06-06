@@ -1,0 +1,107 @@
+
+** Algorithm
+
+1. login
+
+email, password
+
+pinterest_account, pinterest_boards 
+create the cookie file,
+
+2. select a pinterest board
+
+job data: (pinterest_email, pinterest_password, pinterest_account_id, pinterest_board_id, store_id)
+
+3. table
+
+products_pinterest_pins 
+id, status, product_id, pinterest_account_id, pinterest_board_id, pinterest_pin_id, created, updated 
+unique(product_id, pinterest_board_id, pinterest_account_id)
+
+4. cron job (run every 10 min)
+
+pinterest_service: 
+- create a pin (pinterest_email, pinterest_password, product_id, pinterest_account_id, pinterest_board_id) 
+- update a pin (pinterest_email, pinterest_password, product_id, pinterest_account_id, pinterest_board_id, pinterest_pin_id) 
+- delete a pin (pinterest_email, pinterest_password, product_id, pinterest_account_id, pinterest_board_id, pinterest_pin_id)
+
+use the lazy way to login
+
+a. pick a job 
+b. pick one product from the products table 
+if the product status is "active" and if product_id, pinterest_account_id, pinterest_board_id is not in products_pinterest_pins 
+table or if product_id, pinterest_account_id, pinterest_board_id is in products_pinterest_pins table and active and /pin/xxx 
+doesnt exist,
+ 
+create a pin 
+
+if the product status is "active" and if product_id, pinterest_account_id, pinterest_board_id is in products_pinterest_pins 
+table and active and pin/xxx exists 
+
+update a pin 
+
+if the product status is "deleted" and if product_id, pinterest_account_id, pinterest_board_id is in products_pinterest_pins 
+table and active and pin/xxx exists, 
+
+delete a pin
+ 
+c. after the job finishes, send an email to the merchant
+
+
+** Existing codes
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

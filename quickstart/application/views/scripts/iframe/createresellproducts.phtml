@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Popup & Bottom Styles</title>
+    <link rel="stylesheet" href="/v2/css/modules.css"/>
+    <link rel="stylesheet" href="/css/page/iframe_createproducts.css">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,600,700' rel='stylesheet' type='text/css'>
+</head>
+<body id="<?=$this->body_id;?>">
+    <div class="popup-p-upload">
+        <div class="close-modal"><a href="">×</a></div>
+        <div class="title">
+            <span class="lt"></span>
+            <h2>Import Products</h2>
+            <span class="rt"></span>
+            <p>Select your product source</p>
+        </div>
+
+        <div class="popbox from_filepicker"><a href="" class="module-button">From social or my devices</a></div>
+        <div class="popbox from_pinterest"><a href="" class="module-button">From Amazon</a></div>
+    </div>
+    <script src="/v2/js/jquery.js"></script>
+    <script src="/js/mustache.js"></script>
+    <script src="/js/jquery.cookie.js"></script>
+    <?if(APPLICATION_ENV === 'production') {?>
+    <script src="//www.google-analytics.com/cx/api.js"></script>
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-33040843-1']);
+        _gaq.push(['_setDomainName', 'shopinterest.co']);
+        _gaq.push(['_setAllowLinker', true]);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+    </script>
+    <?} else {?>
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-33040843-2']);
+        _gaq.push(['_setDomainName', 'shopinterest.co']);
+        _gaq.push(['_setAllowLinker', true]);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+    </script>
+    <?}?>
+    <script src="/js/gat.js"></script>
+    <?$index_js = 'index.js'; if(APPLICATION_ENV === 'production') $index_js = 'index.combined.min.js'; if(APPLICATION_ENV === 'staging') $index_js = 'index.combined.js';?>
+    <script src="/js/<?=$index_js?>"></script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<div id="feature">
+<div id="container" class="row">
+
+<div class="twelve columns">
+	<div class="six columns hide-for-small">
+		<h1>Login to <span class="gentium">Your</span> SalesNetwork</h1>
+		<ul id="frontpagebullets" class="centered">
+		        <li class="cart">Create a Shopinterest Associate Account in minutes</li>
+		        <li class="chart">Sell your products</li>
+		        <li class="graph">Quick and simple – No website required!</li>
+		</ul>
+	</div>
+	<div class="six columns mobile-four">
+
+		<div id="signup">
+
+	<div class="alert-box success" style="display: none;">
+	    <span id="alert_msg">Check your email inbox to reset your password.</span>
+	    <a href="" class="close">×</a>
+	</div>
+    <div class="alert-box alert" style="display: none;">
+	    <span id="alert_msg">There is a problem when resetting your password.</span>
+	    <a href="" class="close">×</a>
+	</div>
+
+
+
+	<?php foreach($this->errnos as $errno=>$val) {?>
+	<div class="alert-box alert">
+	    <span id="alert_msg"><?php echo $this->errors[$errno]['msg'];?></span>
+	    <a href="" class="close">×</a>
+	</div>
+	<?php }?>
+
+
+<div class="signup_box">
+        <form method='post'>
+        <div id="ie9show" class="alert-box row" style="display: none;">
+        	<br>Shopinterest is unstable in Internet Explorer 9!<br>Please use a different browser. We recommend <a href="http://www.google.com/chrome" target="_blank">Chrome</a> or <a href="http://www.mozilla.org/en-US/firefox/" target="_blank">Firefox</a>.<br><br>
+        </div>
+
+          <div class="row">
+            <div class="twelve columns">
+                <input name="username" type="text" placeholder="Email" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="twelve columns">
+                <input name="password" type="password" placeholder="Password" class="password" />
+                <p class="small">Forgot your password? <a class="lost_password">Click here.</a><br>Don't have an account yet? <a href="/">Sign up here.</a></p>
+            </div>
+          </div>
+          <div class="row">
+                <button id="getstartedbutton" name="submit" type="submit" value="submit" class="button radius success large" >Sign In</button>
+
+          </div>
+        </form>
+</div>
+
+<div class="email_reminder">
+	<div class="row">
+	  <div class="twelve columns">
+	      <input id="email_reminder" name="username" type="text" placeholder="Email" />
+	  </div>
+	</div>
+	<div class="row">
+	      <button id="getstartedbutton" name="submit" type="submit" value="submit" class="button radius success large" >Reset Password</button>
+	      <button id="" name="submit" type="submit" value="submit" class="button radius secondary large" >Cancel</button>
+	</div>
+</div>
+
+</div><!-- END SIGNUP -->
+
+	</div>
+</div>
+
+</div><!-- end container -->
+</div>

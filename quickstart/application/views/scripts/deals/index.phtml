@@ -1,0 +1,55 @@
+<? $this->placeholder("extra_header")->captureStart();?>
+<script src="/js/jssor.slider.mini.js" type="text/javascript"></script>
+<? $this->placeholder("extra_header")->captureEnd();?>
+
+<div id="dealspage" class="row page-layout deals-page">
+    <section class="small-12 medium-12 large-8 columns page-layout-main">
+        <header class="deals-header" style="margin-bottom: 20px;">
+            <div id="feature-slider" class="module-slider">
+                <ul u="slides" class="slides">
+                    <? foreach ($this->featured_deals as $d) {?>
+                    <li u="image">
+                        <a class="slide-item feature-item" href="">
+                            <a href="<?=$d['product']['product_url']?>">
+                                <img src="<?=reset($d['product']['pictures'][550])?>" class="feature-item-image">
+                            </a>
+                            <p class="feature-item-discount"><span>
+                                <?=$d['literal_off']?> off
+                            </span></p>
+                            <p class="feature-item-name">
+                                <span class="discount"><?=$d['discount_price']?></span>
+                                <span class="origin"><?=$d['original_price']?></span>
+                            </p>
+                        </a>
+                    </li>
+                    <? } ?>
+                </ul>
+                <span u="arrowleft" class="sugarslide-previous"><span></span></span>
+                <span u="arrowright" class="sugarslide-next"><span></span></span>
+            </div>
+        </header>
+        <ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-3 feature-products">
+            <? foreach ($this->merchant_deals as $d) {?>
+            <li class="product-item">
+                <a href="<?=$d['product']['product_url']?>">
+                    <div class="holder">
+                        <img src="<?=reset($d['product']['pictures'][550])?>" class="product-item-image">
+                    </div>
+                    <div class="product-item-name"><?=$d['product']['name']?></div>
+                </a>
+                <div class="product-item-storename">
+                    <a href="<?=$d['product']['store_url']?>">djdeals</a>
+                </div>
+                <div class="product-item-pricing">
+                    <span class="current"><?=$d['discount_price']?></span>
+                    <span>
+                        <span class="old"><span><?=$d['original_price']?></span></span><br>
+                        <span class="discount"><?=$d['literal_off']?> off</span>
+                    </span>
+                </div>
+            </li>
+            <? } ?>
+        </ul>
+    </section>
+    <? require_once(APPLICATION_PATH . '/views/scripts/partial/right_sidebar.phtml'); ?>
+</div>

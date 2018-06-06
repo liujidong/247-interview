@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="/v2/css/pages/dashboard.css">
+<div id="dashboard" class="row page-layout dashboard">
+    <input type="hidden" id="replyto_email" value="<?=$this->replyto_email?>">
+    <input type="hidden" id="replyto_name" value="<?=$this->replyto_name?>">
+    <section class="small-12 medium-12 large-9 columns">
+        <div class="row">
+            <div class="small-3 medium-3 large-2 columns">
+                <? require_once(APPLICATION_PATH.'/views/scripts/partial/left_sidebar.phtml');?>
+            </div>
+            <!-- side nav end -->
+
+            <div id="sellingvenue-customers" class="small-9 medium-9 large-10 columns">
+                <? require_once(APPLICATION_PATH.'/views/scripts/partial/horizontal_subnav.phtml');?>
+                <!-- dashboard sub nav end -->
+
+                <? require_once(APPLICATION_PATH.'/views/scripts/partial/horizontal_subnav2.phtml');?>
+                <!-- dashboard nav end -->
+                <!-- sorting header end -->
+
+                <div id="tgt_datatable">
+                    <?=$this->datatable_view?>
+                </div>
+                <div id="tgt_email_lightbox"></div>
+            </div>
+        </div>
+    </section>
+
+    <? require_once(APPLICATION_PATH.'/views/scripts/partial/right_sidebar.phtml');?>
+
+</div>

@@ -1,0 +1,68 @@
+<? $this->placeholder("extra_header")->captureStart();?>
+<link rel="stylesheet" href="/css/cart.css"/>
+<link rel="stylesheet" href="/css/auction.css"/>
+<? $this->placeholder("extra_header")->captureEnd();?>
+<input type="hidden" id="time_now" value="<?=$this->now?>"/>
+<div id="container" active="<?= ($this->outdated) ? 0 : 1 ?> ">
+    <div class="auction-title">
+        <div class="title-pre"><span>EXTRAVAGANZA SALE</span></div>
+        <h1>great deals for a limited time</h1>
+    </div>
+    <div class="auction-box auction-list-header row">
+        <? if(count($this->auctions) > 0) { ?>
+        <h2><?= ($this->outdated) ? "Outdated" : "" ?> Auction List</h2>
+        <? } else {?>
+        <h2>Coming Soon ...</h2>
+        <? } ?>
+    </div>
+    <?php foreach ($this->auctions as $auction ){?>
+    <div class="auction-box auction-list-item row" id="auction_<?=$auction['id'];?>">
+        <input type="hidden" class="init_price" value="<?=$auction['initial_bid_price']?>"/>
+        <div class="auction-picture three columns">
+            <div class="auction-picture-holder">
+                <a href="/auction/item?auction_id=<?=$auction['id'];?>" target="_blank" class="gat-click" gaid="auction-view">
+                  <img src="<?=$auction['pictures'];?>" alt="Overflow: Hidden No More" />
+                </a>
+            </div>
+            <div class="savings"><p>Starts at <b><?=$auction['starts_at_percentage'];?>%</b></p></div>
+        </div>
+
+        <div class="auction-detail nine columns">
+            <div class="row"><h3 class="twelve columns">
+            <a href="/auction/item?auction_id=<?=$auction['id'];?>" target="_blank" class="auction-product-name gat-click" gaid="auction-view">
+            <?=$auction['product_name'];?>
+            </a>
+            </h3></div>
+            <div class="item-description">
+               <?=$auction['product_description'];?>
+            </div>
+
+            <div class="item-line row">
+                <div class="item-label four mobile-two columns current_bid_info">
+                  <strong><?=$auction['currency_symbol'];?><?=$auction['current_bid_price'];?>
+                    <small>( <?=$auction['bid_times'];?> bid<?=($auction['bid_times'] > 1 ? 's':'');?> )</small>
+                  </strong><br>
+                  <span>CURRENT BIDDING</span>
+                </div>
+                <div class="item-label four mobile-two columns">
+                  <? if($auction['active']) {?>
+                  <div class="item-right row time_countdown"></div>
+                  <div class="item-label row"><span>TIME LEFT</span></div>
+                  <? } else {?>
+                  <div class="item-right row"><strong><?=$auction['end_time'];?></strong></div>
+                  <div class="item-label row"><span>CLOSED TIME</span></div>
+                  <? } ?>
+                </div>
+                <div class="four columns">
+                       <span class="tgt_fbfeed_button_2"></span>
+                       <span class="tgt_tweet_button_2"></span>
+                       <span class="tgt_pin_button_2"></span>
+                </div>
+            </div>
+            <div class="auction_end_time" style="display: none;"><?=$auction['end_time'];?></div>
+     </div>
+    </div>
+    <? } ?>
+
+    <?php echo $this->page($this->total_rows, $this->rows_per_page, $this->page_num, $this->extra_params); ?>
+</div>

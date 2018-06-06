@@ -1,0 +1,12 @@
+<?foreach($this->products as $product){?>
+<li class="product-item">
+    <a href="<?=$product['product_url']?>">
+        <div class="holder">
+            <img src="<?=reset($product['product_pictures']['550'])?>" alt="" class="product-item-image">
+        </div>
+        <div class="product-item-name"><?=$product['name']?></div>
+    </a>
+    <div class="product-item-storename"><a href="<?=$product['store_url']?>" style=" color: #333333; "><?= $product['store_name'] ?></a></div>
+    <div class="product-item-pricing"><?=$product['store_currency']?><?=$product['product_price']?></div>
+</li>
+<?}?>

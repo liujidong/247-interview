@@ -1,0 +1,37 @@
+<link rel="stylesheet" href="/v2/css/pages/dashboard.css">
+<div id="dashboard" class="row page-layout dashboard">
+
+    <section class="small-12 medium-12 large-9 columns">
+        <div class="row">
+            <div class="small-3 medium-3 large-2 columns">
+                <? require_once(APPLICATION_PATH.'/views/scripts/partial/left_sidebar.phtml');?>
+            </div>
+            <!-- side nav end -->
+
+            <div id="sellingvenue-orders" class="small-9 medium-9 large-10 columns">
+                <? require_once(APPLICATION_PATH.'/views/scripts/partial/horizontal_subnav.phtml');?>
+                <!-- dashboard sub nav end -->
+
+                <div class="module-tools">
+                    <div class="small-7 medium-7 large-7 columns">
+                        <div class="module-tools-item">
+                            <span class="dropdown module-dropdown" data-dropdown="status-dropdown">All Status</span>
+                            <ul id="status-dropdown" class="f-dropdown module-dropdown-content" data-dropdown-content>
+                                <li><a href="<?=url_append(array('status'=>'all'))?>">all</a></li>
+                                <li><a href="<?=url_append(array('status'=>'completed'))?>">completed</a></li>
+                                <li><a href="<?=url_append(array('status'=>'shipped'))?>">shipped</a></li>
+                                <li><a href="<?=url_append(array('status'=>'paid'))?>">paid</a></li>
+                                <li><a href="<?=url_append(array('status'=>'canceled'))?>">canceled</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="tgt_datatable" style="margin-top: 10px;"><?=$this->datatable_view?></div>
+                <a href="/orders" target="_blank">Go to Old(Shopinterest) Orders</a>
+            </div>
+        </div>
+    </section>
+
+    <? require_once(APPLICATION_PATH.'/views/scripts/partial/right_sidebar.phtml');?>
+
+</div>

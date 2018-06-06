@@ -1,0 +1,84 @@
+<header class="module-header create-header">
+    <h3 class="title">Create Coupon</h3>
+</header>
+
+<form class="create-main" data-abide="ajax">
+    <div class="alert-field"></div>
+    <div class="data-abide-input-container">
+        <label class="required">Scope</label>
+        <select name="scope" required id="scope">
+            <option value="2">Store</option>
+            <option value="3">Product</option>
+        </select>
+        <small class="error">Scope is required</small>        
+    </div>
+
+    <div class="data-abide-input-container" style="display:none;" id="product-url-input-box">
+        <label class="required">Product Url</label>
+        <input type="text" name="product_url" placeholder="Product Url" required>
+        <small class="error">Product url is required</small>        
+    </div>
+    
+    <div class="data-abide-input-container">
+        <label class="required">Start Time</label>
+        <input type="text" name="start_time" placeholder="Start Time" id="start-time" required>
+        <small class="error">Start time is required</small>        
+    </div>
+
+    <div class="data-abide-input-container">
+        <label class="required">End Time</label>
+        <input type="text" name="end_time" placeholder="End Time" id="end-time" required>
+        <small class="error">End time is required</small>        
+    </div>
+
+    <div class="data-abide-input-container">
+        <label class="required">Price Offer Type</label>
+        <select name="price_offer_type" required>
+            <option value="1">Percentage Off</option>
+            <option value="2">Flat Value Off</option>
+        </select>
+        <small class="error">Price offer type is required</small>        
+    </div>
+
+    <div class="data-abide-input-container">
+        <label class="required">Price Off</label>
+        <input type="text" name="price_off" placeholder="Price Off" required>
+        <small class="error">Price Off is required</small>        
+    </div>
+
+    <div class="data-abide-input-container">
+        <label class="required">Offer Name</label>
+        <input type="text" name="offer_name" placeholder="Offer Name" required>
+        <small class="error">Offer name is required</small>        
+    </div>
+
+    <div class="data-abide-input-container">
+        <label class="required">Offer Description</label>
+        <textarea rows="4" cols="50" name="offer_description" required></textarea>    
+        <small class="error">Offer description is required</small>        
+    </div>
+
+    <div class="data-abide-input-container">
+        <label data-tooltip class="has-tip required" title="Times this coupon can be used.">Usage Limit</label>
+        <input type="text" name="usage_limit" placeholder="Usage Limit" required>
+        <small class="error">Usage limit is required</small>        
+    </div>
+
+    <div class="data-abide-input-container">
+        <label data-tooltip class="has-tip required" title="Times one buyer can use this coupon.">Usage Restriction</label>
+        <input type="text" name="usage_restriction" placeholder="Usage Restriction" required>    
+        <small class="error">Usage restriction is required</small>        
+    </div>
+
+    <div class="data-abide-input-container">
+        <label>Free Shipping(Not available now)</label>
+        <input type="checkbox" name="free_shipping" placeholder="Free Shipping">
+    </div>
+
+    <div class="data-abide-input-container">
+        <label>Publish to the deals page</label>
+        <input type="checkbox" name="is_deal"t>
+    </div>
+
+    <input type="submit" datatable-action="create" class="submit-button" value="Save" datatable-trigger style="margin-bottom:1.875rem;">
+</form>

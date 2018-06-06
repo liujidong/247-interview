@@ -1,0 +1,153 @@
+<link rel="stylesheet" href="/v2/css/pages/dashboard.css">
+<div id="dashboard" class="row page-layout dashboard">
+
+    <section class="small-12 medium-12 large-9 columns">
+        <div class="row">
+            <div class="hide-for-iosapp small-3 medium-3 large-2 columns">
+                <? require_once(APPLICATION_PATH.'/views/scripts/partial/left_sidebar.phtml');?>
+            </div>
+            <!-- side nav end -->
+
+            <div id="me-purchase-detail" class="ios-small-12 small-9 medium-9 large-10 columns">
+                <div class="hide-for-iosapp small-3 medium-3 large-2 columns">
+                    <? require_once(APPLICATION_PATH.'/views/scripts/partial/horizontal_subnav.phtml');?>
+                </div>
+                <!-- dashboard sub nav end -->
+
+                <div class="detail-wrap me-purchase-detail">
+                    <header class="hide-for-iosapp clearfix detail-header">
+                        <a href="javascript:history.go(-1);" class="left back">Back</a>
+                    </header>
+                    <div class="detail-main">
+                        <div class="row detail-item status">
+                            <div class="small-5 medium-5 large-5 columns">Status</div>
+                            <div class="small-7 medium-7 large-7 columns"><?=$this->order['payment_status_literal']?></div>
+                        </div>
+                        <div class="row detail-item order-number">
+                            <div class="small-5 medium-5 large-5 columns">Order Number</div>
+                            <div class="small-7 medium-7 large-7 columns"><?=$this->order['order_num']?></div>
+                        </div>
+                        <div class="row detail-item order-time">
+                            <div class="small-5 medium-5 large-5 columns">Order Time</div>
+                            <div class="small-7 medium-7 large-7 columns"><?=$this->order['created']?></div>
+                        </div>
+                        <div class="row detail-item order-time">
+                            <span class="small-5 medium-5 large-5 columns">Products Count</span>
+                            <span class="small-7 medium-7 large-7 columns"><?=$this->store_summary['product_cnt']?></span>
+                        </div>
+                        <div class="row detail-item order-time">
+                            <span class="small-5 medium-5 large-5 columns">Shipping Option</span>
+                            <span class="small-7 medium-7 large-7 columns"><?=$this->shipping_opt['name']?></span>
+                        </div>
+                        <div class="row detail-item order-time">
+                            <span class="small-5 medium-5 large-5 columns">Shipping Price</span>
+                            <span class="small-7 medium-7 large-7 columns">
+                                <?=currency_symbol($this->store['currency'])?><?=$this->store_summary['shipping']?>
+                            </span>
+                        </div>
+                        <div class="row detail-item order-time">
+                            <span class="small-5 medium-5 large-5 columns">Price</span>
+                            <span class="small-7 medium-7 large-7 columns">
+                                <?=currency_symbol($this->store['currency'])?><?=$this->store_summary['price_total']?>
+                            </span>
+                        </div>
+                        <div class="row detail-item order-time">
+                            <span class="small-5 medium-5 large-5 columns">Tax</span>
+                            <span class="small-7 medium-7 large-7 columns">
+                                <?=currency_symbol($this->store['currency'])?><?=$this->order['tax']?>
+                            </span>
+                        </div>
+                        <div class="row detail-item order-time">
+                            <span class="small-5 medium-5 large-5 columns">Total</span>
+                            <span class="small-7 medium-7 large-7 columns">
+                                <?=currency_symbol($this->store['currency'])?><?=$this->order['total']?>
+                            </span>
+                        </div>
+                        <? if($this->order['payment_status_literal'] == 'shipped') { ?>
+                        <div class="row detail-item order-time">
+                            <span class="small-5 medium-5 large-5 columns">Shipping Service Provider</span>
+                            <span class="small-7 medium-7 large-7 columns">
+                                <?=$this->order['shipping_service_provider']?>
+                            </span>
+                        </div>
+                        <div class="row detail-item order-time">
+                            <span class="small-5 medium-5 large-5 columns">Tracking Number</span>
+                            <span class="small-7 medium-7 large-7 columns">
+                                <?=$this->order['tracking_number']?>
+                            </span>
+                        </div>
+                        <? } ?>
+                        <div class="divider"></div>
+                        <div class="row detail-item send-to">
+                            <div class="small-5 medium-5 large-5 columns">Send to</div>
+                            <div class="small-7 medium-7 large-7 columns">
+                                <div style="margin-bottom:1rem;text-decoration:underline;">
+                                    <?=$this->order_group->get('shipping_first_name')?>
+                                    <?=$this->order_group->get('shipping_last_name')?>
+                                </div>
+                                <div class="light">
+                                    <?=$this->order_group->get('shipping_first_name')?> <?=$this->order_group->get('shipping_last_name')?>
+                                    <br>
+                                    <?=$this->order_group->get('shipping_addr1')?><br>
+                                    <?=$this->order_group->get('shipping_addr2')?><br>
+                                    <?=$this->order_group->get('shipping_city')?>
+                                    <?=$this->order_group->get('shipping_state')?>
+                                    <?=$this->order_group->get('shipping_zip')?><br>
+                                    <?=$this->order_group->get('shipping_country')?><br>
+                                    <?=$this->order_group->get('shipping_phone')?><br>
+                                    <?=$this->order_group->get('shipping_email')?><br>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="divider"></div>
+                        <? foreach($this->items as $item) {?>
+                        <div class="row detail-item product">
+                            <div class="ios-small-12 small-5 medium-5 large-5 columns product-image">
+                                <a href="/store/<?=$this->store['subdomain']?>/products/item?id=<?=$item['product_id']?>" target="_blank">
+                                <img src="<?=reset($item['pictures'][70])?>" alt="">
+                                </a>
+                            </div>
+                            <div class="ios-small-12 small-7 medium-7 large-7 columns product-detail">
+                                <a href="/store/<?=$this->store['subdomain']?>/products/item?id=<?=$item['product_id']?>" target="_blank">
+                                    <div class="title"><?=$item['name']?></div>
+                                </a>
+                                <p><?=$item['custom_fields']?></p>
+                                <div class="fees">
+                                    <span class="total"><?=$item['currency_symbol']?><?=$item['subtotal']?></span> =
+                                    <span class="light">
+                                        <span class="price"><?=$item['currency_symbol']?><?=$item['product_price']?></span>
+                                        x
+                                        <span class="qty"><?=$item['product_quantity']?></span>
+                                        <!-- + <span class="extra">$3</span> -->
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <? } ?>
+                        <div class="row detail-item">
+                            <div class="small-5 medium-5 large-5 columns">Seller Info</div>
+                            <div class="small-7 medium-7 large-7 columns">
+                                <div style="margin-bottom:1rem;text-decoration:underline;">
+                                    <a href="/store/<?=$this->store['subdomain']?>" target="_blank"><?=$this->store['name']?></a>
+                                </div>
+                                <!--
+                                <div class="light">
+                                    Walgreens Store Anchorage<br>
+                                    725 East Northern Lights Boulevard<br>
+                                    Anchorage, AK(Alaska) 99503<br>
+                                    (907) 644-8400<br>
+                                    Betsy Kahler
+                                </div>
+                                -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <? require_once(APPLICATION_PATH.'/views/scripts/partial/right_sidebar.phtml');?>
+
+</div>

@@ -1,0 +1,35 @@
+
+** steps
+
+on db01
+$sudo su
+$cd /mnt/200GB/backup
+$tar -zcvf accountdb-`date +%Y%m%d`.tar.gz /mnt/200GB/mysql
+
+on db02
+$sudo su
+$cd /mnt/200GB/backup
+$tar -zcvf storedb-`date +%Y%m%d`.tar.gz /mnt/200GB/mysql
+
+on db03
+$sudo su
+$cd /mnt/200GB/backup
+$tar -zcvf jobdb-`date +%Y%m%d`.tar.gz /mnt/200GB/mysql
+
+on bridge
+$cd backup
+$mkdir `date +%Y%m%d`
+$cd `date +%Y%m%d`
+$sudo scp -i ~/.ssh/dev.pem cloud@10.8.0.246:/mnt/200GB/backup/accountdb-`date +%Y%m%d`.tar.gz .
+$sudo scp -i ~/.ssh/dev.pem cloud@10.8.0.247:/mnt/200GB/backup/storedb-`date +%Y%m%d`.tar.gz .
+$sudo scp -i ~/.ssh/dev.pem cloud@10.8.0.248:/mnt/200GB/backup/jobdb-`date +%Y%m%d`.tar.gz .
+$cd ..
+$tar -zcvf db-`date +%Y%m%d`.tar.gz `date +%Y%m%d`
+
+on local
+$scp -i /Users/liangdev/keys/dev.pem cloud@dev02.shopinterest.co:/home/cloud/backup/db-`date +%Y%m%d`.tar.gz .
+
+update this file to AWS S3 shopinterest_production/dbbackup/
+
+**
+(to decompress: tar -zxvf accountdb-20121025.tar.gz tar -C /tmp)

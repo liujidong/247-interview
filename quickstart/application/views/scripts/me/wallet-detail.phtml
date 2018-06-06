@@ -1,0 +1,92 @@
+<? $this->placeholder("extra_header")->captureStart();?>
+<link rel="stylesheet" href="/v2/css/pages/dashboard.css">
+<? $this->placeholder("extra_header")->captureEnd();?>
+
+<div id="dashboard" class="row page-layout dashboard">
+
+    <section class="small-12 medium-12 large-9 columns">
+        <div class="row">
+            <div class="small-3 medium-3 large-2 columns">
+                <? require_once(APPLICATION_PATH.'/views/scripts/partial/left_sidebar.phtml');?>
+            </div>
+            <!-- side nav end -->
+
+            <div id="wallet-detail" class="small-9 medium-9 large-10 columns">
+                <? require_once(APPLICATION_PATH.'/views/scripts/partial/horizontal_subnav.phtml');?>
+                <div class="wallet-header">
+                    <div class="small-6 medium-6 large-6 columns">
+                        <h3 class="title">Current Balance<br>
+                            <strong><?=format_price($this->store['currency'], $this->wallet->getCurrentBalance())?></strong>
+                        </h3>
+                    </div>
+                     <div class="small-6 medium-6 large-6 columns">
+                         <h3 class="title">Available Balance<br>
+                             <strong><?=format_price($this->store['currency'], $this->wallet->getAvailableBalance())?></strong>
+                        </h3>
+                     </div>
+                </div>
+                <input type="hidden" id="wallet_activity_id" value="<?=$this->wa->getId()?>">
+                <div class="detail-wrap wallet-detail">
+                    <header class="clearfix detail-header">
+                        <a onclick="history.go(-1);" class="left back">Back</a>
+                        <? if($this->wa->getStatus() == ACTIVATED) {?>
+                        <a id="withdraw" class="right withdraw">Withdraw</a>
+                        <? } ?>
+                    </header>
+                    <div class="detail-main">
+                        <div class="row detail-item refrence">
+                            <div class="small-5 medium-5 large-5 columns">Refrence</div>
+                            <div class="small-7 medium-7 large-7 columns">
+                                <a href="<?=$this->wa_ref_link?>">
+                                    <span class="light" style="text-decoration:underline"><?=$this->wa_ref?></span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row detail-item status">
+                            <div class="small-5 medium-5 large-5 columns">Status</div>
+                            <div class="small-7 medium-7 large-7 columns"><?=$this->wa_status?></div>
+                        </div>
+                        <div class="row detail-item amount">
+                            <div class="small-5 medium-5 large-5 columns">Amount</div>
+                            <div class="small-7 medium-7 large-7 columns">
+                                <strong><?=format_price($this->wa->getCurrency(), $this->wa->getAmount())?></strong>
+                            </div>
+                        </div>
+                        <? if($this->wa->getType()=="sale"){ ?>
+                        <div class="row detail-item amount">
+                            <div class="small-5 medium-5 large-5 columns">Affiliate Commission</div>
+                            <div class="small-7 medium-7 large-7 columns">
+                                <strong><?=format_price($this->wa->getCurrency(), $this->wa->getCommission())?></strong>
+                            </div>
+                        </div>
+                        <div class="row detail-item amount">
+                            <div class="small-5 medium-5 large-5 columns">Shopintoit Transaction Fee</div>
+                            <div class="small-7 medium-7 large-7 columns">
+                                <strong><?=format_price($this->wa->getCurrency(), $this->wa->getOurTransactionFee())?></strong>
+                            </div>
+                        </div>
+                        <? } ?>
+                        <div class="row detail-item balance">
+                            <div class="small-5 medium-5 large-5 columns">Balance</div>
+                            <div class="small-7 medium-7 large-7 columns">
+                                <strong><?=format_price($this->wa->getCurrency(), $this->wa->getCurrentBalance())?></strong>
+                            </div>
+                        </div>
+                        <div class="row detail-item time">
+                            <div class="small-5 medium-5 large-5 columns">Create Time</div>
+                            <div class="small-7 medium-7 large-7 columns light"><?=$this->wa->getCreated()?></div>
+                        </div>
+                        <div class="row detail-item time">
+                            <div class="small-5 medium-5 large-5 columns">Update Time</div>
+                            <div class="small-7 medium-7 large-7 columns light"><?=$this->wa->getUpdated()?></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <? require_once(APPLICATION_PATH.'/views/scripts/partial/right_sidebar.phtml');?>
+
+</div>

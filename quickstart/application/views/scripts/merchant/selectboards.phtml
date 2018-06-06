@@ -1,0 +1,66 @@
+<div id="container" class="row">
+<div class="twelve columns">
+<? require_once(APPLICATION_PATH.'/views/scripts/partial/subnav.phtml');?>
+    <div id="cart" class="">
+        <? foreach ($this->errnos as $key => $value) { ?>
+            <div class="alert-box alert four columns centered">
+                <?= $this->errors[$key]['msg'] ?>
+                <a href="" class="close">&times;</a>
+            </div>
+        <? } ?>    
+        <div id="boardList" class='clearfix'>
+
+            
+            <h1>Choose <span class="gentium">Your</span> Boards</h1>
+            
+            <h2>Select the boards with the Pins you would like to sell. Or go directly to <a href="/merchant/selectpins">selecting Pins</a>.</h2>
+            <center><p>Don't see all your boards here? <a class="button radius refresh small" href="?refresh=1">Refresh my boards »</a></p></center>
+            
+            
+            
+            
+            <form method="post">
+                <div class="row">
+                    <?php for ($col = 0; $col < 4; $col++) { ?>
+                        <div class="three columns">
+                            <ul>
+                                <?php for ($i = $col; $i < $this->boards_count; $i = $i + 4) { ?>
+                                    <li class="boardItem">
+                                        <label>
+                                            <div class="boardImageItem">
+                                                <span class="mainimg"><img src="<?= empty($this->boards[$i]['covers'][0])?'':$this->boards[$i]['covers'][0]; ?>" /></span>
+                                                <ul>
+                                                    <li><img src="<?= empty($this->boards[$i]['covers'][1])?'':$this->boards[$i]['covers'][1] ?>"/></li>
+                                                    <li><img src="<?= empty($this->boards[$i]['covers'][2])?'':$this->boards[$i]['covers'][2] ?>"/></li>
+                                                    <li><img src="<?= empty($this->boards[$i]['covers'][3])?'':$this->boards[$i]['covers'][3] ?>"/></li>
+                                                    <li><img src="<?= empty($this->boards[$i]['covers'][4])?'':$this->boards[$i]['covers'][4] ?>"/></li>
+                                                </ul>
+                                            </div>
+                                            <div class="boardItemText">
+                                                <?php echo $this->boards[$i]['name'] ?> 
+                                                <input type="checkbox" name="boards[]" value="<?php echo $this->boards[$i]['id']; ?>"  <?php if (!empty($this->boards[$i]['store_id'])) echo "checked"; ?>/>
+                                            </div>
+                                        </label>
+                                        <span class="tgt_refresh_button"></span>
+                                    </li>    
+                                <?php } ?>
+                            </ul>  
+                        </div>
+                    <?php } ?>
+                </div>
+                <div class="row">
+                    <div class="twelve columns">
+                        <div id="saveAndContinue">
+                            <button type="submit" name="submit" id="saveandcontinue" value="submit" alt="Save and continue" class="button radius alert large"/>Save and continue</button></div>
+                    </div>
+                </div>
+            </form>
+        </div> <!-- end - boardList -->
+    </div> <!-- end - cart -->
+    
+    
+    
+    
+	</div><!-- end content -->
+</div>       
+</div><!-- end container -->

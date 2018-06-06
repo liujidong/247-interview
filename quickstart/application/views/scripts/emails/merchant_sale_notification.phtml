@@ -1,0 +1,43 @@
+<a href="<?=$this->site_url?>"><img src="<?= getSiteMerchantUrl(SHOPINTEREST_LOGO);?>"></a><br>
+Dear Shopintoit seller:<br><br>
+
+Ka-ching! You hear that? That&#39;s a sale!<br><br>
+
+You have an order ready to go - the order information is:<br><br>
+
+<table width="100%" border="1" cellspacing="0" cellpadding="4">
+  <tr>
+	<td width="110"><span id="internal-source-marker_0.22695470380277283">Order #: </span><br /></td>
+	<td><?='0623-'.$this->store_id.'-'.$this->order_id?></td>
+  </tr>
+  <?foreach($this->products as $product) {?>
+  <tr>
+	<td>Item Name: <br /></td>
+	<td><?=$product['product_name']?></td>
+  </tr>
+  <tr>
+	<td>Description:<br /></td>
+	<td><?=$product['product_name']?></td>
+  </tr>
+  <?}?>
+  <tr>
+	<td>Price:      <br /></td>
+	<td><?=$this->price?></td>
+  </tr>
+  <tr>
+	<td>Shipping:   <br /></td>
+        <td><?=empty($this->shipping) ? 'Shipping is free' : $this->shipping?></td>
+  </tr>
+</table>
+<br>
+Check your paypal email for shipping details.<br><br>
+
+Thanks!<br><br>
+
+The Shopintoit team<br>
+
+PS - Check our FAQs for any other questions you may have, or contact us at <a href="mailto:xxx@shopintoit.com">xxx@shopintoit.com</a> for whatever you need!<br>
+
+Find us in Facebook - <a href="https://www.facebook.com/Shopintoit">https://www.facebook.com/Shopintoit</a><br>
+Follow us in Twitter - <a href="https://twitter.com/shopintoit">https://twitter.com/shopintoit</a><br>
+Pin & Share in Pinterest - <a href="http://www.pinterest.com/shopintoit/">http://www.pinterest.com/shopintoit/</a><br>

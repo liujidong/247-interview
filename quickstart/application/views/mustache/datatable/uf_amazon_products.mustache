@@ -1,0 +1,46 @@
+<header class="module-header create-header">
+    <h3 class="title">Update an Amazon Product</h3>
+</header>
+<form class="create-main" data-abide="ajax">
+    <input type="hidden" name="row_id" value="<%row_id%>">
+    <div class="alert-field"></div>
+    <div class="data-abide-input-container">
+        <label for="url">URL/ASIN</label>
+        <input type="text" id="url" name="url" placeholder="" required value="<%asin%>" disabled>
+        <small class="error">URL/ASIN is required</small>
+    </div>
+    <div class="data-abide-input-container">
+        <label for="featured-value">Featured Value</label>
+        <select type="text" id="featured-value" name="featured-value" required value="<%featured%>">
+            <option value="0">Not Featured</option>
+            <option value="1">Slider Featured</option>
+            <option value="2">Category Featured</option>
+            <option value="3">Ad Featured</option>
+        </select>
+        <small class="error">featured value is required</small>
+    </div>
+
+    <div class="data-abide-input-container">
+        <label for="featured-score">Featured Score</label>
+        <input type="text" id="featured-score" name="featured-score" required value="<%featured_score%>">
+        <small class="error">featured score is required</small>
+    </div>
+
+    <div class="data-abide-input-container">
+        <label for="global_category">Global Category</label>
+        <select type="text" id="global_category" name="global_category"required value="<%global_category_id%>">
+            <option value=""> ---- </option>
+            {{#view_data.categories}}
+                <option value="{{id}}">{{path}}</option>
+            {{/view_data.categories}}
+        </select>
+        <small class="error">global category is required</small>
+    </div>
+
+    <div class="data-abide-input-container">
+        <label>Force update info from amazon</label>
+        <input type="checkbox" name="amazon_update">
+    </div>
+
+    <input type="submit" datatable-action="update" class="submit-button" value="Save" datatable-trigger style="margin-bottom:1.875rem;">
+</form>

@@ -1,0 +1,50 @@
+<link rel="stylesheet" href="/v2/css/pages/solidus.css">
+<div id="solidus" class="row page-layout solidus">
+    <section  class="small-12 medium-12 large-9 columns solidus-product page-layout-main">
+        <header class="clearfix module-header solidus-header">
+            <h1 class="title">Solidus</h1>
+        </header>
+
+        <div class="small-12 medium-6 medium-push-3 large-6 large-push-3 columns text-center">
+            <div class="product">
+                <div class="image-holder">
+                    <img class="image" src="http://placehold.it/360x360" alt="">
+                    <span class="pricing">$20</span>
+                </div>
+                <div class="name">This is a test product name</div>
+            </div>
+        </div>
+
+        <!-- dislike -->
+        <div class="small-6 medium-3 medium-pull-6 large-3 large-pull-6 columns dislike">
+            <div class="icon-holder">
+                <div class="icon"><i class="fi-dislike"></i></div>
+                <span class="num"><strong>27</strong> dislike</span>
+            </div>
+        </div>
+
+        <!-- like -->
+        <div class="small-6 medium-3 medium-push-12 large-3 columns like">
+            <div class="icon-holder">
+                <span class="icon"><i class="fi-heart"></i></span>
+                <span class="num"><strong>47</strong> like</span>
+            </div>
+        </div>
+
+        <!-- share list -->
+        <nav class="small-12 medium-12 large-12 share-list">
+            <a class="share share-twitter" href="javascript:;">
+                <span class="inner module-dropdown no-arrow" data-dropdown="share-list">
+                    <i class="fi-share"></i><span>Share</span>
+                </span>
+            </a>
+        </nav>
+        <ul id="share-list" data-dropdown-content class="f-dropdown module-dropdown-content">
+            <li class="tgt_tweet_button_2"><a href="https://twitter.com/intent/tweet?url=http://www.staging.shopinterest.co:5050/store/cwt404/products/item?id=98&amp;via=shopinterest&amp;text=Checkout this amazing product Horse photo cwt404 at Shopinterest" target="_blank">twitter</a></li>
+            <li class="tgt_fbfeed_button_2"><a href="" id="fbfeed_button_1392026588342412">facebook</a></li>
+            <li class="tgt_pin_button_2"><a id="pin_button_139202658835326" href="http://pinterest.com/pin/create/button/?url=http://www.staging.shopinterest.co:5050/store/cwt404/products/item?id=98;media=;description=Checkout this amazing product Horse photo cwt404 at Shopinterest " target="_blank">pinterest</a></li>
+        </ul>
+    </section>
+
+    <? require_once(APPLICATION_PATH . '/views/scripts/partial/right_sidebar.phtml'); ?>
+</div>

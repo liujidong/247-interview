@@ -1,0 +1,187 @@
+<? $this->placeholder("extra_header")->captureStart();?>
+<link rel="stylesheet" href="/v2/css/pages/dashboard.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<? $this->placeholder("extra_header")->captureEnd();?>
+<? $this->placeholder("extra_footer")->captureStart();?>
+<script src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<? $this->placeholder("extra_footer")->captureEnd();?>
+<div id="dashboard" class="row page-layout dashboard">
+
+    <section class="small-12 medium-12 large-9 columns">
+        <div class="row">
+            <div class="small-3 medium-3 large-2 columns">
+                <? require_once(APPLICATION_PATH.'/views/scripts/partial/left_sidebar.phtml');?>
+            </div>
+            <!-- side nav end -->
+
+            <div id="sellingvenue-orders" class="small-9 medium-9 large-10 columns">
+                <? require_once(APPLICATION_PATH.'/views/scripts/partial/horizontal_subnav.phtml');?>
+                <!-- dashboard sub nav end -->
+
+                <div class="detail-wrap order-detail">
+                    <form class="dashboard-form" data-abide="ajax" id="shipping-form" action="">
+                        <header class="clearfix detail-header">
+                            <a href="javascript:history.go(-1);" class="left back">Back</a>
+                            <? if($this->order['payment_status'] != ORDER_CANCELED) { ?>
+                            <a class="right cancel">Cancel this Order</a>
+                            <? } ?>
+                        </header>
+                        <div class="detail-status">
+                            <div class="row detail-item status">
+                                <span class="small-5 medium-5 large-5 columns">Status</span>
+                                <span class="small-7 medium-7 large-7 columns"><?=$this->order['payment_status_literal']?></span>
+                            </div>
+                            <div class="row detail-item order-number">
+                                <span class="small-5 medium-5 large-5 columns">Order Number</span>
+                                <span class="small-7 medium-7 large-7 columns"><?=$this->order['order_num']?></span>
+                            </div>
+                            <div class="row detail-item order-time">
+                                <span class="small-5 medium-5 large-5 columns">Order Time</span>
+                                <span class="small-7 medium-7 large-7 columns order-time-date"><?=$this->order['created']?></span>
+                            </div>
+                            <div class="row detail-item order-time">
+                                <span class="small-5 medium-5 large-5 columns">Products Count</span>
+                                <span class="small-7 medium-7 large-7 columns"><?=$this->store_summary['product_cnt']?></span>
+                            </div>
+                            <div class="row detail-item order-time">
+                                <span class="small-5 medium-5 large-5 columns">Shipping Option</span>
+                                <span class="small-7 medium-7 large-7 columns"><?=$this->shipping_opt['name']?></span>
+                            </div>
+                            <div class="row detail-item order-time">
+                                <span class="small-5 medium-5 large-5 columns">Shipping Price</span>
+                                <span class="small-7 medium-7 large-7 columns">
+                                    <?=currency_symbol($this->store['currency'])?><?=$this->store_summary['shipping']?>
+                                </span>
+                            </div>
+                            <div class="row detail-item order-time">
+                                <span class="small-5 medium-5 large-5 columns">Total Price</span>
+                                <span class="small-7 medium-7 large-7 columns">
+                                    <?=currency_symbol($this->store['currency'])?><?=$this->store_summary['price_total']?>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="detail-status">
+                            <input type="hidden" value="<?=$this->order['id']?>" id="order_id" name="order_id">
+                            <div class="row detail-item data-abide-input-container">
+                                <div class="small-5 medium-5 large-5 columns">Shipping Service Provider</div>
+                                <div class="small-7 medium-7 large-7 columns">
+                                    <select name="shipping_provider" id="shipping_provider" required>
+                                        <?if(in_array($this->order['shipping_service_provider'], array("usps", "fedex", "ups"))) {
+                                        $provider_name = $this->order['shipping_service_provider'];
+                                        } else {
+                                        $provider_name = "usps";
+                                        }?>
+                                        <option value="usps" <?if($provider_name === "usps") echo "selected";?>>USPS</option>
+                                        <option value="fedex" <?if($provider_name === "fedex") echo "selected"?>>Fedex</option>
+                                        <option value="ups" <?if($provider_name === "ups") echo "selected"?>>UPS</option>
+                                        <option value="other" <?if($provider_name === "other") echo "selected"?>>Other</option>                                     
+                                    </select>
+                                    <input style="<?echo ($provider_name == 'other' ? 'margin-top:0.625rem !important;' : 'display:none;')?>"
+                                           type="text"
+                                           name="extra_shipping_provider" id="extra_shipping_provider"
+                                           value="<?=$this->order['shipping_service_provider']?>"
+                                    <?echo ($provider_name == "other" ? "required" : '')?>>
+                                    <small class="error">Provider is required.</small>
+                                </div>
+                            </div>
+                            <div class="row detail-item data-abide-input-container">
+                                <div class="small-5 medium-5 large-5 columns">Tracking Number</div>
+                                <div class="small-7 medium-7 large-7 columns">
+                                    <input type="text" name="tracking_number" id="tracking_number"
+                                           value="<?=$this->order['tracking_number']?>" required>
+                                    <small class="error">Tracking Number is required.</small>
+                                </div>
+                            </div>
+                            <?
+                            if($this->order['shipping_date'] == "0000-00-00"){
+                            $old_shipping_date = "";
+                            }else{
+                            $old_shipping_date = $this->order['shipping_date'];
+                            }
+                            ?>
+                            <div class="row detail-item data-abide-input-container">
+                                <div class="small-5 medium-5 large-5 columns">Shipping Date</div>
+                                <div class="small-7 medium-7 large-7 columns">
+                                    <input type="text" name="shipping_date" id="shipping_date" placeholder="YYYY-MM-DD"
+                                           pattern="^\d\d\d\d-\d\d-\d\d$"
+                                           id="shipping_date" value="<?=$old_shipping_date?>" required>
+                                    <small class="error">Shipping Date(format: YYYY-MM-DD) is required.</small>
+                                </div>
+                            </div>
+                            <div class="row detail-item data-abide-input-container">
+                                <div class="small-5 medium-5 large-5 columns">Expected Arrival Date</div>
+                                <div class="small-7 medium-7 large-7 columns">
+                                    <select name="expected_arrival_date" id="arrival_data" required>
+                                        <option value="">----</option>
+                                        <option value="3-5" <?if($this->order['expected_arrival_date'] === "3-5") echo "selected"?>>3 ~ 5 days</option>
+                                        <option value="5-10" <?if($this->order['expected_arrival_date'] === "5-10") echo "selected"?>>5 ~ 10 days</option>
+                                        <option value="10-20" <?if($this->order['expected_arrival_date'] === "10-20") echo "selected"?>>10 ~ 20 days</option>
+                                        <option value="20-30" <?if($this->order['expected_arrival_date'] === "20-30") echo "selected"?>>20 ~ 30 days</option>
+                                        <option value="30-60" <?if($this->order['expected_arrival_date'] === "30-60") echo "selected"?>>30 ~ 60 days</option>                                                   </select>
+                                    <small class="error">Expected Arrival Date is required.</small>
+                                </div>
+                            </div>
+                            <div class="row detail-item" style="padding-right: 0px;">
+                                <div class="small-10 medium-10 large-10 columns"><input type="submit" class="right fulfill-order" value="Fulfill Order"></div>
+                                <div class="small-2 medium-2 large-2 columns">&nbsp;</div>
+                            </div>
+                        </div>
+                        <div class="detail-main">
+                            <div class="row detail-item customer">
+                                <div class="small-5 medium-5 large-5 columns">Customer</div>
+                                <div class="small-7 medium-7 large-7 columns customer-detail">
+                                    <div class="title">
+                                        <?=$this->order_group->get('shipping_first_name')?>
+                                        <?=$this->order_group->get('shipping_last_name')?>
+                                    </div>
+                                    <div class="light">
+                                        <?=$this->order_group->get('shipping_first_name')?> <?=$this->order_group->get('shipping_last_name')?>
+                                        <br>
+                                        <?=$this->order_group->get('shipping_addr1')?> <?=$this->order_group->get('shipping_addr2')?><br>
+                                        <?=$this->order_group->get('shipping_city')?>
+                                        <?=$this->order_group->get('shipping_state')?>
+                                        <?=$this->order_group->get('shipping_zip')?><br>
+                                        <?=$this->order_group->get('shipping_country')?><br>
+                                        <?=$this->order_group->get('shipping_phone')?><br>
+                                        <?=$this->buyer['username']?><br>
+                                    </div>
+                                </div>
+                            </div>
+                            <? foreach($this->items as $item) {?>
+                            <div class="row detail-item product">
+                                <div class="small-5 medium-5 large-5 columns product-image">
+                                    <a href="/store/<?=$this->store['subdomain']?>/products/item?id=<?=$item['product_id']?>" target="_blank">
+                                        <img src="<?=reset($item['pictures'][70])?>" alt="">
+                                    </a>
+                                </div>
+                                <div class="small-7 medium-7 large-7 columns product-detail">
+                                    <a href="/store/<?=$this->store['subdomain']?>/products/item?id=<?=$item['product_id']?>" target="_blank">
+                                        <div class="title"><?=$item['name']?></div>
+                                    </a>
+                                    <p><?=$item['custom_fields']?></p>
+                                    <div class="fees">
+                                        <span class="total"><?=$item['currency_symbol']?><?=$item['subtotal']?></span> =
+                                        <span class="light">
+                                            <span class="price"><?=$item['currency_symbol']?><?=$item['product_price']?></span>
+                                            x
+                                            <span class="qty"><?=$item['product_quantity']?></span>
+                                            <!--
+                                            +
+                                            <span class="extra"><?=$item['currency_symbol']?><?=$item['product_shipping']?></span>
+                                            -->
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <? } ?>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <? require_once(APPLICATION_PATH.'/views/scripts/partial/right_sidebar.phtml');?>
+
+</div>

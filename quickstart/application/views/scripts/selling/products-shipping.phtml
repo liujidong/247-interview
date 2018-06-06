@@ -1,0 +1,106 @@
+<?$this->placeholder('extra_header')->captureStart()?>
+<link rel="stylesheet" href="/v2/css/pages/dashboard.css">
+<?$this->placeholder('extra_header')->captureEnd() ?>
+<?$this->placeholder('extra_footer')->captureStart()?>
+<script src="/js/countries.js"></script>
+<?$this->placeholder('extra_footer')->captureEnd() ?>
+<div id="dashboard" class="row page-layout dashboard">
+
+    <section class="small-12 medium-12 large-9 columns">
+        <div class="row">
+            <div class="small-3 medium-3 large-2 columns">
+                <? require_once(APPLICATION_PATH.'/views/scripts/partial/left_sidebar.phtml');?>
+            </div>
+            <!-- side nav end -->
+
+            <div id="sellingvenue-products-shipping" class="small-9 medium-9 large-10 columns">
+                <? require_once(APPLICATION_PATH.'/views/scripts/partial/horizontal_subnav.phtml');?>
+                <!-- dashboard sub nav end -->
+
+                <? require_once(APPLICATION_PATH.'/views/scripts/partial/horizontal_subnav2.phtml');?>
+                <!-- dashboard nav end -->
+
+                <div class="module-tools">
+                    <div class="small-12 medium-12 large-12 columns">
+                        <a class="addnew addnew-shipping"><i class="icon fi-plus"></i><span>Add a Shipping Service Type</span></a>
+                        <div style="display: inline; float:right">
+                            <input type="checkbox" id="no-inter-shipping" name="no-international-shipping"
+                            <?if($this->store['no_international_shipping']){echo "checked";}?>>
+                            <label for="no-international-shipping">I don't want to provide International Shipping</label>
+                        </div>
+                    </div>
+                </div>
+                <!-- sorting header end -->
+
+                <div class="products-shipping-list">
+                    <?foreach($this->shipping_options as $option){?>
+                    <?
+                    if(in_array($option['name'], array('Standard', 'Priority', 'Express'))) {
+                    $option_name = $option['name'];
+                    } else {
+                    $option_name = "Custom";
+                    }
+                    ?>
+                    <div class="row detail-wrap products-shipping" id="<?=$option_name?>">
+                        <div class="row alert-field"></div>
+                        <input type="hidden" name="shipping-id" value="<?=$option['id']?>" class="shipping-id">
+                        <div class="row detail-header shipping-header">
+                            <div class="small-12 medium-10 large-10 columns">
+                                <label>Service Type</label>
+                                <input type="text" class="exist-option-name" value="<?=$option_name?>" disabled>
+                                <?if($option_name === 'Custom'){?>
+                                <input type="text" class="custom-type auto-save-field shipping-name-extra" value="<?=$option['name']?>" name="shipping-name-extra" disabled>
+                                <?}?>
+                            </div>
+                            <div class="small-12 medium-2 large-2 columns text-right">
+                                <?if($option_name !== "Standard"){?>
+                                <a href="javascript:;" class="module-button delete-shipping">Delete</a>
+                                <?}?>
+                            </div>
+                        </div>
+                        <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-2 block-grid">
+                            <?foreach($option['shipping_destinations'] as $dest){?>
+                            <li class="shipping-destination">
+                            <input type="hidden" name="id" value="<?=$dest['id']?>" class="destination-id">                            
+                                <div class="inner">
+                                    <label>Destination</label>
+                                    <input type="text" value="<?=$dest['name']?>" disabled>
+                                    <div class="divider"></div>
+                                    <div class="module-table">
+                                        <div class="table-row">
+                                            <span class="table-cell">Base Price</span>
+                                            <span class="table-cell">Additional Price</span>
+                                        </div>
+                                        <div class="table-row">
+                                            <div class="table-cell"><input type="text" placeholder="$" value="<?=$dest['base']?>" class="auto-save-field" name="base"></div>
+                                            <div class="table-cell"><input type="text" placeholder="$" value="<?=$dest['additional']?>" class="auto-save-field" name="additional"></div>
+                                        </div>
+                                    </div>
+                                    <div class="divider"></div>
+                                    <div class="module-table">
+                                        <div class="table-row">
+                                            <div class="allspan">Expect Delivery Days</div>
+                                        </div>
+                                        <div class="table-row">
+                                            <div class="table-cell">
+                                                <input type="text" value="<?=$dest['fromdays'];?>" class="auto-save-field" name="fromdays">
+                                                <span class="to">to</span>
+                                            </div>
+                                            <div class="table-cell"><input type="text" value="<?=$dest['todays'];?>" class="auto-save-field" name="todays"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <?}?>
+                        </ul>
+                    </div>
+                    <?}?>
+                </div>
+            </div>
+            <!-- product detials end -->
+        </div>
+    </section>
+
+    <? require_once(APPLICATION_PATH.'/views/scripts/partial/right_sidebar.phtml');?>
+
+</div>

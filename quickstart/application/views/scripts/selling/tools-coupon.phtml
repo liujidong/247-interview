@@ -1,0 +1,34 @@
+<? $this->placeholder("extra_header")->captureStart();?>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<? $this->placeholder("extra_header")->captureEnd();?>
+<? $this->placeholder("extra_footer")->captureStart();?>
+<script src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<? $this->placeholder("extra_footer")->captureEnd();?>
+<link rel="stylesheet" href="/v2/css/pages/dashboard.css">
+<div id="dashboard" class="row page-layout dashboard">
+
+    <section class="small-12 medium-12 large-9 columns">
+        <div class="row">
+            <div class="small-3 medium-3 large-2 columns">
+                <? require_once(APPLICATION_PATH.'/views/scripts/partial/left_sidebar.phtml');?>
+            </div>
+            <!-- side nav end -->
+
+            <div id="sellingvenue-coupon" class="small-9 medium-9 large-10 columns sellingvenue-coupon">
+                <? require_once(APPLICATION_PATH.'/views/scripts/partial/horizontal_subnav.phtml');?>
+                <!-- dashboard sub nav end -->
+
+                <? require_once(APPLICATION_PATH.'/views/scripts/partial/horizontal_subnav2.phtml');?>
+                <!-- dashboard nav end -->
+
+                <div id="tgt_datatable">
+                    <?=$this->datatable_view?>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <? require_once(APPLICATION_PATH.'/views/scripts/partial/right_sidebar.phtml');?>
+
+</div>

@@ -1,0 +1,56 @@
+<a href="<?=$this->site_url?>"><img src="<?= getSiteMerchantUrl(SHOPINTEREST_LOGO);?>"></a><br>
+We got a new wallet activity withdraw request:<br><br>
+
+
+<table style="border: 1px solid #e2e2e2; display: table;">
+    <thead>
+        <tr>
+            <th style="border: 1px solid #e2e2e2;">Attr Name</th>
+            <th style="border: 1px solid #e2e2e2;">Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <span>Wallet Activity</span>
+            </td>
+            <td>
+                ID = <?=$this->wa->getId()?>, Amount = <?=$this->wa->getAmount()?>, Balance = <?=$this->wa->getCurrentBalance()?>.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>Reference</span>
+            </td>
+            <td>
+                Type = <?=$this->wa->getType()?>, RefID = <?=$this->wa->getRefId()?>.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>User</span>
+            </td>
+            <td>
+                ID = <?=$this->user['id']?>, Username = <?=$this->user['username']?>.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>URL</span>
+            </td>
+            <td>
+                <?= getSiteMerchantUrl("/admin/payment-detail?id=" . $this->wa->getId())?>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<br><br>
+
+The Shopintoit team<br>
+
+PS - Check our FAQs for any other questions you may have, or contact us at <a href="mailto:xxx@shopintoit.com">xxx@shopintoit.com</a> for whatever you need!<br>
+
+Find us in Facebook - <a href="https://www.facebook.com/Shopintoit">https://www.facebook.com/Shopintoit</a><br>
+Follow us in Twitter - <a href="https://twitter.com/shopintoit">https://twitter.com/shopintoit</a><br>
+Pin & Share in Pinterest - <a href="http://www.pinterest.com/shopintoit/">http://www.pinterest.com/shopintoit/</a><br>

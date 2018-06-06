@@ -1,0 +1,36 @@
+** Server Installation
+
+1. download the zipped pincommerce source file to your local machine in GitHub,
+make sure use the master branch.
+
+http://github.com/liangdev/pincommerce/archive/master.zip
+
+After downloading it, you should get a zipped file named "pincommerce-master.zip"
+
+2. upload "pincommerce-master.zip" to the to-be-installed server
+
+$ scp -i ~/keys/id_rsa.key ~/Downloads/pincommerce-master.zip xxx@shop-dev-daemon01.cloudapp.net:~/
+
+3. logon to the server shop-dev-daemon01, unzip the source file
+
+$ unzip pincommerce-master.zip
+
+$ ls
+pincommerce-master pincommerce-master.zip
+
+4. cd into pincommerce-master and execute install.sh
+
+$ cd pincommerce-master
+$ ./install.sh
+
+
+** Newly added packages
+
+yum install php-devel
+yum install curl-devel
+yum install php-pear
+yum install zlib-devel
+yum install gcc
+yum install make
+pecl install pecl_http
+You should add "extension=http.so" to php.ini

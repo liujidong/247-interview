@@ -1,0 +1,57 @@
+<div id="container" class="row">
+<div class="twelve columns">
+<? require_once(APPLICATION_PATH.'/views/scripts/partial/subnav.phtml');?>
+    <h1>Edit <span class="gentium">your</span> Profile</h1>
+    <div class="row">
+        <div id="signup" class="panel ten columns centered">
+            <div class="row">
+                <div class="six columns">
+                    <form>
+                        <div class="row">
+                            <div class="twelve columns">
+                                <input name="username" type="text" placeholder="Email" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="twelve columns">
+                                <input name="password" type="password" placeholder="Password" />
+                            </div>
+                        </div>
+                        <div class="row collapse">
+                            <div class="six columns">
+                                <span class="prefix">http://pinterest.com/</span>
+                            </div>
+                            <div class="six columns">
+                                <input name ="pinterest_username" type="text" placeholder="Username">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="twelve columns">
+                                <input name="addr1" type="text" placeholder="Address 1" />
+                                <input name="addr2" type="text" placeholder="Address 2" />
+                                <input name="city" type="text" placeholder="City" />
+                                <input name="state" type="text" placeholder="State" />
+                                <input name="zip" type="text" placeholder="Zip Code" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <button id="getstartedbutton" name="submit" type="submit" value="submit" class="button radius alert large" >Save Profile</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="six columns">
+                    <div class="row">
+                        <img src="//tctechcrunch2011.files.wordpress.com/2012/06/shopinterest.png?w=271" width="107" height="117">
+                        <input type="file" name="file" id="file" />
+                    </div>
+                    <div class="row">
+                        <input name="store_name" type="text" placeholder="Store Name" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="one column">&nbsp</div>
+    </div>
+	</div><!-- end content -->
+</div>
+</div><!-- end container -->

@@ -1,0 +1,2 @@
+/* DONT EDIT. THIS IS A AUTO-GENERATED FILE. PLEASE EDIT FILES under quickstart/application/views/mustache INSTEAD*/
+shopinterest.templates.featured_products_row='<td><a href=\"{{store_url}}\">{{store_id}}</a></td><td>{{product_id}}</td><td><a href=\"{{product_url}}\">{{product_url}}</a></td><td>{{score}}</td>                ';

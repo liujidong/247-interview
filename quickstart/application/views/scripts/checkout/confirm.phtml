@@ -1,0 +1,160 @@
+<? $this->placeholder("extra_header")->captureStart();?>
+<link rel="stylesheet" href="/v2/css/pages/checkout.css">
+<? $this->placeholder("extra_header")->captureEnd();?>
+
+<div id="checkout-page" class="row page-layout confirm-pay">
+
+    <section class="small-12 medium-12 large-9 columns page-layout-main">
+        <header class="module-header checkout-header">
+            <ul class="hide-for-iosapp breadcrumbs">
+                <li class="finished"><a href="#"><span class="list-num">1</span> Shopping Cart</a></li>
+                <li class="finished"><a href="#"><span class="list-num">2</span> Payment</a></li>
+                <li class="current"><a href="#"><span class="list-num">3</span> Confirm</a></li>
+            </ul>
+            <div class="row">
+                <div class="large-10 medium-10 small-10 columns">
+                    <h1 class="title">Confirm your order: <span id="order_id"><?=$this->order->getOrderNum()?></span></h1>
+                </div>
+                <div class="large-2 medium-2 small-2 columns">
+                    <a href="/buyer-protection" target="_blank"><img alt="Buyer Protection" title="Buyer Protection" width="100" height="37" src="/img/shopper-approved-sm.png"></a>
+                </div>
+            </div>
+        </header>
+        <? if(!empty($this->errors)) {?>
+        <header class="module-header checkout-header">
+            <h5 class="title">
+                Some errors occurred:
+            </h5>
+            <ul>
+                <? foreach($this->errors as $e){?>
+                <li><?=$e?></li>
+                <? } ?>
+            </ul>
+            <h5>please go back to the <a href="/cart">cart page</a> to remove the corresponding products.</h5>
+        </header>
+        <? } ?>
+        <div class="cart-table confirm-table">
+            <div class="hide-for-iosapp cart-thead">
+                <div class="inner">
+                    <span class="small-3 medium-3 large-3 columns">Things you bought</span>
+                    <span class="small-2 medium-2 large-2 columns">Quantity & Price</span>
+                    <span class="small-2 medium-2 large-2 columns">Shipping</span>
+                    <span class="small-2 medium-2 large-2 columns">Tax</span>
+                    <span class="small-2 medium-2 large-2 columns">Discount</span>
+                    <span class="small-2 medium-2 large-2 columns">Subtotal</span>
+                </div>
+            </div>
+            <div class="clearfix cart-tbody">
+                <? foreach ($this->items as $store_id => $items){?>
+                <div class="cart-list" order_id="<?=$this->order_ids[$store_id]?>" store_id="<?=$store_id?>">
+                    <div class="large-12 columns header">
+                        <div class="title">
+                            <em>store:</em>
+                            <a href="<?=$items[0]['store_url']?>" target="_blank">
+                                <strong class="red"><?=$items[0]['store_name']?></strong>
+                            </a>
+                        </div>
+                        <div class="divider"></div>
+                    </div>
+                    <? foreach ($items as $product){?>
+                    <div class="clearfix cart-item">
+                        <div class="ios-small-12 small-2 medium-1 large-1 columns item-image">
+                            <div class="image-holder">
+                                <a href="<?=$product['product_url']?>" target="_blank">
+                                    <img src="<?=$product['thumb']?>" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="ios-small-12 small-2 medium-2 large-2 columns item-desc">
+                            <a class="item-name" href="<?=$product['product_url']?>" target="_blank"><?=$product['name']?></a>
+                            <? if(!empty2($product['custom_fields'])) {?>
+                            <p class="shipping-option"><?=$product['custom_fields']?></p>
+                            <? } ?>
+                        </div>
+                        <div class="ios-small-12 small-2 medium-2 large-2 columns item-price">
+                            <span class="item-quantity"><?=$product['product_quantity']?></span>
+                            x
+                            <span class="item-sprice"><?=$product['currency_symbol']?><?=$product['product_price']?></span>
+                        </div>
+                        <div class="ios-small-12 small-2 medium-2 large-2 columns item-shipping">
+                            <?=$product['currency_symbol']?><?=$product['product_shipping']?>
+                        </div>
+                        <div class="ios-small-12 small-2 medium-2 large-2 columns item-tax">
+                            <?=$product['currency_symbol']?><?=$product['tax']?>
+                        </div>
+                        <div class="ios-small-12 small-2 medium-2 large-2 columns item-discount">
+                            <?=$product['discount']?>
+                        </div>
+                        <div class="ios-small-12 small-2 medium-2 large-2 columns item-subtotal">
+                            <?=$product['currency_symbol']?><?=$product['subtotal'] + $product['tax']?>
+                        </div>
+                    </div>
+                    <? } ?>
+                    <!-- cart list end -->
+                    <div class="large-12 columns">
+                        <div class="total">
+                            <select name="shipping-option" id="shipping-option" class="shipping-option">
+                                <? foreach($this->stores[$store_id]['shipping_options'] as $so) { ?>
+                                <option value="<?= $so['base']?>:<?= $so['additional']?>:<?= $so['shipping_price']?>:<?= $so['so_name']?>"
+                                    <? if($so['so_name'] === 'Standard') { echo "selected";} ?>>
+                                    <?=$this->currency_symbol?><?= $so['shipping_price']?>: <?= $so['so_name']?>
+                                </option>
+                                <? } ?>
+                            </select>
+                            Total: <strong class="store-total">
+                                <?=$this->currency_symbol?><?=$this->stores[$store_id]['total']?>
+                            </strong>
+                        </div>
+                    </div>
+                </div>
+                <?}?>
+                <div class="large-12 columns confirm-summary">
+                    <div class="ios-small-12 small-5 medium-5 large-5 columns summray-address">
+                        <div class="header">
+                            <h4>Delivery Address</h4>
+                        </div>
+                        <div class="content">
+                            <span id="shipping_name"><?=$this->order->getShippingFirstName()?> <?=$this->order->getShippingLastName()?></span>
+                            <br>
+                            <span id="shipping_addr1"><?=$this->order->getShippingAddr1()?></span><br>
+                            <span id="shipping_addr2"><?=$this->order->getShippingAddr2()?></span><br>
+                            <span id="shipping_cs"><?=$this->order->getShippingCity()?>, <?=$this->order->getShippingState()?></span><br>
+                            <span id="shipping_country"><?=$this->order->getShippingCountry()?></span><br>
+                            <span id="shipping_zip"><?=$this->order->getShippingZip()?></span><br>
+                        </div>
+                    </div>
+                    <div class="ios-small-12 small-3 medium-3 large-3 columns summary-payment">
+                        <div class="header">
+                            <h4>Payment</h4>
+                        </div>
+                        <div class="content"><?=$this->order->getPaymentMethod()?></div>
+                    </div>
+                    <div class="ios-small-12 small-4 medium-4 large-4 columns summary-fees">
+                        <div class="content">
+                            Subtotal: <strong id="order_price"><?=$this->currency_symbol?><?=$this->price_total?></strong><br>
+                            Tax Total: <strong id="order_tax"><?=$this->currency_symbol?><?=$this->tax_total?></strong><br>
+                            Shipping Total: <strong id="order_shipping"><?=$this->currency_symbol?><?=$this->shipping_total?></strong><br>
+                            <span class="summary-total">Total: <strong id="order_total"><?=$this->currency_symbol?><?=$this->total?></strong></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cart-tfooter text-right">
+                <? if(empty($this->errors)) {?>
+                <a href="javascript:;" class="submit-button finish-button" id="button-finish" next_action="<?=$this->next_action?>">
+                    Finish!
+                </a>
+                <? } ?>
+            </div>
+        </div>
+
+    </section>
+
+    <? require_once(APPLICATION_PATH.'/views/scripts/partial/right_sidebar.phtml');?>
+    <!-- sidebar items   -->
+
+</div>
+<div id="receipt" class="reveal-modal" data-reveal data-options="closeOnBackgroundClick:false;"></div>
+<div id="gray-panel" class="reveal-modal tiny" data-reveal data-options="closeOnBackgroundClick:false;">
+    <p class="text-center">Please Wait ...</p>
+</div>

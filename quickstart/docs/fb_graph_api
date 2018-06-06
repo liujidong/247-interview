@@ -1,0 +1,53 @@
+
+** Getting Started: The Graph API
+
+reference: 
+http://developers.facebook.com/docs/getting-started/graphapi/
+
+
+The Graph API is the primary way to get data in and out of Facebook's Open Graph. 
+It's a low-level HTTP-based API that you can use to query data, post new stories, 
+create check-ins or any of the other tasks that an app might need to do. 
+Facebook's Open Graph allows you to define new objects and actions in a user's social graph, 
+and the way that you create new instances of those actions and objects is via the Graph API.
+
+The Open Graph itself is a graph in the computer science sense. It's not a simple table of data. 
+It's a series of nodes which all connect to each other. 
+This document is meant as an introduction about how to not only query nodes in the graph, 
+but also how you can query connections between nodes in the Open Graph. 
+Those connections are what let you post to a user's timeline, 
+create location check-ins or work with a user's photos. 
+So understanding when you need a node and when you need to create a connection is an important distinction.
+
+Graph API explorer:
+http://developers.facebook.com/tools/explorer
+
+
+** Graph API
+
+reference:
+http://developers.facebook.com/docs/reference/api/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

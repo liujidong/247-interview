@@ -1,0 +1,80 @@
+<div id="feature">
+<div id="container" class="row">
+
+<div class="twelve columns">
+	<h1 style="font-size: 23px;">SUMMER EXTRAVAGANZA SALE -  <span class="gentium">Great Deals for a Limited Time</span> - GET THEM NOW!</h1>
+		<div id="signup">
+<div class="signup_box">
+          <div class="row">
+            <div class="twelve columns learn_more">  
+                <form method="post">
+                    Enter your email to learn about upcoming deals<input name="shopper_username" type="text" placeholder="Email" /><button id="" name="submit" type="submit" value="submit" gaid="flashdeal-subscribe" class="button radius secondary medium gat-click" >»</button>
+                    <?if($this->thankyou) {?><div class="alert-box success" style="display: inline;margin-left: 25px">Thank You!</div><?}?>
+                </form>
+            </div>
+          </div>
+</div>
+
+</div><!-- END SIGNUP -->
+
+	</div>
+</div>
+
+</div><!-- end container -->
+	<div class="twelve columns centered">
+	    <?php foreach($this->deals as $id => $deal){?>
+    	    <?php if($id % 2 == 0){?>
+    		<div class="row">
+    		<?php }?>
+			<div class="six columns">
+			<div class="product row <?php if($deal['grayed_out']) echo 'sold_out';?>">
+				<div class="row">
+					<div class="six columns">
+						<div class="main_prod_img"><a href="<?=$deal['product_url']?>" target="_blank"><img src="<?=$deal['product_pics']['mobile_img']?>" class="prod_img"></a></div>
+						<p class="quantity">Only <span><?=$deal['usage_limit'];?></span> available at this price!</p>
+                                                <p class="regprice">Regular Price <span><?=$deal['currency_symbol'];?><?=$deal['product_regular_price'];?></span></p>
+						<p class="saleprice">Sale Price <span><?=$deal['currency_symbol'];?><?=$deal['product_price'];?></span></p>
+						<p class="shipping">
+						    <?php if($deal['product_shipping'] == '0.00'){?>
+						    <span>Shipping is free.</span>
+						    <?php }else{?>
+						    Shipping: <?=$deal['currency_symbol'];?><?=$deal['product_shipping'];?>
+						    <?php }?>
+						</p>
+                                                <form method="post">
+                                                    <input type="hidden" name="coupon_code" value="<?=$deal['code']?>">
+                                                    <button type="submit" name="payment_submit" class="button success radius large" <?=$deal['button_disabled']?'disabled':'';?>><?=$deal['button_text'];?></button>
+                                                </form>
+						<div class="savings"><p>Save <b><?=$deal['percentage_off'];?>%</b></p></div>
+					</div>
+					<div class="six columns">
+						<h2 class="prod_name"><?=$deal['product_name'];?></h2>
+                                                <span class="prod_desc"><p><?=  shorten_description($deal['product_description'], $deal['product_url'], 300);?></p></span>
+						
+					</div>
+				</div>
+				<div class="row secondary">
+					<div class="two columns">
+						<div class="favicon"><img src="<?=$deal['store_logo'];?>"></div>
+					</div>
+					<div class="six columns">
+						<p class="small">Sold by</p>
+						<h2><a target="_blank" href="<?=$deal['store_url'];?>" class="store_url"><?=$deal['store_name'];?></a></h2>
+						<h3><a target="_blank" href="<?php echo $deal['store_url'].'/feedback#returnpolicy'?>" class="return-policy">Return Policy »</a></h3>
+					</div>
+					<div class="four columns">
+						<span class="tgt_fbfeed_button_2"></span>
+                                                <span class="tgt_tweet_button_2"></span>
+                                                <span class="tgt_pin_button_2"></span>
+					</div>
+				</div>
+			</div>
+			</div>
+			
+		<?php if($id % 2 == 1 || !isset($this->deals[$id+1])) {?>
+		</div>
+		<?php }?>
+		<?php }?>
+	</div>
+<center><a href="https://www.paypal.com/us/webapps/mpp/security/safe-online-shopping" target="_blank"><img src="img/paypa_logo.png" alt="" style="padding-top: 20px;" /></a></center>
+</div>

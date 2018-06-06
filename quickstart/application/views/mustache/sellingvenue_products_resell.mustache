@@ -1,0 +1,82 @@
+<form action="" data-abide="ajax" class="product-item">
+    <input type="hidden" name="id" class="product-id" value="{{id}}">
+    <input type="hidden" name="resell" value="1"> 
+    <input type="hidden" name="quantity" value="1">   
+    <div class="alert-field"></div>
+    <header class="row header">
+        <div class="small-6 medium-6 large-6 columns">
+            <input type="submit" value="save" class="left module-button save-button">
+        </div>
+        <div class="small-6 medium-6 large-6 columns">
+            <a href="javascript:;" class="right module-button delete-button">Delete</a>
+        </div>
+    </header>
+    <div class="item-row data-abide-input-container">
+        <div class="small-2 medium-2 large-2 columns">
+            <label class="required">Source URL</label>
+        </div>
+        <div class="small-10 medium-10 large-10 columns">
+            <input type="url" required value="{{purchase_url}}" name="purchase_url">
+            <small class="error">Source URL is required.</small>
+        </div>
+    </div>
+    <div class="item-row data-abide-input-container">        
+        <div class="small-2 medium-2 large-2 columns">
+            <label class="required">Images</label>
+        </div>
+        <div class="small-10 medium-10 large-10 columns">
+            <input type="hidden" required pattern="^1$" value="{{has_image}}" class="has_image">
+            <ul class="images js-sortable">
+                {{#pictures}}
+                <li class="image-item" picture-id="{{picture_id}}" product-id="{{product_id}}">
+                    <img src="{{url}}">
+                    <a href="javascript:;" class="delete-image">&times</a>
+                </li>
+                {{/pictures}}
+                <li class="add-image">
+                    <a href="javascript:;"><i class="icon fi-plus"></i></a>
+                </li>
+            </ul>
+            <small class="error">Image is required</small>            
+        </div>
+    </div>
+    <div class="item-row data-abide-input-container">
+        <div class="small-2 medium-2 large-2 columns">
+            <label class="required">Name</label>
+        </div>
+        <div class="small-10 medium-10 large-10 columns">
+            <input type="text" required value="{{name}}" name="name">
+            <small class="error">Name is required</small>
+        </div>
+    </div>
+    <div class="item-row">
+        <div class="small-2 medium-2 large-2 columns">Description</div>
+        <div class="small-10 medium-10 large-10 columns">
+            <textarea name="description">{{description}}</textarea>
+        </div>
+    </div>
+    <div class="item-row data-abide-input-container">
+        <div class="small-2 medium-2 large-2 columns">
+            <label class="required">Category</label>
+        </div>
+        <div class="small-10 medium-10 large-10 columns">
+            {{> global_category_dropdown}}
+            <small class="error">Category is required</small>
+        </div>
+    </div>
+    <div class="item-row">
+        <div class="small-2 medium-2 large-2 columns">Tags</div>
+        <div class="small-10 medium-10 large-10 columns">
+            <input type="text" name="categories" value="{{tags}}">
+        </div>
+    </div>
+    <div class="item-row price-row data-abide-input-container">
+        <div class="small-2 medium-2 large-2 columns">
+            <label class="required">Price</label>
+        </div>
+        <div class="small-10 medium-10 large-10 columns">
+            <input type="text" placeholder="$" required name="price" value="{{price}}">
+            <small class="error">Price is required.</small>
+        </div>
+    </div>
+</form>

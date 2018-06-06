@@ -1,0 +1,22 @@
+<div id="container" class="row">
+<div class="twelve columns">
+<? require_once(APPLICATION_PATH.'/views/scripts/partial/subnav.phtml');?>
+    <h1>Account <span class="gentium">Verification</span></h1>
+    <div class="row">
+                    <div class="panel eight columns centered">
+                        <div class="row">
+                            <div class="twelve columns">
+                                <?if($this->status === 0) {?>
+                                <p>Great! Your account is now verified.</p>
+                                <a href="<?=$this->next_page?>" class="button alert">Continue</a>
+                                <?} else {?>
+                                <!-- show if not verified -->
+                                <p>We are unable to verify your account. Please contact customer support.</p>
+                                <?}?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+	</div><!-- end content -->
+</div>       
+</div><!-- end container -->

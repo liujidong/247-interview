@@ -1,0 +1,63 @@
+#
+# Minimal Sphinx configuration sample (clean, simple, functional)
+#
+
+source search_products
+{
+        type                    = mysql
+
+	sql_host		= {{db_host}}
+	sql_user		= {{db_user}}
+	sql_pass		= {{db_password}}
+	sql_db			= {{db_name}}
+	sql_port		= 3306	# optional, default is 3306
+
+        sql_query		= \
+		select sp.id, sp.id as search_product_id, sp.product_name, sp.category_description \
+                from search_products sp \
+                join stores s on (sp.store_id = s.id) \
+                join search_product_converted_pictures spcp on (sp.id = spcp.search_product_id) \
+                where sp.product_name!='' and sp.product_price!='' and sp.product_quantity!='' and sp.excluded_in_search=0 and \
+                s.excluded_in_search=0 and \
+                sp.store_status = 2 \
+                and spcp.converted_192 != '' \
+                group by sp.id
+
+        sql_attr_uint           = search_product_id
+#        sql_attr_timestamp      = date_added
+        
+        sql_query_info		= SELECT * FROM search_products WHERE id=$id
+
+}
+
+
+index search_products
+{
+        source                  = search_products
+        path                    = /var/lib/sphinx/search_products
+        docinfo                 = extern
+        charset_type            = sbcs
+}
+
+indexer
+{
+        mem_limit               = 128M
+}
+
+searchd
+{
+        listen                  = 9312
+        listen                  = 9306:mysql41
+        log                     = /var/log/sphinx/searchd.log
+        query_log               = /var/log/sphinx/query.log
+        read_timeout            = 5
+        max_children            = 30
+        pid_file                = /var/run/sphinx/searchd.pid
+        max_matches             = 1000
+        seamless_rotate         = 1
+        preopen_indexes         = 1
+        unlink_old              = 1
+        workers                 = threads # for RT to work
+        binlog_path             = /var/data
+	compat_sphinxql_magics	= 0
+}

@@ -1,0 +1,2 @@
+/* DONT EDIT. THIS IS A AUTO-GENERATED FILE. PLEASE EDIT FILES under quickstart/application/views/mustache INSTEAD*/
+shopinterest.templates.fbconnect_button='<a href=\"\" id=\"{{id}}\"><img width=\"71\" height=\"22\" src=\"/img/fb-login.png\"></a>';

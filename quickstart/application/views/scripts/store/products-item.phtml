@@ -1,0 +1,225 @@
+<? $this->placeholder("extra_header")->captureStart();?>
+<link rel="stylesheet" href="/v2/css/pages/productdetail.css">
+<? $this->placeholder("extra_header")->captureEnd();?>
+
+<input type="hidden" id="aid" value="<?=$this->user['aid']?>">
+<input type="hidden" id="associate_status" value="<?=$this->associate_status?>">
+<input type="hidden" class="contact_merchant_toemail" value="<?= $this->visit_merchant['username']; ?>" />
+<input type="hidden" class="contact_merchant_toname" value="<?= $this->visit_store['name']; ?>" />
+
+<div id="product-item" class="row page-layout">
+    <section class="small-12 medium-12 large-9 columns page-layout-main">
+        <header class="module-header search-header">
+            <h1 class="title">
+                <!-- <span style="font-weight:400;">Electronics</span> / Accessories -->
+                <?echo isset($this->global_cat['path']) ? $this->global_cat['path'] : "" ?>
+            </h1>
+        </header>
+
+        <div class="row">
+            <div class="small-12 medium-5 large-5 columns">
+                <div class="product-item-orbit">
+                    <ul class="no-bullet" data-orbit data-options="animation_speed:500;timer_speed:1500;puase_on_hover:true;resume_on_mouseout:true;slide_number:false;timer:false;" style="height:50px;overflow:hidden;">
+                        <?php foreach ($this->product['pictures'][550] as $i => $pic ){ ?>
+                        <li><img src="<?=$pic?>" alt="" <?if($this->local && $this->product['quantity']<1){echo 'style="filter: url(filters.svg#grayscale);filter: gray;-webkit-filter: grayscale(1);"';}?>></li>
+                        <?php } ?>
+                    </ul>
+                </div>
+            </div>
+            <!-- orbit end -->
+
+            <div class="small-12 medium-7 large-7 columns">
+                <h2 class="product-item-name"><?=$this->product['name'];?></h2>
+                <div class="product-item-seller">Sold by
+                    <a class="store-link" href="<?=$this->product['store_url']?>" target="_blank"><?=$this->store['name'];?></a>
+                </div>
+
+                <div class="buy-item">
+                    <div class="clearfix header">
+                        <div class="left negotiate disabled">
+                            <a href="#"><i class="icon fi-comments"></i><span>Negotiating</span></a>
+                        </div>
+                        <div class="left disabled">
+                            <a href="#"><i class="icon fi-bookmark"></i><span>Want</span></a>
+                        </div>
+                        <div class="left">
+                            <ul id="share-list" class="no-bullet">
+                                <li class="tgt_tweet_button_2"><a href="#"></a></li>
+                                <li class="tgt_fbfeed_button_2"><a href="#"></a></li>
+                                <li class="tgt_pin_button_2"><a href="#"></a></li>
+                            </ul>
+                        </div>
+<!--                         <div class="left">
+                            <a href="#" data-dropdown="share-list" class="module-dropdown no-arrow share-dropdown"><i class="icon fi-share"></i><span>Share</span></a>
+                        </div>
+                        <ul id="share-list" data-dropdown-content class="f-dropdown module-dropdown-content no-arrow">
+                            <li class="tgt_tweet_button_2"><a href="#"></a></li>
+                            <li class="tgt_fbfeed_button_2"><a href="#"></a></li>
+                            <li class="tgt_pin_button_2"><a href="#"></a></li>
+                        </ul>
+ -->                    </div>
+                    <div class="divider"></div>
+                    <div class="large-12 columns">
+                        <? if($this->local) { ?>
+                        <p class="clearfix">
+                            <span class="item-left pricing"><?=$this->currency_symbol?><?=$this->product['price']?></span>
+                            <span class="item-right pricing">
+                                <? if($this->product['quantity'] > 0) { ?>
+                                Availability: <?=$this->product['quantity']?> in Stock
+                                <? } else {?>
+                                Availability: Sold Out
+                                <? } ?>
+                            </span>
+                        </p>
+                        <? if(count($this->product['shipping_destinations'])>0){ ?>
+                        <div class="clearfix">
+                            <p>
+                                <label>Shipping</label>
+                            </p>
+                            <ul class="no-bullet" style="margin:-0.725rem 0 1.25rem;">
+                                <? foreach($this->product['shipping_destinations'] as $sd){?>
+                                <li>
+                                    <?=$sd['name']?> <?=$sd['dest_name']?>
+                                    (base: <?=$this->currency_symbol?><?=$sd['base']?>,
+                                    additional: <?=$this->currency_symbol?><?=$sd['additional']?>)
+                                </li>
+                                <? } ?>
+                            </ul>
+                        </div>
+                        <? } ?>
+                        <div class="clearfix">
+                            <p>
+                                <label>Quantity</label>
+                                <input class="product-quantity" type="text" value="1">
+                            </p>
+                        </div>
+                        <div <? if(count($this->custom_fields)<1){ echo 'style="display: none;"';}?>>
+                            <label>Customize Field</label>
+                            <input type="hidden" class="product-cf" value="">
+                            <select name="custom-filed" id="custom-field" class="selector">
+                                <option>Please select</option>
+                                <? foreach($this->custom_fields as $f){?>
+                                <li>
+                                    <option value="<?=$f['name']?>" quantity="<?=$f['quantity']?>">
+                                        <?=$f['name']?> (<?=$f['quantity']?> in Stock)
+                                    </option>
+                                </li>
+                                <? } ?>
+                            </select>
+                        </div>
+                        <? } else {?>
+                        <p class="clearfix">
+                            <span class="item-left pricing"><?=$this->currency_symbol?><?=$this->product['price']?></span>
+                        </p>
+                        <div class="clearfix">
+                            <p>
+                                <label>Quantity</label>
+                                <input class="product-quantity" type="text" value="1">
+                            </p>
+                        </div>
+                        <? } ?>
+                        <div class="row" style="margin-top:2.5rem;">
+                            <div class="small-7 medium-7 large-7 columns">
+                                <a href="<?=get_url('', '/cart')?>">
+                                    <span class="module-button red product-item-price cart-link">View My Cart</span>
+                                </a>
+                            </div>
+                            <div class="small-5 medium-5 large-5 columns">
+                                <span class="native_add_to_cart"
+                                    store_id="<?=$this->store['id']?>"
+                                    product_id="<?=default2Int($this->product['id'])?>"
+                                    product_quantity="<?=default2Int($this->product['quantity'])?>"
+                                    currency="<?=$this->currency?>"
+                                    dealer="<?=default2String($this->product['dealer'])?>"
+                                    external_id="<?=default2String($this->product['external_id'])?>">
+                                    <? if($this->product['resell']!= RESELL_WITHOUT_CHECKOUT){ ?>
+                                    <a class="server-widget" style="display:none;">Buy Now</a>
+                                    <?
+                                    //$this->addToCart($this->product['quantity']);
+                                    } else {
+                                    $this->addToCart(999);
+                                    } ?>
+                              </span>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-12 medium-12 large-12 columns">
+                <div class="product-item-detail">
+                    <div class="module-header">
+                        <h3 class="title">Details</h3>
+                    </div>
+                    <p><?=$this->product['description'];?></p>
+                </div>
+                <div class="product-item-sellerinfo">
+                    <div class="module-header">
+                        <h3 class="title">Seller Info</h3>
+                    </div>
+                    <div class="row">
+                        <div class="small-3 medium-3 large-3 columns">
+                            <img src="<?=$this->store['converted_logo']?>" alt="Seller Logo" class="seller-logo">
+                            <div style="margin-top:1.25rem;">
+                                <a id="contact" class="module-button contact need_login">Contact Seller</a>
+                            </div>
+                        </div>
+                        <div class="small-9 medium-9 large-9 columns">
+                            <div class="seller-name">
+                                <a href="/store/<?=$this->store['subdomain']?>"><?=$this->store['name']?></a>
+                            </div>
+                            <div class="rating" style="display:none;">
+                                <span class="rating-star"><span class="rating-star-4.5"></span></span>
+                                <span>4.5</span>
+                            </div>
+                            <? if(!empty($this->store['external_website'])){ ?>
+                            <p class="seller-site"><a href="<?=$this->store['external_website']?>" title="">Web Site</a></p>
+                            <? } ?>
+                            <p class="seller-info-item"><strong>Country:</strong><?=$this->store['country']?></p>
+                            <p class="seller-info-item"><strong>Description:</strong><?=$this->store['description']?></p>
+                            <p class="seller-info-item"><strong>Return policy:</strong>
+                                <?=$this->store['return_policy']?>
+                            </p>
+                        </div>
+                    </div>
+                    <p class="seller-desc">
+                        <?=$this->store['description']?>
+                    </p>
+                </div>
+                <div class="buy-after-view">
+                    <div class="module-header">
+                        <h3 class="title">What Other Items Do Customers Buy After Viewing This Item?</h3>
+                    </div>
+                    <div class="products-list">
+                        <ul class="feature-products">
+                            <? foreach($this->recommend_products as $product) {?>
+                            <li class="product-item">
+                                <?
+                                if($this->visit_store['subdomain'] == 'marketplace'){
+                                $p_url = "/store/". $this->store['subdomain'] . "/products/item?ASIN=" . $product['ASIN'];
+                                }else {
+                                $p_url = "/store/".$this->store['subdomain']."/products/item?id=" . $product['id'];
+                                }
+                                ?>
+                                <a href="<?=$p_url?>">
+                                    <div class="holder">
+                                        <span><img src="<?=reset($product['pictures'][550])?>" class="product-item-image"></span>
+                                    </div>
+                                </a>
+                                <div class="divider"></div>
+                                <div class="product-item-name"><?=$product['name']?></div>
+                                <div class="product-item-pricing"><?=$this->currency_symbol?><?=$product['price']?></div>
+                            </li>
+                            <?}?>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <? require_once(APPLICATION_PATH.'/views/scripts/partial/right_sidebar.phtml');?>
+
+</div>
+<?=$this->js_code?>

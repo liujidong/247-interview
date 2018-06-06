@@ -1,0 +1,72 @@
+
+** Installation
+
+Reference: http://redis.io/download
+
+Installation
+Download, extract and compile Redis with:
+$ wget http://redis.googlecode.com/files/redis-2.6.10.tar.gz
+$ tar xzf redis-2.6.10.tar.gz
+$ cd redis-2.6.10
+
+$ yum install make
+$ yum install gcc
+$ yum install jemalloc
+$ make MALLOC=libc
+
+
+The binaries that are now compiled are available in the src directory. Run Redis with:
+$ src/redis-server
+You can interact with Redis using the built-in client:
+$ src/redis-cli
+
+** Install phpredis
+
+Reference: https://github.com/nicolasff/phpredis
+
+$ git clone https://github.com/nicolasff/phpredis.git
+$ yum install php-devel
+$ phpize
+$ ./configure [--enable-redis-igbinary]
+$ make && make install
+
+If you would like phpredis to serialize your data using the igbinary library, 
+run configure with --enable-redis-igbinary. make install copies redis.so to an 
+appropriate location, but you still need to enable the module in the PHP config 
+file. To do so, either edit your php.ini or add a redis.ini file in /etc/php5/conf.d 
+with the following contents: extension=redis.so.
+
+You can generate a debian package for PHP5, accessible from Apache 2 by 
+running ./mkdeb-apache2.sh or with dpkg-buildpackage or svn-buildpackage.
+
+Example program:
+
+<?php
+$redis = new Redis();
+$redis->connect('localhost', 6379);
+$redis->set('user', 'liang');
+echo $redis->get('user');
+?>
+
+** Redis auto-start & Usage
+
+Put redis init file under /etc/init.d
+
+# cp /var/www/html/pincommerce/build/redis /etc/init.d/
+
+Modify config (/usr/local/redis-2.6.10/redis.conf)
+
+data=./dir => data=/mnt/redis
+
+Usgae:
+
+service redis {start|stop|restart}
+
+Start with the default config file, redis can connect to each other
+and persistent data automatically.
+
+
+
+
+
+

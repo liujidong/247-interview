@@ -1,0 +1,800 @@
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css"/>
+<style>
+    img {
+        height: auto;
+        border: 0;
+        -ms-interpolation-mode: bicubic;
+        vertical-align: middle;
+    }
+    #pinpicker {
+        position: fixed;
+        padding: 10px;
+        width: 822px;
+        height: 522px;
+        top: 10px;
+        bottom: auto;
+        right: auto;
+        left: 380px;
+        overflow: hidden;
+        border: 1px solid rgb(153, 153, 153);
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+        border-bottom-right-radius: 3px;
+        border-bottom-left-radius: 3px;
+        margin: 0px;
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    }
+    
+    .reveal-modal-bg {
+        background-color: black;
+        opacity: 0.5 !important;
+    }
+    
+    #pinpicker .close-reveal-modal {
+        color: rgb(85, 85, 85);
+        font-size: 1.5em;
+    }
+    
+    #pinpicker_container {
+        width: 100%;
+        height: 468px;
+        border: none;
+        position: relative;
+        top: 10px;
+        line-height: 18px;
+        font-size: 13px;
+    }
+    
+    #pinpicker_content {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    
+    #servicePaneSpacer {
+        margin-left: 0;
+        min-height: inherit;
+    }
+    
+    #servicePane {
+        top: 20px;
+        position: absolute;
+        left: 10px;
+        width: 20%;
+        min-width: 132px;
+    }
+    
+    img#branding {
+        max-width: 150px;
+        padding-bottom: 1em;
+        font-size: 13px;
+    }
+    
+    #services {
+        padding-top: 5px;
+        padding-bottom: 5px;
+        height: 320px;
+        overflow-y: auto;
+    }
+
+    .subbranding {
+        font-style: italic;
+        padding-top: 1em;
+        font-size: 13px;
+    }
+    
+    i.sbicon-pinterest {
+        display: inline-block;
+        width: 18px;
+        height: 14px;
+        background-image: url('/img/32x32-pinterest.png');
+        background-repeat: no-repeat;
+        background-size: 14px 14px;
+    }
+    
+    .nav-list [class^="sbicon-"] {
+        padding-right: 5px;
+    }
+    
+    .nav-list a, .filelist a {
+        color: #333;
+        cursor: default;
+    }
+    
+    #bread {
+        background: white;
+        top: 0;
+        padding-top: 10px;
+        margin-left: 0;
+        position: absolute;
+    }
+    
+    #bread .breadcrumb {
+        padding: 3px 0 1px 15px;
+        margin-bottom: 0;
+        -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        -webkit-background-clip: padding-box;
+        -moz-background-clip: padding;
+        background-clip: padding-box;
+    }
+    
+    #picker {
+        padding-top: 50px;
+    }
+    
+    .breadcrumb_element {
+        display: inline-block;
+        text-shadow: 0 1px 0 #ffffff;
+        height: 30px;
+        line-height: 30px;
+        max-width: 130px;
+    }
+    
+    .ellipsize {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    .breadcrumb_element {
+        display: inline-block;
+        text-shadow: 0 1px 0 #ffffff;
+        height: 30px;
+        line-height: 30px;
+        max-width: 130px;
+        padding: 0 5px;
+        color: #999999;
+    }
+    
+    .picker_files_header {
+        position: absolute;
+        background: #FFF;
+        padding: 20px 10px 10px 10px;
+        padding-top: 10px;
+        padding-bottom: 0;
+        margin: -10px 0 0 12px;
+        font-size: 1.1em;
+        font-weight: 800;
+        border-bottom: 2px solid #F5F5F5;
+        width: 43%;
+        list-style: none;
+    }
+    
+    #picker_files {
+        overflow: hidden;
+        overflow-y: auto;
+        height: 315px;
+    }
+    
+    #picker_files li {
+        padding-bottom: 0;
+    }
+    
+    
+    .filelist {
+        margin-top: 40px;
+    }
+    
+    .nav-files {
+        margin-left: 1em;
+        font-size: 1.2em;
+        margin-bottom: 18px;
+    }
+    
+    .floatright {
+        float: right;
+    }
+    
+    .filelist>li:nth-child(odd)>a {
+        background-color: #edf3fe;
+    }
+    
+    .nav-list > li > a {
+        padding: 8px 15px;
+    }
+    
+    .noselect {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    
+    .pointer {
+        cursor: pointer;
+    }
+    
+    .icon-folder-open {
+        padding-right: 5px;
+    }
+    
+    #picker_files a.directory:hover {
+        background-color: #999999;
+    }
+    
+    #mainpane {
+        max-height: 480px;
+        overflow: hidden;
+    }
+    
+    #preview {
+        position: absolute;
+        top: 70px;
+        right: 5px;
+        height: 100%;
+        max-height: 450px;
+    }
+    
+    #preview h3 {
+        line-height: 27px;
+        font-size: 18px;
+    }
+    
+    #preview p {
+        margin: 0 0 9px;
+        font-size: 13px;
+        line-height: 18px;
+    }
+    
+    #action-group {
+        width: 100%;
+        position: absolute;
+        bottom: 60px;
+        margin-left: 30px;
+    }
+    
+    .multi-file-preview {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        height: 275px;
+        overflow: hidden;
+        overflow-y: auto;
+    }
+    
+    .multi-file-preview li {
+        padding: 5px 8px;
+        margin-bottom: 8px;
+    }
+
+    .selected-preview {
+        overflow: auto;
+        color: #000000;
+    }
+    
+    .tiny-thumbnail {
+        width: 36px;
+        max-height: 36px;
+        float: left;
+        padding: 0 10px 0 0;
+        display: inline-block;
+        text-align: center;
+        margin-right: 8px;
+    }
+    
+    .tiny-thumbnail > img {
+        max-height: 36px;
+        max-width: 50px;
+    }
+    
+    .thumbnail-spinner {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .multi-filename {
+        display: inline-block;
+        float: left;
+        left: 8px;
+        overflow: hidden;
+        position: relative;
+        width: 105px;
+    }
+    
+    .ellipsize {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    .selected-preview {
+        color: #000000;
+    }
+    
+    #pinlist {
+        margin-top: 20px;
+        width: 350px;
+    }
+    
+    #pinlist ul {
+        overflow: hidden;
+        overflow-y: auto;
+        height: 335px;
+    }
+    
+</style>
+<!-- load filepicker lib -->
+<script type="text/javascript">
+(function(a){if(window.filepicker){return}var b=a.createElement("script");b.type="text/javascript";b.async=!0;b.src=("https:"===a.location.protocol?"https:":"http:")+"//api.filepicker.io/v1/filepicker.js";var c=a.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c);var d={};d._queue=[];var e="pick,pickMultiple,pickAndStore,read,write,writeUrl,export,convert,store,storeUrl,remove,stat,setKey,constructWidget,makeDropPane".split(",");var f=function(a,b){return function(){b.push([a,arguments])}};for(var g=0;g<e.length;g++){d[e[g]]=f(e[g],d._queue)}window.filepicker=d})(document); 
+filepicker.setKey('AwSLXQo0vRIGtomgenR8Qz');
+</script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    
+    // pick a single file
+    $('.pick').click(function(e) {
+        e.preventDefault();
+        filepicker.pick(function(InkBlob) {
+            console.log(InkBlob.url);
+        });
+    });
+    
+    // pick multiple files
+    // convert to 6 sizes of photos for each picture
+    // store the original photo & the 6 sizes of photos
+    $('.pick').click(function(e) {
+        e.preventDefault();
+        filepicker.pickMultiple(function(inkBlobs) {
+            console.log(inkBlobs);
+            
+            console.log("Converting...");
+            var counter = 0;
+            var products_count = inkBlobs.length;
+            var max = products_count*6;
+            
+            for(i=0;i<products_count;i++) {
+                var rand = Math.floor(Math.random()*1000000001);
+                console.log('inkBlobs[i]', inkBlobs[i]);
+
+                filepicker.convert(inkBlobs[i], {width: 45, height: 45}, {location: 'S3', path: '/0/18/'+rand+'_45.jpg', access: 'public'},
+                    function(new_InkBlob){
+                        console.log('45x45', new_InkBlob.url);
+                        counter++;
+                    }
+                );
+                filepicker.convert(inkBlobs[i], {width: 70}, {location: 'S3', path: '/0/18/'+rand+'_70.jpg', access: 'public'},
+                    function(new_InkBlob){
+                        console.log('70', new_InkBlob.url);
+                        counter++;
+                    }
+                );
+                filepicker.convert(inkBlobs[i], {width: 192}, {location: 'S3', path: '/0/18/'+rand+'_192.jpg', access: 'public'},
+                    function(new_InkBlob){
+                        console.log('192', new_InkBlob.url);
+                        counter++;
+                    }
+                );
+                filepicker.convert(inkBlobs[i], {width: 236}, {location: 'S3', path: '/0/18/'+rand+'_236.jpg', access: 'public'},
+                    function(new_InkBlob){
+                        console.log('236', new_InkBlob.url);
+                        counter++;
+                    }
+                );
+                filepicker.convert(inkBlobs[i], {width: 550}, {location: 'S3', path: '/0/18/'+rand+'_550.jpg', access: 'public'},
+                    function(new_InkBlob){
+                        console.log('550', new_InkBlob.url);
+                        counter++;
+                    }
+                );
+                filepicker.convert(inkBlobs[i], {width: 736}, {location: 'S3', path: '/0/18/'+rand+'_736.jpg', access: 'public'},
+                    function(new_InkBlob){
+                        console.log('736', new_InkBlob.url);
+                        counter++;
+                    }
+                );    
+            }
+            
+            var t=setInterval(function(){
+                console.log('************timeout', counter, max);
+                if(counter >= max) {
+                    console.log('**************i am done');
+                    clearInterval(t);
+                }
+            }, 100)
+            
+        });
+    });
+    
+    // pick pins lightbox
+    $('.pick-pin').click(function(e) {
+        e.preventDefault();
+        
+        $('#pinpicker').reveal();
+        
+    });
+    
+    // go to select pins page
+    $('#picker_files li a').click(function(e) {
+        e.preventDefault();
+        
+        console.log('******************select pins');
+        $('.picker_files_header').hide();
+        $('#picker_files').hide();
+        
+        $('#pinlist').show();
+        $('#pinlist-spacer').show();
+        
+    });
+    
+    // go to select boards page
+    $('a[href="#/Pinterest/"]').click(function(e) {
+        console.log('******************select boards');
+        $('#pinlist').hide();
+        $('#pinlist-spacer').hide();
+        $('.picker_files_header').show();
+        $('#picker_files').show();
+    });
+    
+    $('#pinpicker-button').click(function(e) {
+        e.preventDefault();
+        if($('#pinpicker-iframe').length === 0) {
+            shopinterest.use('modules-pinpicker_lightbox', 'templates-pinpicker_lightbox', function(shopinterest) {
+                var pinpicker_lightbox = new shopinterest.modules.pinpicker_lightbox();
+                pinpicker_lightbox.show();
+            });
+        } else {
+           $('#pinpicker-iframe').show();
+           $('#pinpicker_shade').show();
+        }
+        
+    });
+    
+    $('#store_url').click(function(e) {
+        var url = $('#pin_url').val();
+        var dst_45 = '/store/hello.png';
+        filepicker.storeUrl(url, {location: 'S3', path: dst_45, access: 'public'},
+            function(new_InkBlob){
+                console.log('45x45', new_InkBlob.url);
+                $('#print_url').html(new_InkBlob.url);
+            }
+        );
+    });
+    
+    
+});
+
+
+</script>
+
+
+<h3>Filepicker API demo</h3>
+
+<h4>Pick a single file</h4>
+<p><a href="" class="pick">Pick a file</a></p>
+
+<h4>Pick pick multiple files</h4>
+<p><a href="" class="pick">Pick multiple files</a></p>
+
+<h4>Pick pins</h4>
+<p><a href="" class="pick-pin">Pick pins</a></p>
+<h4>Pick pins Iframe</h4>
+<p><a href="" id="pinpicker-button">Pick pins Iframe</a></p>
+<h4>Store a URL</h4>
+<p><input type="text" id="pin_url"><input type="submit" id="store_url"></p>
+<p id="print_url">stored url: </p>
+
+<div id="pinpicker" class="reveal-modal">
+     <a class="close-reveal-modal">&#215;</a>
+     <div id="pinpicker_container">
+         <div id="pinpicker_content" class="container-fluid open">
+             <div class="row-fluid">
+                 <div id="servicePaneSpacer" class="span3">&nbsp;</div>
+                 <div id="servicePane" class="multi-service span3">
+                     <img src="https://www.filepicker.io/api/file/ZUia52FHRQakNjvjYPmI" id="branding">
+                     <ul id="services" class="nav nav-list well">
+                         <li class="pane-link client" data-client="pinterest">
+                             <a href="#/pinterest/"><i class="sbicon-pinterest"></i>Pinterest</a>
+                         </li>
+                     </ul>
+                     <div class="subbranding">Powered by <b>Shopinterest</b></div>
+                 </div>
+                 <div class="span9 multi-service row-fluid" id="mainpane">
+                     <div id="picker" class="span8">
+                         <ul class="picker_files_header noselect pointer">
+                             <li>
+                                 <span>Filename</span>
+                                 <i class="floatright icon-resize-vertical"></i>
+                             </li>
+                         </ul>
+                         <ul id="picker_files" class="filelist nav nav-list nav-files noselect">
+                             
+                             <li unselectable="on">
+                                 
+                                 <a name="Photos of You" href="#/Facebook/tagged/" path="/Facebook/tagged/" data-disabled="" class="directory">
+                                     <i class="icon-folder-open"></i>Photos of You<i class="icon-chevron-right icon-white floatright"></i>
+                                 </a>
+                                     
+                             </li>
+                                 
+                             <li unselectable="on">
+                                 
+                                 <a name="Mobile Uploads" href="#/Facebook/2239476041764/" path="/Facebook/2239476041764/" data-disabled="" class="directory">
+                                     <i class="icon-folder-open"></i>Mobile Uploads<i class="icon-chevron-right icon-white floatright"></i>
+                                 </a>
+                                     
+                             </li>
+                                 
+                             <li unselectable="on">
+                                 
+                                 <a name="third" href="#/Facebook/1066513998446/" path="/Facebook/1066513998446/" data-disabled="" class="directory">
+                                     <i class="icon-folder-open"></i>third<i class="icon-chevron-right icon-white floatright"></i>
+                                 </a>
+                                     
+                             </li>
+                                 
+                             <li unselectable="on">
+                                 
+                                 <a name="sencond" href="#/Facebook/1066512958420/" path="/Facebook/1066512958420/" data-disabled="" class="directory">
+                                     <i class="icon-folder-open"></i>sencond<i class="icon-chevron-right icon-white floatright"></i>
+                                 </a>
+                                     
+                             </li>
+                                 
+                             <li unselectable="on">
+                                 
+                                 <a name="Profile Pictures" href="#/Facebook/1180981540063/" path="/Facebook/1180981540063/" data-disabled="" class="directory">
+                                     <i class="icon-folder-open"></i>Profile Pictures<i class="icon-chevron-right icon-white floatright"></i>
+                                 </a>
+                                     
+                             </li>
+                                 
+                             <li unselectable="on">
+                                 
+                                 <a name="liangs first fb album" href="#/Facebook/1056221941151/" path="/Facebook/1056221941151/" data-disabled="" class="directory">
+                                     <i class="icon-folder-open"></i>liangs first fb album<i class="icon-chevron-right icon-white floatright"></i>
+                                 </a>
+                                     
+                             </li>
+                                 
+                             <li unselectable="on">
+                                 
+                                 <a name="Timeline Photos" href="#/Facebook/1056204140706/" path="/Facebook/1056204140706/" data-disabled="" class="directory">
+                                     <i class="icon-folder-open"></i>Timeline Photos<i class="icon-chevron-right icon-white floatright"></i>
+                                 </a>
+                                     
+                             </li>
+                             <li unselectable="on">
+                                 
+                                 <a name="Timeline Photos" href="#/Facebook/1056204140706/" path="/Facebook/1056204140706/" data-disabled="" class="directory">
+                                     <i class="icon-folder-open"></i>Timeline Photos<i class="icon-chevron-right icon-white floatright"></i>
+                                 </a>
+                                     
+                             </li>
+                             <li unselectable="on">
+                                 
+                                 <a name="Timeline Photos" href="#/Facebook/1056204140706/" path="/Facebook/1056204140706/" data-disabled="" class="directory">
+                                     <i class="icon-folder-open"></i>Timeline Photos<i class="icon-chevron-right icon-white floatright"></i>
+                                 </a>
+                                     
+                             </li>
+                             <li unselectable="on">
+                                 
+                                 <a name="Timeline Photos" href="#/Facebook/1056204140706/" path="/Facebook/1056204140706/" data-disabled="" class="directory">
+                                     <i class="icon-folder-open"></i>Timeline Photos<i class="icon-chevron-right icon-white floatright"></i>
+                                 </a>
+                                     
+                             </li>
+                             <li unselectable="on">
+                                 
+                                 <a name="Timeline Photos" href="#/Facebook/1056204140706/" path="/Facebook/1056204140706/" data-disabled="" class="directory">
+                                     <i class="icon-folder-open"></i>Timeline Photos<i class="icon-chevron-right icon-white floatright"></i>
+                                 </a>
+                                     
+                             </li>
+                             <li unselectable="on">
+                                 
+                                 <a name="Timeline Photos" href="#/Facebook/1056204140706/" path="/Facebook/1056204140706/" data-disabled="" class="directory">
+                                     <i class="icon-folder-open"></i>Timeline Photos<i class="icon-chevron-right icon-white floatright"></i>
+                                 </a>
+                                     
+                             </li>
+                             <li unselectable="on">
+                                 
+                                 <a name="Timeline Photos" href="#/Facebook/1056204140706/" path="/Facebook/1056204140706/" data-disabled="" class="directory">
+                                     <i class="icon-folder-open"></i>Timeline Photos<i class="icon-chevron-right icon-white floatright"></i>
+                                 </a>
+                                     
+                             </li>
+                                 
+                         </ul>
+                         
+                         <div id="pinlist" class="span8" style="display: none">
+                             <ul class="list filelist thumbnails">
+                                 
+                                 <li unselectable="on">
+                                     
+                                     <a name="facebook_photo.jpg" class="thumbnail selectable" path="/Facebook/2239476041764/2408888636973" data-disabled="">
+                                         <img src="https://photos-b.xx.fbcdn.net/hphotos-ash3/527559_2408888636973_752710360_s.jpg" alt="facebook_photo.jpg">
+                                     </a>
+                                     <h5></h5>
+                                         
+                                 </li>
+                                     
+                                 <li unselectable="on">
+                                     
+                                     <a name="facebook_photo.jpg" class="thumbnail selectable" path="/Facebook/2239476041764/2243470781630" data-disabled="">
+                                         <img src="https://photos-b.xx.fbcdn.net/hphotos-frc1/315412_2243470781630_745099006_s.jpg" alt="facebook_photo.jpg">
+                                     </a>
+                                     <h5></h5>
+                                         
+                                 </li>
+                                     
+                                 <li unselectable="on">
+                                     
+                                     <a name="facebook_photo.jpg" class="thumbnail selectable" path="/Facebook/2239476041764/2243466941534" data-disabled="">
+                                         <img src="https://photos-a.xx.fbcdn.net/hphotos-frc1/376449_2243466941534_2006097230_s.jpg" alt="facebook_photo.jpg">
+                                     </a>
+                                     <h5></h5>
+                                         
+                                 </li>
+                                     
+                                 <li unselectable="on">
+                                     
+                                     <a name="facebook_photo.jpg" class="thumbnail selectable" path="/Facebook/2239476041764/2243465741504" data-disabled="">
+                                         <img src="https://photos-a.xx.fbcdn.net/hphotos-frc3/599943_2243465741504_566736749_s.jpg" alt="facebook_photo.jpg">
+                                     </a>
+                                     <h5></h5>
+                                         
+                                 </li>
+                                     
+                                 <li unselectable="on">
+                                     
+                                     <a name="facebook_photo.jpg" class="thumbnail selectable" path="/Facebook/2239476041764/2243397619801" data-disabled="">
+                                         <img src="https://fbcdn-photos-c-a.akamaihd.net/hphotos-ak-prn1/487909_2243397619801_325513497_s.jpg" alt="facebook_photo.jpg">
+                                     </a>
+                                     <h5></h5>
+                                         
+                                 </li>
+                                     
+                                 <li unselectable="on">
+                                     
+                                     <a name="facebook_photo.jpg" class="thumbnail selectable" path="/Facebook/2239476041764/2241499332345" data-disabled="">
+                                         <img src="https://fbcdn-photos-f-a.akamaihd.net/hphotos-ak-ash3/575487_2241499332345_1994846739_s.jpg" alt="facebook_photo.jpg">
+                                     </a>
+                                     <h5></h5>
+                                         
+                                 </li>
+                                     
+                                 <li unselectable="on">
+                                     
+                                     <a name="facebook_photo.jpg" class="thumbnail selectable" path="/Facebook/2239476041764/2241465051488" data-disabled="">
+                                         <img src="https://photos-b.xx.fbcdn.net/hphotos-ash3/480480_2241465051488_1541009501_s.jpg" alt="facebook_photo.jpg">
+                                     </a>
+                                     <h5></h5>
+                                         
+                                 </li>
+                                     
+                                 <li unselectable="on">
+                                     
+                                     <a name="facebook_photo.jpg" class="thumbnail selectable" path="/Facebook/2239476041764/2239531803158" data-disabled="">
+                                         <img src="https://fbcdn-photos-c-a.akamaihd.net/hphotos-ak-ash3/523761_2239531803158_1216967467_s.jpg" alt="facebook_photo.jpg">
+                                     </a>
+                                     <h5></h5>
+                                         
+                                 </li>
+                                     
+                                 <li unselectable="on">
+                                     
+                                     <a name="facebook_photo.jpg" class="thumbnail selectable" path="/Facebook/2239476041764/2239520202868" data-disabled="">
+                                         <img src="https://fbcdn-photos-b-a.akamaihd.net/hphotos-ak-prn1/524010_2239520202868_964804138_s.jpg" alt="facebook_photo.jpg">
+                                     </a>
+                                     <h5></h5>
+                                         
+                                 </li>
+                                     
+                                 <li unselectable="on">
+                                     
+                                     <a name="facebook_photo.jpg" class="thumbnail selectable" path="/Facebook/2239476041764/2239476121766" data-disabled="">
+                                         <img src="https://photos-b.xx.fbcdn.net/hphotos-ash3/529630_2239476121766_2029713892_s.jpg" alt="facebook_photo.jpg">
+                                     </a>
+                                     <h5></h5>
+                                         
+                                 </li>
+                                     
+                             </ul>
+                                 
+                         </div>
+                     </div>
+                     <div id="bread" class="span8">
+                         <div class="row-fluid  breadcrumb" id="breadcrumbbar">
+        
+                            <span class="breadcrumb_element ellipsize"><a href="#/">Shopinterest</a></span><span class="breadcrumb_element divider">/</span>
+
+                            <span class="breadcrumb_element ellipsize"><a href="#/Pinterest/">Pinterest</a></span><span class="breadcrumb_element divider">/</span>
+
+
+                        </div>
+                     </div>
+                     <div id="preview" class="span3">
+                         <h3 id="helpMessage">Select pins</h3>
+                         <p id="subMessage">Click to select multiple pins.</p>
+                         <ul class="multi-file-preview">
+                             <li class="selected-preview alert alert-info">
+                                 <div class="tiny-thumbnail">
+                                     
+                                     <img class="thumbnail-spinner" src="/static/img/spinner.gif" alt="Loading..." style="display: none;">
+                                     <img class="thumbnail-image" src="https://photos-b.xx.fbcdn.net/hphotos-ash3/527559_2408888636973_752710360_s.jpg" alt=" thumbnail" style="">
+                                         
+                                 </div>
+                                 <span class="multi-filename ellipsize">  facebook_photo.jpg </span>
+                             </li>
+                                 
+                             <li class="selected-preview alert alert-info">
+                                 <div class="tiny-thumbnail">
+                                     
+                                     <img class="thumbnail-spinner" src="/static/img/spinner.gif" alt="Loading..." style="display: none;">
+                                     <img class="thumbnail-image" src="https://photos-b.xx.fbcdn.net/hphotos-frc1/315412_2243470781630_745099006_s.jpg" alt=" thumbnail" style="">
+                                         
+                                 </div>
+                                 <span class="multi-filename ellipsize">  facebook_photo.jpg </span>
+                             </li>
+                                 
+                             <li class="selected-preview alert alert-info">
+                                 <div class="tiny-thumbnail">
+                                     
+                                     <img class="thumbnail-spinner" src="/static/img/spinner.gif" alt="Loading..." style="display: none;">
+                                     <img class="thumbnail-image" src="https://photos-a.xx.fbcdn.net/hphotos-frc1/376449_2243466941534_2006097230_s.jpg" alt=" thumbnail" style="">
+                                         
+                                 </div>
+                                 <span class="multi-filename ellipsize">  facebook_photo.jpg </span>
+                             </li>
+                                 
+                             <li class="selected-preview alert alert-info">
+                                 <div class="tiny-thumbnail">
+                                     
+                                     <img class="thumbnail-spinner" src="/static/img/spinner.gif" alt="Loading..." style="display: none;">
+                                     <img class="thumbnail-image" src="https://photos-a.xx.fbcdn.net/hphotos-frc3/599943_2243465741504_566736749_s.jpg" alt=" thumbnail" style="">
+                                         
+                                 </div>
+                                 <span class="multi-filename ellipsize">  facebook_photo.jpg </span>
+                             </li>
+                                 
+                             <li class="selected-preview alert alert-info">
+                                 <div class="tiny-thumbnail">
+                                     
+                                     <img class="thumbnail-spinner" src="/static/img/spinner.gif" alt="Loading..." style="display: none;">
+                                     <img class="thumbnail-image" src="https://fbcdn-photos-c-a.akamaihd.net/hphotos-ak-prn1/487909_2243397619801_325513497_s.jpg" alt=" thumbnail" style="">
+                                         
+                                 </div>
+                                 <span class="multi-filename ellipsize">  facebook_photo.jpg </span>
+                             </li>
+                             <li class="selected-preview alert alert-info">
+                                 <div class="tiny-thumbnail">
+                                     
+                                     <img class="thumbnail-spinner" src="/static/img/spinner.gif" alt="Loading..." style="display: none;">
+                                     <img class="thumbnail-image" src="https://fbcdn-photos-c-a.akamaihd.net/hphotos-ak-prn1/487909_2243397619801_325513497_s.jpg" alt=" thumbnail" style="">
+                                         
+                                 </div>
+                                 <span class="multi-filename ellipsize">  facebook_photo.jpg </span>
+                             </li>
+                             <li class="selected-preview alert alert-info">
+                                 <div class="tiny-thumbnail">
+                                     
+                                     <img class="thumbnail-spinner" src="/static/img/spinner.gif" alt="Loading..." style="display: none;">
+                                     <img class="thumbnail-image" src="https://fbcdn-photos-c-a.akamaihd.net/hphotos-ak-prn1/487909_2243397619801_325513497_s.jpg" alt=" thumbnail" style="">
+                                         
+                                 </div>
+                                 <span class="multi-filename ellipsize">  facebook_photo.jpg </span>
+                             </li>
+                                 
+                                 
+                         </ul>
+                         <div id="action-group" class="span4">
+                             <a class="btn btn-large btn-primary btn-upload disabled">Upload</a>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+</div>
+
+
+
+
+
+

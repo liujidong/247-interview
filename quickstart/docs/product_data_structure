@@ -1,0 +1,58 @@
+product object data structure :
+{
+    "id": 0
+    "name": "",
+    "description": "",
+    "quantity": 0,
+    "price": 0,
+    "shipping": 0,
+    "ext_ref_id": "",
+    "ext_ref_url": "",
+    "brand": "",
+    "commission": 0,
+    "global_category_id": 0,
+    "pictures": [],
+    "tags": []
+}
+
+picture object data structure :
+{
+    "url": "",
+    "source": "",
+    "orderby": 0,
+    "url_45": "",
+    "url_70": "",
+    "url_192": "",
+    "url_236": "",
+    "url_550": "",
+    "url_736": ""
+}
+
+a product object contains several picture object :
+{
+    "name": "",
+    "description": "",
+    "price": "",
+    "ext_ref_id": "",
+    "ext_ref_url": "",
+    "category": "",
+    "pictures": [{
+        "url": "",
+        "source": "",
+        "url_45": "",
+        "url_70": "",
+        "url_192": "",
+        "url_236": "",
+        "url_550": "",
+        "url_736": ""
+    }, {
+        "url": "",
+        "source": "",
+        "url_45": "",
+        "url_70": "",
+        "url_192": "",
+        "url_236": "",
+        "url_550": "",
+        "url_736": ""
+    }]
+}

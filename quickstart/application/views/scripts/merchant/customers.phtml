@@ -1,0 +1,153 @@
+<script type="text/javascript" src="https://api.cloudsponge.com/address_books.js"></script>
+        <script type="text/javascript">
+            var add_contacts = function(contacts, manual) {
+                var contact_item_template = 
+                        '{{#contacts}}\n\
+                        <tr class="contact_list_tr">\n\
+                            <td class="four columns"><span class="emailtoname">{{first_name}} {{last_name}}</span></td>\n\
+                            <td class="six columns"><a href="" class="emailto" style="color: #2BA6CB;">{{email}}</a></td>\n\
+                            <td class="one columns"><a class="tiny button alert delete_contact" customer_id="{{id}}">Delete</a></td>\n\
+                            <td class="one columns"><input type="checkbox" class="select_node"></input></td>\n\
+                         </tr>\n\
+                         {{/contacts}}';
+                $.post('/api/importcontacts', {contacts: JSON.stringify(contacts), manual: manual}, function(response) {
+                    $('.alert-box').hide();
+                    var response_obj = $.parseJSON(response);
+                    var status = response_obj.status;
+                    var data = response_obj.data;
+                    var contact_items_html = '';
+                    if(status === 'success') {
+                        if(data.length !== 0) {
+                            contact_items_html = shopinterest.common.utils.substitute(contact_item_template, {contacts: data});
+                            $('#contact_list_tbl').append(contact_items_html);
+                            bind_add_contact();
+                            bind_delete_contact();
+                            // bind the email lightbox
+                            var email_lightbox = new shopinterest.modules.email_lightbox();
+                            email_lightbox.render($('#container'));
+                            $('.emailto').unbind('click');
+                            $('.emailto').click(function(e) {
+                                e.preventDefault();
+                                email_lightbox.show($(this).html(), $(this).closest('.contact_list_tr').find('.emailtoname').html());
+                            });
+                        }
+                    } else {
+                        $('.alert-box').html(data.errors[0]['msg']);
+                        $('.alert-box').addClass('alert');
+                        $('.alert-box').show();
+                    }
+                });
+            }
+            
+            var bind_add_contact = function() {
+                $('#add_contact').unbind('click');
+                $('#add_contact').click(function(e) {
+                    $('.alert-box').hide();
+                    var first_name = $('#firstname');
+                    var last_name = $('#lastname');
+                    var contact_email = $('#email');
+
+                    var contacts = [];
+
+                    contacts.push({address: [], phone: [], first_name: first_name.val(), last_name: last_name.val(), email: [{address: contact_email.val(), type: ''}]});
+                    add_contacts(contacts, true);
+                    first_name.val('');
+                    last_name.val('');
+                    contact_email.val('');
+                    
+                });
+            };
+            
+            var bind_delete_contact = function() {
+                $('.delete_contact').unbind('click');
+                $('.delete_contact').click(function(e) {
+                    $('.alert-box').hide();
+                    var _this = $(this);
+                    var customer_id = _this.attr('customer_id');
+                    $.post('/api/deletecustomer', {customer_id: customer_id}, function(response) {
+                        var response_obj = $.parseJSON(response);
+                        if(response_obj.status === 'success') {
+                            _this.closest('.contact_list_tr').remove();
+                        }
+                    });
+                });
+            };
+
+            var csPageOptions = {
+                domain_key:"K5JYWXDXVQXKYYE8HU63", 
+                
+                afterSubmitContacts: function(contacts, source, owner) {
+                    
+                    add_contacts(contacts);
+                }
+            };
+</script>
+<div id="container" class="row">
+<div class="twelve columns">
+<? require_once(APPLICATION_PATH.'/views/scripts/partial/subnav.phtml');?>
+    <h1>Import your customers</h1>
+    <center>
+        <a class="cs_import button alert small radius">Import from your Address Book</a>
+        <input type="hidden" id="replyto_email" value="<?=$this->replyto_email;?>">
+        <input type="hidden" id="replyto_name" value="<?=$this->replyto_name;?>"> <br> <br>  
+    <center> 
+    <div class ="row">
+        <div class="alert-box eight columns centered" style="display: none"></div>
+    </div>
+    <div class="row">
+        <div id="signup" class="panel twelve columns centered">
+            <div class="row">
+                <div class="twelve columns">
+                    <div class="row">
+                        <div class="three columns">
+                            <input type="text" id='firstname' name='firstname' placeholder="first name" value=''/>
+                        </div>
+                        <div class="three columns">
+                            <input type="text" id='lastname' name='lastname' placeholder="last name" value=''/>
+                        </div>
+                        <div class="four columns">
+                            <input type="text" id='email' id="email" name='email' placeholder="email" value='' />
+                        </div>
+                        <div class="two columns">
+                            <input type='button' id='add_contact' class='button radius success small' value='Add'/>
+                        </div>
+                    </div>
+                    <hr>
+                    <div id='contact_list' style="margin-top: 2%;">
+                        <table>
+                        <thead>
+                            <tr>
+                                <th class="four columns" >Name</th>
+                                <th class="six columns">Email</th>
+                                <th class="one columns"></th>
+                                <th class="one columns"><input type="checkbox" class="select_all"></th>
+                            </tr>
+                        </thead>
+                        <tbody id='contact_list_tbl'>
+                        <?php if(!empty($this->contacts)){
+                            foreach($this->contacts as $contact ){?>
+                            <tr class='contact_list_tr'>
+                            <td class="four columns"><span class="emailtoname"><?=$contact['first_name'];?> <?=$contact['last_name'];?></span></td>
+                            <td class="six columns"><a href="" class="emailto" style="color: #2BA6CB;"><?=$contact['email'];?></a></td>
+                            <td class='one columns'><a class="tiny button radius alert delete_contact" customer_id="<?=$contact['id'];?>" >Delete</a></td>
+                            <td class="one columns"><input type="checkbox" class="select_node" ></input></td>
+                            </tr>    
+                        <?php }}?>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th class="one columns"></th>
+                                <th class="three columns offset-by-three submit_button"><a class="tiny button success radius send_to_selected">Send to selected</a></th>
+                                <th class="one columns"></input></th>
+                            </tr>
+                        </tfoot>                        
+                        </table>
+                    </div>
+                </div>
+            </div>    
+        </div>
+        <div class="one column">&nbsp</div>
+    </div>
+	</div><!-- end content -->
+</div>       
+</div><!-- end container -->

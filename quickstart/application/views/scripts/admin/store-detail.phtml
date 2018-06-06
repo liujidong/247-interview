@@ -1,0 +1,79 @@
+<?require_once(APPLICATION_PATH . '/views/scripts/partial/subnav_admin.phtml'); ?>
+
+<h4 style="margin: 0 20px;">Store Information:</h4><br>
+<input type="hidden" value="<?=$this->target_store['id']?>" id="store_id">
+<div class="dashboard-table" style="margin: 0 20px;">
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="status">Attr</th>
+                <th class="type">Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="status">User ID</td>
+                <td class="time"><?=$this->target_user['id']?></td>
+            </tr>
+            <tr>
+                <td class="status">User Name</td>
+                <td class="time"><?=$this->target_user['username']?></td>
+            </tr>
+            <tr>
+                <td class="status">User Last Login</td>
+                <td class="time"><?=$this->target_user['last_login']?></td>
+            </tr>
+            <tr>
+                <td class="status">User Last Activity</td>
+                <td class="time"><?=$this->target_user['last_activity']?></td>
+            </tr>
+            <tr>
+                <td class="status">Store ID</td>
+                <td class="time"><?=$this->target_store['id']?></td>
+            </tr>
+            <tr>
+                <td class="status">subdomain</td>
+                <td class="time"><a target="_blank" href="<?=$this->target_store['url']?>"><?=$this->target_store['subdomain']?></a></td>
+            </tr>
+            <tr>
+                <td class="status">Store Name</td>
+                <td class="time"><a target="_blank" href="<?=$this->target_store['url']?>"><?=$this->target_store['name']?></a></td>
+            </tr>
+            <tr>
+                <td class="status">Active Products Count</td>
+                <td class="time"><?=$this->target_store_active_products_cnt?></td>
+            </tr>
+            <tr>
+                <td class="status">Inactive Products Count</td>
+                <td class="time"><?=$this->target_store_inactive_products_cnt?></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<p><br></p>
+<div class="alert-field"></div>
+<h4 style="margin: 0 20px;">Operations:</h4><br>
+<div class="dashboard-table" style="margin: 0 20px;">
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="status">Opration Description</th>
+                <th class="type">Parameters</th>
+                <th class="time">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="status">Delete all products and their images</td>
+                <td class="type"></td>
+                <td class="time"><a id="product-delete-all">GO</a></td>
+            </tr>
+            <!-- <tr>
+                <td class="status">Delete a product and its image</td>
+                <td class="type">product id = <input type="text" style="width: 100px; margin: 2px 0;"></td>
+                <td class="time"><a id="product-delete-one">GO</a></td>
+            </tr>  -->
+        </tbody>
+    </table>
+</div>

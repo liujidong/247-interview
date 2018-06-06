@@ -1,0 +1,75 @@
+<?php if (($this->is_merchant) && ($this->subdomain_type === 'merchant')) { ?>
+    <div class="twelve columns">
+        <div id="subnav" class="twelve columns">
+            <div class="row">
+                <ul class="nav-bar horizontal">
+                    <li class="has-flyout navProducts">
+                        <a href="/merchant/products">Products</a>
+                        <a href="/merchant/products" class="flyout-toggle"><span> </span></a>
+                        <ul class="flyout" style="display: none; ">
+                            <li class="navCreate create_products"><a href="##">Create Products</a></li>  
+                            <li class="navView"><a href="/merchant/products">View Products</a></li>
+                            <li class="navView"><a href="/merchant/shipping">Shipping Options</a></li>
+                            <!--<li class="navView"><a href="/products">View All Products</a></li>
+                            <li class="navBoards"><a href="/merchant/selectboards?refresh=1">Add Products from Pinterest</a></li>
+                            <li class="navCreate"><a href="/products/import">Import Products from Etsy</a></li>
+                            <li class="navCreate"><a href="/products/create">Upload Products from Your PC</a></li>
+                            <li class="navCategories"><a href="/products/categories">Manage Categories</a></li>
+                            <li class="navCreate"><a href="/merchant/products">Create Product</a></li>   -->
+                        </ul>
+                    </li>
+                    <li class="navProfile"><a href="/profile">Profile</a></li>
+                    <li class="navPaymentAccounts"><a href="/account/payments">Payment Account</a></li>
+                    <li class="navPreviewlaunch">
+                        <a href="/preview">Launch Store</a>
+                    </li>
+                    
+                    <li class="has-flyout navMarketing">
+                        <a href="/merchant/customers">Tools</a>
+                        <a href="/merchant/customers" class="flyout-toggle"><span> </span></a>
+                        <ul class="flyout" style="display: none; ">
+                            <li class="navCustomers"><a <? if($this->store_status == ACTIVATED) {?> href="/merchant/customers" <?} else {?> class="customers-unlaunch" <?}?>>Customers</a></li>
+                            <li class="navCustomers"><a <? if($this->store_status == ACTIVATED) {?> href="/merchant/analytics" <?} else {?> class="customers-unlaunch" <?}?>>Analytics</a></li>
+                            <li class="navCustomers"><a <? if($this->store_status == ACTIVATED) {?> href="/merchant/coupon" <?} else {?> class="customers-unlaunch" <?}?>>Coupon</a></li>
+                            <li class="navPinStore tgt_pinstore_button_2"></li>
+                        </ul>  
+                    </li>
+                    
+                    <?if($this->store_status == ACTIVATED) {?>
+                    <li>
+                        <a href="<?=$this->my_store_url?>" target="_blank">View Store</a>
+                    </li>
+                    <?}?>
+                    <li class="has-flyout navOrders">
+                        <a href="/orders">Orders & Payments</a>
+                        <a href="/orders" class="flyout-toggle"><span> </span></a>
+                        <ul class="flyout" style="display: none; ">
+                            <li class="navOrder"><a href="/orders">Orders</a></li>
+                            <?if($this->use_shopay) {?>
+                            <li class="navPayments"><a href="/payments">Payments History</a></li>
+                            <? }?>
+                        </ul> 
+                    </li>
+                </ul>
+            </div>
+        </div> <!-- end id sunbeam -->
+    </div>
+    <div class="content twelve columns">
+<?php } ?>
+<?php if (($this->is_associate) && ($this->subdomain_type === 'salesnetwork')) { ?>
+    <div class="twelve columns">
+        <div id="subnav" class="twelve columns">
+            <div class="row">
+                <ul class="nav-bar horizontal">
+                    <li class="navView"><a href="/associate/products">My Products</a></li>
+                    <li class="navSearch"><a href="/associate/search">Search Products</a></li>
+                    <li class="navProfile"><a href="/associate/profile">Profile</a></li>
+                    <li class="navPaymentAccounts"><a href="/account/payments">Payment Account</a></li>
+                    <li class="navSales"><a href="/associate/sales">Sales</a></li>
+                    <li class="navPayments"><a href="/payments">Payments</a></li>
+                </ul>
+            </div>
+        </div> <!-- end id sunbeam -->
+    </div>
+    <div class="content twelve columns">
+<?php } ?>

@@ -1,0 +1,248 @@
+<link rel="stylesheet" href="/v2/css/pages/dashboard.css">
+<div id="dashboard" class="row page-layout dashboard">
+
+    <section class="small-12 medium-12 large-9 columns">
+        <div class="row">
+            <div class="small-3 medium-3 large-2 columns">
+                <? require_once(APPLICATION_PATH.'/views/scripts/partial/left_sidebar.phtml');?>
+            </div>
+            <!-- side nav end -->
+
+            <div id="dashboard-home" class="small-9 medium-9 large-10 columns dashboard-home">
+                <? if($this->is_merchant) { ?>
+                <div class="dashboard-box">
+                    <div class="clearfix module-header">
+                        <h2 class="left title">Selling Venue</h2>
+                        <!-- a href="/store/<?=$this->store['subdomain']?>" target="_blank" class="right view-all">View &#8594;</a -->
+                    </div>
+                    <?if($this->store['allow_resell'] != 1) {?>
+                    <div class="dashboard-item">
+                        <div class="clearfix header">
+                            <h3 class="left title"><a href="/selling/orders">Sales Orders</a></h3>
+                            <div class="right actions">
+                                <a href="javascript:;" class="compress"><i class="icon fi-arrows-compress"></i></a>
+                            </div>
+                        </div>
+                        <div class="item-list">
+                            <a href="/selling/orders?status=paid">
+                                <div class="item">
+                                    <h4 class="item-title">Waiting for Delivery</h4>
+                                    <div class="item-number"><?=$this->paid_salesorder_cnt?></div>
+                                </div>
+                            </a>
+                            <a href="/selling/orders?status=shipped">
+                                <div class="item">
+                                    <h4 class="item-title">On Shipping</h4>
+                                    <div class="item-number"><?=$this->shipped_salesorder_cnt?></div>
+                                </div>
+                            </a>
+                            <a href="/selling/orders?status=all">
+                                <div class="item">
+                                    <h4 class="item-title">Sales This Week</h4>
+                                    <div class="item-number"><?=$this->week_salesorder_cnt?></div>
+                                </div>
+                            </a>
+                            <a href="/selling/orders?status=all">
+                                <div class="item">
+                                    <h4 class="item-title">Sales Total</h4>
+                                    <div class="item-number"><?=$this->total_salesorder_cnt?></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <? } ?>
+                    <div class="dashboard-item">
+                        <div class="clearfix header">
+                            <h3 class="left title">Store Launch Status</h3>
+                            <div class="right actions">
+                                <?if(!$this->is_launched){
+                                if($this->launch_cond){ ?>
+                                <a class="preview launch-store launch module-button"><i class="icon"></i>Launch Store</a>
+                                <?}?>
+                                <a href="/selling/preview" target="_blank" class="preview"><i class="icon fi-eye"></i>Preview</a>
+                                <?} else {?>
+                                <a class="preview launch-store unlaunch module-button"><i class="icon"></i>Unlaunch Store</a>
+                                <a href="/store/<?=$this->store['subdomain']?>" target="_blank" class="preview">
+                                    <i class="icon fi-eye"></i>View</a>
+                                <?}?>
+                                <a href="javascript:;" class="compress"><i class="icon fi-arrows-compress"></i></a>
+                            </div>
+                        </div>
+                        <div class="item-list">
+                            <?if(empty2($this->user['addr1'])||empty2($this->user['city'])||
+                            empty2($this->user['state'])||empty2($this->user['country'])||
+                            empty2($this->user['zip'])){?>
+                            <a href="/me/settings" class="item launch-item unfinished"><i class="icon fi-x"></i>Mailing Address</a>
+                            <? } else {?>
+                            <a href="/me/settings" class="item launch-item"><i class="icon fi-check"></i>Mailing Address</a>
+                            <? } ?>
+                            <?if(empty2($this->store['return_policy'])){?>
+                            <a href="/selling/settings" class="item launch-item unfinished"><i class="icon fi-x"></i>Return Policy</a>
+                            <?} else {?>
+                            <a href="/selling/settings" class="item launch-item"><i class="icon fi-check"></i>Return Policy</a>
+                            <? } ?>
+                            <?if(empty2($this->user['first_name']) || empty2($this->user['last_name'])){?>
+                            <a href="/me/settings" class="item launch-item unfinished"><i class="icon fi-x"></i>Your Name</a>
+                            <?} else {?>
+                            <a href="/me/settings" class="item launch-item"><i class="icon fi-check"></i>Your Name</a>
+                            <? } ?>
+                            <?if(empty2($this->store['name'])){?>
+                            <a href="/selling/settings" class="item launch-item unfinished"><i class="icon fi-x"></i>Store Name</a>
+                            <? } else {?>
+                            <a href="/selling/settings" class="item launch-item"><i class="icon fi-check"></i>Store Name</a>
+                            <? } ?>
+                            <?if(empty2($this->store['subdomain'])){?>
+                            <a href="/selling/settings" class="item launch-item unfinished"><i class="icon fi-x"></i>Subdomain</a>
+                            <? } else {?>
+                            <a href="/selling/settings" class="item launch-item"><i class="icon fi-check"></i>Subdomain</a>
+                            <? } ?>
+                            <?if(empty2($this->user['phone'])){?>
+                            <a href="/me/settings" class="item launch-item unfinished"><i class="icon fi-x"></i>Phone Number</a>
+                            <? } else {?>
+                            <a href="/me/settings" class="item launch-item"><i class="icon fi-check"></i>Phone Number</a>
+                            <? } ?>
+                            <?if(empty2($this->user['paypal_email'])){?>
+                            <a href="/me/payment-accounts/paypal" class="item launch-item unfinished">
+                                <i class="icon fi-x"></i>Payment Methods
+                            </a>
+                            <? } else {?>
+                            <a href="/me/payment-accounts/paypal" class="item launch-item"><i class="icon fi-check"></i>Payment Methods</a>
+                            <? } ?>
+                            <?if($this->active_products_cnt <= 0){?>
+                            <a href="/selling/products" class="item launch-item unfinished"><i class="icon fi-x"></i>Active Products</a>
+                            <? } else {?>
+                            <a href="/selling/products" class="item launch-item"><i class="icon fi-check"></i>Active Products</a>
+                            <? } ?>
+                            <!--
+                            <?
+                            if($this->is_subscribed){
+                            ?>
+                            <a href="/selling/subscription" class="item launch-item"><i class="icon fi-check"></i>Subscribed</a>
+                            <? } else { ?>
+                            <a href="/selling/subscription" class="item launch-item unfinished"><i class="icon fi-x"></i>Subscribed</a>
+                            <? } ?>
+                            -->
+                        </div>
+                    </div>
+                    <div class="dashboard-item">
+                        <div class="clearfix header">
+                            <? if($this->store['allow_resell'] != 1){?>
+                            <h3 class="left title"><a href="/selling/products">Products</a></h3>
+                            <? } else {?>
+                            <h3 class="left title"><a href="/selling/products/resell">Products</a></h3>
+                            <? } ?>
+                            <div class="right actions">
+                                <a href="javascript:;" class="compress"><i class="icon fi-arrows-compress"></i></a>
+                            </div>
+                        </div>
+                        <div class="item-list">
+                            <? if($this->store['allow_resell'] != 1){?>
+                            <a href="/selling/products">
+                                <div class="item">
+                                    <h4 class="item-title">In Stock</h4>
+                                    <div class="item-number"><?=$this->products_cnt?></div>
+                                </div>
+                            </a>
+                            <? } else {?>
+                            <a href="/selling/products/resell">
+                                <div class="item">
+                                    <h4 class="item-title">Reselling</h4>
+                                    <div class="item-number"><?=$this->resell_products_cnt?></div>
+                                </div>
+                            </a>
+                            <? } ?>
+                        </div>
+                    </div>
+                </div>
+                <? } ?>
+                <!-- selling venue end -->
+                <div class="dashboard-box">
+                    <div class="clearfix module-header">
+                        <h2 class="left title">My Account</h2>
+                        <!-- <a href="/store/<?=$this->store['subdomain']?>" target="_blank" class="right view-all">View &#8594;</a> -->
+                    </div>
+                    <div class="dashboard-item">
+                        <div class="clearfix header">
+                            <h3 class="left title"><a href="/me/orders/purchase">Purchase Orders</a></h3>
+                            <div class="right actions">
+                                <a href="javascript:;" class="compress"><i class="icon fi-arrows-compress"></i></a>
+                            </div>
+                        </div>
+                        <div class="item-list">
+                            <a href="/me/orders/purchase?status=paid">
+                                <div class="item">
+                                    <h4 class="item-title">Paid</h4>
+                                    <div class="item-number"><?=$this->paid_order_cnt?></div>
+                                </div>
+                            </a>
+                            <a href="/me/orders/purchase?status=shipped">
+                                <div class="item">
+                                    <h4 class="item-title">On Shipping</h4>
+                                    <div class="item-number"><?=$this->shipped_order_cnt?></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="dashboard-item">
+                        <div class="clearfix header">
+                            <h3 class="left title"><a href="/me/orders/resell">Resell Orders</a></h3>
+                            <div class="right actions">
+                                <a href="javascript:;" class="compress"><i class="icon fi-arrows-compress"></i></a>
+                            </div>
+                        </div>
+                        <div class="item-list">
+                            <a href="/me/orders/resell">
+                                <div class="item">
+                                    <h4 class="item-title">Orders</h4>
+                                    <div class="item-number"><?=$this->resellorder_cnt?></div>
+                                </div>
+                            </a>
+                            <a href="/me/orders/resell">
+                                <div class="item">
+                                    <h4 class="item-title">Sales This Week</h4>
+                                    <div class="item-number"><?=$this->week_resellitems_cnt?></div>
+                                </div>
+                            </a>
+                            <a href="/me/orders/resell">
+                                <div class="item">
+                                    <h4 class="item-title">Sales Total</h4>
+                                    <div class="item-number"><?=$this->all_resellitems_cnt?></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="dashboard-item">
+                        <div class="clearfix header">
+                            <h3 class="left title"><a href="/me/wallet">Wallet</a></h3>
+                            <div class="right actions">
+                                <a href="javascript:;" class="compress"><i class="icon fi-arrows-compress"></i></a>
+                            </div>
+                        </div>
+                        <div class="item-list">
+                            <a href="/me/wallet">
+                                <div class="item">
+                                    <h4 class="item-title">Current Balance</h4>
+                                    <div class="item-number">
+                                        <?=currency_symbol($this->store['currency'])?><?=$this->wallet->getCurrentBalance()?>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="/me/wallet?status=available">
+                                <div class="item">
+                                    <h4 class="item-title">Available Balance</h4>
+                                    <div class="item-number">
+                                        <?=currency_symbol($this->store['currency'])?><?=$this->wallet->getAvailableBalance()?>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- me end -->
+            </div>
+        </div>
+    </section>
+
+    <? require_once(APPLICATION_PATH.'/views/scripts/partial/right_sidebar.phtml');?>
+
+</div>

@@ -1,0 +1,39 @@
+<div id="container" class="row">
+    <div class="twelve columns">
+        <!-- ? require_once(APPLICATION_PATH.'/views/scripts/partial/subnav.phtml');? -->
+        <h1>Manage <span class="gentium">your</span> Orders</h1>
+        <div class="row">
+            <div class="panel twelve columns centered">
+                <div class="row">
+                    <div class="twelve columns">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="ordernumber">Order</th>
+                                    <th class="date">Date</th>
+                                    <th class="customer">Customer</th>
+                                    <th class="status">Payment Status</th>
+                                    <th class="fulfilment">Fulfillment Status</th>
+                                    <th class="total">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <? foreach($this->orders as $order) {?>
+                                <tr onclick="window.location.href='/orders/item?id=<?=$order['id'];?>';">
+                                    <td class="ordernumber"><?=$order['id'];?></td>
+                                    <td class="date"><?=$order['created'];?></td>
+                                    <td class="customer"><?=$order['shopper_username'];?></td>
+                                    <td class="status"><?=$order['payment_status'];?></td>
+                                    <td class="fulfilment"><?=$order['status'];?></td>
+                                    <td class="total"><?=currency_symbol($order['currency_code']);?><?=$order['total'];?></td>
+                                </tr>
+                                <? }?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div><!-- end content -->
+</div>
+<!-- </div> end container -->

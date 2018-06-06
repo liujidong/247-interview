@@ -1,0 +1,134 @@
+<link rel="stylesheet" href="/css/page/merchant_createproduct.css"/> 
+<script src="/js/jquery-ui-1.10.3.custom.min.js"></script>
+<!--subnav placeholder-->
+<div id="page-upload">
+    <div class="page-header">Select Your Pins</div>
+    <div class="upload-content">
+        <div class="operation">
+            <div class="header-1">
+                <input type="checkbox" name="check-all" id="check-all"/>
+            </div>
+            <div class="header-2" id="check-all-operate">
+                <a class="button-save" href="##">Save</a>
+                <a class="button-delete" href="##">Delete</a>
+            </div>
+            <div class="header-3">
+                <span class="status-label">Status:</span>
+                <div class="status-toggle status-inactive">
+                    <span class="inactive">Inactive</span><span class="active">Active</span>
+                </div>
+            </div>
+            <div class="search-filter">
+                <input type="text" class="search-input" placeholder="Search"/>
+            </div>
+        </div>
+        <div class="operation-table">
+            <div class="operation-header">
+                <div class="header-1">
+                     Images
+                </div>
+                <div class="header-2">
+                     Basic Information
+                </div>
+                <div class="header-3">
+                     Selling Options
+                </div>
+                <div class="header-4">
+                     Custom Fields(Optional)
+                </div>
+            </div>
+            <?foreach($this->products as $i => $product){?>
+            <div class="operation-section" data-operation-section-row = "<?=$i?>">
+                <input name="product[<?=$product['product_id'];?>][product_id]" type="hidden" value="<?=$product['id']; ?>" />
+                <div class="item-header">
+                    <div class="item-header-1"><input type="checkbox" name="xxx"/></div><a class="button-save" href="##">Save</a>
+                    <a class="button-delete" href="##">Delete</a>
+<!--                    <div class="alert-tips green-tips">Saving Complete!</div>
+                        <div class="alert-tips red-tips">These fields must be filled!</div>
+-->
+                </div>
+                <div class="operation-row">
+                    <div class="operation-cell operation-cell-1">
+                        <div class="prod-image">
+                            <span class="prod-image-number"><?=count($product['origin_pic_urls'])?></span>
+                            <img src="<?=array_shift($product['origin_pic_urls'])?>" alt=""/>
+                            <b class="icon-upload-more"></b>
+                        </div>
+                        <input type="file" style="display: none" class="upload-file-input"/>
+                        <a href="##" class="button-upload-more">Upload More</a>
+                    </div>
+                    <div class="operation-cell operation-cell-2">
+                        <input type="text" placeholder="(no title)" name="product[<?=$product['product_id'];?>][product_name]" value="<?=$product['product_name'];?>"/>
+                        <textarea name="" id="" placeholder="(no description)"name="product[<?=$product['product_id'];?>][product_description]" value="<?=$product['product_description'];?>"/></textarea>
+                        <select name="" id="">
+                            <option value="Elect">Elect</option>
+                            <option value="Elect">Elect</option>
+                            <option value="Elect">Elect</option>
+                            <option value="Elect">Elect</option>
+                            <option value="Elect">Elect</option>
+                            <option value="Elect">Elect</option>
+                            <option value="Elect">Elect</option>
+                        </select>
+                        <div class="prod-tags">
+                            <?foreach($product['tags'] as $tag){?>
+                            <span class="prod-tag" title="Delete Tag"><?=$tag?></span>
+                            <?}?>
+                            <a href="##" class="edit-tags edit-link">+ Add Tags</a>
+                        </div>
+                    </div>
+                    <div class="operation-cell operation-cell-3">
+                        <div>
+                            <label for="" class="left">Quantity: <input type="text" class="quantity-input" value="<?=$product['product_quantity']?>"/></label>
+                            <label for="" class="right">Price: <span class="price-input"><input type="text" value="<?=$product['product_price']?>"/></span></label>
+                            <label for="" class="left">Commision: <span class="commision-input"><input type="text" value="<?=$product['product_commision']?>"/></span></label>
+                        </div>
+                        <div>
+<!--                            <a href="##" class="edit-link add-shipping">+ Add a shipping pattern</a>-->
+                        </div>
+                    </div>
+                    <div class="operation-cell operation-cell-4">
+                        <input type="text" name="" style="height: 6em;text-align: center;" value="Coming Soon..." disabled="">
+<!--                        <div class="custom-field-title">
+                            <span class="custom-title">Operation System</span>
+                            <label class="custom-field-required">Required? <input type="checkbox"/></label>
+                        </div>
+                        <div>
+                            <a href="##" class="edit-link add-custom-link">+ Add a field</a>
+                        </div>-->
+
+                    </div>
+                </div>
+                <!--因为要排序，所以这里width必须js计算了，计算规则（N+1）*96 + 6-->
+                <div class="prod-image-expand" style="display: none; width: 390px;">
+                    <div class="prod-image-draggable">
+                        <?foreach($product['origin_pic_urls'] as $picture_url){?>
+                        <div class="expand-pic">
+                            <img src="<?=$picture_url?>" alt=""/>
+                            <a href="##" class="icon-delete">×</a>
+                        </div>
+                        <?}?>
+                    </div>
+                    <div class="expand-add-more">
+                        <b>+</b><span>More</span>
+                    </div>
+                </div>
+            </div>
+            <?}?>
+            <div class="optional-line"></div><!--just a line-->
+        </div>
+
+        <div class="sp-pagination">
+            <ul class="">
+                <li class="arrow unavailable"><a href="">«</a></li>
+                <li class="current"><a href="">1</a></li>
+                <li><a href="">2</a></li>
+                <li><a href="">3</a></li>
+                <li><a href="">4</a></li>
+                <li class="unavailable"><a href="">…</a></li>
+                <li><a href="">12</a></li>
+                <li><a href="">13</a></li>
+                <li class="arrow"><a href="">»</a></li>
+            </ul>
+        </div>
+    </div>
+</div>    

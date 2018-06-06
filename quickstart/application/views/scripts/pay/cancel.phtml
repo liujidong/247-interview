@@ -1,0 +1,21 @@
+<script src="https://www.paypalobjects.com/js/external/dg.js" type="text/javascript"></script>
+<script type="text/javascript" charset="utf-8">
+    function handleEmbeddedFlow() {
+        if (top && top.opener && top.opener.top) {
+            top.opener.top.dgFlow.closeFlow();
+        }
+        else{
+            top.dgFlow.closeFlow();
+        }
+        top.close();
+    }
+    
+    jQuery.event.add(window, "load", function(){
+        handleEmbeddedFlow();
+    });
+    
+</script>
+
+
+
+

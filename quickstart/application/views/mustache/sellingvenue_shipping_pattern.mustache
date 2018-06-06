@@ -1,0 +1,53 @@
+<div class="row detail-wrap products-shipping">
+    <div class="row alert-field"></div>
+    <input type="hidden" name="shipping-id" class="shipping-id" value="{{id}}">
+    <div class="row detail-header shipping-header">
+        <div class="small-12 medium-10 large-10 columns">
+            <label>Service Type</label>
+            <select class="select-type auto-save-field shipping-name exist-option-name" name="shipping-name">      
+                <option value="Priority" {{#is_priority}}selected{{/is_priority}}>Priority</option>
+                <option value="Express" {{#is_express}}selected{{/is_express}}>Express</option>
+                <option value="Custom" {{#is_custom}}selected{{/is_custom}}>Custom</option>
+            </select>
+            <input type="text" class="custom-type auto-save-field shipping-name-extra" style="display:none;" name="shipping-name">
+        </div>
+        <div class="small-12 medium-2 large-2 columns text-right">
+            <a href="javascript:;" class="module-button delete-shipping">Delete</a>
+        </div>
+    </div>
+    <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-2 block-grid">
+        {{#shipping_destinations}}
+        <li class="shipping-destination">
+            <input type="hidden" name="id" class="destination-id" value="{{id}}">                   
+            <div class="inner">
+                <label>Destination</label>
+                <input type="text" value="{{name}}" disabled>
+                <div class="divider"></div>
+                <div class="module-table">
+                    <div class="table-row">
+                        <span class="table-cell">Base Price</span>
+                        <span class="table-cell">Additional Price</span>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell"><input type="text" placeholder="$" class="auto-save-field" name="base" value="{{base}}"></div>
+                        <div class="table-cell"><input type="text" placeholder="$" class="auto-save-field" name="additional" value="{{additional}}"></div>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="module-table">
+                    <div class="table-row">
+                        <div class="allspan">Expect Delivery Days</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell">
+                            <input type="text" class="auto-save-field" name="fromdays" value="{{fromdays}}">
+                            <span class="to">to</span>
+                        </div>
+                        <div class="table-cell"><input type="text" class="auto-save-field" name="todays" value="{{todays}}"></div>
+                    </div>
+                </div>
+            </div>
+        </li>
+        {{/shipping_destinations}}
+    </ul>
+</div>

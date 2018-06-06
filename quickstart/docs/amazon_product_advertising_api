@@ -1,0 +1,256 @@
+
+** Amazon Product Advertising API **
+
+1. Amazon Marketplace
+
+roles:
+. individual sellers -- own storefronts (zShops)
+. Pro Merchant Sellers
+. Merchant@ vendors
+. associate
+
+2. What Product Advertising API can do
+
+1) Finding items to buy
+
+These items are for sale by Amazon or other merchants.
+
+2) Finding information about those items.
+
+This item information includes such things as the titles of tracks on a CD, the 
+rating of a movie, the kind of metal used in a piece of jewelry, accessories 
+that go with an item, the author of a book, or the composer of a piece of music.
+
+3) Getting customer reviews of items.
+
+Show customers what others think about the items on sale.
+
+4) Getting information about the company selling the item.
+
+Show customers what others think about the merchant selling the item.
+
+5) Finding similar items for sale.
+
+Generate additional sales by suggesting other items similar to the ones the 
+customers are buying.
+
+6) Create a fully-functional shopping cart.
+
+Add items that are immediately available or ones that will become available in 
+the future, such as in a pre-sale of a book.
+
+7) Adding, removing, and otherwise modifying the items in the shopping cart.
+
+Have full control over the contents of their shopping cart.
+
+8) Purchasing the items in the shopping cart.
+
+Once the customer decides to buy the contents in their shopping cart, Amazon 
+takes care of the shipping, payment, and order fulfillment, or notifies you to 
+take care of the same.
+
+
+3. Item Identifiers
+
+ASIN -- Amazon Standard Item Number
+OfferListingId -- An alphanumeric token that uniquely identifies items in the Amazon marketplace that can be purchased
+
+4. Product Advertising API operations (methods)
+
+. ItemSearch -- Find items that are sold on www.amazon.com by merchants and most sellers.
+. SimilarityLookup -- Find items that are similar to ones you've already found.
+. ItemLookup -- Returns descriptions of specified items.
+
+
+5. An example code 
+
+The following PHP code implements an ItemSearch request in which the customer 
+enters values for SearchIndex and Keywords.
+
+//Enter your IDs
+define("Access_Key_ID", "[Your Access Key ID]");
+define("Associate_tag", "[Your Associate Tag ID]");
+
+//Set up the operation in the request
+function ItemSearch($SearchIndex, $Keywords){
+
+    //Set the values for some of the parameters
+    $Operation = "ItemSearch";
+    $Version = "2011-08-01";
+    $ResponseGroup = "ItemAttributes,Offers";
+    //User interface provides values
+    //for $SearchIndex and $Keywords
+
+    //Define the request
+    $request=
+         "http://webservices.amazon.com/onca/xml"
+       . "?Service=AWSECommerceService"
+       . "&AssociateTag=" . Associate_tag
+       . "&AWSAccessKeyId=" . Access_Key_ID
+       . "&Operation=" . $Operation
+       . "&Version=" . $Version
+       . "&SearchIndex=" . $SearchIndex
+       . "&Keywords=" . $Keywords
+       . "&Signature=" . [Request Signature]
+       . "&ResponseGroup=" . $ResponseGroup;
+
+    //Catch the response in the $response object
+    $response = file_get_contents($request);
+    $parsed_xml = simplexml_load_string($response);
+    printSearchResults($parsed_xml, $SearchIndex);
+}
+
+// use xpath to access the xml elements values
+function printSearchResults($parsed_xml, $SearchIndex){
+    print("<table>");
+    if($numOfItems>0){
+        foreach($parsed_xml->Items->Item as $current){
+            print("<td><font size='-1'><b>".$current->ItemAttributes->Title."</b>");
+            if (isset($current->ItemAttributes->Title)) {
+                print("<br>Title: ".$current->ItemAttributes->Title);
+            } elseif(isset($current->ItemAttributes->Author)) {
+                print("<br>Author: ".$current->ItemAttributes->Author);
+            } elseif(isset($current->Offers->Offer->Price->FormattedPrice)){
+                print("<br>Price:
+                ".$current->Offers->Offer->Price->FormattedPrice);
+            }else{
+                print("<center>No matches found.</center>");
+            }
+        }
+    }
+}
+
+The last two parameters, SearchIndex and Keywords, are values set by the customer 
+through the user interface. A SearchIndex is similar to a product category, 
+such as Books, Automobile, or Jewelry. Keywords is a word or phrase. The request 
+selects items in the specified search index that have the Keywords value in their 
+title or description.
+
+6. Parsing XML using SimpleXML
+http://www.sitepoint.com/parsing-xml-with-simplexml/
+
+The parent-to-child succession of structured elements is called an XPath. To 
+parse a result, the Product Advertising API response is turned into an object 
+and then XPaths are used as an efficient means of finding elements and their 
+values.
+
+7. Error information in the response
+
+http://docs.aws.amazon.com/AWSECommerceService/2011-08-01/GSG/CheckingRequestExecution.html
+
+8. Response Groups
+http://docs.aws.amazon.com/AWSECommerceService/latest/DG/CHAP_ResponseGroupsList.html
+
+
+9. Best Programming Practices
+
+1) Use the Latest API Version
+
+Product Advertising API makes frequent releases. Each release either adds 
+functionality or increases the accuracy, speed, and stability of Product 
+Advertising API. Most releases do all of these. 
+
+Go to http://aws.amazon.com/resources frequently for documentation about the 
+latest release.
+
+The Product Advertising API uses the default API version 2011-08-01 unless you 
+supply a different value for the Version parameter. To use a different version, 
+you must include it in the Version parameter in your requests.
+
+2) Understand Available Operations
+
+Product Advertising API provides many different operations to facilitate product 
+discovery. Using the right operations can dramatically enhance your customer’s 
+shopping experience and increase your Associate commissions. See the API 
+Reference for a full description of all Product Advertising API operations. 
+Some enable you to:
+
+Task	                                Operations
+Find products and categories	ItemSearch, ItemLookup, and BrowseNodeLookup
+Find similar items	              SimilarityLookup
+Provide shopping cart functionality for your application or website	CartCreate, CartAdd, CartModify, and CartGet
+
+3) Use the Right Response Group
+
+One of the great features of Product Advertising API is the control you have 
+over the amount of information returned in responses. A response group is a 
+collection of data returned by Product Advertising API. Product Advertising API 
+has over 55 response groups, each serving a different need. So, you can get 
+exactly the information you need and no more.
+
+We recommend that you specify response groups that return only the information 
+your application needs. Response groups, such as Large and ItemAttributes 
+return lots of data. Such large data sets sometimes incur performance penalties 
+both in Product Advertising API fulfilling the request and in your application’s 
+processing of the response. 
+
+4) Handling Errors
+
+Make sure your application handles errors gracefully. One way to do that is to 
+check the status of the IsValid element. IsValid is returned with every request. 
+If its value is “False,” there will be an error message with a description of 
+why your request was not valid.
+
+It’s generally a good practice to log any unexpected error that is returned by 
+Product Advertising API. Errors are returned with an error code and message. 
+The code is a descriptive string that identifies the error. The error message is 
+a more ‘human friendly’ message that can be displayed to your customers. Your 
+application should be able to handle expected error messages.
+
+Your application, for example, should display error messages that are meaningful 
+to the customer. For example, when Product Advertising API responds with the 
+error, “AWS.ECommerceService.NoExactMatches,” your application should display 
+an explanation, such as, “We did not find any matches for your request.”
+
+If your application exceeds the number of allowed requests submitted per second, 
+Product Advertising API returns a 503 error, which means that Product 
+Advertising API is restricting the number of requests it is processing from your 
+application. The Product Advertising API Terms and Conditions outline the number 
+of allowed requests permitted per second.
+
+5) Use Caches Carefully
+
+Product Advertising API product data changes often. Prices can change hourly, 
+Browsenode values change without notice, and product availability is volatile. 
+For these reasons, you should not cache product data.
+
+It is against the Product Advertising API Terms and Conditions to cache customer 
+information derived from Amazon.
+
+You can enhance the performance of your application by caching identifiers, 
+such as the CartId, HMAC, and PurchaseURL.
+
+10. SearchIndex-ItemSearch Parameter Combinations for US
+
+http://docs.aws.amazon.com/AWSECommerceService/latest/DG/USSearchIndexParamForItemsearch.html
+
+11. Response Groups
+http://docs.aws.amazon.com/AWSECommerceService/latest/DG/CHAP_ResponseGroupsList.html
+
+Response Elements Common to All Response Groups
+http://docs.aws.amazon.com/AWSECommerceService/latest/DG/CommonResponseElements.html
+
+Response Elements
+http://docs.aws.amazon.com/AWSECommerceService/latest/DG/CHAP_response_elements.html
+
+12. Library
+
+codes
+https://github.com/Exeu/apai-io 
+
+doc
+http://exeu.github.io/apai-io/
+
+demo
+http://apaiio.dev.pixel-web.org/
+
+13. show top selling products in certain categories
+
+search->setCategory(AmazonSearchIndex::Apparel);
+$search->setKeywords('coat');
+$search->setResponseGroup(array(
+    \AmazonResponseGroups::Images,
+    \AmazonResponseGroups::ItemAttributes,
+    \AmazonResponseGroups::Offers,
+));
+$search->setSort('salesrank');

@@ -1,0 +1,2 @@
+/* DONT EDIT. THIS IS A AUTO-GENERATED FILE. PLEASE EDIT FILES under quickstart/application/views/mustache INSTEAD*/
+shopinterest.templates.pinpicker_uploader='<div id=\"{{id}}\">    <h3 id=\"helpMessage\">Selected Pins</h3>    <p id=\"subMessage\">Click to select multiple pins.</p>    <ul class=\"multi-file-preview added_pins\">    </ul>    <div id=\"action-group\" class=\"span4\">        <a class=\"btn btn-large btn-primary btn-upload disabled\">Upload</a>    </div></div>';

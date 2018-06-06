@@ -1,0 +1,23 @@
+<?require_once(APPLICATION_PATH . '/views/scripts/partial/subnav_admin.phtml'); ?>
+
+<div class="small-7 medium-7 large-7 columns status-dropdown">
+    <span class="dropdown module-dropdown" data-dropdown="status-dropdown">Status: <?=$this->status?></span>
+    <ul id="status-dropdown" class="f-dropdown module-dropdown-content" data-dropdown-content>
+        <li><a href="<?=url_append(array('status'=>'all'))?>">all</a></li>
+        <li><a href="<?=url_append(array('status'=>'available'))?>">available</a></li>
+        <li><a href="<?=url_append(array('status'=>'pending'))?>">pending</a></li>
+        <li><a href="<?=url_append(array('status'=>'completed'))?>">completed</a></li>
+    </ul>
+</div>
+
+<div class="small-7 medium-7 large-7 columns status-dropdown">
+    <span class="dropdown module-dropdown" data-dropdown="type-dropdown">Type: <?=$this->type?></span>
+    <ul id="type-dropdown" class="f-dropdown module-dropdown-content" data-dropdown-content>
+        <li><a href="<?=url_append(array('type'=>'all'))?>">all</a></li>
+        <li><a href="<?=url_append(array('type'=>'sale'))?>">sale</a></li>
+        <li><a href="<?=url_append(array('type'=>'commission'))?>">commission</a></li>
+        <li><a href="<?=url_append(array('type'=>'disbursement'))?>">disbursement</a></li>
+    </ul>
+</div>
+
+<div id="tgt_datatable" style="margin-top: 10px;"><?=$this->datatable_view?></div>

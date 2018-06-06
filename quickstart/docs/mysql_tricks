@@ -1,0 +1,13 @@
+
+** replace a substring
+
+case: replace all the urls of product pictures from "media-cache0" to "media-cache-ec5"
+
+update 
+products join products_pictures on (products.id=products_pictures.product_id)
+join pictures on (pictures.id=products_pictures.picture_id) 
+set pictures.url=replace(pictures.url, 'media-cache0', 'media-cache-ec5')
+where 
+products.id=$id;
+
+

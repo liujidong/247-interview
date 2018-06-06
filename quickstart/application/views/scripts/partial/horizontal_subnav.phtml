@@ -1,0 +1,27 @@
+<ul class="dashboard-subnav">
+    <?if($this->controller==='me') {?>
+    <li class="<?=$this->action2==='purchase'?'active':''?>"><a href="/me/orders/purchase">Purchase Orders</a></li>
+    <li class="<?=$this->action2==='resell'?'active':''?>"><a href="/me/orders/resell">Reseller Orders</a></li>
+    <li class="<?=$this->action1==='wallet'?'active':''?>"><a href="/me/wallet">Wallet</a></li>
+    <li class="<?=$this->action1==='payment-accounts'?'active':''?>"><a href="/me/payment-accounts/paypal">Payment</a></li>
+    <li class="<?=$this->action==='settings'?'active':''?>"><a href="/me/settings">Settings</a></li>
+    <?}?>
+    <?if($this->controller==='selling') {?>
+    <?if($this->store['allow_resell'] == 1) {?>
+    <li class="<?=$this->action1==='products'?'active':''?>"><a href="/selling/products/resell">Products</a></li>
+    <? } else { ?>
+    <li class="<?=$this->action1==='products'?'active':''?>"><a href="/selling/products">Products</a></li>
+    <li class="<?=$this->action1==='orders'?'active':''?>"><a href="/selling/orders">Sales Orders</a></li>
+    <? } ?>
+    <li class="<?=$this->action1==='tools'?'active':''?>"><a href="/selling/tools/analytics">Tools</a></li>
+    <li class="<?=$this->action==='settings'?'active':''?>"><a href="/selling/settings">Settings</a></li>
+    <li class="<?=$this->action==='close-store'?'active':''?>"><a href="/selling/close-store">Close Store</a></li>
+    <li class="right">
+    <?if(isset($this->store['status']) && $this->store['status'] == 2){?>
+    <a href="/store/<?=$this->store['subdomain']?>" target="_blank" class="preview"><i class="icon fi-eye"></i>View</a>
+    <?}else{?>
+    <a href="/selling/preview" target="_blank" target="_blank" class="preview"><i class="icon fi-eye"></i>Preview</a>
+    <?}?>
+    </li>
+    <?}?>
+</ul>

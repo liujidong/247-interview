@@ -1,0 +1,10 @@
+
+convention 
+
+1. a file contains a test
+
+2. output:
+status: success/warning/failure
+messages: 
+array(...) (use ddd)
+

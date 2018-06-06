@@ -1,0 +1,139 @@
+
+** delete account
+
+delete from fb_users;
+delete from logs                                ;
+delete from merchants                           ;
+delete from merchants_fb_users                  ;
+delete from merchants_paypal_accounts           ;
+delete from merchants_pinterest_accounts        ;
+delete from merchants_stores                    ;
+delete from merchants_twitter_users             ;
+delete from paypal_accounts                     ;
+delete from pinterest_accounts                  ;
+delete from pinterest_accounts_pinterest_boards ;
+delete from pinterest_boards                    ;
+delete from pinterest_boards_pinterest_pins     ;
+delete from pinterest_pins                      ;
+delete from stores                              ;
+delete from stores_pinterest_boards             ;
+delete from stores_pinterest_pins               ;
+delete from twitter_users                       ;
+delete from shoppers;
+delete from shoppers_fb_users;
+delete from shoppers_twitter_users;
+delete from stores_shoppers;
+
+** delete store
+
+delete from carts                   ;
+delete from categories              ;
+delete from comments                ;
+delete from order_items             ;
+delete from orders                  ;
+delete from pictures                ;
+delete from products                ;
+delete from products_categories     ;
+delete from products_pictures       ;
+delete from reviews                 ;
+
+** delete job
+
+delete from job_configs   ;
+delete from jobs          ;
+
+/* make a detached process */
+1. screen -dmS screen_name
+2. secreen -x screen_name  
+3. after step 2 you are in screen, run php sendmail.php
+4. CTRL+a+d, to detach the screen
+ 
+screen -dmS job1
+screen -x job1
+sudo php /home/liangdev/www/pincommerce/quickstart/application/scripts/generate_board_scraping_jobs.php >> /tmp/generate_board_scraping_jobs.log
+
+screen -dmS job2
+screen -x job2
+sudo php /home/liangdev/www/pincommerce/quickstart/application/scripts/board_scraper.php >> /tmp/board_scraper.log
+
+** insert a "email" job
+
+to, toname, subject, text, from, fromname
+
+insert into jobs(type, data, created) values(4, '{"to": "xxx@yahoo.com", "toname": "liang", "subject": "hello from shopinterest", "text":"this is the content part", "from":"support@shopinterest.co", "fromname":"Shopinterest Support"}', now());
+
+** insert a "generate board scraping jobs" job
+
+insert into jobs(type, data, created) values(1, '{"board_id": 46}', now());
+
+
+** create a type 3 job **
+insert into jobs(type, data, created) values(3, '{"type": "accounts", "id": 4}', now());
+insert into jobs(type, data, created) values(3, '{"type": "boards", "id": 50}', now());
+insert into jobs(type, data, created) values(3, '{"type": "pins", "id": 1}', now());
+
+** remove pinterest info
+
+1. register
+
+delete pa.*, mpa.*, m.*, ms.*, s.*
+from 
+pinterest_accounts pa join merchants_pinterest_accounts mpa on (mpa.pinterest_account_id=pa.id) join
+merchants m on (m.id=mpa.merchant_id)join 
+merchants_stores ms on (ms.merchant_id=m.id) join
+stores s on (s.id=ms.store_id)
+where 
+pa.username='pintics';
+
+2. start scraping
+
+delete pa.*, mpa.*, m.*, ms.*, s.*, papb.*
+from 
+pinterest_accounts pa join pinterest_accounts_pinterest_boards papb on (pa.id=papb.pinterest_account_id) join
+merchants_pinterest_accounts mpa on (mpa.pinterest_account_id=pa.id) join
+merchants m on (m.id=mpa.merchant_id)join 
+merchants_stores ms on (ms.merchant_id=m.id) join
+stores s on (s.id=ms.store_id)
+where 
+pa.username='pintics';
+
+** test store tags
+
+update stores set tax=8.5, shipping=10, additional_shipping=1 where id=11;
+select * from stores where id=11;
+
+insert into tags(tag, created) values('electronics', now());
+insert into tags(tag, created) values('landscaping', now());
+insert into tags(tag, created) values('deals', now());
+
+insert into stores_tags(store_id, tag_id, created) values(11, 1, now());
+insert into stores_tags(store_id, tag_id, created) values(11, 2, now());
+insert into stores_tags(store_id, tag_id, created) values(11, 3, now());
+
+select m.username, m.id as merchant_id, m.password,
+    if(pa.id is null, 0, pa.id) as pinterest_account_id,
+    if(pa.username is null, '', pa.username) as pinterest_username, 
+    s.id as store_id, s.subdomain as store_subdomain, s.name as store_name, 
+    s.featured as store_featured, s.host as store_host,
+    s.logo as store_logo, s.status as store_status,
+    s.tax as store_tax, s.shipping as store_shipping,
+    s.additional_shipping as store_additional_shipping,
+    if(a.id is null, '', a.id) as address_id,
+    if(a.addr1 is null, '', a.addr1) as addr1, 
+    if(a.addr2 is null, '', a.addr2) as addr2, 
+    if(a.city is null, '', a.city) as city, 
+    if(a.state is null, '', a.state) as state, 
+    if(a.country is null, '', a.country) as country, 
+    if(a.zip is null, '', a.zip) as zip,
+    if(group_concat(t.id, '-', t.tag) is null, '', group_concat(t.id, '-', t.tag)) as ids_tags
+from 
+merchants m join merchants_stores ms on (m.id=ms.merchant_id)
+join stores s on (ms.store_id=s.id) 
+left join merchants_pinterest_accounts mpa on (m.id=mpa.merchant_id)
+left join pinterest_accounts pa on (pa.id=mpa.pinterest_account_id)
+left join merchants_addresses ma on (ma.merchant_id=m.id)
+left join addresses a on (a.id=ma.address_id)
+left join stores_tags st on (s.id=st.store_id) left join
+tags t on (st.tag_id=t.id)
+where 
+m.id=14 group by m.id;

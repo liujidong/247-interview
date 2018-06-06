@@ -1,0 +1,4 @@
+. create a coupon code with status=created (the deal wont show up at the flash deals page), 
+percentage off depending on what price this buyer gets at, usage limit should be 1  
+. send an email with the link as:
+www.shopinterest.co/flashdeals?payment_submit=1&coupon_code=<coupon code>

@@ -1,0 +1,2 @@
+/* DONT EDIT. THIS IS A AUTO-GENERATED FILE. PLEASE EDIT FILES under quickstart/application/views/mustache INSTEAD*/
+shopinterest.templates.pinstore_button='<a href=\"\" id=\"{{id}}\">    {{#button_image}}    <img src=\"http://passets-lt.pinterest.com/images/about/buttons/pinterest-button.png\" width=\"80\" height=\"28\" alt=\"Pin the store products\" />    {{/button_image}}    {{#button_text}}    Pin Your Store    {{/button_text}}</a>';

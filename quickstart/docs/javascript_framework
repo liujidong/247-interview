@@ -1,0 +1,23 @@
+
+The javascript framework has the following folder structure:
+
+common
+libs
+controllers
+modules
+templates
+
+"common" stores the utility function that relates to the biz logic and can be re-used across the application
+"lib" stores the api, data structure that doesnt tie to specific biz log. 
+"controllers" stores the page level javascript codes
+"modules" is a self-managed javascript widget which mange the template rendering, the UI or lib event handling, trigger
+events destined to be listened outside of the module. 
+"templates" stores the mustache templates.
+
+
+
+
+
+
+
+

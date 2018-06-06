@@ -1,0 +1,32 @@
+<div class="row page-layout admin">
+    <div class="small-12 medium-12 large-12 columns page-layout-main">
+        <header class="module-header">
+            <h1 class="title">Admin Tools</h1>
+        </header>
+        <ul class="sub-nav">
+            <li class="<?=($this->action === 'index')?'active':'';?>"><a href="/admin">Search Data</a></li>
+            <li class="<?=($this->action === 'amazon-products')?'active':'';?>"><a href="/admin/amazon-products">Amazon Products</a></li>
+            <li class="<?=($this->action === 'users')?'active':'';?>"><a href="/admin/users">Users</a></li>
+            <li class="<?=($this->action === 'category')?'active':'';?>"><a href="/admin/category">Global Categories</a></li>
+            <li class="<?=($this->action === 'email')?'active':'';?>"><a href="/admin/email">Send Emails</a></li>
+            <li class="<?=($this->action === 'email-templates')?'active':'';?>"><a href="/admin/email-templates">Email Templates</a></li>
+            <li class="<?=($this->action === 'orders')?'active':'';?>"><a href="/admin/orders">Orders</a></li>
+            <li class="<?=($this->action === 'nc-payment')?'active':'';?>"><a href="/admin/nc-payment">NativeCheckout Payments</a></li>
+            <li class="<?=($this->action === 'annoucement')?'active':'';?>"><a href="/admin/annoucement">Annoucement</a></li>
+            <li class="<?=($this->action === 'coupon')?'active':'';?>"><a href="/admin/coupon">Coupon</a></li>                        
+            <?if($this->old) {?>
+            <li class="<?=($this->action === 'stores')?'active':'';?>"><a href="/admin/stores?old=true">Stores</a></li>
+            <li class="<?=($this->action === 'flashdeal')?'active':'';?>"><a href="/admin/flashdeal?old=true">Flash Deals</a></li>
+            <li class="<?=($this->action === 'auction')?'active':'';?>"><a href="/admin/auction?old=true">Auctions</a></li>
+            <li class="<?=($this->action === 'categorizing')?'active':'';?>"><a href="/admin/categorizing?old=true">Categorizing Products</a></li>
+            <li class="<?=($this->action === 'featuredproduct')?'active':'';?>"><a href="/admin/featuredproduct?old=true">Featured Products</a></li>
+            <li class="<?=($this->action === 'coupon')?'active':'';?>"><a href="/admin/coupon?old=true">Coupons</a></li>
+            <li class="<?=($this->action === 'futurepay')?'active':'';?>"><a href="/admin/futurepay?old=true">Future Payments</a></li>
+            <li class="<?=($this->action === 'payhistory')?'active':'';?>"><a href="/admin/payhistory?old=true">Payments History</a></li>
+            <li class="<?=($this->action === 'abtests')?'active':'';?>"><a href="/admin/abtests?old=true">AB Tests</a></li>
+            <li class="<?=($this->action === 'closeaccount')?'active':'';?>"><a href="/admin/closeaccount?old=true">Close Account</a></li>
+            <li class="<?=($this->action === 'datatable')?'active':'';?>"><a href="/admin/datatable?old=true">Datatable</a></li>
+            <?}?>
+        </ul>
+    </div>
+</div>

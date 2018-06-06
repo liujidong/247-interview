@@ -1,0 +1,2 @@
+/* DONT EDIT. THIS IS A AUTO-GENERATED FILE. PLEASE EDIT FILES under quickstart/application/views/mustache INSTEAD*/
+shopinterest.templates.expand_pic='<div class=\"expand-pic\" picture_id=\"{{picture_id}}\">    <img src=\"{{url}}\" alt=\"\">    <a href=\"##\" class=\"icon-delete\">×</a></div>';

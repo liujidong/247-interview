@@ -1,0 +1,46 @@
+<link rel="stylesheet" href="/v2/css/pages/dashboard.css">
+<div id="dashboard" class="row page-layout dashboard">
+
+    <section class="small-12 medium-12 large-9 columns">
+        <div class="row">
+            <div class="small-3 medium-3 large-2 columns">
+                <? require_once(APPLICATION_PATH . '/views/scripts/partial/left_sidebar.phtml'); ?>
+            </div>
+            <!-- side nav end -->
+
+            <div id="sellingvenue-settings" class="small-9 medium-9 large-10 columns">
+                <? require_once(APPLICATION_PATH . '/views/scripts/partial/horizontal_subnav.phtml'); ?>
+                <!-- dashboard sub nav end -->
+
+                <div class="row">
+                    <div class="small-4 medium-4 large-4 columns">&nbsp;</div>
+                    <div class="small-8 medium-8 large-8 columns alert-field"></div>
+                </div>
+                <div class="large-12 columns">
+                    <h3>Want to close your store? - Here are what will happen after you close it:</h3>
+                    <ul style="font-weight:300;">
+                        <li>All products and associated pictures are deleted</li>
+                        <li>You can still open a store again using the same account by going to this <a href="/selling/terms">page</a></li>
+                    </ul>
+                </div>
+                <div class="large-12 columns">
+                    <h4>Still want to close? Click the button below.</h4>
+                </div>
+                
+                <form method="post" target="_top" id="subscription-form" class="columns dashboard-form">
+                    <div class="row field submit-field">
+                        <div class="small-4 medium-4 large-4 columns">
+                        </div>
+                        <div class="small-8 medium-8 large-8 columns">
+                            <input type="hidden" name="custom" value="<?=$this->store['id']?>" />
+                            <input type="button" name="close-store" value="Close Store" class="submit-button">
+                        </div>
+                    </div>    
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <? require_once(APPLICATION_PATH . '/views/scripts/partial/right_sidebar.phtml'); ?>
+
+</div>

@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="/css/cart.css"/>
+<?require_once(APPLICATION_PATH . '/views/scripts/partial/subnav_admin.phtml'); ?>
+<div class="main row">
+    
+    <div class="tweleve columns offset-by-four" style="margin-top: 10px">
+        <ul class="button-group radius centered">
+          <li><a href="/admin/categorizing/?section=categorized" class="button secondary" <?if($this->section === 'categorized') echo "style='background: none repeat scroll 0 0 #BF0000;'"?>>Categorized</a></li>
+          <li><a href="/admin/categorizing/?section=uncategorized" class="button secondary" <?if($this->section === 'uncategorized') echo "style='background: none repeat scroll 0 0 #BF0000;'"?>>Unategorized</a></li>
+        </ul>
+    </div>
+    
+    <table id='admin_table'>
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Exclude in Search</th>
+                <th>Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($this->products as $product){?>
+            <tr>
+                <input type="hidden" class="store_id" value="<?=$product['store_id']?>"/>
+                <input type="hidden" class="product_id" value="<?=$product['product_id']?>"/>
+                <td style="width: 120px; height: 120px"><a href="<?=$product['product_url']?>" target="_blank"><img src="<?=default2String($product['converted_192'])?>"></a></td>
+                <td><?=$product['product_name'];?></td>
+                <td><?=$product['product_description']?></td>
+                <td><input type="checkbox" class="exclude_in_search" <?php if (!empty($product['excluded_in_search'])) echo "checked";?> /></td>
+                <td style="width: 250px">
+                    <select name="global_category" class="product_category">
+                        <option value="0">Select a category</option>
+                        <?foreach($this->global_category_list as $global_category){?>
+                        <option value="<?=$global_category['id']?>" <?if($global_category['id'] == $product['global_category_id']) echo "selected";?>><?=$global_category['path']?></option>
+                        <?}?>
+                    </select>
+                </td>           
+            </tr>
+            <?php }?>
+        </tbody>
+    </table>
+    <?php echo $this->page($this->total_rows, $this->rows_per_page, $this->page_num, $this->extra_params); ?>    
+</div>

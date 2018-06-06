@@ -1,0 +1,42 @@
+****neo4j install
+
+**source code package 
+http://dist.neo4j.org/neo4j-community-1.8.1-unix.tar.gz
+
+**dependent package
+*JDK
+yum install java-1.x.x-openjdk
+*maven
+http://www.us.apache.org/dist/maven/maven-3/3.0.4/binaries/apache-maven-3.0.4-bin.tar.gz
+
+**install maven 
+1.Extract the distribution archive
+2.add environment variable
+	MAVEN_HOME=/usr/share/maven
+	export MAVEN_HOME
+	export PATH=${PATH}:${MAVEN_HOME}/bin
+3.Run mvn --version to verify that it is correctly installed.
+
+**install neo4j
+1.Extract the distribution archive
+2.move into neo4j directory
+3.mvn install
+4.add environment variable
+	NEO4J_HOME=/usr/share/neo4j
+	export NEO4J_HOME
+	export PATH=${PATH}:${NEO4J_HOME}/bin
+5.Run neo4j start (or add to rc.local)
+6.Run neo4j-shell to verify that it is correctly installed.
+
+**make the web admin interface of neo4j publicly accessible
+1.Edit neo4j-server.properties in conf directory of neo4j
+2.Set org.neo4j.server.webserver.address=0.0.0.0
+3.Save and restart neo4j
+4.View http://staging.shopinterest.co:7474
+
+**Neo4j authentication-extension
+1.download https://github.com/downloads/neo4j-contrib/authentication-extension/authentication-extension-1.8.jar
+2.put the jar-file into plugins and add the following lines to the conf/neo4j-server.properties file
+	org.neo4j.server.credentials=username:password
+	org.neo4j.server.thirdparty_jaxrs_classes=org.neo4j.server.extension.auth=/auth
+3.restart neo4j

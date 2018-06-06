@@ -1,0 +1,29 @@
+
+<?if($this->action1==='payment-accounts') {?>
+<ul class="sub-nav purchase-nav">
+    <li class="<?=$this->action2==='paypal'?'active':''?>"><a href="/me/payment-accounts/paypal">Paypal</a></li>
+    <!-- <li class="<?=$this->action2==='bank'?'active':''?>"><a href="/me/payment-accounts/bank">Bank</a></li> -->
+    <li class="<?=$this->action2==='creditcard'?'active':''?>"><a href="/me/payment-accounts/creditcard">Credit Card</a></li>
+</ul>
+<?}?>
+
+<?if($this->action1==='products') {?>
+<ul class="sub-nav">
+    <?if($this->store['allow_resell']==1) {?>
+    <li class="<?=$this->action2==='resell'?'active':''?>"><a href="/selling/products/resell">Reseller</a></li>
+    <? } else {?>
+    <li class="<?=$this->action==='products'?'active':''?>"><a href="/selling/products">Regular</a></li>
+    <li class="<?=$this->action2==='shipping'?'active':''?>"><a href="/selling/products/shipping">Shipping Options</a></li>
+    <? } ?>
+</ul>
+<?}?>
+
+
+<?if($this->action1==='tools') {?>
+<ul class="sub-nav">
+    <li class="<?=$this->action2==='analytics'?'active':''?>"><a href="/selling/tools/analytics">Analytics</a></li>
+    <li class="<?=$this->action2==='customers'?'active':''?>"><a href="/selling/tools/customers">Customers</a></li>
+    <li class="<?=$this->action2==='pinstore'?'active':''?>"><a href="/selling/tools/pinstore">Pinterest Store Products</a></li>
+    <li class="<?=$this->action2==='coupon'?'active':''?>"><a href="/selling/tools/coupon">Coupon</a></li>
+</ul>
+<?}?>

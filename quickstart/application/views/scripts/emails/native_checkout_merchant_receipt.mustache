@@ -1,0 +1,79 @@
+Hi {{first_name}}: <br><br>
+
+You got a new order: {{#order}}{{order_num}}{{/order}} :<br>
+
+<table style="border: 1px solid #e2e2e2; display: table;">
+    <thead>
+        <tr>
+            <th style="border: 1px solid #e2e2e2;">Products in Order</th>
+            <th style="border: 1px solid #e2e2e2;">Quantity & Price</th>
+            <th style="border: 1px solid #e2e2e2;">Shipping</th>
+            <th style="border: 1px solid #e2e2e2;">Subtotal</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td colspan="4">
+                <a href="{{store_url}}" target="_blank">
+                    <strong class="red">{{store_name}}</strong>
+                </a>
+            </td>
+        </tr>
+        {{#items}}
+        <tr>
+            <td>
+                <a href="{{product_url}}" target="_blank">{{product_name}}</a>
+            </td>
+            <td>
+                <span>{{product_quantity}}</span>
+                x
+                </span>{{currency_symbol}}{{product_price}}</span>
+            </td>
+            <td>
+                <span>{{currency_symbol}}{{product_shipping}}</span>
+            </td>
+            <td>
+                <strong>{{currency_symbol}}{{subtotal}}</strong>
+            </td>
+        </tr>
+        {{/items}}
+        <tr>
+            <td colspan="4">
+                SHIPPING: {{#shipping_option}}{{name}}{{/shipping_option}},
+                {{currency_symbol}}{{#store_summaries}}{{shipping}}{{/store_summaries}};
+                TAX:
+                {{currency_symbol}}{{#store_summaries}}{{tax_total}}{{/store_summaries}};
+                PRICE: {{currency_symbol}}
+                {{#store_summaries}}{{price_total}}{{/store_summaries}}
+                TOTAL: {{currency_symbol}}
+                {{#store_summaries}}{{total}}{{/store_summaries}}
+            </td>
+        </tr>
+    </tbody>
+</table>
+<br>
+
+<div class="col-delivery">
+    <h3>Delivery Address</h3>
+    <div class="text">
+        <p id="shipping_name">{{#order_grp}}{{shipping_first_name}}{{/order_grp}} {{#order_grp}}{{shipping_last_name}}{{/order_grp}}</p>
+        <p id="shipping_addr">{{#order_grp}}{{shipping_addr1}}{{/order_grp}} {{#order_grp}}{{shipping_addr2}}{{/order_grp}}</p>
+        <p id="shipping_city_state_zip">
+            {{#order_grp}}{{shipping_city}}{{/order_grp}}, 
+            {{#order_grp}}{{shipping_state}}{{/order_grp}} {{#order_grp}}{{shipping_zip}}{{/order_grp}}
+        </p>
+        <p id="shipping_country">{{#order_grp}}{{shipping_country}}{{/order_grp}}</p>
+        <p id="shipping_phone">{{#order_grp}}{{shipping_phone}}{{/order_grp}}</p>
+    </div>
+</div>
+<div class="col-payment-method">
+    <h3>Payment:</h3>
+    <div class="text">
+        <p>{{#order_grp}}{{payment_method}}{{/order_grp}}</p>
+    </div>
+</div>
+<br><br>
+
+The Shopintoit team<br>
+
+PS - Check our FAQs for any other questions you may have, or contact us at <a href="mailto:xxx@shopintoit.com">xxx@shopintoit.com</a> for whatever you need!<br>

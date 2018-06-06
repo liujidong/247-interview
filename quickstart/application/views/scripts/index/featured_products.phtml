@@ -1,0 +1,22 @@
+<? foreach($this->featured_products as $product){?>
+<ul class="cart_list01_content">
+    <li>
+        <a class="gat-click" gaid="product-view-homepage" href="<?=$product['product_url'];?>"><img class="prod_img" prod_id="<?=$product['product_id'];?>" src="<?=$product['converted_192'];?>" ></a>
+    </li>
+    <li id='test' class="cart_list01_price"><?=$product['currency_symbol'];?><?=$product['product_price'];?></li>
+    <li>
+    	<h2><?=$product['product_name'];?></h2>
+    	<div class="merchant hide-for-small">
+			<div class="three columns favicon">
+				<a class="gat-click" href="<?=$product['store_url'];?>" gaid="store-view-homepage">
+                   <img src="<?=$product['store_logo'];?>">
+                </a>
+			</div>
+			<div class="nine columns">
+				<p class="small">Sold by</p>
+				<p><a class="gat-click" href="<?=$product['store_url'];?>" gaid="store-view-homepage"><?=$product['store_name'];?></a></p>
+			</div>
+		</div>
+    </li>
+</ul>
+<?}?>

@@ -1,0 +1,53 @@
+<? $this->placeholder("extra_header")->captureStart();?>
+<link rel="stylesheet" href="/v2/css/pages/store.css">
+<? $this->placeholder("extra_header")->captureEnd();?>
+
+<div id="storepage" class="row page-layout storepage">
+    <section class="small-12 medium-12 large-9 columns page-layout-main">
+        <header class="clearfix module-header store-header">
+            <div class="large-12 columns">
+                <a href="/store/<?=$this->store['subdomain']?>">
+                    <img src="<?=$this->store['converted_logo']?>" alt="Store Logo" class="store-logo">
+                </a>
+                <h2 class="store-name">
+                    <img src="/img/country-flags/<?=$this->country?>.png" style="" title="<?=$this->country_name?>">
+                    <a href="/store/<?=$this->store['subdomain']?>"><?=$this->store['name']?></a>
+                </h2>
+            </div>
+            <div class="large-12 columns">
+                <nav class="store-nav">
+                    <a href="/store/<?=$this->store_subdomain?>" class="nav-item products">Products</a>
+                    <a href="#" class="nav-item infos current">Infos & Return Policy</a>
+                </nav>
+            </div>
+        </header>
+
+        <div class="row store-infos">
+            <div class="small-5 medium-5 large-5 columns">
+                <p>
+                    <a id="contact" class="module-button contact need_login">Contact Seller</a>
+                    <input type="hidden" class="contact_merchant_toemail" value="<?= $this->visit_merchant['username']; ?>" />
+                    <input type="hidden" class="contact_merchant_toname" value="<?= $this->visit_store['name']; ?>" />
+                </p>
+                <p><span class="title">Country</span><span class="content"><?=$this->store['country']?></span></p>
+                <p><span class="title">Selling Since</span><span class="content"><?=$this->store['created']?></span></p>
+                <? if(!empty($this->store['external_website'])){ ?>
+                <p><span class="title">Website</span>
+                    <a href="<?=$this->store['external_website']?>" class="content"><?=$this->store['name']?></a>
+                </p>
+                <? } ?>
+            </div>
+            <div class="small-7 medium-7 large-7 columns">
+                <div class="info">
+                    <span class="title">Description</span>
+                    <p class="content"><?=$this->store['description']?></p>
+                </div>
+                <div class="return-privacy">
+                    <span class="title">Return Policy</span>
+                    <p class="content"><?=$this->store['return_policy']?></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <? require_once(APPLICATION_PATH.'/views/scripts/partial/right_sidebar.phtml');?>
+</div>

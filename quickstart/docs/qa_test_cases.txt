@@ -1,0 +1,54 @@
+**pags
+
+1.home page
+http://www.staging.shopinterest.co:8080/?c=<code>
+1)one email address could register only one account
+2)a welcome-link only can successful signup once
+3)after a successful signup,there will be a validate email in your inbox which used above
+4)search for store works correctly
+
+2.profile page 
+http://www.staging.shopinterest.co/profile:8080 
+1)the form fields should be populated with the account session data
+2)profile data updated correctly
+3)change password section works correctly 
+
+3. categories page
+http://www.staging.shopinterest.co/products/categories:8080
+1)category created or removed correctly
+
+4. select boards page
+http://www.staging.shopinterest.co:8080/merchant/selectboards
+1)pinterest account and boards records created corrected (pinterest account is the pinterest username you filled above ,compares with http://pinterest.com/<username>/)
+2)after checking the checkbox of a board and save, pins records created corrected(compares with http://pinterest.com/<username>/<boardname>)
+3)the thumbnails of boards urls should direct to S3
+
+5. select pins page
+http://www.staging.shopinterest.co:8080/merchant/selectpins
+1)pins records created corrected(compares with http://pinterest.com/<username>/<boardname>)
+2)the pins urls should direct to S3
+3)see more pins can works correctly 
+4)choose a category as you create above(categories page)
+5)remove pins when click double-cross
+
+6. create products page
+http://www.staging.shopinterest.co:8080/products/create 
+
+7. view products page
+http://www.staging.shopinterest.co:8080/products
+1)check products records is corrected : a products can fome two parts: select pins page or create product page 
+2)products data modify and updated correctly
+
+8. payments page
+http://www.staging.shopinterest.co:8080/merchant/payments
+1)paypal account updated correctly
+
+9. preview&launch page
+http://www.staging.shopinterest.co:8080/preview
+1)Complete these items to launch your store section , filled the options with a double-cross before then launch store
+2)view store page, make sure the records is the some as your edit 
+
+10. orders page
+http://www.staging.shopinterest.co:8080/orders
+
+**others

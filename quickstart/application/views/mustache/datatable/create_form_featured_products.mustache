@@ -1,0 +1,18 @@
+<header class="module-header create-header">
+    <h3 class="title">Create a {{table_object_name}}</h3>
+</header>
+<form class="create-main" data-abide="ajax">
+    <div class="alert-field"></div>
+    <div class="data-abide-input-container">
+        <label for="create_product_url">Product URL</label>
+        <input type="text" id="create_product_url" name="product_url" placeholder="Product URL" required>
+        <small class="error">Product URL is required</small>
+    </div>
+    <div class="data-abide-input-container">
+        <label for="create_featured_score">Featured Score</label>
+        <input type="text" id="create_featured_score" name="featured_score" placeholder="Featured Score" required>
+        <small class="error">Featured Score is required</small>
+    </div>
+
+    <input type="submit" datatable-action="create" class="submit-button" value="Save" datatable-trigger style="margin-bottom:1.875rem;">
+</form>

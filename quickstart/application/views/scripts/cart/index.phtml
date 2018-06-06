@@ -1,0 +1,115 @@
+<? $this->placeholder("extra_header")->captureStart();?>
+<link rel="stylesheet" href="/v2/css/pages/checkout.css">
+<? $this->placeholder("extra_header")->captureEnd();?>
+
+<div id="checkout-page" class="row page-layout">
+
+    <section class="small-12 medium-12 large-9 columns page-layout-main">
+        <header class="module-header checkout-header">
+            <ul class="breadcrumbs">
+                <li class="current"><a href="#"><span class="list-num">1</span> Shopping Cart</a></li>
+                <li class="unavailable"><a href="#"><span class="list-num">2</span> Payment</a></li>
+                <li class="unavailable"><a href="#"><span class="list-num">3</span> Confirm</a></li>
+            </ul>
+            <div class="row">
+                <div class="large-10 medium-10 small-10 columns">
+                    <h1 class="title">Shopping Cart</h1>
+                </div>
+                <div class="large-2 medium-2 small-2 columns">
+                    <a href="/buyer-protection" target="_blank"><img alt="Buyer Protection" title="Buyer Protection" width="100" height="37" src="/img/shopper-approved-sm.png"></a>
+                </div>
+            </div>
+            
+        </header>
+
+        <div class="cart-table">
+            <div class="cart-thead">
+                <span class="small-4 medium-4 large-4 columns">Things you bought</span>
+                <span class="small-2 medium-2 large-2 columns">Qty</span>
+                <span class="small-2 medium-2 large-2 columns">Price</span>
+                <span class="small-1 medium-1 large-1 columns">Discount</span>
+                <span class="small-2 medium-2 large-2 columns">Subtotal</span>
+                <span class="small-1 medium-1 large-1 columns">&nbsp;</span>
+            </div>
+            <div class="clearfix cart-tbody">
+                <? foreach ($this->products_by_store as $store_id => $products){?>
+                <div class="cart-list">
+                    <div class="large-12 columns header">
+                        <div class="title">
+                            <em>store:</em>
+                            <a href="<?=$products[0]['store_url']?>" target="_blank">
+                                <?=$products[0]['store_name']?>
+                            </a>
+                        </div>
+                        <div class="divider"></div>
+                    </div>
+                    <? foreach ($products as $product){?>
+                    <div class="clearfix cart-item"
+                         store_id="<?=$product['store_id']?>"
+                        product_id="<?=$product['product_id']?>"
+                        dealer="<?=$product['dealer']?>"
+                        external_id="<?=$product['external_id']?>"
+                        currency="<?=$product['currency']?>"
+                        price="<?=$product['price']?>">
+                        <div class="small-3 medium-1 large-1 columns item-image">
+                            <div class="image-holder">
+                                <a href="<?=$product['product_url']?>" target="_blank"><img src="<?=$product['thumb']?>" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="small-4 medium-3 large-3 columns item-desc">
+                            <p><a href="<?=$product['product_url']?>" target="_blank"><?=$product['name']?></a></p>
+                            <div class="item-tags">
+                                <? if(!empty2($product['custom_fields'])) {?>
+                                <span class="tag"><?=$product['custom_fields']?></span>
+                                <? } ?>
+                            </div>
+                        </div>
+                        <div class="small-2 medium-2 large-2 columns item-qty">
+                            <input type="text" class="qty quantity" value="<?=$product['quantity']?>">
+                            <span class="update-item reduce disabled">&#8249;</span>
+                            <span class="update-item add">&#8250;</span>
+                        </div>
+                        <div class="small-1 medium-2 large-2 columns item-price">
+                            <?=$product['currency_symbol']?><?=$product['price']?>
+                        </div>
+                        <div class="small-1 medium-1 large-1 columns item-discount"><?=$product['discount']?></div>
+                        <div class="small-1 medium-2 large-2 columns item-subtotal">
+                            <?=$product['currency_symbol']?><span class="subtotal"><?=$product['subtotal']?></span>
+                        </div>
+                        <div class="small-1 medium-1 large-1 columns"><a href="javascript:;" class="item-delete">&times;</a></div>
+                    </div>
+                    <? } ?> <!-- end cart-item -->
+                </div>
+                <? } ?> <!-- cart list end -->
+
+                <div class="large-12 columns">
+                    <div class="total">
+                        <? if($this->dealer != 'amazon'){ ?>
+                        <div class="coupon">
+                            <label for="input-coupon">Coupon: </label>
+                            <? if(empty($this->coupon)){ ?>
+                            <input type="text" id="input-coupon" class="input-coupon">
+                            <input type="button" id="submit-coupon" value="GO!">
+                            <? }else { ?>
+                            <span id="coupon-code"><?=$this->coupon['code']?></span>
+                            <a id="remove-coupon">&times;</a>
+                            <? }?>
+                        </div>
+                        <? }?>
+                        Total<span class="gray">(without shipping and tax):</span> <strong id="total-price"><?=$this->total_price?></strong>
+                    </div>
+                </div>
+            </div>
+            <div class="cart-tfooter text-right">
+                <? if($this->nav_cart_num > 0) { ?>
+                <a href="/checkout/" class="submit-button checkout-button">Go Checkout!</a>
+                <? } ?>
+            </div>
+        </div>
+
+    </section>
+
+    <? require_once(APPLICATION_PATH.'/views/scripts/partial/right_sidebar.phtml');?>
+    <!-- sidebar items   -->
+
+</div>

@@ -1,0 +1,213 @@
+<? $this->placeholder("extra_header")->captureStart();?>
+<link rel="stylesheet" href="/css/anytimec.css"/>
+<script type="text/javascript" src="/js/anytime.js"></script>
+<? $this->placeholder("extra_header")->captureEnd();?>
+
+<?require_once(APPLICATION_PATH . '/views/scripts/partial/subnav_admin.phtml'); ?>
+<div class="main row">
+    
+    <div class="row">
+        <div class="twelve comlumns">
+            <h1>ADD A AUCTION</h1> 
+        </div>
+    </div>
+
+        <div class="row panel">
+        <div class="twelve columns">
+            <div class="row">
+                <div class="three columns" style="padding: 0px; padding-top: 8px; font-size: 16px;">
+                   Product Item URL:
+                </div>
+                <div class="nine columns" style="padding-right: 0px">
+                    <div class="row collapse">
+                        <div class="ten mobile-three columns">
+                            <input type="text" name='url' id='url'  value="<?= default2String($_REQUEST['product_url'])?>"  placeholder='URL' />
+                        </div>
+                        <div class="two mobile-one columns">
+                            <a id='search_btn' class="button expand postfix search_btn">Next</a>
+                        </div>
+                    </div>          
+                </div>
+            </div> 
+            
+            <div class="row" style="margin: 20px 0;">
+                <hr/>
+            </div>        
+
+            <div class="row">
+                <?if(!empty($this->errnos)){ ?>
+                <?foreach ($this->errnos as $key => $value){ ?>
+                <div class="alert-box alert">
+                    <?= $this->errors[$key]['msg']; ?>
+                    <a href="" class="close">&times;</a>
+                </div>
+                <? } ?>
+                <?}?>
+                <?if($this->create_ok == true){ ?>
+                <div class="alert-box success">
+                    Coupon was created.
+                    <a href="" class="close">&times;</a>
+                </div>
+                <?}?>
+            </div>    
+            
+            <div class="row"> 
+                <form action="#" method='post'>
+                    <input type="hidden" name='input_url' id='input_url_hidden' value="<?= default2String($_REQUEST['url']); ?>" placeholder='URL' />
+
+                    <div class="row">
+                        <div class="six column" style="border-bottom-left-radius: ">
+                            <div class="row" style="margin-bottom: 10px;">
+                                <div class="six column">
+                                    <div class="row">
+                                        <div class="four columns">
+                                            <label class="left inline">Store Id :</label>
+                                        </div>
+                                        <div class="eight columns">
+                                            <label class="left inline store_id_label"><?=default2String($_REQUEST['store_id']);?></label>
+                                            <input type="hidden" name='store_id' id='store_id' value="<?=default2String($_REQUEST['store_id']);?>"/>
+                                        </div>                                   
+                                    </div>
+                                </div>
+                                <div class="six column">
+                                    <div class="row">
+                                        <div class="five columns">
+                                            <label class="left inline">Product Id :</label>
+                                        </div>
+                                        <div class="seven columns">   
+                                            <label class="left inline product_id_label"><?=default2String($_REQUEST['product_id']);?></label>
+                                            <input type="hidden" name='product_id' id='product_id' value="<?=default2String($_REQUEST['product_id']);?>"/>
+                                        </div>                                   
+                                    </div>
+                                </div>  
+                            </div>
+
+                            <div class="row" style="margin-bottom: 10px;">
+                                <div class="four columns">
+                                    <label class="left inline">Start Time:</label>
+                                </div>
+                                <div class="eight columns">
+                                    <input type="text" id="start_time" name='start_time' value="<?if(!empty2(strtotime2(default2String($_REQUEST['start_time'])))) {echo strftime('%F', strtotime2(default2String($_REQUEST['start_time'])));}?>"/>
+                                </div>
+
+                            </div>
+                            <div class="row" style="margin-bottom: 10px;">
+                                <div class="four columns">
+                                    <label class="left inline">End Time:</label>
+                                </div>
+                                <div class="eight columns">
+                                    <input type="text" id="end_time" name='end_time' value="<?if(!empty2(strtotime2(default2String($_REQUEST['end_time'])))) {echo strftime('%F', strtotime2(default2String($_REQUEST['end_time'])));}?>"/>
+                                </div>
+
+                            </div>
+                            <div class="row" style="margin-bottom: 10px;">
+                                <div class="four columns">
+                                    <label class="left inline">Status:</label>
+                                </div>
+                                <div class="eight columns">
+                                    <select id='deal_status' name='status' style="border-color: #848484 #c1c1c1 #e1e1e1; height: 2.5em; width: 320px;">
+                                        <option value='0' <?php if (default2String($_REQUEST['status']) == 0) echo 'selected' ?>>Created</option> 
+                                        <option value='127' <?php if (default2String($_REQUEST['status']) == 127) echo 'selected' ?>>Inactive</option>
+                                        <option value='2' <?php if (default2String($_REQUEST['status']) == 2) echo 'selected' ?>>Active</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="one column" style="height: 250px;width: 0px;padding: 0;border: solid 1px #e6e6e6; margin-left: 40px;"></div>                
+                        <div class="five column">
+                            <div class="row" style="margin-bottom: 10px;">
+                                <div class="four columns">
+                                    <label class="left inline">Initial Bid Price:</label>
+                                </div>
+                                <div class="eight columns">
+                                    <input type="text" id="initial_bid_price" name='initial_bid_price' value="<?= default2String($_REQUEST['initial_bid_price']); ?>"/>
+                                </div>
+                            </div> 
+                            <div class="row" style="margin-bottom: 10px;">
+                                <div class="four columns" style="padding: 0px;">
+                                    <label class="left inline">Min Bid Increment:</label>
+                                </div>
+                                <div class="eight columns">
+                                    <input type="text" id="min_bid_increment" name='min_bid_increment' value="<?= default2String($_REQUEST['min_bid_increment']); ?>"/>
+                                </div>
+                            </div> 
+
+                            <div class="row" style="margin-bottom: 10px;">
+                                <div class="four columns">
+                                    <label class="left inline">Description:</label>
+                                </div>
+                                <div class="eight columns">
+                                    <textarea rows="4" cols="50" style="height: 130px;" id='description' name='offer_description' disabled><?= default2String($_REQUEST['offer_description']) ?></textarea>                            
+                                </div>
+                            </div>
+                        </div>     
+                    </div> 
+
+                    <div class="row" style="margin: 20px 0;">
+                        <hr/>
+                    </div>              
+
+                    <div class="row">
+                        <div class=" two columns centered">
+                            <input type='submit' name='submit' value='Save Auction' class="radius alert button" style="margin-top:5px;" />
+                        </div>
+                    </div>
+                </form> 
+            </div> 
+        </div>
+    </div>     
+
+    <div class="row">
+        <div class="twelve comlumns">
+            <h1>EDIT COUPON CODES</h1> 
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="twelve columns" style="padding:0;">
+            <div class="panel">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Start Time</th>
+                            <th>End Time</th>
+                            <th>Status</th>
+                            <th>Auction Url</th>
+                            <th>View Bids</th>
+                            <th>Active</th>
+                            <th>Delete</th>
+                            <th>Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($this->auctions as $auction ){?>
+                        <tr data-id="<?=$auction['id'];?>">
+                            <td><a href="<?=$auction['product_url'];?>" target="_blank"><?=$auction['product_name'];?></a></td>
+                            <td><?=$auction['start_time'];?></td>
+                            <td><?=$auction['end_time'];?></td>
+                            <td><?=$auction['auction_status']?></td>
+                            <td><a href="<?=getSiteMerchantUrl("/auction/item?auction_id=${auction['id']}");?>" target="_blank">Action Url</a></td>
+                            <td><a href="/admin/listbids?auction_id=<?=$auction['id'];?>">View Bids</a></td>
+                            <td>
+                                <? if($auction['status'] != ACTIVATED ) { ?>
+                                <input type='button' name='' value='Active' class="radius alert button active_auction small" style="margin-top:5px;" />
+                                <? } else { ?>
+                                <input type='button' name='' value='Deactive' class="radius alert button deactive_auction small" style="margin-top:5px;" />
+                                <? }?>
+                            </td>
+                            <td>
+                                <input type='button' name='' value='Delete' class="radius alert button delete_auction small" style="margin-top:5px;" />
+                            </td>
+                            <td><a href="<?='?auction_id='.$auction['id']?>" class="button blue radius small edit" style="margin-top:5px;">Edit</a> </td> 
+                        </tr>
+                        <?php }?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>

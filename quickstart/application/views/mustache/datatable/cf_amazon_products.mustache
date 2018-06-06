@@ -1,0 +1,38 @@
+<header class="module-header create-header">
+    <h3 class="title">Create an Amazon Product</h3>
+</header>
+<form class="create-main" data-abide="ajax">
+    <div class="alert-field"></div>
+    <div class="data-abide-input-container">
+        <label for="url">URL/ASIN</label>
+        <input type="text" id="url" name="url" placeholder="" required>
+        <small class="error">URL/ASIN is required</small>
+    </div>
+    <div class="data-abide-input-container">
+        <label for="featured-value">Featured Value</label>
+        <select input type="text" id="featured-value" name="featured-value" required>
+            <option value="0">Not Featured</option>
+            <option value="1">Slider Featured</option>
+            <option value="2">Category Featured</option>
+            <option value="3">Ad Featured</option>
+        </select>
+        <small class="error">featured value is required</small>
+    </div>
+
+    <div class="data-abide-input-container">
+        <label for="featured-score">Featured Score</label>
+        <input type="text" id="featured-score" name="featured-score" value="1" required>
+        <small class="error">featured score is required</small>
+    </div>
+    <div class="data-abide-input-container">
+        <label for="global_category">Global Category</label>
+        <select type="text" id="global_category" name="global_category"required>
+            <option value=""> ---- </option>
+            {{#view_data.categories}}
+                <option value="{{id}}">{{path}}</option>
+            {{/view_data.categories}}
+        </select>
+        <small class="error">global category is required</small>
+    </div>
+    <input type="submit" datatable-action="create" class="submit-button" value="Save" datatable-trigger style="margin-bottom:1.875rem;">
+</form>

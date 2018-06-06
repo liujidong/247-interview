@@ -1,0 +1,27 @@
+
+** Reference
+
+how to create a mass payment file
+
+https://www.paypal.com/us/cgi-bin/webscr?SESSION=tp3vTCLVC_wyLrDUTJRDLJud8LGS6NJ6Uxkc3s58H_y8BYulhjiEqGNxFe8&dispatch=5885d80a13c0db1f8e263663d3faee8dd75b1e1ec3ad97b7af62835dd81d5d52
+
+
+** csv fields
+
+1. The email address, phone number, or customer ID for your recipient.
+2. The amount you’ll be sending to that recipient.
+3. The 3-letter currency abbreviation. See table below.
+4. An optional field for unique customer IDs, identifiers, etc.
+5. An optional field for a custom note to your recipient.
+
+sql for creating the csv
+
+select pay.username as email, sum(pi.amt) as amt, 'USD' as currency_code, concat('payment-', pi.id) as ref_id
+from
+payment_items pi join payment_accounts pa on (pi.receiver=pa.id)
+join paypal_accounts pay on (pay.id=pa.paypal_account_id) 
+where
+pi.status=0 and
+pi.receiver!=0 and
+pi.sender!=0
+group by pi.receiver

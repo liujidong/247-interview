@@ -1,0 +1,154 @@
+<link rel="stylesheet" href="/v2/css/pages/dashboard.css">
+<div id="dashboard" class="row page-layout dashboard">
+
+    <section class="small-12 medium-12 large-9 columns">
+        <div class="row">
+            <div class="small-3 medium-3 large-2 columns">
+                <? require_once(APPLICATION_PATH.'/views/scripts/partial/left_sidebar.phtml');?>
+            </div>
+            <!-- side nav end -->
+
+            <div id="me-settings" class="small-9 medium-9 large-10 columns">
+                <? require_once(APPLICATION_PATH.'/views/scripts/partial/horizontal_subnav.phtml');?>
+                <form action="" data-abide="ajax" id="me-settings-form" class="columns dashboard-form" method="post">
+                    <div class="row">
+                        <div class="small-4 medium-4 large-4 columns">&nbsp;</div>
+                        <div class="small-8 medium-8 large-8 columns alert-field"></div>
+                    </div>
+                    <div class="row field name-field data-abide-input-container">
+                        <div class="small-4 medium-4 large-4 columns">
+                            <label for="first-name" class="required">First Name</label>
+                        </div>
+                        <div class="small-8 medium-8 large-8 columns">
+                            <input type="text" id="first-name" name="first_name" value="<?=$this->user['first_name']?>" required>
+                            <small class="error">First Name is required.</small>
+                        </div>
+                    </div>
+                    <div class="row field name-field data-abide-input-container">
+                        <div class="small-4 medium-4 large-4 columns">
+                            <label for="last-name" class="required">Last Name</label>
+                        </div>
+                        <div class="small-8 medium-8 large-8 columns">
+                            <input type="text" id="last-name" name="last_name" value="<?=$this->user['last_name']?>" required>
+                            <small class="error">Last Name is required.</small>
+                        </div>
+                    </div>
+                    <div class="row field address-field data-abide-input-container">
+                        <div class="small-4 medium-4 large-4 columns">
+                            <label for="address-1" class="required">Address 1</label>
+                        </div>
+                        <div class="small-8 medium-8 large-8 columns">
+                            <input type="text" id="address-1" name="addr1" value="<?=$this->user['addr1']?>" required>
+                            <small class="error">Address 1 is required.</small>
+                        </div>
+                    </div>
+                    <div class="row field address-field data-abide-input-container">
+                        <div class="small-4 medium-4 large-4 columns">
+                            <label for="address-2">Address 2</label>
+                        </div>
+                        <div class="small-8 medium-8 large-8 columns">
+                            <input type="text" id="address-2" name="addr2" value="<?=$this->user['addr2']?>">
+                        </div>
+                    </div>
+                    <div class="row field city-field data-abide-input-container">
+                        <div class="small-4 medium-4 large-4 columns">
+                            <label for="city" class="required">City</label>
+                        </div>
+                        <div class="small-8 medium-8 large-8 columns">
+                            <input type="text" id="city" name="city" value="<?=$this->user['city']?>" required>
+                            <small class="error">City is required.</small>
+                        </div>
+                    </div>
+
+                    <div class="row field state-field data-abide-input-container">
+                        <div class="small-4 medium-4 large-4 columns">
+                            <label for="state" class="required">State/Province/Region</label>
+                        </div>
+                        <div class="small-8 medium-8 large-8 columns">
+                            <input type="text" id="state" name="state" value="<?=$this->user['state']?>" required>
+                            <small class="error">State/Province/Region is required.</small>
+                        </div>
+                    </div>
+                    <div class="row field country-field data-abide-input-container">
+                        <div class="small-4 medium-4 large-4 columns">
+                            <label for="select-country" class="required">Country</label>
+                        </div>
+                        <div class="small-8 medium-8 large-8 columns">
+                            <select name="country" id="select-country" required>
+                                 <option value>Please select a country</option>
+                                <? foreach($this->countries as $country) {?>
+                                <option value="<?=$country['iso2']?>" <?=$this->user['country']===$country['iso2']?'selected':''?>>
+                                    <?=$country['short_name']?>
+                                </option>
+                                <? } ?>
+
+                            </select>
+                            <small class="error">Country is required.</small>
+                        </div>
+                    </div>
+                    <div class="row field zipcode-field data-abide-input-container">
+                        <div class="small-4 medium-4 large-4 columns">
+                            <label for="zipcode" class="required">Zip Code</label>
+                        </div>
+                        <div class="small-8 medium-8 large-8 columns">
+                            <input type="text" id="zipcode" name="zip" value="<?=$this->user['zip']?>" required>
+                            <small class="error">Zip Code is required and should be numbers.</small>
+                        </div>
+                    </div>
+                    <div class="row field phone-number-field data-abide-input-container">
+                        <div class="small-4 medium-4 large-4 columns">
+                            <label for="phone-number" class="required">Phone Number</label>
+                        </div>
+                        <div class="small-8 medium-8 large-8 columns">
+                            <input type="tel" id="phone-number" name="phone" placeholder="(+1)123-456-7891" value="<?=$this->user['phone']?>" required>
+                            <small class="error">Phone Number is required and should be numbers.</small>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="row field email-field data-abide-input-container">
+                        <div class="small-4 medium-4 large-4 columns">
+                            <label for="email">Email</label>
+                        </div>
+                        <div class="small-8 medium-8 large-8 columns">
+                            <input type="email" id="email" value="<?=$this->user['username']?>" disabled>
+                        </div>
+                    </div>
+                    <div class="row field password-field data-abide-input-container">
+                        <div class="small-4 medium-4 large-4 columns">
+                            <label for="password" class="required">Password</label>
+                        </div>
+                        <div class="small-8 medium-8 large-8 columns">
+                            <input type="password" id="password" name="password" value="<?=DUMMY_PASSWORD?>" pattern="(^$|.{8,})">
+                            <small class="error">Password is required.</small>
+                        </div>
+                    </div>
+                    <div class="row field password-confirm-field data-abide-input-container">
+                        <div class="small-4 medium-4 large-4 columns">
+                            <label for="confirm-password" class="required">Confirm Password</label>
+                        </div>
+                        <div class="small-8 medium-8 large-8 columns">
+                            <input type="password" id="confirm-password" value="<?=DUMMY_PASSWORD?>" required data-equalto="password">
+                            <small class="error">The password did not match</small>
+                        </div>
+                    </div>
+                    <div class="row field password-confirm-field data-abide-input-container" data-tooltip
+                         title="Earn money by sharing a product link with this aid appended, ex: http://www.shopintoit.com/marketplace/products/item?id=1&aid=<?=$this->user['aid']?>">
+                        <div class="small-4 medium-4 large-4 columns"><label>Your Affiliate ID</label></div>
+                        <div class="small-8 medium-8 large-8 columns"><?=$this->user['aid']?></div>
+                    </div>
+                    <div class="row field submit-field data-abide-input-container">
+                        <div class="small-4 medium-4 large-4 columns">&nbsp;</div>
+                        <div class="small-8 medium-8 large-8 columns">
+                            <input type="submit" value="SAVE" id="submit-settings" class="submit-button">
+                            <input type="submit" value="Continue to Dashboard"
+                                   id="save-and-continue" class="submit-button" style="padding: 0 10px">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <? require_once(APPLICATION_PATH.'/views/scripts/partial/right_sidebar.phtml');?>
+
+</div>

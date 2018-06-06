@@ -1,0 +1,78 @@
+<? $this->placeholder("extra_header")->captureStart();?>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<script src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<? $this->placeholder("extra_header")->captureEnd();?>
+
+<div id="container" class="row">
+    <div id="orders" class="twelve columns">
+        <!-- ? require_once(APPLICATION_PATH.'/views/scripts/partial/subnav.phtml');? -->
+        <h1>Order <?=$this->items[0]['order_id'];?></h1>
+        <div class="row">
+            <div class="twelve columns centered tooltips">
+                <a href="/orders/" class="back">« back</a> <a href="" onClick="window.print()">print</a>
+            </div>    
+        </div>
+        <div class="row">
+            <div class="panel twelve columns centered">
+                <div class="row">
+                    <div class="eight columns">
+                        <table class="order-info">
+                            <tr>
+                                <th class="product">Product</th>
+                                <th class="price">Price</th>
+                                <th class="quantity">Quantity</th>
+                                <th class="total">Total</th>
+                            </tr>
+                            <?foreach($this->items as $item) {?>
+                            <tr>
+                                <td class="product"><?=$item['product_name'];?></td>
+                                <td class="price"><?=$this->currency_symbol;?><?=$item['product_price'];?></td>
+                                <td class="quantity"><?=$item['item_quantity'];?></td>
+                                <td class="total"><?=$this->currency_symbol;?><?=$item['item_price']?></td>
+                            </tr>
+                            <?}?>
+                            <tr>
+                                <td class="method">
+                                    <h6>Payment Method</h6>
+                                    <p>Paypal</p>
+                                    <h6>Shipping Method</h6>
+                                    <p>Standard Ground</p>
+                                </td>
+                                <td></td>
+                                <td class="details">
+                                    <p>Subtotal</p>
+                                    <p>Shipping</p>
+                                    <p>Total</p>
+                                </td>
+                                <td class="total">
+                                    <p><?=$this->currency_symbol;?><?=$this->items[0]['order_price'];?></p>
+                                    <p><?=$this->currency_symbol;?><?=$this->items[0]['order_shipping'];?></p>
+                                    <p><?=$this->currency_symbol;?><?=$this->items[0]['order_total'];?></p>
+                                </td>
+                            </tr>
+
+                        </table>
+                        <?if($this->order_status != SHIPPED) {?>
+                        <a id="fulfill_order" href="" class="button radius success large">Fulfill Order</a>
+                        <?}?>
+                    </div>
+                    <div class="four columns userdetails">
+                        <!--<div class="gravitar"><img src="//media-cache-ec2.pinterest.com/upload/27936460159134234_pWiggVBK_b.jpg"><p>Nate Jackson</p></div>-->
+                        <h5>Shipping Address</h5>
+                        <p><?=$this->items[0]['order_to_name'];?></p>
+                        <p><?=$this->address->getAddr1();?></p>
+                        <p><?=$this->address->getCity();?>, <?=$this->address->getState();?> <?=$this->address->getZip();?></p>
+                        <p><?=$this->address->getCountry();?></p>
+                        <!--<h5>Billing Address</h5>
+                        <p>Nate Jackson</p>
+                        <p>3454 Green Aveenue</p>
+                        <p>San Francisco, CA 94102</p>
+                        <p>United States</p>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div><!-- end content -->
+</div>
+<!-- </div> end container -->
+<div id='tgt_shiptrack_lightbox'></div>

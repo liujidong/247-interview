@@ -1,0 +1,98 @@
+/* ------------------------------
+	pricing plan page
+------------------------------ */
+
+.pricing-plans {
+	position: relative;
+}
+
+.pricing-plans .unavailable-mark {
+	color: #f73837;
+	border: 2px solid #f73837;
+	border-radius: 2px;
+	font-size: 1.125rem;
+	text-transform: uppercase;
+	font-weight: bold;
+	width: 8.25rem;
+	position: absolute;
+	top: 3.75rem;
+	text-align: center;
+	padding: 0.875rem 0;
+	left: 58%;
+
+	-webkit-transform: rotate(-15deg);
+	-moz-transform: rotate(-15deg);
+	-ms-transform: rotate(-15deg);
+	-o-transform: rotate(-15deg);
+	transform: rotate(-15deg);
+}
+
+.pricing-plans .plan-item {
+	border-radius: 4px;
+	color: #333333;
+	text-align: center;
+}
+
+.pricing-plans .plan-item-header {
+	border-width: 1px;
+}
+
+.pricing-plans .plan-item-title .title {
+	font-weight: 500;
+}
+
+.pricing-plans .plan-item-pricing strong {
+	font-size: 2.625rem;
+	line-height: 1;
+}
+
+.pricing-plans .plan-item em {
+	font-size: 0.75rem;
+	font-weight: 400;
+}
+
+.pricing-plans .plan-item .divider {
+	border-bottom: 1px solid #333333;
+}
+
+.pricing-plans .plan-item-button span {
+	display: inline-block;
+	width: 90%;
+	height: 2.5rem;
+	line-height: 2.5rem;
+	font-size: 0.875rem;
+	text-transform: uppercase;
+	border-radius: 3px;
+	background-color: rgba(255,255,255,0);
+	border: solid 1px #282222;
+}
+
+.pricing-plans .plan-item.unavailable,
+.pricing-plans .plan-item.unavailable .title {
+	color: #ccc;
+}
+
+.pricing-plans .plan-item.unavailable .divider,
+.pricing-plans .plan-item.unavailable .plan-item-header,
+.pricing-plans .plan-item.unavailable .plan-item-button span {
+	border-color: #ccc;
+}
+
+.pricing-plans .plan-item.highlight {
+	background-color: #f73837;
+}
+
+.pricing-plans .plan-item.highlight,
+.pricing-plans .plan-item.highlight .title {
+	color: #ffffff;
+}
+
+.pricing-plans .plan-item.highlight .divider,
+.pricing-plans .plan-item.highlight .plan-item-header,
+.pricing-plans .plan-item.highlight .plan-item-button span {
+	border-color: #ffffff;
+}
+
+#pricingpage .sups {
+	font-size: 0.75rem;
+}

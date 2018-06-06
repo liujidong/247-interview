@@ -1,0 +1,50 @@
+<!-- -*- markdown -*- -->
+
+# Attention
+    This is the steps of installing the symantec trail SSL certificate, please update it after the task done.
+
+# Prepare Certificates
+## Get the files we may need
+    - public.crt: I got it from the email(content between '-----BEGIN CERTIFICATE-----' and '-----END CERTIFICATE-----')
+    - private.key: LiangHuang put it to /root
+    - request.csr:  LiangHuang put it to /root, we do not use it in this task.
+    - intermediate.crt: I got it from:
+      * https://knowledge.verisign.com/support/ssl-certificates-support/index?page=content&actp=CROSSLINK&id=AR657
+      * click Free Trial SSL
+
+## place them into right place
+    - put all these(4) file in to a directory(e.g. /root/ssl)
+    - ensure the permission mode is 0644
+
+# Apache Configuration
+
+    - modify  '/etc/httpd/conf.d/ssl.conf', step 1 :
+      
+      ```
+      SSLCertificateFile /root/ssl/public.crt
+      SSLCertificateKeyFile /root/ssl/private.key
+      SSLCertificateChainFile /root/ssl/intermediate.crt
+      ```
+
+    - modify  '/etc/httpd/conf.d/ssl.conf', step 2 :
+      put the code below into section `<VirtualHost _default_:443>` : 
+
+      ```
+      ServerAdmin xxx@yahoo.com
+      DocumentRoot /home/wyixin/pincommerce/quickstart/public/
+      ServerName www.staging.shopinterest.co
+      ServerAlias *.staging.shopinterest.co
+      ```
+
+    - restart apache
+      need input a phrase(password) here. I used `xxx`
+
+# Install certificate to your browsers:
+    https://knowledge.verisign.com/support/ssl-certificates-support/index?page=content&id=SO10670
+
+# !!! We also need some update/modfication about our application
+    see branch `move2https`
+    
+# Technical Reference
+    - http://wiki.centos.org/HowTos/Https
+    - http://wiki.apache.org/httpd/RedirectSSL#Using_virtual_hosts_.28using_redirect.29

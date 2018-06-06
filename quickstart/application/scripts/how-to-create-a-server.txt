@@ -1,0 +1,35 @@
+#launch a instance
+Login in the website Peak Hosting https://mcdash.mlp1.peakwebhosting.com/auth/login/
+Into page Instances & Volumes, then press the button launch instance
+Now the page will turn to Images & Snapshots , let's choose Images CentOs 6 , then Launch
+Then the page is turn to Launch Instances, 
+    if you want to setup a web server please named it web01,and choose the Flavor X2.Xlarge,and the keypair dev ,let others as default, a web server need allocate a IP , just got Access & Security page , choose a IP to allocate to this server
+    if you account db server to setup a web server please named it db01, and choose the Flavor X2.large,and the keypair dev ,let others as default
+    if you store db server to setup a web server please named it db02, and choose the Flavor X2.medium,and the keypair dev ,let others as default
+    if you job db server to setup a web server please named it db03, and choose the Flavor X2.medium,and the keypair dev ,let others as default
+    if you job daemon server to setup a web server please named it daemon01, and choose the Flavor X2.medium,and the keypair dev ,let others as default
+Got Instances & Volumes page to select volumes to each server
+
+#pull code from git please put code under /var/www/html/pincommerce
+Login in to remote server (the instance above) use ssh (ssh -i/home/**** ip of the server)
+#do as the below one by one 
+sudo su
+sudo yum install git
+sudo mkdir -p /var/www/html/pincommerce
+cd /var/www/html/pincommerce
+cd ~/.ssh 
+vi id_rsa
+chmod 600 id_rsa
+ssh git@github.com # https://help.github.com/articles/generating-ssh-keys
+cd -
+git pull git@github.com:liangdev/pincommerce.git
+
+#put the ip into env.conf (look into Instances & Volumes page above https://mcdash.mlp1.peakwebhosting.com/nova/instances_and_volumes/)
+#cd /var/www/html/pincommerce/quickstart/application/scripts/ 
+#run install.sh
+sudo chmod 755 install.sh
+sudo ./install.sh web or
+sudo ./install.sh databaseaccount or
+sudo ./install.sh databasestore or
+sudo ./install.sh databasejob or
+sudo ./install.sh daemon

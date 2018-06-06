@@ -1,0 +1,15 @@
+<?foreach($this->amazon_products as $product){?>
+<li class="product-item">
+    <!-- a href="<?=$product['purchase_url']?>" -->
+    <a href="/store/marketplace/products/item?ASIN=<?=$product['ASIN']?>">
+        <div class="holder">
+            <img src="<?=$product['pictures']['236'][0]?>" alt="" class="product-item-image">
+        </div>
+        <div class="product-item-name"><?=$product['name']?></div>
+    </a>
+    <div class="product-item-storename"><a href="<?=$product['store_url']?>" style=" color: #333333; ">
+        <?= $product['store_name'] ?>
+    </a></div>
+    <div class="product-item-pricing"><?=$product['price']?></div>
+</li>
+<?}?>

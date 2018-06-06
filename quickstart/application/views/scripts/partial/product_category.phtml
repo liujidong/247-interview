@@ -1,0 +1,9 @@
+<nav class="top-bar" id="products_categories">
+    <ul class="nav-bar ">
+        <li class="name"><a>Product Category</a></li>
+        <? foreach ($this->categories as $category) { ?>
+            <li class="navCategories"><a href="/search?q=<?= $category['description'] ?>"><?= $category['description'] ?></a></li>
+        <? } ?>
+    </ul>
+</nav>   
+                    

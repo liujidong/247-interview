@@ -1,0 +1,25 @@
+
+<link rel="stylesheet" type="text/css" href="/css/login.css"/>
+<div class="main" id='login_main'>
+	<div id='login_div'>
+	<form action='/payments/add' method='post'>
+		<div class='login'>
+                        <div class="forms clearfix" node-type="loginname_box">
+				<div class="detail description">
+					<strong>Add Your Payment Accounts:</strong>
+				</div>
+			</div>
+			<div class="forms clearfix" node-type="loginname_box">
+				<div class="detail">
+					<input placeholder='paypal account'  name='paypal_username' type='text' value="<?php echo empty($this->paypal)?"":$this->paypal;?>"/>
+				</div>
+			</div>
+			<div class="forms clearfix" node-type="loginname_box">
+				<div class="center login">
+					<input class="submit" name='submit' type='submit' value="submit"/>
+				</div>
+			</div>
+		</div>
+	</form>
+	</div>
+</div>

@@ -1,0 +1,56 @@
+
+1. Search box is a form
+
+<form class="twelve columns centered" action="/search/index" method="post">
+    <input id="store_search" name="store_search" type="text" placeholder="Search for stores…	">
+    <input class="postfix secondary button" name="submit" type="submit" value="">
+</form>
+
+2. /search/index
+
+input: $_POST['store_search']
+
+$service = SphinxService::getInstance();
+$service->setMethod('query');
+$service->setParams(array(
+    'query'=>$query,
+    'account_dbobj'=>$this->account_dbobj  
+));
+$service->call();
+$status = $service->getStatus();
+if($status===0){
+    $response = $service->getResponse();
+    $count=count($response);
+}
+
+3. SphinxService
+
+$this->_sphinx->SetServer( $host, $port );
+$this->_sphinx->SetLimits ( $offset, $limit, ( $limit>1000 ) ? $limit : 1000 );
+$this->_sphinx->SetMatchMode( SPH_MATCH_ANY  );
+$this->_sphinx->SetSortMode ( SPH_SORT_ATTR_DESC, $this->_sortby );
+$res=$this->_sphinx->Query($query,$index);
+
+if ( ! empty($res['matches']) ) {
+    foreach ( $res['matches'] as $doc_id => $docinfo ) {
+        ...
+    }
+}
+
+4. indexer cron
+
+#* */2 * * * root /bin/bash /var/www/html/pincommerce/quickstart/application/scripts/build_index.sh >> /var/log/httpd/pincommerce/sphinx_build_index.log
+
+service searchd stop 
+indexer --all
+service searchd start 
+
+5. add_search_produt.php cron
+
+
+6. how to push sphinx config
+
+
+
+
+

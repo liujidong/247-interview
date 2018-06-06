@@ -1,0 +1,164 @@
+<link rel="stylesheet" href="/v2/css/pages/dashboard.css">
+<div id="dashboard" class="row page-layout dashboard">
+
+    <section class="small-12 medium-12 large-9 columns">
+        <div class="row">
+            <div class="small-3 medium-3 large-2 columns">
+                <? require_once(APPLICATION_PATH.'/views/scripts/partial/left_sidebar.phtml');?>
+            </div>
+            <!-- side nav end -->
+
+            <div id="sellingvenue-settings" class="small-9 medium-9 large-10 columns">
+                <? require_once(APPLICATION_PATH.'/views/scripts/partial/horizontal_subnav.phtml');?>
+                <!-- dashboard sub nav end -->
+
+                <div class="row">
+                    <div class="small-4 medium-4 large-4 columns">&nbsp;</div>
+                    <div class="small-8 medium-8 large-8 columns alert-field"></div>
+                </div>
+                <div action="" class="columns dashboard-form upload-form">
+                    <div class="row field logo-field">
+                        <div class="small-4 medium-4 large-4 columns">
+                            <label>Store Logo</label>
+                        </div>
+                        <div class="small-8 medium-8 large-8 columns">
+                            <div>
+                                <img src="<?=$this->store['converted_logo']?>" alt="Store Logo" id="store-logo" class="store-logo">
+                            </div>
+                            <input type="button" id="upload" value="upload">
+                        </div>
+                    </div>
+                </div>
+                <form action="" data-abide="ajax" id="selling-settings-form" class="columns dashboard-form" method="post">
+                    <input type="hidden" name="id" value="<?=$this->store['id']?>">
+                    <div class="row field name-field data-abide-input-container">
+                        <div class="small-4 medium-4 large-4 columns">
+                            <label for="store-name" class="required">Store Name</label>
+                        </div>
+                        <div class="small-8 medium-8 large-8 columns">
+                            <input type="text" id="store-name" name="name" value="<?=$this->store['name']?>" required>
+                            <small class="error">Store Name is required.</small>
+                        </div>
+                    </div>
+                    <div class="row field desc-field data-abide-input-container">
+                        <div class="small-4 medium-4 large-4 columns">
+                            <label for="store-desc" class="required">Store Description</label>
+                        </div>
+                        <div class="small-8 medium-8 large-8 columns">
+                            <textarea id="store-desc" name="description" required><?=$this->store['description']?></textarea>
+                            <small class="error">Store Description is required.</small>
+                        </div>
+                    </div>
+                    <div class="row field return-policy data-abide-input-container">
+                        <div class="small-4 medium-4 large-4 columns">
+                            <label for="return-policy" class="required">Return Policy</label>
+                        </div>
+                        <div class="small-8 medium-8 large-8 columns">
+                            <textarea id="return-policy" name="return_policy" required><?=$this->store['return_policy']?></textarea>
+                            <small class="error">Return Policy is required.</small>
+                        </div>
+                    </div>
+                    <div class="row field store-url data-abide-input-container">
+                        <div class="small-4 medium-4 large-4 columns">
+                            <label for="pinterest_username">Pinterest Username</label>
+                        </div>
+                        <div class="small-6 medium-6 large-4 columns">
+                            <span class="urlfix">http://pinterest.com/</span>
+                        </div>
+                        <div class="small-2 medium-2 large-4 columns">
+                            <input name="pinterest_username" type="text" id="pinterest_username"
+                                   value="<?=$this->store['pinterest_username']?>">
+                        </div>
+                    </div>
+                    <div class="row field tags-area">
+                        <div class="small-4 medium-4 large-4 columns">
+                            <label for="store-tags">Store Tags</label>
+                        </div>
+                        <div class="small-8 medium-8 large-8 columns">
+                            <input name="tags" type="text" id="store-tags" value="<?=$this->store['tags']?>">
+                        </div>
+                    </div>
+                    <div class="row field store-url data-abide-input-container">
+                        <div class="small-4 medium-4 large-4 columns">
+                            <label for="store-url" class="required">Personalized Store URL</label>
+                        </div>
+                        <div class="small-6 medium-6 large-4 columns">
+                            <span class="urlfix"><?='http://www.'.$this->site_domain.'/store/'?></span>
+                        </div>
+                        <div class="small-2 medium-2 large-4 columns">
+                            <input type="text" id="store-url" name="subdomain" value="<?=$this->store['subdomain']?>" required>
+                            <small class="error">Personalized Store URL is required.</small>
+                        </div>
+                    </div>
+                    <div class="row field other-url">
+                        <div class="small-4 medium-4 large-4 columns">
+                            <label for="other-url">Other Website URL</label>
+                        </div>
+                        <div class="small-8 medium-8 large-8 columns">
+                            <input type="text" id="other-url" name="external_website"
+                                   value="<?=$this->store['external_website']?>" placeholder="http://">
+                            <small class="error">URL should start with 'http:' or 'https:'.</small>
+                        </div>
+                    </div>
+                    <div class="row field country-field data-abide-input-container">
+                        <div class="small-4 medium-4 large-4 columns">
+                            <label for="store-country" class="required">Store Country</label>
+                        </div>
+                        <div class="small-8 medium-8 large-8 columns">
+                            <select name="country" id="store-country" required>
+                                <option value>Please select a country</option>
+                                <? foreach($this->countries as $country) {?>
+                                <option value="<?=$country['iso2']?>" <?=$this->store['country']===$country['iso2']?'selected':''?>>
+                                    <?=$country['short_name']?>
+                                </option>
+                                <? } ?>
+                            </select>
+                            <small class="error">Country is required.</small>
+                        </div>
+                    </div>
+                    <div class="row field currency-field data-abide-input-container">
+                        <div class="small-4 medium-4 large-4 columns">
+                            <label for="currency" class="required">Currency</label>
+                        </div>
+                        <div class="small-8 medium-8 large-8 columns">
+                            <select name="currency" id="currency" required>
+                                <option value>Please select a currency</option>
+                                <?foreach($this->currencies as $currency=>$data) {?>
+                                <option value="<?=$currency?>" <?=$this->store['currency']===$currency?'selected':''?>>
+                                    <?=$data['name']?>
+                                </option>
+                                <?}?>
+                            </select>
+                            <small class="error">Currency is required.</small>
+                        </div>
+                    </div>
+                    <div class="small-input">
+                        <div class="row field tax-rate">
+                            <div class="small-4 medium-4 large-4 columns">
+                                <label for="tax-rate">Tax Rate (%)</label>
+                            </div>
+                            <div class="small-8 medium-8 large-8 columns">
+                                <input type="number" id="tax-rate" name="tax" value="<?=$this->store['tax']?>" required>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row field submit-field">
+                        <div class="small-4 medium-4 large-4 columns">&nbsp;</div>
+                        <div class="small-8 medium-8 large-8 columns">
+                            <input type="submit" id="submit-button" class="submit-button" value="SAVE">
+                            <input type="submit" value="Continue to Dashboard"
+                                   id="save-and-continue" class="submit-button" style="padding: 0 10px">
+                        </div>
+                    </div>
+                </form>
+                <!-- settings form end -->
+
+            </div>
+        </div>
+    </section>
+
+    <? require_once(APPLICATION_PATH.'/views/scripts/partial/right_sidebar.phtml');?>
+
+</div>

@@ -1,0 +1,213 @@
+<link rel="stylesheet" href="/css/cart.css"/>
+<link rel="stylesheet" href="/css/page/merchant_products.css"/>
+<script src="/js/jquery-ui-1.10.3.custom.min.js"></script>
+<input id="currency_symbol" name="currency_symbol" type="hidden" value="<?=$this->my_currency_symbol;?>"/>
+<div id="container" class="row">
+<? require_once(APPLICATION_PATH.'/views/scripts/partial/subnav.phtml');?>
+    <div id="page-upload">
+        <div class="page-header">Create Your Products</div>
+        <div class="upload-content">
+            <div class="operation">
+<!--                <div class="header-1">
+                    <input type="checkbox" name="check-all" id="check-all"/>
+                </div>
+                <div class="header-2" id="check-all-operate">
+                    <a class="button-save" href="##">Save</a>
+                    <a class="button-delete" href="##">Delete</a>
+                </div>-->
+                <div class="header-3">
+                    <div class="status-toggle <?=$this->status === 'active' ? 'status-active' : 'status-inactive'?>">
+
+                        <label class="active">
+                            <a href="<?= $this->status === 'active' ? '#' : '/merchant/products?status=active'?>">
+                               <input type="radio" name="status" value="active" <?=$this->status === 'active' ? 'checked disabled' : ''?>>Active
+                            </a>
+                        </label>
+
+                        <label class="inactive">
+                            <a href="<?= $this->status === 'inactive' ? '#' : '/merchant/products?status=inactive'?>">
+                                <input type="radio" name="status" value="inactive" <?=$this->status === 'inactive' ? 'checked disabled' : ''?>>Inactive
+                            </a>
+                        </label>
+
+                    </div>
+                </div>
+                <div class="search-filter">
+                    <form action="/merchant/products/" method="get">
+                        <input type="hidden" name="status" value="<?=$this->status?>"/>
+                        <input type="text" class="search-input" name="search" placeholder="Search" value="<?=$this->search?>"/>
+                        <a href="/merchant/products/">Clear your search</a>
+                    </form>
+                </div>
+            </div>
+            <div class="operation-table">
+                <div class="operation-header">
+                    <div class="header-1">
+                         Images
+                    </div>
+                    <div class="header-2">
+                         Basic Information
+                    </div>
+                    <div class="header-3">
+                         Selling Options
+                    </div>
+                    <div class="header-4">
+                         Custom Fields(Optional)
+                    </div>
+                </div>
+                <?foreach($this->products as $i => $product){?>
+                <div class="operation-section" data-operation-section-row = "<?=$i?>">
+                    <input type="hidden" class ="product_id" value="<?=$product['product_id']; ?>" />
+                    <div class="item-header">
+                        <div class="item-header-1">
+                            <!--<input type="checkbox" name="xxx"/>-->
+                        </div>
+                        <a class="button-save" href="##">Save</a>
+                        <a class="button-delete" href="##">Delete</a>
+                        <?if($this->store_allow_resell) {?>
+                        <input class="resell" type="checkbox" name="resell" style="margin-left: 10px;" <?if(!empty($product['product_resell'])) echo "checked";?>/>
+                        <label for="resell" style="display: inline;">Resell</label>
+                        <?}?>
+                        <div class="tips"></div>
+                    </div>
+                    <div class="operation-row">
+                        <div class="operation-cell operation-cell-1">
+                            <div class="prod-image">
+                                <span class="prod-image-number"><?=$product['origin_picture_cnt']?></span>
+                                <img src="<?=$product['converted_pictures'][0]['url'];?>" alt=""/>
+                                <b class="icon-upload-more"></b>
+                            </div>
+                            <a href="##" class="button-upload-more">Upload More</a>
+                        </div>
+                        <div class="operation-cell operation-cell-2">
+                            <input type="text" placeholder="(no title)" name="product[<?=$product['product_id'];?>][product_name]" value="<?=$product['product_name'];?>" class="product_input_field product_name"/>
+                            <textarea name="" id="" placeholder="(no description)"name="product[<?=$product['product_id'];?>][product_description]" value="<?=$product['product_description'];?>" class="product_input_field product_description" /><?=$product['product_description'];?></textarea>
+                            <select name="global_category" class="product_category product_input_field">
+                                <option value="0">Select a category</option>
+                                <?foreach($this->global_category_list as $global_category){?>
+                                <option value="<?=$global_category['id']?>" <?if($global_category['id'] == $product['product_global_category_id']) echo "selected";?>><?=$global_category['path']?></option>
+                                <?}?>
+                            </select>
+                            <div class="prod-tags">
+                                <?foreach($product['categories'] as $tag){?>
+                                <?if(!empty($tag)) {?>
+                                <span class="prod-tag" title="Delete Tag" category="<?=$tag['category']?>"><?=$tag['description']?></span>
+                                <?}}?>
+                                <a href="##" class="edit-tags edit-link">+ Add Tags</a>
+                            </div>
+                        </div>
+                        <div class="operation-cell operation-cell-3">
+                            <div>
+                                <label for="" class="left price-input-label">Price: <span class="price-input currency_input_<?=$this->my_store_currency?>"><input type="text" value="<?=$product['product_price']?>" class="product_input_field product_price"/></span></label>
+                                <label for="" class="right quantity-input-label" style="<?if(!empty($product['product_resell'])) echo "display:none"?>">Quantity: <input type="text" value="<?=$product['product_quantity']?>" class="quantity-input product_input_field product_quantity"/></label>
+                                <label for="" class="commission-input-label" style="<?if(!empty($product['product_resell'])) echo "display:none"?>">Commission: <span class="commission-input"><input type="text" value="<?=$product['product_commission']?>" class="product_input_field product_commission"/></span></label>
+                            </div>
+                            <br>
+                            <div class="purchase_url_container" style="<?if(empty($product['product_resell'])) echo "display:none"?>">
+                                <input type="text" class="product_input_field product_purchase_url" id="purchase_url" placeholder="Purchase URL" value="<?=$product['product_purchase_url']?>">
+                            </div>
+                            <!--<div class="shipping-calc">
+                                    <h3>Extra Shipping Rates</h3><span class="shipping-input currency_input_<?=$this->my_store_currency?>"><input type="text" id="product_shipping" name="product_shipping" value="<?=$product['product_shipping']?>" alt="Shipping" class="product_input_field product_shipping text_shipping"></span>
+                                    <span>+</span>
+                                    <span class="small">(your store default shipping rate)</span>
+                                    <div class="calc">
+                                        <span><b>Total Shipping for this item <span class="accent product_total_shipping">$</span></b></span>
+                                        <p class="add">Each additional item adds <span class="product_additional_shipping">$</span></p>
+                                    </div>
+                            </div>-->
+
+                            <?
+                            $shipping_names = array();
+                            foreach($product['shipping_options'] as $shipping){
+                            $shipping_names[] = $shipping['name'];
+                            ?>
+                            <?}?>
+                            <!-- <div class="prod-shippings">
+                                <a href="##" class="button-title edit-shipping-title" shipping-id=""></a>
+                            </div>  -->
+
+                            <div class="shipping-options-checkbox">
+                                <label class="title">shipping options:</label>
+                                <? foreach($this->shipping_options as $opt) {?>
+                                <div class="checkbox-item product-shippingopt">
+                                    <input id="shipping-<?=$opt['name']?>" type="checkbox"
+                                    <? if(in_array($opt['name'], $shipping_names)){echo "checked";}?>
+                                    <? if($opt['name'] === 'Standard'){echo "checked disabled";}?>
+                                    product_id="<?=$product['product_id']?>"
+                                    shipping_opt_id="<?=$opt['id']?>">
+                                    <label for="shipping-<?=$opt['name']?>"><?=$opt['name']?></label>
+                                </div>
+                                <? } ?>
+                            </div>
+                            <!--
+                            <div>
+                            <a href="##" class="edit-link add-shipping">+ Add a shipping pattern</a>
+                            </div>-->
+                        </div>
+                        <div class="operation-cell operation-cell-4">
+                            <div class="custom-field">
+                                <div class="table">
+                                    <div class="table-row header">
+                                        <span class="table-cell">Fields</span>
+                                        <span class="table-cell">In Stock</span>
+                                        <span class="table-cell">&nbsp;</span>
+                                    </div>
+                                    <? foreach($product['custom_fields'] as $f) {?>
+                                    <div class="table-row custom-item" fid="<?=$f['id']?>">
+                                        <div class="table-cell"><input class="cf_name" type="text" value="<?=$f['name']?>" disabled=""></div>
+                                        <div class="table-cell instock">
+                                            <input class="cf_quantity" type="text" value="<?=$f['quantity']?>" disabled="">
+                                        </div>
+                                        <div class="table-cell">
+                                            <div class="edit-options">
+                                                <a href="javascript:;" class="edit-custom-item" style="margin-right:10px;">Edit</a>
+                                                <a href="javascript:;" class="del-custom-item">Delete</a>
+                                            </div>
+                                            <div class="save-options" style="display:none;">
+                                                <a href="javascript:;" class="save-custom-item">Save</a> or <a href="javascript:;" class="cancel-custom-item">Cancel</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <? } ?>
+                                </div>
+                                <div><a href="javascript:;" class="button small create">Create</a></div>
+                            </div>
+    <!--                        <div class="custom-field-title">
+                                <span class="custom-title">Operation System</span>
+                                <label class="custom-field-required">Required? <input type="checkbox"/></label>
+                            </div>
+                            <div>
+                                <a href="##" class="edit-link add-custom-link">+ Add a field</a>
+                            </div>-->
+
+                        </div>
+                    </div>
+
+                    <div class="prod-image-expand" style="display: none; width: 390px;">
+                        <div class="prod-image-draggable">
+                            <?foreach($product['converted_pictures'] as $picture){?>
+                            <div class="expand-pic" picture_id="<?=$picture['picture_id']?>">
+                                <img src="<?=$picture['url']?>" alt=""/>
+                                <a href="##" class="icon-delete">×</a>
+                            </div>
+                            <?}?>
+                        </div>
+                        <div class="expand-add-more">
+                            <b>+</b><span>More</span>
+                        </div>
+                    </div>
+                </div>
+                <?}?>
+                <div class="optional-line"></div><!--just a line-->
+            </div>
+    <div class="continue">
+        <a class="button radius alert left create_products" href="##">Add More Products</a>
+        <a class="button radius success right" href="/preview">Continue To Launch</a>
+    </div>
+        <?php echo $this->page($this->total_rows, $this->rows_per_page, $this->page_num, $this->extra_params); ?>
+        </div>
+        <input id="store_shipping" type="hidden" value="<?=$this->store_shipping?>">
+        <input id="store_additional_shipping" type="hidden" value="<?=$this->store_additional_shipping?>">
+    </div>
+</div>
+</div><!-- end container -->

@@ -1,0 +1,47 @@
+
+<div class="large-3 columns show-for-large-up sidebar-column">
+    <aside class="sidebar">
+
+        <div class="side-item advertisement">
+            <ul class="no-bullet">
+                <? foreach ($this->ad_featured_products['data'] as $i=>$product) { ?>
+                    <?if($i<3) {?>
+                    <li class="ad-item">
+                        <a href="<?=$product['product_url']?>">
+                            <img src="<?= reset($product['pictures']['550']) ?>" alt="">
+                            <p class="ad-item-desc"><?= $product['name'] ?></p>
+                        </a>
+                    </li>
+                    <?}?>
+                <? } ?>
+            </ul>
+        </div>
+        <!--
+        <div class="side-item auctions"> 
+            <div class="clearfix module-header header">
+                <h2 class="left title">Auctioning</h2>
+                <a href="#" class="right more">See All &rarr;</a>
+            </div>
+            <div class="auction-item">
+                <a href="#">
+                    <div class="row">
+                        <div class="small-12 medium-12 large-5 columns">
+                            <img src="https://s3.amazonaws.com/shopinterest_stage/stores/1/5251039a08c7a_550.jpg" alt="" class="auction-item-image">
+                        </div>
+                        <div class="small-12 medium-12 large-7 columns">
+                            <div class="auction-item-name">Vintage Polo Neck Sleeveless Color Block Chiffon Dress</div>
+                            <div class="clearfix auctioned">
+                                <span class="left auction-item-pricing">$50</span>
+                                <span class="right auction-item-auctiontime">3 minutes ago</span>
+                            </div>
+                            <div class="auction-item-counting">
+                                <strong>3</strong> D &nbsp;<strong>21</strong> H &nbsp;<strong>50</strong> M
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        -->
+    </aside>
+</div>

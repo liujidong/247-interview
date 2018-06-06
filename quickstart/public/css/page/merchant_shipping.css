@@ -1,0 +1,52 @@
+/* -----------------------------------------
+	merchant shipping options page style
+----------------------------------------- */
+
+.shipping-options-item {
+	margin-bottom: 20px !important;
+}
+
+.shipping-options-item .dest-item {
+	margin-bottom: 10px;
+}
+
+.shipping-options-item input {
+	display: inline-block;
+	height: 24px;
+	font-size: 12px;
+	margin-bottom: 0;
+}
+
+.shipping-options-item select {
+	font-size: 12px;
+}
+
+.shipping-options-item .add-dest {
+	font-size: 12px;
+	color: #8a8684;
+}
+
+.shipping-options-item .service-type {
+	width: 30%;
+}
+
+.shipping-options-item .extra-service-type {
+	width: 120px;
+	border: 1px solid #d4cdc9;
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+.shipping-options-item .dest-delete {
+	line-height: 24px;
+	font-size: 20px;
+}
+
+.shipping-options-item .input-dollar {
+	width: 48%;
+}
+
+.shipping-options-item .from,
+.shipping-options-item .to {
+	width: 48%;
+}

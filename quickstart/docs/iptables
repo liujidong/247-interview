@@ -1,0 +1,12 @@
+
+clean runs:
+
+iptables -F
+iptables -t nat -F
+
+
+drop rule:
+
+iptables -A INPUT -s 10.0.0.0/24 -j DROP
+iptables -A OUTPUT -d 10.0.0.0/24 -j DROP
+

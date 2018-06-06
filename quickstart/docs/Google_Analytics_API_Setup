@@ -1,0 +1,18 @@
+
+
+Reference:
+
+https://developers.google.com/analytics/solutions/articles/hello-analytics-api#environment
+
+1. Register an application in the Google Developers Console
+
+https://console.developers.google.com/flows/enableapi?apiid=analytics
+
+private key pass: xxx
+
+Make sure you give the service account email permissions to read/write from your GA view.
+
+Admin > View > User Management > "Add permissions for:"
+
+
+

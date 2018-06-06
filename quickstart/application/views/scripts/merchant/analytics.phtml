@@ -1,0 +1,53 @@
+<? $this->placeholder("extra_header")->captureStart();?>
+<link rel="stylesheet" href="/css/cart.css"/>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<script src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+<link rel="stylesheet" href="/css/tablesorter/blue/style.css" />
+<script src="/js/jquery.tablesorter.min.js"></script>
+<? $this->placeholder("extra_header")->captureEnd();?>
+
+<div id="container" class="row">
+    <div class="content twelve columns">
+        <? require_once(APPLICATION_PATH.'/views/scripts/partial/subnav.phtml');?>
+        <h1>Get Your Store Analytics Data</h1>
+        <div class="row">
+            <div class="six columns centered">
+                <form method="post">
+                    <label for="from" style="display: inline-block">From</label>
+                    <input type="text" style="display: inline-block; width: 25%" id="from" name="from" value="<?=$this->day_from?>" />
+                    <label for="to" style="display: inline-block">to</label>
+                    <input type="text" style="display: inline-block; width: 25%" id="to" name="to" value="<?=$this->day_to?>"/>    
+                    <input type="submit" class ="button success small" value="Submit">
+                </form>
+            </div>                
+        </div>
+        <table id='admin_table' class="tablesorter">
+            <thead>
+                <tr>
+                    <th>Page</th>
+                    <th>Visitors</th>
+                    <th>Pageviews</th>
+                    <th>AvgTimeOnPage(sec)</th>
+                    <th>VisitBounceRate(%)</th>       
+                </tr>
+            </thead>
+            <tbody>
+                <?if(empty($this->rows)){?>
+                <tr><td colspan="5" style="text-align: center;">Sorry, no data to display.</td></tr>
+                <?}?>
+                <?php foreach ($this->rows as $row){?>
+                <tr>
+                    <td><a href="http:/<?=$row[0]?>" target="_blank"><?=trim($row[0], '/')?></a></td>
+                    <td><?=$row[1]?></td>
+                    <td><?=$row[2]?></td> 
+                    <td><?=sprintf("%.2f", round($row[3], 2))?></td>
+                    <td><?=sprintf("%.2f", round($row[4], 2))?></td>              
+                </tr>
+                <?php }?>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+</div><!-- end container -->

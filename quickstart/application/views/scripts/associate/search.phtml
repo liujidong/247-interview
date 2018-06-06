@@ -1,0 +1,17 @@
+<div id="container" class="row">
+    <div class="twelve columns">
+        <? require_once(APPLICATION_PATH . '/views/scripts/partial/subnav.phtml'); ?>
+        <? if(empty($this->description)) {?>
+        <h1>Search <span class='gentium'>for</span> Products</h1>         
+        <? } else {  ?>
+        <h1> Search Results for <span class='gentium'><?=$this->description?></span> Returns <span class='gentium'><?=$this->total_rows?></span> Results.</h1>
+        <? } ?>
+       
+
+        <?=$this->render('associate/search_form.phtml');?>
+        <?=$this->render('associate/product_items.phtml'); ?>
+        <?=$this->pagination($this->total_rows, $this->rows_per_page, $this->page_num, $this->extra_params); ?>
+
+    </div><!-- end content -->
+</div>       
+</div><!-- end container -->

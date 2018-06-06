@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Import Products From Other CSV File</title>
+    <link rel="stylesheet" href="/v2/css/modules.css"/>
+    <link rel="stylesheet" href="/css/page/iframe_etsyimport.css">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,600,700' rel='stylesheet' type='text/css'>
+</head>
+<body id="<?=$this->body_id;?>">
+    <div class="container">
+        <a class="close">&#215;</a>
+        <div class="import-o-section">
+            <div class="box-i_o">
+                <div class="title">
+                    <span>Import Products From <b>Etsy CSV file</b></span>
+                </div>
+                <div class="popbox"><a href="#" class="upload-button pick_button module-button">Select a CSV file from my computer</a></div>
+                <div class="division"></div>
+                <div class="title">
+                    <span><b>5 Easy Steps</b> to Import All Your Etsy Products</span>
+                </div>
+                <!--step 1-->
+                <div class="photo_section">
+                    <span><b>STEP 1</b></span>
+                    <p class="tip">Login to your Etsy account and click on the "Your Shop" link on the upper right hand side of the page.</p>
+                    <div class="photobox"><img src="/img/etsy-import-step-01.jpg" alt="Etsy CSV download step 1"/></div>
+                </div>
+                <!--step 2-->
+                <div class="photo_section">
+                    <div class="center_box"><img src="/img/step_arrow.png" alt="Etsy CSV download step 2"/></div>
+                    <span><b>STEP 2</b></span>
+                    <p class="tip">Click the "Options" link in the navigation bar on the left.</p>
+                    <div class="photobox"><img src="/img/etsy-import-step-02.jpg" alt="Etsy CSV download step 2"/></div>
+                </div>
+                <!--step 3-->
+                <div class="photo_section">
+                    <div class="center_box"><img src="/img/step_arrow.png" alt="Etsy CSV download step 3"/></div>
+                    <span><b>STEP 3</b></span>
+                    <p class="tip">Select the "Download Data" tab.</p>
+                    <div class="photobox"><img src="/img/etsy-import-step-03.jpg" alt="Etsy CSV download step 3"/></div>
+                </div>
+                <!--step 4-->
+                <div class="photo_section">
+                    <div class="center_box"><img src="/img/step_arrow.png" alt="Etsy CSV download step 4"/></div>
+                    <span><b>STEP 4</b></span>
+                    <p class="tip">Click "Download CSV" and save the file to your hard drive.</p>
+                    <div class="photobox"><img src="/img/etsy-import-step-04.jpg" alt="Etsy CSV download step 4"/></div>
+                </div>
+                <!--step 5-->
+                <div class="photo_section">
+                    <div class="center_box"><img src="/img/step_arrow.png" alt="Etsy CSV download step 5"/></div>
+                    <span><b>STEP 5</b></span>
+                    <p class="tip">Drag your CSV file to the area at the top of this page.</p>
+                </div>
+                <div class="footer">
+                    <div class="title">
+                        <span>That's it! We will do the rest of the work for you.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/v2/js/jquery.js"></script>
+    <script src="/js/mustache.js"></script>
+    <script src="/js/jquery.cookie.js"></script>
+    <script src="/js/gat.js"></script>
+    <?$index_js = 'index.js'; if(APPLICATION_ENV === 'production') $index_js = 'index.combined.min.js'; if(APPLICATION_ENV === 'staging') $index_js = 'index.combined.js';?>
+    <script src="/js/<?=$index_js?>"></script>
+</body>
+</html>

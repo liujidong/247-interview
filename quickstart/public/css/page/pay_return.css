@@ -1,0 +1,46 @@
+.mytab{
+    border-spacing: 1px;
+    top: 0px;
+    position:relative; 
+}
+
+.mytab  #tabhead{
+    height:40px !important;
+    background-color: rgb(73, 82, 88);
+}
+
+.mytab td{
+    text-align: center;
+    font-family: "OPEN SANS";
+    font-size: 14px;
+    color: white;    
+}
+
+.mytab .td_img img{
+    width: 130px;
+}
+
+.mytab tbody .td_product_name {
+    max-width: 200px;
+    overflow: hidden;
+    word-wrap: break-word;
+} 
+
+.ftb img{
+    margin-right:3px;
+    margin-bottom:3px;
+}
+
+#buybutton{
+    padding:15px;
+    height:32px;
+    background-color:#5da423;
+    line-height:1px;
+    font-weight:normal !important;
+}
+
+.return_panel {
+    text-align:right;    
+}
+
+

@@ -1,0 +1,109 @@
+<style>
+    .styled-select {
+        background: url("//cdn.bavotasan.com/wp-content/uploads/2011/05/down_arrow_select.jpg") no-repeat scroll right center;
+        height: 34px;
+        overflow: hidden;
+        width: 240px;
+    }
+    .styled-select select {
+        background: none repeat scroll 0 0 transparent;
+        border: 1px solid #CCCCCC;
+        font-size: 16px;
+        height: 34px;
+        padding: 5px;
+        width: 250px;
+    }
+
+</style>
+<?php if(!empty($this->pins)){?>
+    <!-- item -->
+    <?php foreach ($this->pins as $pin) { ?>
+        <div class="pinitem row">
+            <div class="pinimage two columns nailthumb-container"><img style='display: none;' src="<?php echo $pin['images_board']; ?>" /></div>
+            <div class="pinform ten columns">
+                <div class="row">
+<div class="pinformcolum pinformcolum1 seven columns">
+    <input type='hidden' name='pins[<?php echo $pin['id']; ?>][image][]' value='<?php echo $pin['images_board']; ?>'/>
+    <input type='hidden' name='pins[<?php echo $pin['id']; ?>][image][]' value='<?php echo $pin['images_mobile']; ?>'/>
+    <input type='hidden' name='pins[<?php echo $pin['id']; ?>][image][]' value='<?php echo $pin['images_closeup']; ?>'/>
+    <input type='hidden' name='pins[<?php echo $pin['id']; ?>][image][]' value='<?php echo $pin['images_thumbnail']; ?>'/>
+    <input name="pins[<?php echo $pin['id']; ?>][name]" type="text" value="<?php echo $pin['description']; ?>" alt="Name" placeholder="Name"/>
+    <textarea name="pins[<?php echo $pin['id']; ?>][description]" alt="Description"  placeholder="Description"><?php echo $pin['description']; ?></textarea>
+    <div class="columns twelve">
+    	<div class="row">
+        <div class="six columns">
+        	<div class='row'>
+        	    <div class="twelve mobile-one columns">
+        	      <label class="left inline">Price: $
+        	       <input class="text_price" type="text" name= "pins[<?php echo $pin['id']; ?>][price]" value="<?php echo $pin['price']; ?>" alt="Price" placeholder="Price" style="width: 8em;"/></label>
+        	    </div>
+        	</div>
+
+        	<div class='row'>
+        	    <div class="twelve mobile-one columns">
+        	      <label class="left inline">Quantity: <input class="text_quantity" type="text" name= "pins[<?php echo $pin['id']; ?>][quantity]" value="" alt="Quantity" placeholder="Quantity" style="width: 6em;"/></label>
+        	    </div>
+        	</div>
+
+        	<? if($this->optin_salesnetwork == ACTIVATED) {?>
+        	<div class='row'>
+                    <div class="twelve mobile-one columns">
+
+                        <label class="left inline">
+                            <a class="tooltips" href="#">?<span class="tip">The commission is the percentage that will be multiplied with the product price to get the total commission a sales associate will receive on each sold product.</span></a>
+                            Commission:&#37;
+                            <input style="width: 5em;" class="text_commission" type="text" name= "pins[<?php echo $pin['id']; ?>][product_commission]" value="" alt="Commission" placeholder=""/>
+                        </label>
+
+                    </div>
+            </div>
+             <? }?>
+
+        </div>
+        <div class="six columns">
+            <div class="styled-select row">
+                <select name="pins[<?php echo $pin['id']; ?>][category]">
+                    <option class="select_a_category" value="">Select a category</option>
+                    <?foreach ($this->categories as $category) {?>
+                    <option value="<?=$category['id']?>">
+                        <?=$category['description']?>
+                    </option>
+                    <?}?>
+                    <option class="separator" value="">---------------------</option>
+                    <option class="create_category" value="-1">Create a new Category</option>
+                </select>
+            </div>
+            <div class="row tgt_category_creator">
+        </div>
+    </div>
+    </div>
+	</div>
+</div>
+<div class="pinformcolum pinformcolum2 five columns">
+    <div class='row shipping-calc'>
+        <div class="twelve mobile-one columns">
+          <h3>Extra Shipping Rates</h3>
+          	<div class="five columns mobile-four">
+          		$ <input class="text_shipping" type="text" name="pins[<?php echo $pin['id']; ?>][shipping]" value="" alt="Shipping"/>
+          	</div>
+			<div class="one columns mobile-four">
+				<p>+</p>
+			</div>
+			<div class="six columns mobile-four">
+				<p class="small">(your store default shipping rate)</p>
+			</div>
+          	<div class="twelve columns mobile-four calc">
+          		<p><b>Total Shipping for this item <span class="accent product_total_shipping">$</span></b></p>
+          		<p class="add">Each additional item adds <span class="product_additional_shipping">$</span></p>
+          	</div>
+        </div>
+    </div>
+    <div class="delete_pin"><a class="button small alert radius">Delete Product</a></div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    <?php } ?>
+    <!-- end item -->
+<?php }?>

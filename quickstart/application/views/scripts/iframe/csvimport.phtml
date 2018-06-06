@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Import Products From Other CSV File</title>
+    <link rel="stylesheet" href="/v2/css/modules.css"/>
+    <link rel="stylesheet" href="/css/page/iframe_csvimport.css">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,600,700' rel='stylesheet' type='text/css'>
+</head>
+<body id="<?=$this->body_id;?>">
+    <div class="container">
+        <a class="close">&#215;</a>
+        <div class="import-o-section">
+            <div class="box-i_o">
+                <div class="title">
+                    <span>Import Products From <b>Other CSV file</b></span>
+                </div>
+                <div class="popbox"><a href="#" class="upload-button pick_button module-button">Select a CSV file from my computer</a></div>
+                <div class="division"></div>
+                <div class="popbox"><a href="<?=getSiteMerchantUrl(CSV_TEMPLATE_FILE_PATH);?>" class="module-button">Download our CSV template</a></div>
+                <p class="tip">Click to get our CSV teplate file</p>
+            </div>
+        </div>
+    </div>
+    <script src="/v2/js/jquery.js"></script>
+    <script src="/js/mustache.js"></script>
+    <script src="/js/jquery.cookie.js"></script>
+    <script src="/js/gat.js"></script>
+    <?$index_js = 'index.js'; if(APPLICATION_ENV === 'production') $index_js = 'index.combined.min.js'; if(APPLICATION_ENV === 'staging') $index_js = 'index.combined.js';?>
+    <script src="/js/<?=$index_js?>"></script>
+</body>
+</html>

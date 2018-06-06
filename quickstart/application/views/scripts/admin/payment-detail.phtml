@@ -1,0 +1,63 @@
+<? $this->placeholder("extra_header")->captureStart();?>
+<link rel="stylesheet" href="/v2/css/pages/dashboard.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<? $this->placeholder("extra_header")->captureEnd();?>
+<? $this->placeholder("extra_footer")->captureStart();?>
+<script src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<? $this->placeholder("extra_footer")->captureEnd();?>
+
+<?require_once(APPLICATION_PATH . '/views/scripts/partial/subnav_admin.phtml'); ?>
+
+<div id="dashboard" class="row page-layout dashboard">
+
+    <section class="small-12 medium-12 large-9 columns">
+        <div class="row">
+            <div class="small-3 medium-3 large-2 columns">
+            </div>
+            <div id="sellingvenue-orders" class="small-9 medium-9 large-10 columns">
+
+                <div class="detail-wrap order-detail">
+                    <header class="clearfix detail-header">
+                        <a href="/admin/nc-payment" class="left back">Back</a>
+                        <? if ($this->wa['status'] == ACTIVATED) {?>
+                        <a id="disburse" class="right">Mark as Disbursed</a>
+                        <? } ?>
+                    </header>
+                    <div class="detail-status">
+                        <div class="row detail-item status">
+                            <span class="small-5 medium-5 large-5 columns">ID</span>
+                            <span class="small-7 medium-7 large-7 columns" id="wa-id"><?=$this->wa['id']?></span>
+                        </div>
+                        <div class="row detail-item status">
+                            <span class="small-5 medium-5 large-5 columns">Status</span>
+                            <span class="small-7 medium-7 large-7 columns"><?=$this->wa['status_literal']?></span>
+                        </div>
+                        <div class="row detail-item status">
+                            <span class="small-5 medium-5 large-5 columns">Type</span>
+                            <span class="small-7 medium-7 large-7 columns"><?=$this->wa['type']?></span>
+                        </div>
+                        <div class="row detail-item status">
+                            <span class="small-5 medium-5 large-5 columns">Current Balance</span>
+                            <span class="small-7 medium-7 large-7 columns">
+                                <?=currency_symbol($this->wa['currency'])?><?=$this->wa['current_balance']?>
+                            </span>
+                        </div>
+                        <div class="row detail-item status">
+                            <span class="small-5 medium-5 large-5 columns">Available Balance</span>
+                            <span class="small-7 medium-7 large-7 columns">
+                                <?=currency_symbol($this->wa['currency'])?><?=$this->wa['available_balance']?>
+                            </span>
+                        </div>
+                        <div class="row detail-item order-number">
+                            <span class="small-5 medium-5 large-5 columns">User</span>
+                            <span class="small-7 medium-7 large-7 columns"><?=$this->w_user['id']?> : <?=$this->w_user['username']?></span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</div>
+

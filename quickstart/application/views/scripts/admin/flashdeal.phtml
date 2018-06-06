@@ -1,0 +1,248 @@
+<link rel="stylesheet" href="/css/anytimec.css"/>
+<script type="text/javascript" src="/js/anytime.js"></script>
+
+<?require_once(APPLICATION_PATH . '/views/scripts/partial/subnav_admin.phtml'); ?>
+
+<div class="main row">
+
+<div class="row">
+  <div class="twelve columns">
+    <div class="panel">
+      <h5>Store or Product URL</h5>
+      <div class="row collapse">
+		  <div class="ten mobile-three columns">
+		    <input type="text" name='url' id='url' value='' placeholder='URL' />
+		  </div>
+		  <div class="two mobile-one columns">
+		    <a id='search_btn' class="button expand postfix search_btn">Search</a>
+		  </div>
+	  </div>
+	  <div class="row collapse">
+		  <div class="ten mobile-three columns">
+		    <input type="text" name='code' id='code' value='' placeholder='Coupon Code' />
+		  </div>
+		  <div class="two mobile-one columns">
+		    <a id='coupon_search_btn' class="button expand postfix search_btn">Search Coupon</a>
+		  </div>
+	  </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+	<div class="twelve columns">
+    <div class="panel">
+        <div class="row">
+            <?if(!empty($this->errno)){ ?>
+                <?foreach ($this->errno as $key => $value){ ?>
+                    <div class="alert-box alert row">
+                        <?=$this->errors[$key]['msg'];?>
+                        <a href="" class="close">&times;</a>
+                    </div>
+                <? } ?>
+            <?}?>
+            <?if(!empty($this->create_ok) && $this->create_ok == true){ ?>
+                <div class="alert-box success">
+                         Deal was created.
+                  <a href="" class="close">&times;</a>
+                </div>
+            <?}?>
+        </div>
+       <form action="#" method='post'>
+      <h5>Flash Deal Details</h5>
+      <div class="row">
+ 			<div class="six columns">
+ 				<div class="five mobile-one columns">
+ 					<label class="right inline">Store ID:</label>
+ 				</div>
+ 				<div class="seven mobile-three columns">
+			      <input type="text" placeholder="0" name='store_id' id='store_id' value=0 />
+			    </div>
+ 			</div>
+ 			<div class="six columns">
+ 				<div class="five mobile-one columns">
+ 					<label class="right inline">Product ID:</label>
+ 				</div>
+ 				<div class="seven mobile-three columns">
+			      <input type="text" placeholder="0" name='product_id' id='product_id'/>
+			    </div>
+ 			</div>
+	   </div>
+	   <div class="row">
+  			<div class="six columns">
+ 				<div class="five mobile-one columns">
+ 					<label class="right inline">Status:</label>
+ 				</div>
+ 				<div class="seven mobile-three columns">
+                                <select class='seven' id='deal_status' name='status'>
+                                    <option value=0>Created</option>
+                                    <option value='127'>Inactive</option>
+                                    <option value='2'>Active</option>
+  				 </select>
+			    </div>
+ 			</div>
+ 			<div class="six columns">
+ 				<div class="five mobile-one columns">
+ 					<label class="right inline">Scope:</label>
+ 				</div>
+ 				<div class="seven mobile-three columns">
+			      <select class='seven' id='scope' name='scope'>
+  					<!-- 
+  					<option value='site'>Site</option>
+  					-->
+  					<option></option>
+  					<option value='2'>Store</option>
+  					<option value='3'>Product</option>
+  				 </select>
+			    </div>
+ 			</div>
+  			
+	    </div>
+	    <div class="row">
+  			<div class="six columns">
+ 				<div class="five mobile-one columns">
+ 					<label class="right inline">Start Time:</label>
+ 				</div>
+ 				<div class="seven mobile-three columns">
+			      <input type="text" id="start_time" name='start_time'/>
+			    </div>
+ 			</div>
+ 			<div class="six columns">
+ 				<div class="five mobile-one columns">
+ 					<label class="right inline">End Time:</label>
+ 				</div>
+ 				<div class="seven mobile-three columns">
+			    	<input type="text" value="" id='end_time' name='end_time'/>
+			    </div>
+ 			</div>
+	    </div>
+      	<div class="row">
+  			<div class="six columns">
+ 				<div class="five mobile-one columns">
+ 					<label class="right inline">Price Offer:</label>
+ 				</div>
+ 				<div class="seven mobile-three columns">
+			   		<select id='price_offer_type' name='price_offer_type'>
+			   		    <option value='0'></option>
+	  					<option value='1'>Percentage_off</option> 
+	  					<option value='2'>Flat_value_off</option>
+	  					<!-- 
+	  					<option value='3'>Bundle</option>
+	  					-->
+  				 	</select>
+			    </div>
+ 			</div>
+ 			<div class="six columns">
+ 				<div class="five mobile-one columns">
+ 					<label class="right inline">Shipping Offer:</label>
+ 				</div>
+ 				<div class="seven mobile-three columns">
+			   		<select id='shipping_offer_type' name='shipping_offer_type'>
+			   		    <option value='0'></option>
+	  					<option value='1'>Percentage_off</option> 
+	  					<option value='2'>Flat_value_off</option>
+	  					<!-- 
+	  					<option value='3'>Bundle</option>
+	  					-->
+  				 	</select>
+			    </div>
+ 			</div>
+	    </div>
+	    <div class="row">
+  			<div class="six columns">
+ 				<div class="five mobile-one columns">
+ 					<label class="right inline">Price Offer Value:</label>
+ 				</div>
+ 				<div class="seven mobile-three columns">
+			   		<input type='text' id='price_offer_value' name='price_offer_value' />
+			    </div>
+ 			</div>
+ 			<div class="six columns">
+ 				<div class="five mobile-one columns">
+ 					<label class="right inline">Shipping Offer Value:</label>
+ 				</div>
+ 				<div class="seven mobile-three columns">
+			   		<input type='text' id='shipping_offer_value' name='shipping_offer_value' />
+			    </div>
+ 			</div>
+	    </div>
+      	<div class="row">
+  			<div class="six columns">
+ 				<div class="five mobile-one columns">
+ 					<label class="right inline">Quantity:</label>
+ 				</div>
+ 				<div class="seven mobile-three columns">
+			      <input type="text" id="quantity" value='0' name='quantity'/>
+			    </div>
+ 			</div>
+ 			<div class="six columns">
+ 				<div class="five mobile-one columns">
+ 					<label class="right inline">Description:</label>
+ 				</div>
+ 				<div class="seven mobile-three columns">
+			    	<textarea id='description' name='offer_description'></textarea>
+			    </div>
+ 			</div>
+	    </div>
+	    <div class="row">
+  			<div class="six columns">
+ 				<div class="five mobile-one columns">
+ 					<label class="right inline">Coupon Code:</label>
+ 				</div>
+ 				<div class="seven mobile-three columns">
+			        <input style='background-color: rgba(198, 15, 19, 0.1);border-color: #C60F13;' type="text" id="coupon_code" value='<?=$this->coupon_code; ?>' name='coupon_code' readonly="readonly" />
+			        <span style='color:red;font-size:12px;'>Read Only</span>
+			    </div>
+ 			</div>
+ 			<div class="six columns">
+ 				
+ 			</div>
+	    </div>
+	    
+	   	<div class="row">
+  			<div class=" two columns centered">
+  			
+ 				<input type='submit' name='submit' value='Submit' class="radius alert button" style="margin-top:5px;" />
+ 			</div>
+	    </div>
+	    </form>
+      </div>
+      
+      <div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row">
+      <div class="twelve columns">
+        <div class="panel">
+            <h5>Existing Deal</h5>
+            <table>
+                <thead>
+                    <tr>
+                      <th>Status</th>
+                      <th>Product Url</th>
+                      <th>Usage Limit</th>
+                      <th>Code</th>
+                      <th>Start Time</th>
+                      <th>End Time</th>
+                      <th>Product Name</th>
+                    </tr>
+               </thead>
+               <tbody>
+                   <?php foreach ($this->deals as $deal ){?>
+                       <tr>
+                           <td><?=$deal['deal_status']?></td><td><?=$deal['product_url'];?></td>
+                           <td><?=$deal['usage_limit'];?></td><td><?=$deal['code'];?></td>
+                           <td><?=$deal['start_time'];?></td><td><?=$deal['end_time'];?></td>
+                           <td><?=$deal['product_name'];?></td>
+                       </tr>
+                   <?php }?>    
+               </tbody>
+            </table>
+        </div>
+      </div>
+  </div>
+</div>
+
+</div>

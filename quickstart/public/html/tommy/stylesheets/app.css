@@ -1,0 +1,276 @@
+/* Artfully masterminded by ZURB  */
+
+/* --------------------------------------------------
+   Table of Contents
+-----------------------------------------------------
+:: Shared Styles
+:: Page Name 1
+:: Page Name 2
+*/
+
+
+/* -----------------------------------------
+   Shared Styles
+----------------------------------------- */
+body {
+	font-family: 'Open Sans', "Myriad Pro", Myriad, Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT",  "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif; sans-serif;
+	background: url('../images/paper.png') repeat;
+}
+
+#container {
+	min-width:960px;
+}
+
+.gentium {
+	font-family: 'Gentium Basic', Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif;
+	font-style:italic;
+	font-size:1.5em;
+	text-transform:none !important;
+
+}
+
+#headerbar {
+	height:60px;
+	background-color:#faf7f7;
+	box-shadow: rgba(0,0,0,0.2) 0px 2px 2px;
+	z-index:500;
+}
+
+#headerwrap {
+	min-width:960px;
+}
+
+#headerbar #logo img{
+	margin-top:12px;
+}
+
+#headerbar #logo img:hover {
+	opacity:0.7;
+}
+
+#page {
+	z-index:100;
+	min-width:960px;
+}
+
+#nav {
+	list-style-type:none;
+}
+
+#nav li {
+	display:block;
+	height:20px;
+	padding: 20px 20px;
+	float:left;
+}
+
+#nav li a {
+	color:#000000;
+	font-weight:700;
+	text-transform:uppercase;
+}
+
+#nav li a:hover {
+	color:#bf0000;
+}
+
+#headerbar .facebookconnect, #headerbar .twitterconnect {
+	margin-top:20px;
+	margin-left:20px;
+}
+
+#headerbar .facebookconnect:hover, #headerbar .twitterconnect:hover {
+	opacity:0.7;
+}
+
+
+#banner {
+	display:block;
+	height:60px;
+	background-color:#656565;
+	text-align:center;
+}
+
+#bannerwrap {
+	margin:auto;
+	padding-top:10px;
+	text-shadow:rgba(0,0,0,0.3) 1px 2px 2px;
+	
+}
+
+#bannerwrap	 h2 {
+	color:#faf7f7;
+	font-style:italic;
+	font-weight:300 !important;
+	margin:0;
+	float:left;
+	font-size:24pt;
+}
+
+#banner img {
+	float:left;
+	padding-left:20px;
+	margin-top:3px;
+}
+
+#footer {
+	text-align:center;
+	background-color:#524d4d;
+	padding:30px 0px 20px 0px;	
+}
+
+#footer ul {
+	list-style-type:none;
+	padding-left:50px;
+	text-shadow: #666 0px 1px 1px;
+	margin-bottom:50px;
+}
+
+#footer ul li {
+	display:block;
+	float:left;
+	margin:0px 5px;
+}
+
+#footer ul li a {
+	color:#333;
+	text-decoration:underline;
+	font-weight:500;
+}
+
+#footer ul li a:hover {
+	color:#888;
+
+}
+
+#copyrightinfo {
+	color:#857d7d;
+	text-shadow:#494545 0px 2px 2px;
+}
+
+div.panel { background: #f2f2f2; border: solid 1px #ffffff; margin: 0 0 22px 0; padding: 30px;box-shadow: rgba(0,0,0,0.1) 4px 3px 10px; }
+
+.prefix, .postfix { display: block; position: relative; z-index: 2; text-align: center; width: 100%; padding-top: 0; padding-bottom: 0; height: 50px; line-height: 48px; }
+
+input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea { background-color:#f0eef0; border: 1px solid #cccccc; -webkit-border-radius: 3px; -moz-border-radius: 2px; -ms-border-radius: 3px; -o-border-radius: 3px; border-radius:3px; -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); color: rgba(0, 0, 0, 0.75); display: block; font-size: 10pt; text-shadow: #fff 0px 1px 0px; margin: 0 0 20px 0; padding: 15px; height: 50px; width: 100%; -webkit-transition: all 0.15s linear; -moz-transition: all 0.15s linear; -o-transition: all 0.15s linear; transition: all 0.15s linear; } 
+
+
+
+/* -----------------------------------------
+   Homepage
+----------------------------------------- */
+
+#hero {
+	overflow:hidden;
+	text-align:center;
+	min-height:400px;
+	background: #bf0000 url('../images/pin.png') 15% top no-repeat;
+	min-width:960px;
+}
+
+#hero h1 {
+	color:#ffffff;
+	display:block;
+	margin:40px 0px;
+	font-weight:900;
+	text-shadow:rgba(0,0,0,0.3) 1px 2px 2px;
+	font-size:36pt;
+	text-transform:uppercase;
+}
+
+#hero #frontpagebullets {
+	padding-top:20px;
+}
+
+#hero #frontpagebullets li {
+	text-align:left;
+	color:#ffffff;
+	font-weight:700;
+	height:40px;
+	padding:10px;
+	font-size:12pt;
+	list-style-type:none;
+	margin: 20px 0px;
+}
+
+li.cart {
+	background-image: url(../images/cartbullet.png);
+	background-repeat: no-repeat;
+	background-position: 0 0.5em;
+	padding-left: 2.5em !important	;
+}
+
+li.chart {
+	background-image: url(../images/chartbullet.png);
+	background-repeat: no-repeat;
+	background-position: 0 0.5em;
+	padding-left: 2.5em !important	;
+}
+
+li.graph {
+	background-image: url(../images/graphbullet.png);
+	background-repeat: no-repeat;
+	background-position: 0 0.5em;
+	padding-left: 2.5em !important	;
+}
+
+
+#featuredstore {
+	background:#fff;
+}
+
+h3#storetitle {
+	font-weight:300;
+	margin-left:30px;
+}
+
+h3#storetitle span{
+	font-weight:500;
+}
+
+.featuredproduct {
+	display:block;
+	height:140px;
+	width:141px;
+	background: url('../images/pin-feat.png') no-repeat;
+	z-index:10;
+	margin-bottom:20px;
+	position:relative;
+	-webkit-transition: 0.3s ease-in-out;
+	-moz-transition: 0.3s ease-in-out;
+	-o-transition: 0.3s ease-in-out;
+	transition: 0.3s ease-in-out;
+}
+
+.featuredproduct:hover {
+	bottom:3px;
+}
+
+.featuredproduct img {
+	margin-top:7px;
+}
+
+.ribbon {
+	display:block;
+	width:66px;
+	height:23px;
+	position:relative;
+	bottom:30px;
+	left:65px;
+	z-index:100;
+	background: url('../images/ribbon-feat.png') no-repeat;
+	color:#fff;
+	font-size:10px !important;
+	font-weight:bolder;
+	padding:0 0 0 12px;
+}
+
+.searchicon {
+	text-indent: -9999px;
+	background: url('../images/searchicon.png') 12px 10px no-repeat;
+}
+
+/* -----------------------------------------
+   Page Name 2
+----------------------------------------- */
+

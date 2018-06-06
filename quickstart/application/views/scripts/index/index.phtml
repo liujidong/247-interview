@@ -1,0 +1,69 @@
+<link rel="stylesheet" href="/v2/css/pages/homepage.css">
+<script src="/js/jssor.slider.mini.js" type="text/javascript"></script>
+<div id="homepage">
+
+    <div id="navigator" class="row">
+        <div class="hide-for-small-only medium-2 large-2 columns">&nbsp;</div>
+        <!-- main nav end -->
+
+        <div class="hide-for-small-only medium-10 large-7 columns">
+            <div id="feature-slider" class="module-slider">
+                <div u="slides" class="sugarslide-controller slide-list feature-list clearfix">
+                    <? foreach ($this->slider_featured_products['data'] as $product) { ?>
+                        <a u="image" class="slide-item feature-item" href="<?=$product['product_url']?>">
+                            <img src="<?= reset($product['pictures']['550']) ?>" alt="" class="feature-item-image">
+                            <p class="feature-item-name"><?= $product['name'] ?></p>
+                        </a>
+                    <? } ?>
+                </div>
+                <span u="arrowleft" class="sugarslide-previous"><span></span></span>
+                <span u="arrowright" class="sugarslide-next"><span></span></span>
+            </div>
+            <div class="feature-slider-content">
+                <?=$this->content;?>
+            </div>
+        </div>
+        <!-- slider end -->
+
+        <div class="show-for-large-up large-3 columns advertisement">&nbsp;</div>
+    </div>
+    <!-- navigator end -->
+
+    <div class="row">
+        <section class="medium-12 large-9 columns main-section">
+            <?foreach($this->category_featured_products as $category=>$products) {?>
+            <div class="feature-products">
+                <div class="clearfix header category-header">
+                    <h2 class="left title"><small>Best Selling in</small> <?=$category?></h2>
+                    <a href="/category/<?=sanitize_words($category, '-')?>" class="right more">See All &rarr;</a>
+                </div>
+                <ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-3">
+                    <? foreach ($products['data'] as $i=>$product) { ?>
+                        <?if($i<3) {?>
+                        <li class="product-item">
+                            <a href="<?= $product['product_url'] ?>" class="cat-featured-product-item">
+                                <div class="holder">
+                                    <span><img src="<?= reset($product['pictures']['550']) ?>" alt="" class="product-item-image"></span>
+                                </div>
+                                <div class="product-item-name"><?=$product['name']?></div>
+                            </a>
+                            <div class="product-item-storename">
+                                <a href="<?=$product['store_url']?>" style="color: #333333;">
+                                    <?= $product['store_name'] ?>
+                                </a>
+                            </div>
+                            <div class="product-item-pricing">
+                                <?=empty($product['store_currency'])?'':currency_symbol($product['store_currency'])?>
+                                <?=$product['price']?>
+                            </div>
+                        </li>
+                        <?}?>
+                    <? } ?>
+                </ul>
+            </div>
+            <?}?>
+        </section>
+        <!-- feature product base on categories end -->
+        <? require_once(APPLICATION_PATH . '/views/scripts/partial/right_sidebar.phtml'); ?>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+<div id="searchpage" class="row page-layout">
+    <section class="small-12 medium-12 large-8 columns page-layout-main">
+        <header class="module-header search-header">
+            <div class="row">
+                <div class="small-12 medium-10 large-10 columns">
+                    <h1 class="title">Search for <strong style="font-weight:300"><?=$this->keywords?></strong>
+                        returns <?=$this->all_total?> results</h1>
+                </div>
+                <div class="hide-for-small-only medium-2 large-2 columns sort-search">
+                    <div class="text-right dropdown-selector">
+                        <!--
+                        <span data-dropdown="sort-options" class="dropdown">Sort by</span>
+                        <ul id="sort-options" data-dropdown-content class="f-dropdown sort-options">
+                            <li><a href="javascript:;">Revelance</a></li>
+                            <li><a href="javascript:;">Popular</a></li>
+                            <li><a href="javascript:;">Price</a></li>
+                            <li><a href="javascript:;">Rating</a></li>
+                        </ul>
+                        -->
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-3 feature-products">
+            <?php echo $this->render('partial/mixed_product_list.phtml'); ?>
+        </ul>
+        <!-- products end -->
+        <div class="text-center">
+            <?php echo $this->pagination($this->total_rows, $this->rows_per_page, $this->page_num, $this->extra_params); ?>
+        </div>
+        <!-- pagination end -->
+    </section>
+
+    <? require_once(APPLICATION_PATH . '/views/scripts/partial/right_sidebar.phtml'); ?>
+
+</div>

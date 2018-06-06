@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if IE 9]>    <html class="no-js lt-ie10" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+    <!-- google site verification code shopinterest -->
+    <meta name="google-site-verification" content="8US12t_II9_0e-7HA-iW_VBnt8wd86-Bq2HOLm2Dww8" />
+    <!-- google site verification code shopintoit -->
+    <meta name="google-site-verification" content="0n-RGR15r_hT8WcjqH4hs3FLNkPZJZTAXW-gYRoEI4A" />
+    <!-- pinterest site verification code -->
+    <meta name="p:domain_verify" content="f24d935244e6fdc18394631304f66630"/>
+    <meta name="alexaVerifyID" content="IaGNYu0bHG22QWdrx3fkym0L6SM" />
+    <?require_once(APPLICATION_PATH . '/views/scripts/partial/seo.phtml'); ?>
+    <!-- Included CSS Files -->
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"> <link rel="icon" href="/favicon.ico" type="image/x-icon"> <link rel="stylesheet" href="/v2/css/foundation.css"/>
+    <link rel="stylesheet" href="/v2/css/foundation-icons.css">
+    <link rel="stylesheet" href="/v2/css/common.css"/>
+    <link rel="stylesheet" href="/v2/css/modules.css"/>
+    <link rel="stylesheet" href="/css/simplePagination.css"/>
+    <script src="/v2/js/modernizr.js"></script>
+    <script src="/v2/js/jquery.js"></script>
+    <script src="//www.google-analytics.com/cx/api.js"></script>
+    <script src="/js/gat.js"></script>
+    <?if(APPLICATION_ENV === 'production') {?>
+    <script>
+     setup_ga('UA-49282815-1', 'shopintoit.com');
+    </script>
+    <?} else {?>
+    <script>
+     setup_ga('UA-49282815-2', 'shopintoit.com');
+    </script>
+    <?}?>
+    <? echo $this->placeholder("extra_header");?>
+</head>
+
+<body id="<?php echo $this->body_id; ?>" class="<?= $this->is_user ? 'loggedin' : 'loggedout'; ?>" env="<?=APPLICATION_ENV === 'production'?'production':'staging';?>" siteversion="<?=$this->site_version?>">
+<div class="off-canvas-wrap" data-offcanvas>
+<div class="inner-wrap">
+    <div id="fb-root"></div>
+    <header id="header" class="hide-for-iosapp">
+        <div class="row header">
+            <div class="show-for-small-only small-2 columns">
+                <a class="left-off-canvas-toggle menu-icon" href="#"><i class="fi-list"></i></a>
+            </div>
+            <div class="small-4 medium-5 large-4 columns">
+                <a href="<?= $this->subdomain_type === "store" ? getSiteMerchantUrl() : getURL(); ?>" class="logo">
+                    <h1>
+                        <?if($this->subdomain_type!=='salesnetwork') {?>
+                        <img src="/img/header-logo.png" data-interchange="[/img/header-logo@2x.png, (retina)]" alt="Shopintoit Logo">
+                        <?} else {?>
+                        <img src="/img/sales-network.png">
+                        <?}?>
+                        <span>Shopintoit</span>
+                    </h1>
+                </a>
+            </div>
+            <?if($this->controller !== 'flashdeals' && $this->subdomain_type !== 'salesnetwork') {?>
+            <form class="small-6 medium-3 large-5 columns search-form" action='/search' method='get' target="_blank">
+                <div class="row collapse">
+                    <div class="small-9 medium-10 large-10 columns">
+                        <input class="search-input" type="search" name="q">
+                    </div>
+                    <div class="small-3 medium-2 large-2 columns">
+                        <input class="button postfix search-submit" type="submit" gaid="product-search" value="">
+                    </div>
+                </div>
+            </form>
+            <?}?>
+            <nav class="hide-for-small-only medium-4 large-3 columns header-nav">
+                <ul class="row no-bullet">
+                    <!--<li class="small-6 medium-6 columns">
+                    <a href="/solidus" class="my_solidus">Mine Solidus</a>
+                    </li>
+                    <li class="small-3 medium-3 columns">
+                        <a href="/allstores">Store List</a>
+                    </li>
+                    -->
+                    <?if($this->is_user) {?>
+                    <li class="small-7 medium-7 columns">
+                        <a href="javascript:;" class="dropdown module-dropdown no-arrow" data-dropdown="user-dropdown" data-options="is_hover:true">Hi, <?=getUserTitle($this->user)?></a>
+                        <ul id="user-dropdown" class="f-dropdown no-arrow module-dropdown-content" data-dropdown-content>
+                            <li><a href="/dashboard">Dashboard</a></li>
+                            <li><a href="/logout">Logout</a></li>
+                        </ul>
+                    </li>
+                    <?} else {?>
+                    <!--<li class="small-7 medium-7 columns">
+                        <a href="#" class="login" title="Log in">
+                            <em class="need_login">Log In</em>
+                            <? if($this->site_version == 3) {?>
+                            / <em class="need_login signup">Sign UP</em>
+                            <? } ?>
+                        </a>
+                    </li>-->
+                    <? }?>
+                    <li class="small-2 medium-2 columns" id="top-nav-cart">
+                        <? $this->navCart();?>
+                        <!--
+                        <a href="#" class="cart" title="Cart">
+                             <i class="icon fi-shopping-cart"><span class="badge-count">3</span></i>
+                        </a>
+                        -->
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <!-- header end -->
+
+    <div id="main-nav" class="left-off-canvas-menu row">
+        <? if ($this->body_id == 'index_index') {?>
+        <div class="medium-2 large-2 columns homepage-main-nav">
+        <?} else {?>
+        <div class="medium-3 large-2 columns">
+        <?}?>
+        <nav class="top-bar" data-topbar>
+            <section class="top-bar-section">
+                <ul class="nav-bar">
+                    <?
+                    if(!isset($this->global_categories)){
+                    $this->global_categories = array();
+                    }
+                    foreach($this->global_categories as $i => $category){
+                    ?>
+                        <?if($category['parent_id'] == 0) {?>
+                        <?if($i !== 0){?>
+                        </ul></li>
+                        <?}?>
+                        <li class="has-dropdown">
+                            <a href="/category/<?=  sanitize_words($category['path'], '-', true);?>"><?=$category['path']?></a>
+                        <ul class="dropdown">
+                        <?} else {?>
+                        <li><a href="/category/<?=  sanitize_words($category['path'], '-', true);?>"><?=$category['path']?></a></li>
+                        <? }?>
+                    <?}?>
+                </ul>
+                <!--
+                </ul><div class="divider"></div>
+                <ul class="auctions">
+                    <li><a href="/auction" title="Auctions">Auctions</a></li>
+                </ul>
+                -->
+            </section>
+        </nav>
+        <div class="nav-folding hide-for-small-only">
+            <span class="fold-button"></span>
+        </div>
+    </div>
+</div>

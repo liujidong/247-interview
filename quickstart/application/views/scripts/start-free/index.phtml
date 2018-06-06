@@ -1,0 +1,78 @@
+<style>
+    .bullets li {
+        font-size: 17px;margin-left: -11px;
+    }
+</style>
+
+<link rel="stylesheet" href="/css/cart.css"/>
+<div id="container" class="row liquid">
+    <div class="twelve columns">
+        <div class="row">
+            <div class="twelve columns" id="feature" style="padding-top: 0;">
+                <div class="six columns" style="padding-top: 10px; text-align: center;">
+                    <img src="/img/compare-shopinterest.png" alt="Compare ShopInterest to others" />
+                </div>
+                <div class="six columns mobile-four" style="padding-bottom: 5px;">
+                    <h1>Create a Free<br><span class="gentium">ShopInterest</span> store!</h1>
+                    <p style="font-size:20px">Save $100's of dollars vs. Ebay or Etsy.</p>
+                    <div class="ten columns mobile-four"><div class="row">
+                        <div class="signupform" <? if (empty($this->errnos)) echo 'style="display: inline;"'; ?>>
+                            <form id="register_form" method="post">
+                                <div style="display: none;" class="alert-box row" id="ie9show">
+                                    <br>ShopInterest is unstable in Internet Explorer 9!<br>Please use a different browser. We recommend <a href="http://www.google.com/chrome" target="_blank">Chrome</a> or <a target="_blank" href="http://www.mozilla.org/en-US/firefox/">Firefox</a>.<br><br>
+                                </div>
+                                <? foreach ($this->errnos as $key => $value) { ?>
+                                    <div class="alert-box alert row">
+                                        <?= $this->errors[$key]['msg'] ?>
+                                        <a href="" class="close">&times;</a>
+                                    </div>
+                                <? } ?>
+                                <div class="row">
+                                    <div class="twelve columns">
+                                        <input type="text" name="email" placeholder="Email">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="twelve columns">
+                                        <input type="password" name="password" placeholder="Create a Password">
+                                    </div>
+                                </div>
+                                <div class="row collapse">
+                                    <div class="six columns mobile-two">
+                                        <span class="prefix">http://pinterest.com/</span>
+                                    </div>
+                                    <div class="six columns mobile-two">
+                                        <input type="text" name="pinterest_username" placeholder="Username">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <input type="hidden" name="c" value="<?= empty($this->request['c']) ? "" : $this->request['c']; ?>">
+                                    <input type="hidden" name="submit" value="submit">
+                                    <button id="getstartedbutton" name="submit" type="submit" value="submit" class="button radius success large progress" style="font-size: 200%;">SIGN UP NOW<span style="font-size: 16px; font-weight: normal; margin-top: 5px; display: block;">Its Free!</span></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div id="" class="six columns">
+                <div class="row storename home">As seen on<br><a target="_blank" href="http://techcrunch.com/2012/09/25/shopinterest-the-startup-that-lets-you-sell-from-your-pinterest-boards-gets-500-startups-backing/"><img src="/img/techcrunch_logo.png" alt="" width="260px" /></a><a target="_blank" href="http://www.huffingtonpost.com/2012/09/25/shopinterest-e-commerce-pinterest-backing-500-startups_n_1913015.html"> <img src="/img/huffington_post_logo.png" alt="" width="260px" /></a></div>
+            </div>
+            <div id="" class="six columns">
+                <div class="row storename home">ShopInterest?
+                    <ul style="border: 1px solid #999;display: block;margin: 5px auto;padding: 10px 20px 5px 40px;text-align: left;width: 400px;font-style: normal; font-family:sans-serif;color: #555555;line-height: 1em;">
+                        <li>Easy setup that can handle 1000's of items</li>
+                        <li>Attracts Pinterest traffic from your followers</li>
+                        <li>No listing fees</li>
+                        <li>Customizable store with a beautiful layout</li>
+                        <li>Simple order management</li>
+                        <li><a href="/">Sign up today!</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>    </div>
+
+</div><!-- end container -->
+<div id="footer bar" style="height: 72px; text-align:center; width: 100%; background: #666;"><p style="color: #ccc; font-size: 24px; font-style: italic; top: -20px;"><span style="position: relative; top: -29px; padding-right: 10px;">"Get your Pinterest Store - easy and fast"</span> <img src="/img/shopinterest-footer.png" alt="" /></p></div>

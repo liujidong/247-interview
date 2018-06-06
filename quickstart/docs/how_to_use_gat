@@ -1,0 +1,119 @@
+
+1. public apis
+gat: function(event, gaid, opt_data) {...}
+gat_handler: function(gaid, opt_data) {...}
+
+"gat_handler" is a wrap up to the function "gat". "gat_handler" meant to act 
+as a jquery event handler.
+
+2. examples
+checkout this page:
+http://www.staging.shopinterest.co:6083/test
+
+<div class="row">
+<input type="button" value="GAT Test 0" id="gat-0"/>
+<input type="button" value="GAT Test 1" id="gat-1" gaid="test-button"/>
+<input type="button" value="GAT Test 2" id="gat-2"/>
+<input type="button" value="GAT Test 3" id="gat-3" gaid="test-button"/>
+<a id="gat-4"> Gat Test 4 </a>
+<a id="gat-5" gaid="test-link"> Gat Test 5 </a>
+<input type="button" value="GAT Test 6"  gaid="test-button" ga-label="attr label" class="gat-click"/>
+
+<script>
+$("#gat-0").click(function(e){gat(e, "test-button");});
+$("#gat-1").click(function(e){gat(e);});
+$("#gat-2").click(function(e){gat(e, "test-button", {label:"LABEL-EXTRA-DATA"});});
+$("#gat-3").on("click", {label:"LABEL-EVENT-DATA"} ,function(e){gat(e);});
+$("#gat-4").click(gat_handler('test-link'));
+$("#gat-5").click(gat_handler());
+</script>
+</div>
+
+3. comments
+
+. the "gaid" is required either in the html tag that triggered the event or in
+the public apis
+. the simplest form to use is
+
+$("...").click(gat_handler('<gaid>', {optional fields}));
+
+
+4. how to write the ga spec of the event tracking
+
+An event tracking happens when a user performs a UI action. Actions can be grouped
+into categories and also, actions can further have the other information (label, value).
+
+The principle to define the "category" of event is, the category need to stand for a set of
+events that can give some insight regarding to certain aspect of the business.
+
+
+4.1 signin (a category)
+action: signup
+label: signup on lightbox
+
+action: signup
+label: signup on joinp page
+
+action: login
+label: login on lightbox
+
+4.2 shopping
+action: view
+label: product
+
+action: view
+label: store
+
+action: add_cart
+label: product
+
+action: checkout
+label: cart
+
+4.3 share
+action: share
+label: facebook
+
+action: tweet
+label: twitter
+
+action: pin
+label: pinterest
+
+4.4 engage
+action: message
+label: merchant
+
+4.5 manage
+action: share
+label: facebook
+
+action: tweet
+label: twitter
+
+action: pin
+label: pinterest
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+

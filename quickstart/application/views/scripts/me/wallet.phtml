@@ -1,0 +1,90 @@
+<? $this->placeholder("extra_header")->captureStart();?>
+<link rel="stylesheet" href="/v2/css/pages/dashboard.css">
+<? $this->placeholder("extra_header")->captureEnd();?>
+
+<div id="dashboard" class="row page-layout dashboard">
+
+    <section class="small-12 medium-12 large-9 columns">
+        <div class="row">
+            <div class="small-3 medium-3 large-2 columns">
+                <? require_once(APPLICATION_PATH.'/views/scripts/partial/left_sidebar.phtml');?>
+            </div>
+            <!-- side nav end -->
+
+            <div id="wallet-summary" class="small-9 medium-9 large-10 columns">
+                <? require_once(APPLICATION_PATH.'/views/scripts/partial/horizontal_subnav.phtml');?>
+                <div class="wallet-header">
+                    <div class="small-6 medium-6 large-6 columns">
+                        <h3 class="title">Current Balance<br>
+                            <strong><?=format_price($this->store['currency'], $this->wallet->getCurrentBalance())?></strong>
+                        </h3>
+                    </div>
+                     <div class="small-6 medium-6 large-6 columns">
+                        <h3 class="title">Available Balance<br>
+                            <strong><?=format_price($this->store['currency'], $this->wallet->getAvailableBalance())?></strong>
+                        </h3>
+                     </div>
+                </div>
+
+                <div class="module-tools">
+                    <div class="small-7 medium-7 large-7 columns status-dropdown">
+                        <span class="dropdown module-dropdown" data-dropdown="status-dropdown">Status: <?=$this->status?></span>
+                        <ul id="status-dropdown" class="f-dropdown module-dropdown-content" data-dropdown-content>
+                            <li><a href="<?=url_append(array('status'=>'all'))?>">all</a></li>
+                            <li><a href="<?=url_append(array('status'=>'available'))?>">available</a></li>
+                            <li><a href="<?=url_append(array('status'=>'pending'))?>">pending</a></li>
+                            <li><a href="<?=url_append(array('status'=>'completed'))?>">completed</a></li>
+                        </ul>
+                    </div>
+                    <!--<div class="small-5 medium-5 large-5 columns">
+                        <form action="" class="module-search glass-right" data-search>
+                            <input type="text" class="search-input hidden">
+                            <a href="javascript:;" class="search-submit"><i class="icon fi-magnifying-glass"></i></a>
+                        </form>
+                    </div>-->
+                </div>
+                <!-- sorting header end -->
+
+                <div class="dashboard-table">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="status">
+                                    <span data-dropdown="status-dropdown" class="module-dropdown">Status</span><br>
+                                    <ul id="status-dropdown" data-dropdown-content class="f-dropdown module-dropdown-content">
+                                        <li><a href="#">This is a link</a></li>
+                                        <li><a href="#">This is another</a></li>
+                                        <li><a href="#">Yet another</a></li>
+                                    </ul>
+                                </th>
+                                <th class="type">Type</th>
+                                <th class="number">Reference Number</th>
+                                <th class="amount">Amount</th>
+                                <th class="time">Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <? foreach($this->wallet_activities as $wa) {?>
+                            <tr data-href="/me/wallet/detail?id=<?=$wa['id']?>">
+                                <td class="status"><?=$wa['status']?></td>
+                                <td class="type"><?=$wa['type']?></td>
+                                <td class="number"><?=$wa['ref_id']?></td>
+                                <td class="amount"><?=format_price($wa['currency'], $wa['current_balance'])?></td>
+                                <td class="time"><?=$wa['updated']?></td>
+                            </tr>
+                            <? } ?>
+                        </tbody>
+                    </table>
+                    <?php echo $this->pagination($this->total_rows, $this->rows_per_page, $this->page_num, $this->extra_params); ?>
+                    <a href="/payments" target="_blank">Go to Old(Shopinterest) Payments</a>
+                </div>
+                <!-- table end -->
+
+            </div>
+        </div>
+
+    </section>
+
+    <? require_once(APPLICATION_PATH.'/views/scripts/partial/right_sidebar.phtml');?>
+
+</div>

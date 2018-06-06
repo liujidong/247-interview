@@ -1,0 +1,42 @@
+<?if(!empty($this->searchd_products)) {?>
+<div class="row">
+    <div class="panel twelve columns centered">
+        <div class="row">
+            <div class="twelve columns">
+
+                
+                <div class="section hide-for-small">
+                    <div class="row">
+                        <div class="two columns"></div>
+                        <div class="four columns"><h6>Product Details</h6></div>
+                        <div class="two columns"><h6>Price</h6></div>
+                        <div class="two columns"><h6>Commission Fee</h6></div>
+                        <div class="two columns"></div>
+                    </div>
+                </div>
+
+                <? foreach ($this->searchd_products as $product) {?>
+                <div class="section">
+                    <div class="row">
+                        <div class="outnetwork">
+                            <div class="prodimg two columns"><a href="<?=$product['product_url'];?>" target="_blank"><img src="<?=$product['board_img'];?>" alt="" /></a></div>
+                            <div class="detail four columns">
+                                <h5><?=$product['product_name'];?></h5>
+                                <p><?=$product['product_description'];?></p>
+                            </div>
+                            <div class="two columns"><b class="show-for-small">Price:</b> <?=$product['currency_symbol'];?><?=$product['product_price'];?></div>
+                            <div class="two columns"><b class="show-for-small">Commission Fee:</b> <?=$product['product_commission'];?>%</div>
+                            <div class="two columns add2sn" store_id="<?=$product['store_id'];?>" product_id="<?=$product['product_id'];?>"><a class="button radius tiny alert add">Add to Network</a></div>
+                        </div>
+                        <div class="innetwork">
+                            <div class="columns tweleve">This item has been added to your "My Products" page. <a href="/associate/products">View it now to share this item and ear commission.</a></div>
+                        </div>
+
+                    </div>
+                </div>
+                <?}?>    
+            </div>
+        </div>            
+    </div>
+</div>
+<? } ?>

@@ -1,0 +1,15 @@
+<header class="module-header create-header">
+    <h3 class="title">Update a {{table_object_name}}</h3>
+</header>
+<form class="create-main" data-abide="ajax">
+    <div class="alert-field"></div>
+    <input type="hidden" name="row_id" value="<%row_id%>">
+    <label>Product URL: <%product_url%></label>
+    <div class="data-abide-input-container">
+        <label for="update_featured_score">Featured Score</label>
+        <input type="text" id="update_featured_score" name="featured_score" placeholder="Featured Score" value="<%featured_score%>" required>
+        <small class="error">Featured Score is required</small>
+    </div>
+
+    <input type="submit" datatable-action="update" class="submit-button" value="Save" datatable-trigger style="margin-bottom:1.875rem;">
+</form>

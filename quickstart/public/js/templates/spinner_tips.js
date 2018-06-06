@@ -1,0 +1,2 @@
+/* DONT EDIT. THIS IS A AUTO-GENERATED FILE. PLEASE EDIT FILES under quickstart/application/views/mustache INSTEAD*/
+shopinterest.templates.spinner_tips='<div class=\"spinner_tips\" style=\"width: 50%; margin: 0 auto; min-height: 100px; margin-top: 20px; background: white;color: black;font-size: 2em;\">{{message}}</div>';

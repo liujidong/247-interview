@@ -1,0 +1,13 @@
+<tr row-id="{{row_id}}">
+<td>{{payment_status_literal}}</td>
+<td>{{order_num}}</td>
+<td>{{store_id}}</td>
+<td>
+    {{#customer}}
+        {{username}}
+    {{/customer}}
+</td>
+<td>{{updated}}</td>
+<td>{{currency_symbol}}{{total}}</td>
+<td><a class="cancel" data-order-id="{{id}}">Cancel</a></td>
+</tr>

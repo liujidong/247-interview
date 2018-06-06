@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+    <head>
+        <title>A Test</title>
+        <style>
+            .thumbs {
+                border: 1px solid #C9E1F4;
+                height: 100px;
+                padding: 5px;
+            }
+
+            .thumb_pic_hover {
+                border: 2px solid #004B91 !important;
+            }
+            .thumb_pic_selected {
+                border: 2px solid #E47911 !important;
+            }
+            .thumb_pic {
+                border: 1px solid #ddd;
+                width: 100px;
+                float: left;
+                display: inline;
+                margin-right: 10px;
+                padding: 4px;
+                cursor: pointer;
+            }
+
+        </style>
+        <script type="text/javascript">
+            $( document ).ready(function() {
+                $('.thumb_pic').click(function(){
+                    var _this = $(this);
+                    var large_image_url = _this.find('img').attr('src');
+                    $('.thumb_pic').removeClass('thumb_pic_selected');
+                    $('.thumb_pic').removeClass('thumb_pic_hover');
+                    _this.addClass('thumb_pic_selected');
+                    $('.large-image img').attr('src', large_image_url);
+                });
+
+                $('.thumb_pic').mouseenter(function(){
+                    var _this = $(this);
+                    $('.thumb_pic').removeClass('thumb_pic_hover');
+                    _this.addClass('thumb_pic_hover');
+                }).mouseleave(function(){
+                    $('.thumb_pic').removeClass('thumb_pic_hover');
+                });
+
+                $('.thumb_pic :first').click();
+            });
+
+        </script>
+    </head>
+    <body>
+        <div class="row">
+            <div class="large-image">
+                <img src="http://media-cache-ec0.pinimg.com/236x/49/b6/b5/49b6b5a14b1926cd46a28399d57f62c3.jpg" style="height: 240px; width: 260px;">
+            </div>
+        </div>
+        <div class="row">
+            <div class="tweleve columns centered thumbs">
+                <div class="thumb_pic" id="thumb_pic_1">
+                    <img src="http://media-cache-ec0.pinimg.com/192x/49/b6/b5/49b6b5a14b1926cd46a28399d57f62c3.jpg" alt="" large_image_url="http://media-cache-ec0.pinimg.com/236x/49/b6/b5/49b6b5a14b1926cd46a28399d57f62c3.jpg">
+                </div>
+                <div class="thumb_pic" id="thumb_pic_2">
+                    <img src="http://media-cache-ec0.pinimg.com/192x/d1/bd/a2/d1bda2039769e02aae26897cc7f8ed4b.jpg" alt="" large_image_url="http://media-cache-ec0.pinimg.com/236x/d1/bd/a2/d1bda2039769e02aae26897cc7f8ed4b.jpg">
+                </div>
+                <div class="thumb_pic" id="thumb_pic_3">
+                    <img src="http://media-cache-ec0.pinimg.com/192x/86/b1/6d/86b16d5c4e50a91700db154d0427c1eb.jpg" alt="" large_image_url="http://media-cache-ec0.pinimg.com/236x/86/b1/6d/86b16d5c4e50a91700db154d0427c1eb.jpg">
+                </div>
+            </div>
+        </div>
+
+      <div class="row">
+      <input type="button" value="GAT Test 0" id="gat-0"/>
+      <input type="button" value="GAT Test 1" id="gat-1" gaid="test-button"/>
+      <input type="button" value="GAT Test 2" id="gat-2"/>
+      <input type="button" value="GAT Test 3" id="gat-3" gaid="test-button"/>
+      <a id="gat-4"> Gat Test 4 </a>
+      <a id="gat-5" gaid="test-link"> Gat Test 5 </a>
+      <input type="button" value="GAT Test 6"  gaid="test-button" ga-label="attr label" class="gat-click"/>
+      <input type="button" value="GAT Test 7"  gaid="et-default" ga-action="not-default" ga-label="attr label" class="gat-click"/>
+      <script>
+      $("#gat-0").click(function(e){gat(e, "test-button");});
+      $("#gat-1").click(function(e){gat(e);});
+      $("#gat-2").click(function(e){gat(e, "test-button", {label:"LABEL-EXTRA-DATA"});});
+      $("#gat-3").on("click", {label:"LABEL-EVENT-DATA"} ,function(e){gat(e);});
+      $("#gat-4").click(gat_handler('test-link'));
+      $("#gat-5").click(gat_handler());
+      setup_simple_gat();
+      </script>
+      </div>
+
+    </body>
+</html>

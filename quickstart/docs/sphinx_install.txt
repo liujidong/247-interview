@@ -1,0 +1,26 @@
+please install sphinx on deamon01 
+** steps
+
+install sphinx
+    sudo su 
+    rpm -Uhv http://sphinxsearch.com/files/sphinx-2.0.4-1.rhel6.x86_64.rpm
+    mkdir -p /var/data
+    cd /var/
+    chmod 777 data
+
+create sphinx.conf
+    cd /www/pincommerce
+    php create_shpinx_conf.php
+
+push config file to installed path
+    ./push_sphinx_conf
+
+create indexes
+    indexer --all
+
+start searchd
+    service searchd restart
+
+start searchd when server reboots
+    sudo chkconfig searchd on
+

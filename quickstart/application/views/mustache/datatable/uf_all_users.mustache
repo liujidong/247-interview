@@ -1,0 +1,33 @@
+<header class="module-header update-header">
+    <h3 class="title">Update User</h3>
+</header>
+
+<form class="create-main" data-abide="ajax">
+    <input type="hidden" name="row_id" value="<%row_id%>">
+    <div class="alert-field"></div>
+    <div class="data-abide-input-container">
+        <label for="first_name">Email</label>
+        <input type="text" name="username" placeholder="Username" required value="<%username%>">
+        <small class="error">Username is required</small>
+    </div>
+
+    <div class="data-abide-input-container">
+        <label class="required">Paypal Fee Waived</label>
+        <select name="store_transaction_fee_waived" required>
+            <option value="0">N</option>
+            <option value="1">Y</option>
+        </select>
+        <small class="error">Field 'Paypal Fee Waived' is required</small>
+    </div>
+
+    <div class="data-abide-input-container">
+        <label class="required">Closed</label>
+        <select name="user_blocked" required>
+            <option value="0">N</option>
+            <option value="1">Y</option>
+        </select>
+        <small class="error">Field 'Closed' is required</small>
+    </div>
+
+    <input type="submit" datatable-action="update" class="submit-button" value="Save" datatable-trigger style="margin-bottom:1.875rem;">
+</form>

@@ -1,0 +1,70 @@
+
+A module is a self-managed software component. It has its own controllers, models, views...
+
+We can put all modules under the modules folder in the application folder.
+
+The folder structure for a module is
+
+application
+    modules
+        module1
+            configs
+            controllers
+            models
+            views
+            Bootstrap.php
+        module2
+            configs
+            controllers
+            models
+            views
+            Bootstrap.php
+    controllers
+    models
+    services
+    library
+    configs
+    Bootstrap.php
+
+Update the Bootstrap.php of the main application to load modules:
+
+protected function _initSiteRoutes() {
+    //Don't forget to bootstrap the front controller as the resource may not been created yet...
+    $this->bootstrap("frontController");
+    $front = $this->getResource("frontController");
+    //Read the routes from an ini file and in that ini file use the options with routes prefix...
+    $front->getRouter()->addConfig(new Zend_Config_Ini(APPLICATION_PATH . "/configs/routes.ini"), "routes");
+
+   //Add modules dirs to the controllers for default routes...
+    $front->addModuleDirectory(APPLICATION_PATH . '/modules');
+}
+
+We also include a routes.ini file to route the request to the default (already existed) controllers
+
+The content of the route file is:
+
+routes.indexItem.route                 = index
+routes.indexItem.defaults.module       = default
+routes.indexItem.defaults.controller   = index
+routes.indexItem.defaults.action       = index
+
+We also need to include a Bootstrap file for the module. In the bootstrap, we can let it load the configuration file
+of the module. 
+
+class Blog_Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
+       
+}
+
+Now we can start to write the controllers for the module. Only one thing to remember, the controller class name should be
+
+ModuleName_<Controller Name>Controller
+
+So for the module "blog", the controller name should be "Blog_IndexController". But the file name should still be 
+IndexController.php
+
+
+
+
+
+
+

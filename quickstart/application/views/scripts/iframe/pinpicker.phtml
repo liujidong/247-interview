@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/page/iframe_pinpicker.css"/>
+    <script src="/v2/js/jquery.js"></script>
+    <script src="/js/jquery.cookie.js"></script>
+    <script src="/js/mustache.js"></script>
+    <script src="/js/gat.js"></script>
+    <?$index_js = 'index.js'; if(APPLICATION_ENV === 'production') $index_js = 'index.combined.min.js'; if(APPLICATION_ENV === 'staging') $index_js = 'index.combined.js';?>
+    <script src="/js/<?=$index_js?>"></script>
+</head>
+<body id="<?=$this->body_id;?>">
+    <div id="pinpicker" store-id="<?=$this->my_store_id;?>">
+        <a class="close-modal">&#215;</a>
+        <div id="pinpicker_container">
+            <div id="pinpicker_content" class="container-fluid open">
+                <div class="row-fluid">
+                    <div id="servicePaneSpacer" class="span3">&nbsp;</div>
+                    <div id="servicePane" class="multi-service span3">
+                        <img src="/img/header-logo.png" id="branding">
+                        <ul id="services" class="nav nav-list well">
+                            <li class="pane-link client" data-client="pinterest">
+                                <a href="#/pinterest/"><i class="sbicon-pinterest"></i>Pinterest</a>
+                            </li>
+                        </ul>
+                        <div class="subbranding">Powered by <b>Shopintoit</b></div>
+                    </div>
+                    <div class="span9 multi-service row-fluid" id="mainpane">
+                        <div id="picker" class="span8">
+                            <ul class="picker_files_header noselect pointer">
+                                <li>
+                                    <span>List of Boards</span>
+                                    <i class="floatright icon-resize-vertical"></i>
+                                </li>
+                            </ul>
+                            <ul id="picker_files" class="filelist nav nav-list nav-files noselect">
+                                <!-- board list -->
+                            </ul>
+                            <div id="pinlist" class="span8" style="display: none">
+                                <ul id="pinpicker_selectpins" class="list filelist thumbnails">
+                                    <!-- list of pins -->
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="bread" class="span8">
+                            <div class="row-fluid  breadcrumb" id="breadcrumbbar">
+
+                                <span class="breadcrumb_element ellipsize"><a href="#/">Pinterest.com</a></span><span class="breadcrumb_element divider">/</span>
+
+                                <span class="breadcrumb_element ellipsize pinterest_username">
+                                    <?if(empty($this->pinterest_username)) {?>
+                                    <input class="pinterest_username_input" type="text" placeholder="Pinterest Username">
+                                    <?} else {?>
+                                    <a class="pinterest_username_anchor"><?=$this->pinterest_username;?></a>
+                                    <?}?>
+                                </span>
+                                <span class="breadcrumb_element divider">/</span>
+
+
+                            </div>
+                        </div>
+                        <div id="preview" class="span3">
+                            <!-- pinpicker_uploader module-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- load filepicker lib -->
+<script type="text/javascript">
+<?$super_key = (APPLICATION_ENV === 'production')?"'AwSLXQo0vRIGtomgenR8Qz'":"'AFuYI6cJShSyuXM6JCIUAz'"?>
+(function(a){if(window.filepicker){return}var b=a.createElement("script");b.type="text/javascript";b.async=!0;b.src=("https:"===a.location.protocol?"https:":"http:")+"//api.filepicker.io/v1/filepicker.js";var c=a.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c);var d={};d._queue=[];var e="pick,pickMultiple,pickAndStore,read,write,writeUrl,export,convert,store,storeUrl,remove,stat,setKey,constructWidget,makeDropPane".split(",");var f=function(a,b){return function(){b.push([a,arguments])}};for(var g=0;g<e.length;g++){d[e[g]]=f(e[g],d._queue)}window.filepicker=d})(document);
+filepicker.setKey(<?=$super_key?>);
+</script>
+<!-- end load filepicker lib -->
+</body>
+</html>
+
+
+
+
+

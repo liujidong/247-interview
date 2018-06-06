@@ -1,0 +1,2 @@
+/* DONT EDIT. THIS IS A AUTO-GENERATED FILE. PLEASE EDIT FILES under quickstart/application/views/mustache INSTEAD*/
+shopinterest.templates.global_category_dropdown='<select name=\"global_category_id\" required pattern=\"^[1-9][0-9]*\"><option value=\"0\"> -ALL- </option>{{#categories}}    <option value=\"{{id}}\" {{#selected}}selected{{/selected}}>{{path}}</option>{{/categories}}</select>';

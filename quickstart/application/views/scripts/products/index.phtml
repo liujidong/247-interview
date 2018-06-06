@@ -1,0 +1,79 @@
+<link rel="stylesheet" type="text/css" href="/css/cart.css"/>
+
+
+<div id="container" class="row">
+    <div class="twelve columns">
+        <? require_once(APPLICATION_PATH . '/views/scripts/partial/subnav.phtml'); ?>
+
+        <div id="cart">
+            <div id="boardList" class='clearfix'>
+                <div  class='fullwidth_div txt_center_div'>
+                    <h1>Add <span class="gentium">New</span> Products</h1>
+                    <h2>Add products to your store from Pinterest, Etsy or from your PC.</h2>
+                    <center>
+                        <a class="button radius alert large pinterst" href="/merchant/selectboards">Pinterest</a> <a class="button radius alert large etsy" href="/products/import">Etsy</a> <a class="button radius alert large upload" href="/products/create">Your PC</a>
+                    </center>
+
+                    <hr>
+                    <h1>Your <span class="gentium">Store's</span> Products</h1>
+                    <h2>These are the products in your store. Customize pricing, shipping and payment for each product.</h2>
+                                        
+                    
+                </div>
+                <div class="row">
+                <div class="five offset-by-seven columns hide-for-small">	
+                        <form class="twelve columns centered searchform" action='/products' method='get'>
+                            <div class="row">
+                                <div class="searchbox row collapse">
+                                    <div class="five mobile-three columns">
+                                        <input id="store_search" name="q" type="text" placeholder="Search for products&hellip;" value="<?=!empty($_REQUEST['q'])?$_REQUEST['q']:'';?>"/>
+                                    </div>
+                                    <div class="two mobile-one columns">
+                                        <input class="postfix secondary button" type="submit" value=""/>
+                                        
+                                    </div>
+                                    <div class="five mobile-one columns">
+                                        or <a href="/products">Clear this Search</a>
+                                    </div>
+                                </div>
+                            </div> 
+                        </form>
+
+                    </div>
+                </div>
+        <div class="row">
+        <? foreach ($this->errnos as $key => $value) { ?>
+        <div class="alert-box <?echo error_type($key);?>">
+            <?= $this->errors[$key]['msg'] ?>
+            <a href="" class="close">&times;</a>
+        </div>
+        <? } ?>
+        </div>                   
+                <form action='#' method="post">
+                    <div id="pinlist_div" class="row">
+                        <div id="pinlist">
+                            <?php echo $this->render('products/product_list.phtml'); ?>
+                        </div>
+                        <div class="row">
+
+                            <div class="five columns push-seven">
+                                <div id="saveAndContinue">
+                                    <!--<button type="submit" name="submit" id="cancel" value="submit" alt="Cancel" class="button radius secondary large"/>Cancel</button>-->
+                                    <button type="submit" name="submit" id="saveandcontinue" value="submit" alt="Save Changes" class="button radius alert large"/>Save Changes</button>	    	
+                                </div>
+                            </div>
+                            
+                            <input type="hidden" id="product_num_per_page" name="product_num_per_page" value="<?php echo $this->product_num_per_page; ?>">
+                            <input type="hidden" id="products_cnt" name="products_cnt" value="<?php echo $this->products_cnt; ?>">
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div><!-- end - boardList -->
+        <input id="store_shipping" type="hidden" value="<?= $this->store_shipping ?>">
+        <input id="store_additional_shipping" type="hidden" value="<?= $this->store_additional_shipping ?>">
+        <?php echo $this->pagination($this->total_rows, $this->rows_per_page, $this->page_num, $this->extra_params); ?>
+    </div><!-- end content -->
+</div>       
+</div><!-- end container -->

@@ -1,0 +1,191 @@
+.solidus .solidus-product {
+    position: relative;
+}
+
+.solidus .solidus-product .num {
+    display: none;
+    margin-top: 5px;
+}
+
+.solidus .solidus-product .icon-holder {
+    width: 8.125rem;
+    text-align: center;
+    display: inline-block;
+    white-space: nowrap;
+
+}
+
+.solidus .solidus-product .icon {
+    border-radius: 1000px;
+    border-width: 6px;
+    border-style: solid;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    width: 8.125rem;
+    height: 8.125rem;
+    padding: 0.3125rem;
+
+}
+
+.solidus .solidus-product .icon:hover i, .solidus .solidus-product .icon:active i {
+    color: white;
+}
+
+.solidus .solidus-product .icon i {
+    border-radius: 1000px;
+    font-size: 6.25rem;
+    line-height: 1.2;
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+.solidus .solidus-product .dislike, .solidus .solidus-product .like {
+    text-align: center;
+    margin-top: 8.75rem;
+
+}
+
+.solidus .solidus-product .dislike:hover .num, .solidus .solidus-product .dislike:active .num, .solidus .solidus-product .like:hover .num, .solidus .solidus-product .like:active .num {
+    display: block;
+}
+
+@media only screen and (max-width: 40em) {
+    .solidus .solidus-product .dislike, .solidus .solidus-product .like {
+        margin-top: 0;
+        margin-bottom: 1.875rem;
+    }
+
+    .solidus .solidus-product .dislike .icon, .solidus .solidus-product .like .icon {
+        width: 6.25rem;
+        height: 6.25rem;
+    }
+
+    .solidus .solidus-product .dislike i, .solidus .solidus-product .like i {
+        font-size: 5rem;
+    }
+
+    .solidus .solidus-product .dislike {
+        text-align: right;
+    }
+
+    .solidus .solidus-product .like {
+        text-align: left;
+    }
+}
+
+.solidus .solidus-product .dislike .icon {
+    border-color: #606a70;
+}
+
+.solidus .solidus-product .dislike .icon:hover i, .solidus .solidus-product .dislike .icon:active i {
+    background-color: #606a70;
+}
+
+.solidus .solidus-product .dislike .num, .solidus .solidus-product .dislike i {
+    color: #606a70;
+}
+
+.solidus .solidus-product .like .icon {
+    border-color: #ff4545;
+}
+
+.solidus .solidus-product .like .icon:hover i, .solidus .solidus-product .like .icon:active i {
+    background-color: #ff4545;
+}
+
+.solidus .solidus-product .like .num, .solidus .solidus-product .like i {
+    color: #ff4545;
+}
+
+.solidus .solidus-product .product {
+    background-color: #1f2224;
+    color: white;
+    border-radius: 4px;
+    display: inline-block;
+    padding: 6px;
+    margin-bottom: 1.875rem;
+}
+
+.solidus .solidus-product .product .image-holder {
+    text-align: center;
+    position: relative;
+    min-width: 280px;
+    min-height: 280px;
+    max-width: 360px;
+}
+
+.solidus .solidus-product .product .image-holder .image {
+    border-radius: 4px;
+    background-color: #cfdde6;
+}
+
+.solidus .solidus-product .product .image-holder .pricing {
+
+    background-color: #1f2224;
+    border-radius: 4px;
+    line-height: 2.5rem;
+    padding: 0 0.625rem;
+    position: absolute;
+    left: 1.25rem;
+    bottom: 1.25rem;
+}
+
+.solidus .solidus-product .product .name {
+    line-height: 6rem;
+    text-align: center;
+}
+
+.solidus .solidus-product .share-list {
+    clear: both;
+    margin: 1.875rem 0;
+    text-align: center;
+}
+
+.solidus .solidus-product .share-list .share {
+    border-radius: 1000px;
+    border: 3px solid #39a0db;
+    display: inline-block;
+    font-weight: bold;
+    padding: 3px;
+}
+
+.solidus .solidus-product .share-list .share .inner {
+    border-radius: 1000px;
+    color: #39a0db;
+    display: block;
+    font-size: 1.125rem;
+    line-height: 1.875rem;
+    text-align: left;
+    width: 8rem;
+}
+
+.solidus .solidus-product .share-list .share .inner span {
+    vertical-align: middle;
+}
+
+.solidus .solidus-product .share-list .share:hover .inner, .solidus .solidus-product .share-list .share:active .inner {
+    background-color: #39a0db;
+    color: white;
+}
+
+.solidus .solidus-product .share-list .fi-share {
+    display: inline-block;
+    font-size: 1.5rem;
+    margin: 0 1rem;
+    vertical-align: middle;
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+#share-list {
+    width: auto;
+    max-width: none;
+    overflow: hidden;
+    text-align: center;
+}
+
+#share-list li {
+    display: inline-block;
+}

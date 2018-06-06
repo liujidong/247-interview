@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Shopinterest: Social Shopping Store Starts Here</title>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="/css/foundation.css"/>
+<link rel="stylesheet" type="text/css" href="/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="/css/homepage.css"/>
+<link rel="stylesheet" type="text/css" href="/css/chooseyourboadrd.css"/>
+</head>
+<body>
+<div id="fb-root"></div>    
+<div id="headerpage">
+      <div class="header_main clearfix">
+    	<div id="headerLogo">
+        	<a href="/"><img src="/img/common/logo.gif"  alt="Shopinterest" /><span class="logoTest">Shopinterest</span></a>
+        </div>
+        <div id="headerNav">
+        	
+            <?php if(isset($this->is_merchant_login) && $this->is_merchant_login) {?>
+            <ul class='header_nav_ul'>
+            <?php }else {?>
+            <ul class='header_nav_ul'>
+            <?php }?>
+            	<li><div class="fb-login-button" data-scope="email,user_birthday,status_update,publish_stream,user_about_me">Connect with Facebook</div></li>
+            	<li>
+            		<?php if(isset($this->is_merchant_login) && $this->is_merchant_login) {?>
+            			<a href="/logout">LOGOUT</a>
+            		<?php }else {?>
+            			<a href="/login">LOGIN</a>
+            	    <?php }?>
+            	</li>
+                <li><a href="#">ABOUT US</a></li>
+                <li><a href="#">FAQS</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+

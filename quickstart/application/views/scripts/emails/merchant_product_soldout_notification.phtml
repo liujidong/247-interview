@@ -1,0 +1,33 @@
+<a href="<?=$this->site_url?>"><img src="<?= getSiteMerchantUrl(SHOPINTEREST_LOGO);?>"></a><br>
+Dear Shopintoit seller:<br><br>
+
+Your have products <?if(!empty($this->cf)) echo $this->cf;?> sellout<br><br>
+
+<table width="100%" border="1" cellspacing="0" cellpadding="4">
+    
+    
+<tr>
+        <td>Item Name:</td>
+        <td>Description:</td>
+        <td>Price:</td>
+</tr>
+<?foreach($this->products as $product) {?>
+<tr>
+        <td><?=$product['name']?></td>
+        <td><?=$product['description']?></td>
+        <td><?=$product['price']?></td>
+</tr>
+<?}?>    
+</table>
+<br>
+Check your paypal email for shipping details.<br><br>
+
+Thanks!<br><br>
+
+The Shopintoit team<br>
+
+PS - Check our FAQs for any other questions you may have, or contact us at <a href="mailto:xxx@shopintoit.com">xxx@shopintoit.com</a> for whatever you need!<br>
+
+Find us in Facebook - <a href="https://www.facebook.com/Shopintoit">https://www.facebook.com/Shopintoit</a><br>
+Follow us in Twitter - <a href="https://twitter.com/shopintoit">https://twitter.com/shopintoit</a><br>
+Pin & Share in Pinterest - <a href="http://www.pinterest.com/shopintoit/">http://www.pinterest.com/shopintoit/</a><br>

@@ -1,0 +1,200 @@
+/* CSS Document */
+#popcover
+{
+	position:fixed;
+	width:100%;
+	height:1400px;
+	margin:0;
+	padding:0;
+	top:0px;
+	z-index:100;
+	background-color:#999;
+	filter:alpha(opacity=50);
+ 	-moz-opacity:0.5;
+	opacity:0.5;
+	display:none;
+}
+#popwindow
+{
+	display:none;
+	position:fixed;
+	width:100%;
+	height:1400px;
+	margin:0;
+	padding:0;
+	top:0px;
+	z-index:105;
+}
+#itemview
+{
+	position:fixed;
+	width:960px;
+	height:677px;
+	background-color:#FFF;
+	border:#999 solid 1px;
+	top:50%;
+	left:50%;
+	margin-top:-338px;
+	margin-left:-480px;
+	z-index:110;
+}
+#itemViewName
+{
+	width:500px;
+	color:#383535;
+	font-family:Geneva, sans-serif;
+	font-weight:bold;
+	font-size:36px;
+	float:left;
+	margin-left:25px;
+	margin-top:20px;
+}
+#itemViewArrow
+{
+	margin-left:64px;
+	margin-top:28px;
+	float:left;
+}
+#itemViewArrow img
+{
+	margin-right:3px;
+}
+#itemViewClose
+{
+	position:relative;
+	margin-left:281px;
+	margin-top:28px;
+	float:left;
+	display:block;
+	width:27px;
+	height:27px;
+	z-index:300px;
+	background-image:url(/img/common/close.gif);
+	background-repeat:no-repeat;
+	cursor:pointer;
+}
+#itemViewImage
+{
+	float:left;
+	margin-top:24px;
+	margin-left:27px;
+}
+#itemViewMainImage
+{
+	width:600px;
+	height:440px;
+	overflow:hidden;
+}
+#itemViewMainImage image
+{
+	width:600px;
+	height:440px;
+}
+#itemViewSubImageList
+{
+	width:613px;
+	height:120px;
+	margin-top:8px;
+	margin-left:4px;
+}
+.itemViewSubImageItem
+{
+	float:left;
+	background-color:#000;
+	width:66px;
+	height:51px;
+	overflow:hidden;
+	margin-right:10px;
+	margin-bottom:10px;
+}
+.itemViewSubImageItem img
+{
+	width:66px;
+	height:51px;
+}
+#itemViewInfo
+{
+	width:260px;
+	height:600px;
+	margin-left:35px;
+	float:left;
+}
+#itemViewInfoTag
+{
+	background-image:url(/img/itemview/tag.png);
+	position:relative;
+	top:-720px;
+	z-index:110;
+	height:250px;
+	width:240px;
+	padding-top:222px;
+	overflow:hidden;
+}
+#itemViewInfoTag h2
+{
+	color:#383535;
+	font-family:Geneva, sans-serif;
+	font-weight:bold;
+	font-size:24px;
+	text-align:center;
+}
+#itemViewInfoTag p
+{
+	padding:9px 18px 0px 22px;
+	line-height:20px;
+}
+#itemViewInfoTagPrice,#itemViewInfoTagSH
+{
+	color:#383535;
+	font-family:Geneva, sans-serif;
+	font-weight:bold;
+	font-size:18px;
+	text-align:center;
+}
+#itemViewInfoAddButton
+{
+	width:225px;
+	overflow:hidden;
+	margin-top:353px;
+}
+#addToCart
+{
+	width:225px;
+	height:50px;
+	background-image:url(/img/itemview/addtocart.png);
+	margin-bottom:10px;
+}
+#addToWishList
+{
+	width:225px;
+	height:50px;
+	background-image:url(/img/itemview/addtowishlist.png);
+}
+#itemViewInfoPinnedList
+{
+	height:110px;
+	margin-top:26px;
+	margin-left:4px;
+}
+#itemViewInfoPinnedList h4
+{
+	color:#383535;
+	font-family:Geneva, sans-serif;
+	font-size:12px;
+	text-align:center;
+}
+.itemViewInfoPinnedItem
+{
+	float:left;
+	background-color:#000;
+	width:33px;
+	height:33px;
+	margin-top:9px;
+	margin-right:15px;
+	margin-bottom:4px;
+}
+.itemViewInfoPinnedItem img
+{
+	width:33px;
+	height:33px;
+}

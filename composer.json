@@ -1,0 +1,15 @@
+{
+    "config" : {
+        "vendor-dir" : "quickstart/library/vendor"
+    },
+    "require": {
+        "composer/installers": "~1.0.0",
+        "exeu/apai-io": "dev-master",
+        "cloudinary/cloudinary_php": "dev-master"
+    },
+    "extra": {
+        "installer-paths": {
+            "modules/{$name}": ["exeu/apai-io"]
+        }
+    }
+}

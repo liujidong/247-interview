@@ -1,0 +1,2 @@
+/* DONT EDIT. THIS IS A AUTO-GENERATED FILE. PLEASE EDIT FILES under quickstart/application/views/mustache INSTEAD*/
+shopinterest.templates.nav_cart='<link rel=\"stylesheet\" href=\"/css/nav_cart.css\"><a href=\"/cart\">  <span class=\"nav-cart\">Cart</span>  <i class=\"nav-cart-num\"></i></a>';

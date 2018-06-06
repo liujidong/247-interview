@@ -1,0 +1,20 @@
+/* CSS Document */
+#boardList{
+	width:100%;
+	margin:auto;
+	background-color:#eeeeee;
+	height:auto;
+}
+#boardList form{margin-left:9px;}
+.boardItem{width:220px;height:300px;margin-right:20px;float:left;overflow:hidden;}
+.mr_none{margin-right:0;}
+.boardImageItem{height:230px;background-image:url(/img/chooseyourboard/imagecover.png);background-repeat:no-repeat;overflow:hidden;}
+.boardImageItem img{margin-left:23px;margin-top:28px;}
+.boardItemText{color:#514C4C;font-family:Tahoma, Geneva, sans-serif;font-weight:bold;font-size:16px;line-height:28px;text-align:center;}
+#viewMoreButton{float:left;text-align:right;margin-right:20px;margin-bottom:40px;width:950px;}
+#viewMoreButton input{width:146px;height:50px;background-image:url(/img/chooseyourboard/viewmore.png);cursor:pointer;}
+#saveAndContinue{text-align:right;padding:10px;}
+#saveAndContinue input{width:205px;height:50px;background-image:url(/img/chooseyourboard/saveandcontinue.png);cursor:pointer;}
+
+
+#cyb_main{overflow:hidden;background-color:#eeeeee;}

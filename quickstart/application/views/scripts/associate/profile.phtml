@@ -1,0 +1,99 @@
+<script type="text/javascript" src="/js/fileuploader.js"></script>
+<link rel="stylesheet" href="/css/fileuploader.css"/>
+
+<div id="container" class="row">
+    <div class="twelve columns">
+        <? require_once(APPLICATION_PATH . '/views/scripts/partial/subnav.phtml'); ?>
+        <h1>Edit <span class="gentium">your</span> Associate Profile</h1>
+        <center>
+            <a href="/account/settings" class="button radius secondary small manage_button">Edit your account Settings</a>
+        </center>        
+	<h5><?= $this->account_status == ACTIVATED ? 'Associate Id : '.$this->aid : 'Status: Inactive'?></h5>
+    <h5><?= ($this->account_status == ACTIVATED && $this->products_cnt) ? 'Your Affiliate Store URL: <a target="blank" href="'.getSiteAssociateUrl($uri = "/affiliatestore?id=".$this->aid).'">'.getSiteAssociateUrl($uri = "/affiliatestore?id=".$this->aid).'</a>' : 'Status: Inactive or you have no associate products.' ?></h5>
+        <? foreach ($this->errnos as $key => $value) {?>
+            <div class="alert-box <?echo error_type($key);?>">
+                <?= $this->errors[$key]['msg'] ?>
+                <a href="" class="close">&times;</a>
+            </div>
+        <? } ?>
+        <div class="row">
+            <div id="profile" class="panel twelve columns centered">  
+                
+                <form method="post">
+                    <div class="row">
+                        <div class="six columns profile_user">
+                            <div class="row"> 
+<div class="twelve columns">
+    <label><span class="require">*</span>Web site or newsletter name<input type="text" name="external_website_name" value="<?= $this->external_website_name; ?>" /></label>
+</div>
+<div class="twelve columns">
+    <label><span class="require">*</span>Web site URL<input type="text" name="external_website_url" value="<?= $this->external_website_url; ?>" /></label>
+</div>
+<div class="twelve columns">
+    <label><span class="require">*</span>Content Category
+    	<select name="external_website_content">
+                <? foreach ($this->external_website_content_options as $external_website_content_option) {?>
+                <option value="<?=$external_website_content_option;?>"<?if($external_website_content_option === $this->external_website_content) echo "selected";?>><?=$external_website_content_option;?></option>
+                <? }?>
+    	</select>
+    </label>
+</div>
+<div class="twelve columns">
+    <label><span class="require">*</span>Main Channel for your links
+    	<select name="marketing_channel">
+                <? foreach ($this->marketing_channel_options as $marketing_channel_option) {?>
+                <option value="<?=$marketing_channel_option;?>"<?if($marketing_channel_option === $this->marketing_channel) echo "selected";?>><?=$marketing_channel_option;?></option>
+                <? }?>
+    	</select>
+    </label>
+</div>
+
+                            </div>
+                            <div class="row collapse">
+                                <label>Your Pinterest URL</label>
+                                <div class="six columns">
+                                    <span class="prefix">http://pinterest.com/</span>
+                                </div>
+                                <div class="six columns">
+                                    <input name ="pinterest_username" type="text" placeholder="Username" value="<?php echo $this->pinterest_username; ?>" />
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="six columns">
+<div class="twelve columns">
+    <label>Describe your Web site/Channel<textarea style="height: 7em;" name="external_website_description"><?= $this->external_website_description; ?></textarea></label>
+</div>
+
+<div class="twelve columns">
+    <label>Current Monthly Unique Visitors/circulation<input type="text" name="external_website_monthly_unique_visitors" value="<?= $this->external_website_monthly_unique_visitors; ?>" /></label>
+</div>                          
+                        </div>
+                    </div>
+                    <div class="row"><br>
+                        <center><button id="getstartedbutton" name="submit" type="submit" value="submit" class="button radius alert large" >Save Profile</button></center>
+                    </div>  
+                </form>    
+            </div><!-- end profile -->
+            <p class="small"><span class="require">*</span>Required Fields</p>
+        </div>
+
+    </div><!-- end content -->
+</div>       
+</div><!-- end container -->
+
+<!--
+
+
+<div id="myModal" class="reveal-modal">
+    <h3>Change Password</h3>
+    <div id="save_password_error_box" class="alert-box alert" style="display: none;">Errors on changing your password!</div>
+    <label>Current Password<input id="current_password" name="current_password" type="password" placeholder="Current Password" value=""/></label>
+    <hr>
+    <label>New Password<input id="new_password" name="new_password" type="password" placeholder="New Password" value=""/></label>
+    <label>Confirm New Password<input id="confirm_password" name="confirm_password" type="password" placeholder="Confirm New Password" value=""/></label><br>
+    <button id="save_password" name="submit" type="submit" value="submit" class="button radius alert large" >Save</button>
+    <a class="close-reveal-modal button radius secondary large">Cancel</a>
+    <a class="close-reveal-modal">&#215;</a>
+</div>-->
+
