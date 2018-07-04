@@ -1,5 +1,7 @@
 <?php
-
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
+#use Zend\Mvc\Application;
 // Define path to application directory
 defined('APPLICATION_PATH')
     || define('APPLICATION_PATH', realpath(dirname(__FILE__) . '/../application'));
@@ -8,6 +10,7 @@ defined('APPLICATION_PATH')
 defined('APPLICATION_ENV')
     || define('APPLICATION_ENV', (getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV') : 'production'));
 
+#include __DIR__ . '/../application/models/AmazonSearchIndex.php';
 require_once APPLICATION_PATH.'/autoload.php';
 require_once APPLICATION_PATH.'/constants.php';
 require_once APPLICATION_PATH.'/errors.php';
@@ -20,7 +23,7 @@ set_include_path(implode(PATH_SEPARATOR, array(
     realpath(APPLICATION_PATH . '/../library'),
     get_include_path(),
 )));
-
+#include __DIR__ . '/../../vendor/autoload.php';
 /** Zend_Application */
 require_once 'Zend/Application.php';
 
@@ -38,6 +41,7 @@ $site_https_enable = $application_config->site->https->enable;
 
 // set version sepcific config
 $config_version_key = "v$site_version";
+#print_r($site_versions);
 foreach($application_config->$config_version_key as $k => $v) {
     if(isset($application_config, $k)) {
         $application_config->$k->merge($v);
@@ -46,7 +50,6 @@ foreach($application_config->$config_version_key as $k => $v) {
     }
 }
 $application_config->setReadOnly();
-
 // get config items
 $dbconfig = $application_config->database;
 $paypalconfig = $application_config->paypal;
@@ -85,14 +88,14 @@ require APPLICATION_PATH.'/../library/vendor/autoload.php';
     "cloud_name" => $cloudinary_config->api->cloud_name,
     "api_key" => $cloudinary_config->api->key,
     "api_secret" => $cloudinary_config->api->secret,
-));
-
+)); 
 // connect to redis
 $account_dbobj = DBObj::getAccountDBObj();
 $job_dbobj = DBObj::getJobDBObj();
+print("here"); 
 $redis = new RedisCache($account_dbobj);
 $redis->connect($redis_config->server->host, $redis_config->server->port);
-
+print("here"); 
 if(APPLICATION_ENV != 'production' && APPLICATION_ENV != 'staging'){
     // update table info on every request under dev env, overide data in tables.php
     get_table_info(true);
@@ -105,4 +108,4 @@ $application = new Zend_Application(
     APPLICATION_PATH . '/configs/application.ini'
 );
 $application->bootstrap()
-            ->run();
+            ->run();         

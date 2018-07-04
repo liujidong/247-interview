@@ -28,8 +28,15 @@ class DB {
     private static function get_conn($dbhost, $dbuser, $dbpass) {
         $dbhost_key = $dbhost;
         if(!isset(self::$conns[$dbhost_key]) || !is_resource(self::$conns[$dbhost_key])) {
-            if(!is_resource(self::$conns[$dbhost_key] = mysql_connect($dbhost, $dbuser, $dbpass))) {
-                dddd('Connection Error: '.mysql_errno());
+            /*
+            if(!is_resource(self::$conns[$dbhost_key] = mysqli_connect($dbhost, $dbuser, $dbpass))) {
+                dddd('Connection Error: '.mysqli_connect_errno());
+            }*/
+            $connect= mysqli_connect($dbhost, $dbuser, $dbpass);
+            if($connect){
+                self::$conns[$dbhost_key]=$connect;
+            }else{
+              dddd('Connection Error: '.mysqli_connect_errno());  
             }
         }
         return self::$conns[$dbhost_key];
